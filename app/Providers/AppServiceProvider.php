@@ -2,6 +2,7 @@
 
 namespace LaraDex\Providers;
 
+use Illuminate\Support\Facades\Schema;
 use Illuminate\Support\ServiceProvider;
 
 class AppServiceProvider extends ServiceProvider
@@ -13,7 +14,8 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        # Corregir el error al ejecutar la migración
+        Schema::defaultStringLength(191);
     }
 
     /**

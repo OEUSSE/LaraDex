@@ -3,6 +3,7 @@
 namespace LaraDex\Http\Controllers;
 
 use Illuminate\Http\Request;
+use LaraDex\Trainer;
 
 class TrainerController extends Controller
 {
@@ -37,7 +38,7 @@ class TrainerController extends Controller
      */
     public function store(Request $request)
     {
-        $trainer = new Trainer(); // Instancia de Trainer
+        $trainer = new Trainer(); // Instancia de Trainer Model
         // Asignar a la propiedad de name de trainer el valor que viene del request
         $trainer->name = $request->input('name');
         $trainer->save(); // Almacenar nuevo recurso

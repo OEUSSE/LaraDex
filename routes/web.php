@@ -19,5 +19,5 @@ Route::view('/', 'welcome');
 
 Route::get('/prueba/{name}', 'PruebaController@prueba');
 
-# Routes for TrainerController
+# Route for TrainerController Controller make with artisan
 Route::resource('trainers', 'TrainerController');
