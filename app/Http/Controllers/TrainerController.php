@@ -41,20 +41,22 @@ class TrainerController extends Controller
      */
     public function store(Request $request)
     {
-        $name = 'default-avatar.jpg';
+        $avatar_name = 'default-avatar.jpg';
+        $description = (!$request->input('description')) ? 'Sin descripción' : $request->input('description');
         if ($request->hasFile('avatar')) {
             // Creando un archivo
             $file = $request->file('avatar');
             // Dando al archivo un nombre único
-            $name = time().$file->getClientOriginalName();
+            $avatar_name = time().$file->getClientOriginalName();
             // Mover a una carpeta a public/images
-            $file->move(public_path().'/images/', $name);
+            $file->move(public_path().'/images/', $avatar_name);
         }
 
         $trainer = new Trainer(); // Instancia de Trainer Model
         // Asignar a la propiedad de name de trainer el valor que viene del request
         $trainer->name = $request->input('name');
-        $trainer->avatar = $name;
+        $trainer->avatar = $avatar_name;
+        $trainer->description = $description;
         $trainer->save(); // Almacenar nuevo recurso
 
         return 'Save';

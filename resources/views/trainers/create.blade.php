@@ -7,12 +7,16 @@
     <form class="form-group" method="POST" action="/trainers" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
-            <label for="nombre">Nombre</label>
+            <label for="name">Nombre</label>
             <input type="text" name="name" class="form-control" required>
         </div>
         <div class="form-group">
-            <label for="nombre">Avatar</label>
+            <label for="avatar">Avatar</label>
             <input type="file" name="avatar" required>
+        </div>
+        <div class="form-group">
+            <label for="description">Descripción</label>
+            <textarea name="description" cols="30" rows="10" class="form-control"></textarea>
         </div>
         <button type="submit" class="btn btn-primary">Guardar</button>
     </form>

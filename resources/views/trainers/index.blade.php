@@ -10,7 +10,7 @@
                 <img class="card-img-top" src="images/{{$trainer->avatar}}"} alt="Card image cap">
                 <div class="card-body">
                     <h5 class="card-title">{{$trainer->name}}</h5>
-                    <p class="card-text">Alguna cosa</p>
+                    <p class="card-text">{{$trainer->description}}</p>
                     <a href="#" class="btn btn-primary">Ver</a>
                 </div>
             </div>
