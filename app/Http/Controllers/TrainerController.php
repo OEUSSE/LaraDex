@@ -15,7 +15,10 @@ class TrainerController extends Controller
      */
     public function index()
     {
-        return 'Hola desde TrainerController';
+        $trainers = Trainer::all();
+        # como segundo parámetro recibe un los datos obenidos del modelo, se hace uso de compact
+        # para enviarlos como un array
+        return view('trainers.index', compact('trainers'));
     }
 
     /**
@@ -38,9 +41,20 @@ class TrainerController extends Controller
      */
     public function store(Request $request)
     {
+        $name = 'default-avatar.jpg';
+        if ($request->hasFile('avatar')) {
+            // Creando un archivo
+            $file = $request->file('avatar');
+            // Dando al archivo un nombre único
+            $name = time().$file->getClientOriginalName();
+            // Mover a una carpeta a public/images
+            $file->move(public_path().'/images/', $name);
+        }
+
         $trainer = new Trainer(); // Instancia de Trainer Model
         // Asignar a la propiedad de name de trainer el valor que viene del request
         $trainer->name = $request->input('name');
+        $trainer->avatar = $name;
         $trainer->save(); // Almacenar nuevo recurso
 
         return 'Save';
