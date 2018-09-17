@@ -3,7 +3,7 @@
 @section('title', 'Trainer')
 
 @section('content')
-    <h1>Entrenador</h1>
+    <h1>Entrenador {{ $trainer->slug }}</h1>
     <img style="height: 100px; width: 100px; background-color: lightgray; margin: 10px;"
         class="card-img-top rounded-circle mx-auto d-block" 
         src="/images/{{ $trainer->avatar }}"} 

@@ -71,11 +71,14 @@ class TrainerController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     * Utilizando Implicit Binding
+     * Busqueda del entrenador mediante su slug
      */
-    public function show(Trainer $trainer)
+    public function show($slug)
     {
-        //$trainer = Trainer::find($id);
+        # Se puede ustilizar una sentencia sql como método del modelo Trainer
+        # El método firstOrFail, lanza una excepción
+        $trainer = Trainer::where('slug', '=', $slug)->firstOrFail();
+
         return view('trainers.show', compact('trainer'));
     }
 
