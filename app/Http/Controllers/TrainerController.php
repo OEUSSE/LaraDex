@@ -71,10 +71,11 @@ class TrainerController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
+     * Utilizando Implicit Binding
      */
-    public function show($id)
+    public function show(Trainer $trainer)
     {
-        $trainer = Trainer::find($id);
+        //$trainer = Trainer::find($id);
         return view('trainers.show', compact('trainer'));
     }
 
