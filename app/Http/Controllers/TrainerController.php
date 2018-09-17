@@ -71,13 +71,13 @@ class TrainerController extends Controller
      *
      * @param  int  $id
      * @return \Illuminate\Http\Response
-     * Busqueda del entrenador mediante su slug
+     * Utilizado un Implicit Binding en el modelo
      */
-    public function show($slug)
+    public function show(Trainer $trainer)
     {
-        # Se puede ustilizar una sentencia sql como método del modelo Trainer
-        # El método firstOrFail, lanza una excepción
-        $trainer = Trainer::where('slug', '=', $slug)->firstOrFail();
+        // Se puede ustilizar una sentencia sql como método del modelo Trainer
+        // El método firstOrFail, lanza una excepción
+        // $trainer = Trainer::where('slug', '=', $slug)->firstOrFail();
 
         return view('trainers.show', compact('trainer'));
     }
@@ -89,9 +89,9 @@ class TrainerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Trainer $trainer)
     {
-        //
+        return view('trainers.edit', compact('trainer'));
     }
 
     /**
@@ -102,9 +102,24 @@ class TrainerController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Trainer $trainer)
     {
-        //
+        $avatar = '';
+        if ($request->hasFile('avatar')) {
+            // Creando un archivo
+            $file = $request->file('avatar');
+            // Dando al archivo un nombre único
+            $avatar = time().$file->getClientOriginalName();
+            // Mover a una carpeta a public/images
+            $file->move(public_path().'/images/', $avatar);
+        }
+        // fill actualiza los datos
+        // El metodo execpt del request permite no pasar ciertos valores
+        $trainer->fill($request->except('avatar'));
+        $trainer->avatar = $avatar;
+        $trainer->save();
+
+        return view('trainers.show', compact('trainer'));
     }
 
     /**

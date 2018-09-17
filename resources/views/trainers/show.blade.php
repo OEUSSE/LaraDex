@@ -14,4 +14,5 @@
             {{ $trainer->description }}
         </p>
     </div>
+    <a href="/trainers/{{$trainer->slug}}/edit" class="btn btn-primary">Editar</a>
 @endsection 
