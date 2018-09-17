@@ -3,6 +3,11 @@
 @section('title', 'Trainer')
 
 @section('content')
+    @if (session('status'))
+        <div class="alert alert-success notification">
+            {{ session('status') }}
+        </div>
+    @endif
     <h1>Entrenador</h1>
     <img style="height: 100px; width: 100px; background-color: lightgray; margin: 10px;"
         class="card-img-top rounded-circle mx-auto d-block" 

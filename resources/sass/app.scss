@@ -12,3 +12,19 @@
   background-color: #fff;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.04);
 }
+
+.notification {
+  opacity: 1;
+  animation: dessappear 500ms forwards;
+
+  @keyframes dessappear {
+    70% {
+      opacity: 0;
+    }
+    100% {
+      display: none;
+    }
+  }
+}
+
+

@@ -129,7 +129,8 @@ class TrainerController extends Controller
         $trainer->slug = $slug;
         $trainer->save();
 
-        return redirect()->route('trainers.show', [$trainer]);
+        // Se especifíca como segundo parámetro los datos del trainer
+        return redirect()->route('trainers.show', [$trainer])->with('status', 'Entrenador actualizado correctamente');
         //return view('trainers.show', compact('trainer'));
     }
 
