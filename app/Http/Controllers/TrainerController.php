@@ -4,6 +4,7 @@ namespace LaraDex\Http\Controllers;
 
 use Illuminate\Http\Request;
 use LaraDex\Trainer;
+use LaraDex\Http\Requests\StoreTrainerRequest;
 
 class TrainerController extends Controller
 {
@@ -39,14 +40,8 @@ class TrainerController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(StoreTrainerRequest $request)
     {
-        // validate recibe un array de los campos a validar
-        $validatedData = $request->validate([
-            'name' => 'required|max: 10', // requerido y máximo de caracteres 10
-            'avatar' => 'required|image', // requerido y la validación de tipo image
-        ]);
-
         $slug = strtolower(str_replace(' ', '-', $request->input('name')));
         $avatar_name = 'default-avatar.jpg';
         $description = (!$request->input('description')) ? 'Sin descripción' : $request->input('description');
