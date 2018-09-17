@@ -4,15 +4,7 @@
 
 @section('content')
     <h1>Crear Entrenadores</h1>
-    @if ($errors->any()) <!-- Errors es un array, que contiene errores -->
-        <div class="alert alert-danger">
-            <ul>
-                @foreach ($errors->all() as $error)
-                <li>{{ $error }}</li>
-                @endforeach
-            </ul>
-        </div>
-    @endif
+    @include('common.errors')
     <!-- Crear un form con Laravel Collective -->
     {!! Form::open(['route' => 'trainers.store', 'method' => 'POST', 'files' => true]) !!}
         

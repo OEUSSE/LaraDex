@@ -4,6 +4,7 @@
 
 @section('content')
     <h1>Editar Entrenadores</h1>
+    @include('common.errors')
     <!-- Form Model Binding -->
     {!! Form::model($trainer, ['route' => ['trainers.update', $trainer], 'method' => 'PUT', 'files' => true]) !!}
         <div class="row">
