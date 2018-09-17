@@ -41,9 +41,16 @@ class TrainerController extends Controller
      */
     public function store(Request $request)
     {
+        // validate recibe un array de los campos a validar
+        $validatedData = $request->validate([
+            'name' => 'required|max: 10', // requerido y máximo de caracteres 10
+            'avatar' => 'required|image', // requerido y la validación de tipo image
+        ]);
+
         $slug = strtolower(str_replace(' ', '-', $request->input('name')));
         $avatar_name = 'default-avatar.jpg';
         $description = (!$request->input('description')) ? 'Sin descripción' : $request->input('description');
+
         if ($request->hasFile('avatar')) {
             // Creando un archivo
             $file = $request->file('avatar');
