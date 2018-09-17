@@ -16,7 +16,7 @@ class TrainerController extends Controller
     public function index()
     {
         $trainers = Trainer::all();
-        # como segundo parámetro recibe un los datos obenidos del modelo, se hace uso de compact
+        # como segundo parámetro recibe un los datos obenidos del modelo en string, se hace uso de compact
         # para enviarlos como un array
         return view('trainers.index', compact('trainers'));
     }
@@ -74,7 +74,8 @@ class TrainerController extends Controller
      */
     public function show($id)
     {
-        //
+        $trainer = Trainer::find($id);
+        return view('trainers.show', compact('trainer'));
     }
 
     /**
