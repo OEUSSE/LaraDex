@@ -10,7 +10,7 @@
 </head>
 <body>
   <nav class="navbar navbar-dark bg-primary">
-    <a href="#" class="navbar-brand">LaraDex</a>
+    <a href="/trainers" class="navbar-brand">LaraDex</a>
   </nav>
   <div class="container">
     @yield('content')

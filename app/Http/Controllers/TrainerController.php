@@ -41,6 +41,7 @@ class TrainerController extends Controller
      */
     public function store(Request $request)
     {
+        $slug = strtolower(str_replace(' ', '-', $request->input('name')));
         $avatar_name = 'default-avatar.jpg';
         $description = (!$request->input('description')) ? 'Sin descripción' : $request->input('description');
         if ($request->hasFile('avatar')) {
@@ -57,6 +58,7 @@ class TrainerController extends Controller
         $trainer->name = $request->input('name');
         $trainer->avatar = $avatar_name;
         $trainer->description = $description;
+        $trainer->slug = $slug;
         $trainer->save(); // Almacenar nuevo recurso
 
         return 'Save';
@@ -104,7 +106,9 @@ class TrainerController extends Controller
      */
     public function update(Request $request, Trainer $trainer)
     {
-        $avatar = '';
+        $slug = strtolower(str_replace(' ', '-', $request->input('name')));
+        $avatar = $trainer->avatar;
+
         if ($request->hasFile('avatar')) {
             // Creando un archivo
             $file = $request->file('avatar');
@@ -113,10 +117,12 @@ class TrainerController extends Controller
             // Mover a una carpeta a public/images
             $file->move(public_path().'/images/', $avatar);
         }
+        
         // fill actualiza los datos
         // El metodo execpt del request permite no pasar ciertos valores
-        $trainer->fill($request->except('avatar'));
+        $trainer->fill($request->except('avatar', 'slug'));
         $trainer->avatar = $avatar;
+        $trainer->slug = $slug;
         $trainer->save();
 
         return view('trainers.show', compact('trainer'));
