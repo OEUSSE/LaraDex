@@ -63,7 +63,9 @@ class TrainerController extends Controller
         $trainer->slug = $slug;
         $trainer->save(); // Almacenar nuevo recurso
 
-        return 'Save';
+        return redirect()->route('trainers.index');
+        
+        //return 'Save';
 
         // Obtener todos los datos enviados
         //return $request->all();
@@ -127,7 +129,8 @@ class TrainerController extends Controller
         $trainer->slug = $slug;
         $trainer->save();
 
-        return view('trainers.show', compact('trainer'));
+        return redirect()->route('trainers.show', [$trainer]);
+        //return view('trainers.show', compact('trainer'));
     }
 
     /**
@@ -146,6 +149,7 @@ class TrainerController extends Controller
         \File::delete($file_path);
         // Se elimina el trainer
         $trainer->delete();
-        return 'Trainer Deleted';
+        
+        return redirect()->route('trainers.index');
     }
 }
