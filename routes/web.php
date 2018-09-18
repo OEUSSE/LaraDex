@@ -21,3 +21,7 @@ Route::get('/prueba/{name}', 'PruebaController@prueba');
 
 # Route for TrainerController Controller make with artisan
 Route::resource('trainers', 'TrainerController');
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
