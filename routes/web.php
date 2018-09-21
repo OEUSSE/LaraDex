@@ -21,6 +21,7 @@ Route::get('/prueba/{name}', 'PruebaController@prueba');
 
 # Route for TrainerController Controller make with artisan
 Route::resource('trainers', 'TrainerController');
+Route::resource('pokemons', 'PokemonController');
 
 Auth::routes();
 

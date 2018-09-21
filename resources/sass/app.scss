@@ -27,4 +27,11 @@
   }
 }
 
+.buttons-container {
+  display: flex;
+  justify-content: center;
+}
 
+.buttons-container a {
+  margin-right: .5em;
+}

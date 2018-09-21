@@ -26,8 +26,6 @@
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'Laravel') }}
                 </a>
-                <a class="navbar navbar-light bg-light" href="/trainers">Trainers</a>
-                <a class="navbar navbar-light bg-light" href="/trainers/create">Create Trainers</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -55,6 +53,14 @@
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+                                    <a class="dropdown-item" href="/trainers">Trainers</a>
+                                    <a class="dropdown-item" href="/pokemons">Pokemons</a>
+                                    <hr>
+                                    <div class="create-opitions-container">
+                                        <a class="dropdown-item" href="/trainers/create">Create Trainers</a>
+                                        <a class="dropdown-item" href="/pokemons/create">Create Pokemons</a>
+                                    </div>
+                                    <hr>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
