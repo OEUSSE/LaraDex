@@ -17,6 +17,12 @@
                     You are logged in!
                 </div>
             </div>
+            <div class="card">
+                <div class="card-header">Trainers</div>
+                <div class="card-body">
+                    <a href="/trainers" class="btn btn-success">Ir a los entrenadores</a>
+                </div>
+            </div>
         </div>
     </div>
 </div>

@@ -42,8 +42,11 @@ class TrainerController extends Controller
      */
     public function store(StoreTrainerRequest $request)
     {
+        $pattern = '/\w/';
         $slug = strtolower(str_replace(' ', '-', $request->input('name')));
-        $avatar_name = 'default-avatar.jpg';
+        $slug = preg_replace($pattern, '', $slug);
+
+        $avatar_name = 'default_avatar.png';
         $description = (!$request->input('description')) ? 'Sin descripción' : $request->input('description');
 
         if ($request->hasFile('avatar')) {
