@@ -4,7 +4,7 @@ namespace LaraDex\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreTrainerRequest extends FormRequest
+class StorePokemonRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -13,7 +13,6 @@ class StoreTrainerRequest extends FormRequest
      */
     public function authorize()
     {
-        // Las validaciones no se harán acá, por ello se retorna true, para que el flujo continue
         return true;
     }
 
@@ -26,7 +25,13 @@ class StoreTrainerRequest extends FormRequest
     {
         return [
             'name' => 'required|max: 15',
-            'avatar' => 'required|image',
+            'clasification' => 'required|max: 15',
+            'weight' => 'required|max: 4',
+            'height' => 'required|max: 4',
+            'ranking' => 'required|max: 4',
+            'type' => 'required|max: 15',
+            'image' => 'required|image',
+
         ];
     }
 }

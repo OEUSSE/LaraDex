@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class AddDescriptionToTrainerTable extends Migration
+class AddImageSlugToPokemonsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,8 +13,9 @@ class AddDescriptionToTrainerTable extends Migration
      */
     public function up()
     {
-        Schema::table('Trainers', function (Blueprint $table) {
-            $table->string('description', 300);
+        Schema::table('pokemons', function (Blueprint $table) {
+            $table->string('image');
+            $table->string('slug');
         });
     }
 
@@ -25,7 +26,7 @@ class AddDescriptionToTrainerTable extends Migration
      */
     public function down()
     {
-        Schema::table('Trainers', function (Blueprint $table) {
+        Schema::table('pokemons', function (Blueprint $table) {
             //
         });
     }

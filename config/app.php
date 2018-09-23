@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'name' => env('APP_NAME', 'Laravel'),
+    'name' => env('APP_NAME', 'LaraDex'),
 
     /*
     |--------------------------------------------------------------------------
@@ -162,7 +162,7 @@ return [
 
         /**
          * Laravel Collective Providers
-         */        
+         */
         Collective\Html\HtmlServiceProvider::class,
 
     ],

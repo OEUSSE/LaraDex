@@ -17,7 +17,7 @@ class CreatePokemonsTable extends Migration
             $table->increments('id');
             $table->string('name', 120);
             $table->text('clasification');
-            $table->float('weigth', 4, 2); // num_digitos, decilmal_digits
+            $table->float('weight', 4, 2); // num_digitos, decilmal_digits
             $table->float('height', 4, 2);
             $table->integer('ranking');
             $table->text('type');

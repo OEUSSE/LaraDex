@@ -10516,3 +10516,7 @@ a.text-dark:focus {
   margin-right: .5em;
 }
 
+span.label {
+  font-weight: bold;
+}
+
