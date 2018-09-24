@@ -60,6 +60,10 @@
                                         <a class="dropdown-item" href="/trainers/create">Create Trainers</a>
                                         <a class="dropdown-item" href="/pokemons/create">Create Pokemons</a>
                                     </div>
+                                    <div class="list-data-container">
+                                        <a class="dropdown-item" href="/list-trainers">Listar Trainers</a>
+                                        <a class="dropdown-item" href="/list-pokemons">Listar Pokemons</a>
+                                    </div>
                                     <hr>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
