@@ -5,6 +5,8 @@
 @section('content')
     <div class="row">
         <h1>Pokemons</h1>
+    </div>
+    <div class="row">
         @foreach ($pokemons as $pokemon)
             <div class="col-sm-4">
                 <div class="card text-center" style="width: 18rem; margin: 30px auto;">

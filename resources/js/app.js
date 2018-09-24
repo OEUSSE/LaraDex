@@ -7,7 +7,11 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+import Vue from 'vue'
+import VueTables from 'vue-tables-2'
+
+// Uses
+Vue.use(VueTables.ClientTable)
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -15,7 +19,14 @@ window.Vue = require('vue');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-Vue.component('example-component', require('./components/ExampleComponent.vue'));
+/**
+ * Con forma de obtener los componentes, ya no es necesario crear dentro de la instancia
+ * de Vue la llave components
+ */
+
+//Vue.component('example-component', require('./components/ExampleComponent.vue'));
+Vue.component('data-viewer-trainers', require('./components/DataViewerTrainer.vue'))
+Vue.component('data-viewer-pokemons', require('./components/DataViewerPokemon.vue'))
 
 const app = new Vue({
     el: '#app'
