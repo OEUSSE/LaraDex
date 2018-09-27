@@ -27,7 +27,7 @@ trait DataViewer {
     public function scopeSearchPaginateAndOrder($query)
     {
         // Le espeficico al query, que me traiga los primeros 20 resultados
-        return $query->paginate(20);
+        return $query->paginate(25);
     }
 
     // Creo una array con los campos que deseo mostrar en el DataViewer Trainers
