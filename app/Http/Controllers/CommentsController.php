@@ -12,12 +12,19 @@ class CommentsController extends Controller
         if (!Cache::has('comments')) {
             $url = "https://jsonplaceholder.typicode.com/comments";
             $data = file_get_contents($url);
+            $expiresAt = now()->addMinutes(10);
 
             // Utilizando Cache para almacenar la data
-            Cache::put('comments', $data, 20);
+            Cache::put('comments', $data, $expiresAt);
         }
 
-        // Imprime el json con un formato específico de Laravel
+        // Imprime el json
         dd(Cache::get('comments'));
+
+        if (!Cache::has('id')) {
+            Cache::put('id', 1, 10);
+            Cache::increment('id', 10);
+            Cache::decrement('id', 3);
+        }
     }
 }
