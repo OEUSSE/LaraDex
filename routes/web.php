@@ -29,6 +29,7 @@ Route::get('/list-pokemons', 'ListPokemonController@index');
 # Api Route
 Route::get('/api/trainer', 'ListTrainerController@getData');
 Route::get('/api/pokemon', 'ListPokemonController@getData');
+Route::get('/searchComments', 'CommentsController@getComments');
 
 Auth::routes();
 

@@ -3,6 +3,7 @@
 namespace LaraDex\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminte\Support\Facades\Cache;
 use LaraDex\Pokemon;
 
 class ListPokemonController extends Controller
