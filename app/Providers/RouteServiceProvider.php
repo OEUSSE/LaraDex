@@ -23,7 +23,10 @@ class RouteServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        //
+        # Acá se puede especificar que parámetros van a tener una validación con RegExp
+        # Cualquier ruta con un parámetro de nombre "id" o "name" van ha pasar por ésta validación.
+        Route::pattern('id', '[0-9]+');
+        Route::pattern('name', '[A-Za-z]+');
 
         parent::boot();
     }
