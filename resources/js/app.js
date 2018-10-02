@@ -4,13 +4,11 @@
  * includes Vue and other libraries. It is a great starting point when
  * building robust, powerful web applications using Vue and Laravel.
  */
-
-require('./bootstrap');
-
 import Vue from 'vue'
 import VueTables from 'vue-tables-2'
+require('./bootstrap')
 
-// Uses
+//  Uses
 Vue.use(VueTables.ClientTable)
 
 /**
@@ -24,10 +22,10 @@ Vue.use(VueTables.ClientTable)
  * de Vue la llave components
  */
 
-//Vue.component('example-component', require('./components/ExampleComponent.vue'));
+//  Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('data-viewer-trainers', require('./components/DataViewerTrainer.vue'))
 Vue.component('data-viewer-pokemons', require('./components/DataViewerPokemon.vue'))
 
 const app = new Vue({
     el: '#app'
-});
+})
