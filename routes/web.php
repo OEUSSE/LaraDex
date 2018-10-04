@@ -52,6 +52,7 @@ Route::prefix('home')->group(function() {
     });
 
     Route::get('address', function () {
+        Debugbar::info('Hey');
         return "Nuevo espacio para la dirección.";
     });
 
@@ -101,11 +102,11 @@ Route::prefix('home')->group(function() {
     });
 
     # Paso de parámetros con route a una una Named Route
-    Route::get('user/{id}/profile', function($id) {
+    /* Route::get('user/{id}/profile', function($id) {
         return "Perfil de $id";
     })->name('perfil');
 
-    $url = route('perfil', ['id' => 1]);
+    $url = route('perfil', ['id' => 1]); */
 });
 
 # Route Groups
