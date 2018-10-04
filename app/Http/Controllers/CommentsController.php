@@ -18,13 +18,21 @@ class CommentsController extends Controller
             Cache::put('comments', $data, $expiresAt);
         }
 
-        // Imprime el json
-        dd(Cache::get('comments'));
-
         if (!Cache::has('id')) {
             Cache::put('id', 1, 10);
             Cache::increment('id', 10);
             Cache::decrement('id', 3);
         }
+
+        if (!Cache::has('users')) {
+            $url = 'https://jsonplaceholder.typicode.com/users';
+            $data = file_get_contents($url);
+            $expiresAt = now()->addMinutes(10);
+
+            Cache::put('users', $data, $expiresAt);
+        }
+
+        // Imprime el json
+        dd(Cache::get('users'));
     }
 }
