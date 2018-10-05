@@ -19,7 +19,7 @@ class DeleteUser extends Command
      *
      * @var string
      */
-    protected $description = 'Command description';
+    protected $description = 'Elimina un usuario mediante su id';
 
     /**
      * Create a new command instance.

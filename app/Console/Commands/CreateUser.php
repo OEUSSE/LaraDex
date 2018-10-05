@@ -13,7 +13,11 @@ class CreateUser extends Command
      *
      * @var string
      */
-    protected $signature = 'user:create {--name} {name} {--email} {email} {--password} {password}';
+    //protected $signature = 'user:create {--name} {name} {--email} {email} {--password} {password}';
+    protected $signature = 'user:create 
+                            {--N|name= : Nombre del usuario}
+                            {--E|email= : Email del usuario}
+                            {--P|password= : Contraseña del usuario}';
 
     /**
      * The console command description.
@@ -39,17 +43,42 @@ class CreateUser extends Command
      */
     public function handle()
     {
-        $data = response()->json($this->arguments())->getData();
-        
-        $newUser = new User();
-        $newUser->name = $data->name;
-        $newUser->email = $data->email;
-        $newUser->password = Hash::make($data->password);
-        
-        if ($newUser->save()) {
-            $this->info('Usuario guardado');
+        # Validar que las opciones sean obligatorias
+
+        $name = $this->ask('¿Cuál es el nombre del usuario?');
+        $email = $this->ask('¿Cuál es el correo del usuario?');
+        $password = $this->secret('¿Cuál será la contraseña del usuario?');
+
+        if (empty($name) || empty($email) || empty($password)) {
+            $this->error('Los datos deben completarse');
         } else {
-            $this->info('Usuario no guardado');
+            if ($this->confirm('¿Están todos los datos bien?')) {
+                $newUser = new User();
+                $newUser->name = $name;
+                $newUser->email = $email;
+                $newUser->password = Hash::make($password);
+
+                if ($newUser->save()) {
+                    $this->info('Usuario creado');
+                } else {
+                    $this->info('Usuario no creado');
+                }
+            }
         }
+
+        /* $name = str_replace('=', '', $this->option('name'));
+        $email = str_replace('=', '', $this->option('email'));
+        $password = Hash::make(str_replace('=', '', $this->option('password')));
+
+        $newUser = new User();
+        $newUser->name = $name;
+        $newUser->email = $email;
+        $newUser->password = Hash::make($password);
+
+        if ($newUser->save()) {
+            $this->info('Usuario creado');
+        } else {
+            $this->info('Usuario no creado');
+        } */
     }
 }

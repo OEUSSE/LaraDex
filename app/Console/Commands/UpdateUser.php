@@ -39,18 +39,17 @@ class UpdateUser extends Command
      */
     public function handle()
     {
-        $data = User::find($this->argument('id'));
-        $dataMod = response()->json($this->arguments())->getData();
-        
-        $idUser = (int)$dataMod->id;
-        $nameUser = ($dataMod->name) ? $dataMod->name : $data->name;
-        $emailUser = ($dataMod->email) ? $dataMod->email : $data->email;
-        $password = ($dataMod->password) ? Hash::make($dataMod->password) : $data->password;
-        
-        $res = User::where('id', $this->argument('id'))
+        $inputId = (int)$this->argument('id');
+        $data = User::find($inputId);
+
+        $name = ($this->argument('name')) ? $this->argument('name') : $data->name;
+        $email = ($this->argument('email')) ? $this->argument('email') : $data->email;
+        $password = ($this->argument('password')) ? Hash::make($this->argument('password')) : $data->password;
+
+        $res = User::where('id', $inputId)
             ->update([
-                'name' => $nameUser,
-                'email' => $emailUser,
+                'name' => $name,
+                'email' => $email,
                 'password' => $password
             ]);
 
