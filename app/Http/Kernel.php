@@ -19,6 +19,7 @@ class Kernel extends HttpKernel
         \LaraDex\Http\Middleware\TrimStrings::class,
         \Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull::class,
         \LaraDex\Http\Middleware\TrustProxies::class,
+        //\LaraDex\Http\Middleware\Cors::class,
     ];
 
     /**
@@ -59,6 +60,6 @@ class Kernel extends HttpKernel
         'guest' => \LaraDex\Http\Middleware\RedirectIfAuthenticated::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
-        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+        'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class
     ];
 }

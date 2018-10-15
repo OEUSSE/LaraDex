@@ -17,6 +17,7 @@ class Kernel extends ConsoleKernel
         Commands\CreateUser::class,
         Commands\UpdateUser::class,
         Commands\DeleteUser::class,
+        Commands\PrintMessage::class,
     ];
 
     /**
@@ -29,7 +30,15 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
-    }
+
+        $res = $schedule
+                ->command('hello:print')
+                ->everyMinute();
+
+                
+        \Log::info("Log de hello:print".\Carbon\Carbon::now());
+
+    } 
 
     /**
      * Register the commands for the application.

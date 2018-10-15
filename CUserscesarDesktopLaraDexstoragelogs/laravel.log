@@ -1,0 +1,25 @@
+[2018-10-10 08:15:18] local.INFO: Hello from print:message command @ 2018-10-10 08:15:18  
+[2018-10-10 08:17:56] local.INFO: Hello from print:message command @ 2018-10-10 08:17:56  
+[2018-10-10 08:19:59] local.INFO: Hello from print:message command @ 2018-10-10 08:19:59  
+[2018-10-10 08:20:49] local.INFO: Hello from print:message command @ 2018-10-10 08:20:49  
+[2018-10-10 08:21:01] local.INFO: Hello from print:message command @ 2018-10-10 08:21:01  
+[2018-10-10 08:22:28] local.INFO: Hello from print:message command @ 2018-10-10 08:22:28  
+[2018-10-10 08:31:38] local.ERROR: Not enough arguments (missing: "id"). {"exception":"[object] (Symfony\\Component\\Console\\Exception\\RuntimeException(code: 0): Not enough arguments (missing: \"id\"). at /mnt/c/Users/cesar/Desktop/LaraDex/vendor/symfony/console/Input/Input.php:76)
+[stacktrace]
+#0 /mnt/c/Users/cesar/Desktop/LaraDex/vendor/symfony/console/Command/Command.php(246): Symfony\\Component\\Console\\Input\\Input->validate()
+#1 /mnt/c/Users/cesar/Desktop/LaraDex/vendor/laravel/framework/src/Illuminate/Console/Command.php(170): Symfony\\Component\\Console\\Command\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Illuminate\\Console\\OutputStyle))
+#2 /mnt/c/Users/cesar/Desktop/LaraDex/vendor/symfony/console/Application.php(886): Illuminate\\Console\\Command->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#3 /mnt/c/Users/cesar/Desktop/LaraDex/vendor/symfony/console/Application.php(262): Symfony\\Component\\Console\\Application->doRunCommand(Object(LaraDex\\Console\\Commands\\UpdateUser), Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#4 /mnt/c/Users/cesar/Desktop/LaraDex/vendor/symfony/console/Application.php(145): Symfony\\Component\\Console\\Application->doRun(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#5 /mnt/c/Users/cesar/Desktop/LaraDex/vendor/laravel/framework/src/Illuminate/Console/Application.php(89): Symfony\\Component\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#6 /mnt/c/Users/cesar/Desktop/LaraDex/vendor/laravel/framework/src/Illuminate/Foundation/Console/Kernel.php(122): Illuminate\\Console\\Application->run(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#7 /mnt/c/Users/cesar/Desktop/LaraDex/artisan(37): Illuminate\\Foundation\\Console\\Kernel->handle(Object(Symfony\\Component\\Console\\Input\\ArgvInput), Object(Symfony\\Component\\Console\\Output\\ConsoleOutput))
+#8 {main}
+"} 
+[2018-10-10 08:35:21] local.INFO: Hello from print:message command @ 2018-10-10 08:35:21  
+[2018-10-10 08:36:47] local.INFO: Hello from print:message command @ 2018-10-10 08:36:47  
+[2018-10-10 08:37:11] local.INFO: Hello from print:message command @ 2018-10-10 08:37:11  
+[2018-10-10 08:42:19] local.INFO: Hello from print:message command @ 2018-10-10 08:42:19  
+[2018-10-10 08:42:35] local.INFO: Hello from print:message command @ 2018-10-10 08:42:35  
+[2018-10-10 09:07:29] local.INFO: Log de hello:print2018-10-10 09:07:29  
+[2018-10-10 09:07:30] local.INFO: Hello from print:message command @ 2018-10-10 09:07:30  

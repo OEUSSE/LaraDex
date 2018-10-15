@@ -6,6 +6,7 @@
             :columns="columns"
             :options="options">
         </v-client-table>
+        <button v-on:click="sendMessage">Send Message</button>
     </div>
 </template>
 
@@ -58,6 +59,17 @@ export default {
                     this.dataTable = pokemonsData
                 })
                 .catch(error => console.log(error))
+        },
+        sendMessage() {
+            const payload = {
+                "channel": "#alertas_plataforma",
+                "text": "Ocurrió un error al enviar los emails",
+            }
+
+            axios
+                .post('/notify-slack', payload)
+                .then(response => console.log(response))
+                .catch(error => console.error('No fue posible notificar a Slack: ', error));
         }
     }
 }

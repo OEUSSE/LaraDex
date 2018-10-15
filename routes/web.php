@@ -124,3 +124,9 @@ Route::prefix('admin')->group(function () {
 Route::get('profile/{user}', function(App\User $user) {
     // Pasar como parámetro la instancia del modelo
 });
+
+
+// Consumir API
+Route::get('/posts', 'ApiController@getPosts');
+Route::post('/notify-slack', 'ApiController@notifySlack');
+Route::post('/create-post', 'ApiController@createPost');
