@@ -19,20 +19,7 @@ class ApiController extends Controller
         
         return json_decode($data);
     }
-
-    public function createPost(Request $request) {
-        $client = new Client();
-
-        $r = $client->request('POST', 'https://jsonplaceholder.typicode.com/posts', [
-            'json' => [
-                'userId' => 1,
-                'id' => 11,
-                'title' => 'Nuevo post',
-                'body' => 'Esto es un nuevo Post'
-            ]   
-        ]);
-    }
-
+    
     public function notifySlack (Request $request) {
         $client = new Client();
 

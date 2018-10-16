@@ -129,4 +129,3 @@ Route::get('profile/{user}', function(App\User $user) {
 // Consumir API
 Route::get('/posts', 'ApiController@getPosts');
 Route::post('/notify-slack', 'ApiController@notifySlack');
-Route::post('/create-post', 'ApiController@createPost');
