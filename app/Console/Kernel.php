@@ -18,6 +18,7 @@ class Kernel extends ConsoleKernel
         Commands\UpdateUser::class,
         Commands\DeleteUser::class,
         Commands\PrintMessage::class,
+        Commands\TestSlackNotification::class,
     ];
 
     /**
