@@ -108,6 +108,15 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
+    'slack_webhook' => env('SLACK_WEBHOOK'),
+
+    /**
+     * Registrar errores en el archivo de registro
+     */
+
+    'log' => env('APP_LOG', 'single'),
+    'log_level' => env('APP_LOG_LEVEL', 'debug')
+
     /*
     |--------------------------------------------------------------------------
     | Autoloaded Service Providers

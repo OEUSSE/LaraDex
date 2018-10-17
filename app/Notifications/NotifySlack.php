@@ -69,6 +69,13 @@ class NotifySlack extends Notification
     public function toSlack($notifiable)
     {
         return (new SlackMessage)
-                    ->content('One of your invoices has been paid!');
+                    ->error()
+                    ->content('Whoops! Something go wrong.')
+                    ->attachment(function ($attachment) {
+                        $attachment
+                            ->title('Exception: File Not Found')
+                            ->content('File [background.jpg] was *not found*.')
+                            ->markdown(['text']);
+                    });
     }
 }
