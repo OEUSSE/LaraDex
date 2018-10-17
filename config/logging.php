@@ -35,7 +35,7 @@ return [
     'channels' => [
         'stack' => [
             'driver' => 'stack',
-            'channels' => ['single'],
+            'channels' => ['single', 'slack'],
         ],
 
         'single' => [
@@ -53,10 +53,11 @@ return [
 
         'slack' => [
             'driver' => 'slack',
-            'url' => env('LOG_SLACK_WEBHOOK_URL'),
-            'username' => 'Laravel Log',
+            //'url' => env('LOG_SLACK_WEBHOOK_URL'),
+            'url' => 'https://hooks.slack.com/services/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00',
+            'username' => 'Licitaciones.info Log',
             'emoji' => ':boom:',
-            'level' => 'critical',
+            'level' => 'warning',
         ],
 
         'stderr' => [

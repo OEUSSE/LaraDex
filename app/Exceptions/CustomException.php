@@ -13,7 +13,7 @@ class CustomException extends Exception
      */    
     public function report()
     {
-        
+        //
     }
 
     /**

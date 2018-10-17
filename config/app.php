@@ -112,10 +112,11 @@ return [
 
     /**
      * Registrar errores en el archivo de registro
+     * Monolog: Del menos severo al más severo
+     * debug, info, notice, warning, error, critical, alert, emergency.
      */
 
-    'log' => env('APP_LOG', 'single'),
-    'log_level' => env('APP_LOG_LEVEL', 'debug')
+    'log_level' => env('APP_LOG_LEVEL', 'info'),
 
     /*
     |--------------------------------------------------------------------------

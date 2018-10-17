@@ -132,3 +132,15 @@ Route::post('/notify-slack', 'ApiController@notifySlack');
 
 // Call CustomError
 Route::get('exception/index', 'ExceptionController@index');
+
+// Log Error
+Route::get('log', function () {
+    /* Log::channel('slack')->emergency('test');
+    Log::channel('slack')->alert('test');
+    Log::channel('slack')->critical('test');
+    Log::channel('slack')->error('test'); *//* 
+    Log::channel('slack')->warning('test');
+    Log::channel('slack')->notice('test'); */
+    Log::channel('slack')->warning('test');/* 
+    Log::channel('slack')->debug('test'); */
+});
