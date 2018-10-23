@@ -20,7 +20,7 @@ class TestSlackNotification extends Command
      *
      * @var string
      */
-    protected $description = 'Test Slack notification for new errrs';
+    protected $description = 'Test Slack notification for new errors';
 
     /**
      * Create a new command instance.
@@ -39,6 +39,14 @@ class TestSlackNotification extends Command
      */
     public function handle()
     {
+        $data = [
+            "text" => "*Lugar*: {$exception->getFile()}.\n*Linea*: {$exception->getLine()}",
+            "title" => 'Excepción: '.$exception->getMessage(),
+            "pretext" => '*CronAgenda* - _Ejecución de comandos_',
+            "color" => 'd50200',
+            "mrkdwn_in" => ["text", "pretext"]
+        ];
+
         User::first()->notify(new NotifySlack());
     }
 }

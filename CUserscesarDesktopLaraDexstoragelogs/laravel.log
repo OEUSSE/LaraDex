@@ -23,3 +23,167 @@
 [2018-10-10 08:42:35] local.INFO: Hello from print:message command @ 2018-10-10 08:42:35  
 [2018-10-10 09:07:29] local.INFO: Log de hello:print2018-10-10 09:07:29  
 [2018-10-10 09:07:30] local.INFO: Hello from print:message command @ 2018-10-10 09:07:30  
+[2018-10-18 17:19:04] local.INFO: Log de hello:print2018-10-18 17:19:04  
+[2018-10-18 17:19:08] local.INFO: Log de hello:print2018-10-18 17:19:08  
+[2018-10-18 17:19:10] local.INFO: Hello from print:message command @ 2018-10-18 17:19:10  
+[2018-10-18 17:20:03] local.INFO: Log de hello:print2018-10-18 17:20:02  
+[2018-10-18 17:20:07] local.INFO: Log de hello:print2018-10-18 17:20:07  
+[2018-10-18 17:20:10] local.INFO: Hello from print:message command @ 2018-10-18 17:20:10  
+[2018-10-18 17:21:03] local.INFO: Log de hello:print2018-10-18 17:21:03  
+[2018-10-18 17:21:06] local.INFO: Log de hello:print2018-10-18 17:21:06  
+[2018-10-18 17:21:09] local.INFO: Hello from print:message command @ 2018-10-18 17:21:09  
+[2018-10-18 17:22:03] local.INFO: Log de hello:print2018-10-18 17:22:03  
+[2018-10-18 17:22:06] local.INFO: Log de hello:print2018-10-18 17:22:06  
+[2018-10-18 17:22:08] local.INFO: Hello from print:message command @ 2018-10-18 17:22:08  
+[2018-10-18 17:23:03] local.INFO: Log de hello:print2018-10-18 17:23:03  
+[2018-10-18 17:23:07] local.INFO: Log de hello:print2018-10-18 17:23:07  
+[2018-10-18 17:23:09] local.INFO: Hello from print:message command @ 2018-10-18 17:23:09  
+[2018-10-18 17:23:30] local.INFO: Log de hello:print2018-10-18 17:23:30  
+[2018-10-18 17:23:33] local.INFO: Log de hello:print2018-10-18 17:23:33  
+[2018-10-18 17:23:35] local.INFO: Hello from print:message command @ 2018-10-18 17:23:35  
+[2018-10-18 17:24:03] local.INFO: Log de hello:print2018-10-18 17:24:03  
+[2018-10-18 17:24:06] local.INFO: Log de hello:print2018-10-18 17:24:06  
+[2018-10-18 17:24:09] local.INFO: Hello from print:message command @ 2018-10-18 17:24:09  
+[2018-10-18 17:24:14] local.INFO: Log de hello:print2018-10-18 17:24:14  
+[2018-10-18 17:24:17] local.INFO: Log de hello:print2018-10-18 17:24:17  
+[2018-10-18 17:24:19] local.INFO: Hello from print:message command @ 2018-10-18 17:24:19  
+[2018-10-18 17:25:03] local.INFO: Log de hello:print2018-10-18 17:25:03  
+[2018-10-18 17:25:06] local.INFO: Log de hello:print2018-10-18 17:25:06  
+[2018-10-18 17:25:08] local.INFO: Hello from print:message command @ 2018-10-18 17:25:08  
+[2018-10-18 17:25:55] local.INFO: Log de hello:print2018-10-18 17:25:55  
+[2018-10-18 17:26:03] local.INFO: Log de hello:print2018-10-18 17:26:03  
+[2018-10-18 17:26:06] local.INFO: Log de hello:print2018-10-18 17:26:06  
+[2018-10-18 17:26:08] local.INFO: Hello from print:message command @ 2018-10-18 17:26:08  
+[2018-10-18 17:27:11] local.INFO: Hello from print:message command @ 2018-10-18 17:27:11  
+[2018-10-18 17:27:30] local.INFO: Hello from print:message command @ 2018-10-18 17:27:30  
+[2018-10-18 17:28:09] local.INFO: Hello from print:message command @ 2018-10-18 17:28:09  
+[2018-10-18 17:29:09] local.INFO: Hello from print:message command @ 2018-10-18 17:29:09  
+[2018-10-18 17:29:52] local.INFO: Hello from print:message command @ 2018-10-18 17:29:52  
+[2018-10-18 17:30:09] local.INFO: Hello from print:message command @ 2018-10-18 17:30:09  
+[2018-10-18 17:30:30] local.INFO: Hello from print:message command @ 2018-10-18 17:30:30  
+[2018-10-18 17:31:09] local.INFO: Hello from print:message command @ 2018-10-18 17:31:09  
+[2018-10-18 17:31:41] local.INFO: Hello from print:message command @ 2018-10-18 17:31:41  
+[2018-10-18 17:32:08] local.INFO: Hello from print:message command @ 2018-10-18 17:32:08  
+[2018-10-18 17:33:09] local.INFO: Hello from print:message command @ 2018-10-18 17:33:09  
+[2018-10-18 17:34:08] local.INFO: Hello from print:message command @ 2018-10-18 17:34:08  
+[2018-10-18 17:35:08] local.INFO: Hello from print:message command @ 2018-10-18 17:35:08  
+[2018-10-18 17:36:03] local.INFO: Hello from print:message command @ 2018-10-18 17:36:03  
+[2018-10-18 17:36:08] local.INFO: Hello from print:message command @ 2018-10-18 17:36:08  
+[2018-10-18 17:37:07] local.INFO: Hello from print:message command @ 2018-10-18 17:37:07  
+[2018-10-18 17:37:47] local.INFO: Hello from print:message command @ 2018-10-18 17:37:47  
+[2018-10-18 17:38:07] local.INFO: Hello from print:message command @ 2018-10-18 17:38:07  
+[2018-10-18 17:38:32] local.INFO: Hello from print:message command @ 2018-10-18 17:38:32  
+[2018-10-18 17:39:12] local.INFO: Hello from print:message command @ 2018-10-18 17:39:12  
+[2018-10-18 17:40:08] local.INFO: Hello from print:message command @ 2018-10-18 17:40:08  
+[2018-10-18 17:41:08] local.INFO: Hello from print:message command @ 2018-10-18 17:41:08  
+[2018-10-18 17:42:07] local.INFO: Hello from print:message command @ 2018-10-18 17:42:07  
+[2018-10-18 17:43:09] local.INFO: Hello from print:message command @ 2018-10-18 17:43:09  
+[2018-10-18 17:44:09] local.INFO: Hello from print:message command @ 2018-10-18 17:44:09  
+[2018-10-18 17:45:08] local.INFO: Hello from print:message command @ 2018-10-18 17:45:08  
+[2018-10-18 17:46:07] local.INFO: Hello from print:message command @ 2018-10-18 17:46:07  
+[2018-10-18 17:47:08] local.INFO: Hello from print:message command @ 2018-10-18 17:47:08  
+[2018-10-18 17:48:08] local.INFO: Hello from print:message command @ 2018-10-18 17:48:08  
+[2018-10-18 17:49:09] local.INFO: Hello from print:message command @ 2018-10-18 17:49:09  
+[2018-10-18 17:50:08] local.INFO: Hello from print:message command @ 2018-10-18 17:50:08  
+[2018-10-18 17:51:08] local.INFO: Hello from print:message command @ 2018-10-18 17:51:08  
+[2018-10-18 17:52:09] local.INFO: Hello from print:message command @ 2018-10-18 17:52:09  
+[2018-10-18 17:53:08] local.INFO: Hello from print:message command @ 2018-10-18 17:53:08  
+[2018-10-18 17:54:07] local.INFO: Hello from print:message command @ 2018-10-18 17:54:07  
+[2018-10-18 17:55:08] local.INFO: Hello from print:message command @ 2018-10-18 17:55:08  
+[2018-10-18 17:56:08] local.INFO: Hello from print:message command @ 2018-10-18 17:56:08  
+[2018-10-18 17:57:09] local.INFO: Hello from print:message command @ 2018-10-18 17:57:08  
+[2018-10-18 17:58:08] local.INFO: Hello from print:message command @ 2018-10-18 17:58:08  
+[2018-10-18 17:59:08] local.INFO: Hello from print:message command @ 2018-10-18 17:59:08  
+[2018-10-18 18:00:08] local.INFO: Hello from print:message command @ 2018-10-18 18:00:08  
+[2018-10-18 18:01:08] local.INFO: Hello from print:message command @ 2018-10-18 18:01:08  
+[2018-10-18 18:02:07] local.INFO: Hello from print:message command @ 2018-10-18 18:02:07  
+[2018-10-18 18:03:08] local.INFO: Hello from print:message command @ 2018-10-18 18:03:08  
+[2018-10-18 18:04:08] local.INFO: Hello from print:message command @ 2018-10-18 18:04:08  
+[2018-10-18 18:05:07] local.INFO: Hello from print:message command @ 2018-10-18 18:05:07  
+[2018-10-18 18:06:10] local.INFO: Hello from print:message command @ 2018-10-18 18:06:10  
+[2018-10-18 18:07:08] local.INFO: Hello from print:message command @ 2018-10-18 18:07:08  
+[2018-10-18 18:08:08] local.INFO: Hello from print:message command @ 2018-10-18 18:08:08  
+[2018-10-18 18:09:10] local.INFO: Hello from print:message command @ 2018-10-18 18:09:10  
+[2018-10-18 18:10:08] local.INFO: Hello from print:message command @ 2018-10-18 18:10:08  
+[2018-10-18 18:11:10] local.INFO: Hello from print:message command @ 2018-10-18 18:11:10  
+[2018-10-18 18:12:08] local.INFO: Hello from print:message command @ 2018-10-18 18:12:08  
+[2018-10-18 18:13:07] local.INFO: Hello from print:message command @ 2018-10-18 18:13:07  
+[2018-10-18 18:14:09] local.INFO: Hello from print:message command @ 2018-10-18 18:14:09  
+[2018-10-18 18:15:08] local.INFO: Hello from print:message command @ 2018-10-18 18:15:08  
+[2018-10-18 18:16:08] local.INFO: Hello from print:message command @ 2018-10-18 18:16:08  
+[2018-10-18 18:17:09] local.INFO: Hello from print:message command @ 2018-10-18 18:17:09  
+[2018-10-18 18:18:08] local.INFO: Hello from print:message command @ 2018-10-18 18:18:08  
+[2018-10-18 18:19:09] local.INFO: Hello from print:message command @ 2018-10-18 18:19:09  
+[2018-10-18 18:20:08] local.INFO: Hello from print:message command @ 2018-10-18 18:20:08  
+[2018-10-18 18:21:09] local.INFO: Hello from print:message command @ 2018-10-18 18:21:09  
+[2018-10-18 18:22:08] local.INFO: Hello from print:message command @ 2018-10-18 18:22:08  
+[2018-10-18 18:23:08] local.INFO: Hello from print:message command @ 2018-10-18 18:23:07  
+[2018-10-18 18:24:07] local.INFO: Hello from print:message command @ 2018-10-18 18:24:07  
+[2018-10-18 18:25:08] local.INFO: Hello from print:message command @ 2018-10-18 18:25:08  
+[2018-10-18 18:26:08] local.INFO: Hello from print:message command @ 2018-10-18 18:26:08  
+[2018-10-18 18:27:08] local.INFO: Hello from print:message command @ 2018-10-18 18:27:08  
+[2018-10-18 18:28:09] local.INFO: Hello from print:message command @ 2018-10-18 18:28:09  
+[2018-10-18 18:29:08] local.INFO: Hello from print:message command @ 2018-10-18 18:29:08  
+[2018-10-18 18:30:07] local.INFO: Hello from print:message command @ 2018-10-18 18:30:07  
+[2018-10-18 18:31:08] local.INFO: Hello from print:message command @ 2018-10-18 18:31:08  
+[2018-10-18 18:32:08] local.INFO: Hello from print:message command @ 2018-10-18 18:32:08  
+[2018-10-18 18:33:11] local.INFO: Hello from print:message command @ 2018-10-18 18:33:11  
+[2018-10-18 18:34:08] local.INFO: Hello from print:message command @ 2018-10-18 18:34:08  
+[2018-10-18 18:35:10] local.INFO: Hello from print:message command @ 2018-10-18 18:35:10  
+[2018-10-18 18:36:08] local.INFO: Hello from print:message command @ 2018-10-18 18:36:08  
+[2018-10-18 18:37:12] local.INFO: Hello from print:message command @ 2018-10-18 18:37:12  
+[2018-10-18 18:38:09] local.INFO: Hello from print:message command @ 2018-10-18 18:38:09  
+[2018-10-18 18:39:12] local.INFO: Hello from print:message command @ 2018-10-18 18:39:12  
+[2018-10-18 18:40:09] local.INFO: Hello from print:message command @ 2018-10-18 18:40:09  
+[2018-10-18 18:41:08] local.INFO: Hello from print:message command @ 2018-10-18 18:41:08  
+[2018-10-18 18:42:07] local.INFO: Hello from print:message command @ 2018-10-18 18:42:07  
+[2018-10-18 18:43:08] local.INFO: Hello from print:message command @ 2018-10-18 18:43:08  
+[2018-10-18 18:44:08] local.INFO: Hello from print:message command @ 2018-10-18 18:44:08  
+[2018-10-18 18:45:09] local.INFO: Hello from print:message command @ 2018-10-18 18:45:09  
+[2018-10-18 18:46:08] local.INFO: Hello from print:message command @ 2018-10-18 18:46:08  
+[2018-10-18 18:47:09] local.INFO: Hello from print:message command @ 2018-10-18 18:47:09  
+[2018-10-18 18:48:07] local.INFO: Hello from print:message command @ 2018-10-18 18:48:07  
+[2018-10-18 18:49:09] local.INFO: Hello from print:message command @ 2018-10-18 18:49:09  
+[2018-10-18 18:50:08] local.INFO: Hello from print:message command @ 2018-10-18 18:50:08  
+[2018-10-18 18:51:07] local.INFO: Hello from print:message command @ 2018-10-18 18:51:07  
+[2018-10-18 18:52:08] local.INFO: Hello from print:message command @ 2018-10-18 18:52:08  
+[2018-10-18 18:53:08] local.INFO: Hello from print:message command @ 2018-10-18 18:53:08  
+[2018-10-18 18:54:08] local.INFO: Hello from print:message command @ 2018-10-18 18:54:08  
+[2018-10-18 18:55:08] local.INFO: Hello from print:message command @ 2018-10-18 18:55:08  
+[2018-10-18 18:56:09] local.INFO: Hello from print:message command @ 2018-10-18 18:56:09  
+[2018-10-18 18:57:08] local.INFO: Hello from print:message command @ 2018-10-18 18:57:08  
+[2018-10-18 18:58:14] local.INFO: Hello from print:message command @ 2018-10-18 18:58:14  
+[2018-10-18 18:59:11] local.INFO: Hello from print:message command @ 2018-10-18 18:59:11  
+[2018-10-18 19:00:12] local.INFO: Hello from print:message command @ 2018-10-18 19:00:12  
+[2018-10-18 19:01:09] local.INFO: Hello from print:message command @ 2018-10-18 19:01:09  
+[2018-10-18 19:02:09] local.INFO: Hello from print:message command @ 2018-10-18 19:02:09  
+[2018-10-18 19:03:13] local.INFO: Hello from print:message command @ 2018-10-18 19:03:13  
+[2018-10-18 19:04:09] local.INFO: Hello from print:message command @ 2018-10-18 19:04:09  
+[2018-10-18 19:05:07] local.INFO: Hello from print:message command @ 2018-10-18 19:05:07  
+[2018-10-18 19:06:08] local.INFO: Hello from print:message command @ 2018-10-18 19:06:08  
+[2018-10-18 19:07:08] local.INFO: Hello from print:message command @ 2018-10-18 19:07:08  
+[2018-10-18 19:08:08] local.INFO: Hello from print:message command @ 2018-10-18 19:08:08  
+[2018-10-18 19:09:13] local.INFO: Hello from print:message command @ 2018-10-18 19:09:13  
+[2018-10-18 19:10:09] local.INFO: Hello from print:message command @ 2018-10-18 19:10:09  
+[2018-10-18 19:11:09] local.INFO: Hello from print:message command @ 2018-10-18 19:11:09  
+[2018-10-18 19:12:09] local.INFO: Hello from print:message command @ 2018-10-18 19:12:08  
+[2018-10-18 19:13:11] local.INFO: Hello from print:message command @ 2018-10-18 19:13:11  
+[2018-10-18 19:14:08] local.INFO: Hello from print:message command @ 2018-10-18 19:14:08  
+[2018-10-18 19:15:08] local.INFO: Hello from print:message command @ 2018-10-18 19:15:08  
+[2018-10-18 19:16:11] local.INFO: Hello from print:message command @ 2018-10-18 19:16:10  
+[2018-10-18 19:17:08] local.INFO: Hello from print:message command @ 2018-10-18 19:17:08  
+[2018-10-18 19:18:08] local.INFO: Hello from print:message command @ 2018-10-18 19:18:08  
+[2018-10-18 19:19:08] local.INFO: Hello from print:message command @ 2018-10-18 19:19:08  
+[2018-10-18 19:20:08] local.INFO: Hello from print:message command @ 2018-10-18 19:20:08  
+[2018-10-18 19:21:10] local.INFO: Hello from print:message command @ 2018-10-18 19:21:10  
+[2018-10-18 19:22:09] local.INFO: Hello from print:message command @ 2018-10-18 19:22:09  
+[2018-10-18 19:23:12] local.INFO: Hello from print:message command @ 2018-10-18 19:23:12  
+[2018-10-18 19:24:07] local.INFO: Hello from print:message command @ 2018-10-18 19:24:07  
+[2018-10-18 19:25:11] local.INFO: Hello from print:message command @ 2018-10-18 19:25:11  
+[2018-10-18 19:26:08] local.INFO: Hello from print:message command @ 2018-10-18 19:26:08  
+[2018-10-18 19:27:08] local.INFO: Hello from print:message command @ 2018-10-18 19:27:08  
+[2018-10-18 19:28:09] local.INFO: Hello from print:message command @ 2018-10-18 19:28:09  
+[2018-10-18 19:29:07] local.INFO: Hello from print:message command @ 2018-10-18 19:29:07  
+[2018-10-18 19:30:08] local.INFO: Hello from print:message command @ 2018-10-18 19:30:08  
+[2018-10-18 19:31:08] local.INFO: Hello from print:message command @ 2018-10-18 19:31:08  
+[2018-10-18 19:32:08] local.INFO: Hello from print:message command @ 2018-10-18 19:32:08  
