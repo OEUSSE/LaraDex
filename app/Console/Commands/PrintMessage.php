@@ -2,6 +2,7 @@
 
 namespace LaraDex\Console\Commands;
 
+use Carbon\Carbon;
 use Illuminate\Console\Command;
 
 class PrintMessage extends Command
@@ -37,6 +38,6 @@ class PrintMessage extends Command
      */
     public function handle()
     {
-        \Log::info('Hello from print:message command @ '.\Carbon\Carbon::now());
+        $this->info(now()->format('Y-m-d'));
     }
 }
