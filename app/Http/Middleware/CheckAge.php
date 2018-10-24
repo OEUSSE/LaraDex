@@ -19,6 +19,8 @@ class CheckAge
             return redirect('/trainers');
         }
 
+        $request->name = "Saúl";
+
         return $next($request);
     }
 }

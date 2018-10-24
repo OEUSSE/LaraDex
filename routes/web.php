@@ -1,4 +1,6 @@
 <?php
+
+use Illuminate\Http\Request;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -120,15 +122,20 @@ Route::prefix('admin')->group(function () {
 
 # Implicit Binding
 
-/* Route::get('profile/{user}', function(App\User $user) {
+/* Route::get('profile/{user}', function(\LaraDex\User $user) {
     // Pasar como parámetro la instancia del modelo
-}); */
-
+});
+ */
 //Middleware
-Route::get('profile/new', function() {
-    return "Bienvenido";
-})->middleware('checkage');
+/* Route::get('profile/new', function(Request $request) {
+    return "Bienvenido ".$request->name;
+})->middleware('checkage'); */
 
+Route::group(['middleware' => ['checkage']], function() {
+    Route::get('profile/new', function(Request $request) {
+        return "Bienvenido $request->name";
+    });
+});
 
 // Consumir API
 Route::get('/posts', 'ApiController@getPosts');
@@ -142,9 +149,9 @@ Route::get('log', function () {
     /* Log::channel('slack')->emergency('test');
     Log::channel('slack')->alert('test');
     Log::channel('slack')->critical('test');
-    Log::channel('slack')->error('test'); *//* 
+    Log::channel('slack')->error('test'); *//*
     Log::channel('slack')->warning('test');
     Log::channel('slack')->notice('test'); */
-    Log::channel('slack')->warning('test');/* 
+    Log::channel('slack')->warning('test');/*
     Log::channel('slack')->debug('test'); */
 });
