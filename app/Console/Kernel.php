@@ -29,15 +29,9 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
-        // $schedule->command('inspire')
-        //          ->hourly();
-
-        $res = $schedule
-                ->command('hello:print')
-                ->everyMinute();
-
-                
-        \Log::info("Log de hello:print".\Carbon\Carbon::now());
+        $schedule
+            ->command('hello:print')
+            ->everyMinute();
 
     } 
 

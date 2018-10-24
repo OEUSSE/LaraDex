@@ -108,8 +108,6 @@ return [
 
     'cipher' => 'AES-256-CBC',
 
-    'slack_webhook' => env('SLACK_WEBHOOK'),
-
     /**
      * Registrar errores en el archivo de registro
      * Monolog: Del menos severo al más severo
@@ -117,6 +115,7 @@ return [
      */
 
     'log_level' => env('APP_LOG_LEVEL', 'info'),
+    'slack_webhook' => env('LOG_SLACK_WEBHOOK_URL', 'jamon'),
 
     /*
     |--------------------------------------------------------------------------

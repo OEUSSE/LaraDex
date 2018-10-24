@@ -1,5 +1,4 @@
 <?php
-
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -121,9 +120,14 @@ Route::prefix('admin')->group(function () {
 
 # Implicit Binding
 
-Route::get('profile/{user}', function(App\User $user) {
+/* Route::get('profile/{user}', function(App\User $user) {
     // Pasar como parámetro la instancia del modelo
-});
+}); */
+
+//Middleware
+Route::get('profile/new', function() {
+    return "Bienvenido";
+})->middleware('checkage');
 
 
 // Consumir API
