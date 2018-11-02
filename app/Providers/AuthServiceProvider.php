@@ -25,6 +25,29 @@ class AuthServiceProvider extends ServiceProvider
     {
         $this->registerPolicies();
 
-        //
+        Gate::define('validar_ruta', function ($model, $ruta) {
+            \Log::info($ruta);
+            $plan_vencido = false;
+            $rutas_publicas = ["home", "clientes", "productos", "contacto"];
+            
+            $vista = "";
+            if ($plan_vencido) {
+                foreach ($rutas_publicas as $r => $key) {
+                    if ($key === $ruta) {
+                        $vista = "yes";
+                    }
+                }
+            } else {
+                $vista = $ruta;
+            }
+
+            return $vista ? true : false;
+        });
+
+        Gate::before(function ($user, $ability) {
+            if (!empty($user->rol) && $user->rol->access_all == 1) {
+                return true;
+            }
+        });
     }
 }

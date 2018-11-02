@@ -33,7 +33,16 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-
+                        <li><a href="#">Home</a></li>
+                        <li><a href="#">Clientes</a></li>
+                        <li><a href="#">Productos</a></li>
+                        <li><a href="#">Contacto</a></li>
+                        @can('validar_ruta', 'ver_compras')
+                            <li><a href="#">Ver compras</a></li>
+                        @endcan
+                        @can('validar_ruta', 'realizar_compra')
+                            <li><a href="#">Realizar compra</a></li>
+                        @endcan
                     </ul>
 
                     <!-- Right Side Of Navbar -->
