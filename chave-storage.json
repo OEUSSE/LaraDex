@@ -1,0 +1,12 @@
+{
+  "type": "service_account",
+  "project_id": "bright-gearbox-223020",
+  "private_key_id": "e7bb312f9dd90f2912f460e0e7e6d8c4f6db4c30",
+  "private_key": "-----BEGIN PRIVATE KEY-----\nMIIEvwIBADANBgkqhkiG9w0BAQEFAASCBKkwggSlAgEAAoIBAQDFvmgrF4kcxN+P\naNoOEvqM+OGBG99Q0OcHaYfVf95ado/05qDDQqY9+7C2Md6xnZqrGQ/scOphApJW\nmwRs2ZvU6UQOHTpU+0sXj+rY5wxv3FHIZhvfpvuK+zXjVS+2lWZrxwitox0VMw1b\nHiNzFcHnQH1YjCyZ+n+lyfTW4F5b2WpBvS8fwiV/EYtXYi7IqWwCuTBW7tV4hSDP\nCkeMaC7e7du7I/f87BlPCik09KI8CtunF9ck+M+7bIyBxpJG3IIDxmcrKbYD9KK0\nMyPl4hqIqi2R+QFbDHO4046QqJjKOcCqSWtD9LEIUj3Vthk1EDWWDf4QvsKkz74V\ne9vAw6XBAgMBAAECggEAS7L7DLgLULybOrqwcx/X05y5MyQ45qa6Mo+3JMe5Ftd5\nf47Eb0t1+Zd/DBhmQIdtfN9wxZpqVy3VWJsqZAMgES8lUuPkf0Dd+8yn4lX84Fuu\n4TEZrZIujINjmz3ysIpb9ZlxnIsraICtNbsBZh6npr/83Cd5MY8AS7bW6GVnKfCR\nwFhgoBX2wXOg7ehO5+lRCJJdP8zmFa1lFXDIgX6vSUEKJz30vyAy7YKEw1NS4sri\nKElsIjh46PlJukjR4DCBi4jzXgEADk5F/4qSudEtiIpYEltU0bgdFraztdW0G4yl\nMdAmjdkRxtAdsW5Am4J2IX5N98+gUnjPKWe4+xMLqwKBgQD1VKndG3mHyzrId0yN\ne1z0PPQoevJ67BXyQNGc1rkY7C+nA+4UsHxPzxQKv8biNPfjRi8SXnEetPjqL05S\n+lcu4g2c7Pi61YsWmK7Rux5hEdMT601gWHP2Zrz1chLzEvJqMdKMkAG0s6dczHBZ\n37OHww7TlKjuT+xNXzog54DMMwKBgQDOV/HJHzNZACpEEPa4JrsangwH9vvUUiUV\nb2648PdtqVAD4yHJTvfA1Fu0vKfvLbakFSO47WaQMysNRKxwPy9/XXh/EkkPzNrR\nRCNGNY+tDyZRHgazrXhyOxX0v/rtL7kAWvi7HzyQhyhKLS+Ap0h9O9o6co8Z5UG1\nGzmuIGMSOwKBgQCxggfB5w5BFeg7gi5OtHLmeXAEFil6jXW3qfTAsZCOGt7DzpEm\nQShBKskKmgZSSBcQSAjpFpJssG7mK0JVwbLxRjipUcEKllYkDGd5cxWhEJ+Uaw26\nZ2XIZD/WrCpP3GawNcptUAkb8V1oRLgKH1UsJxOEPa0ZeZS1yvApPLgxhwKBgQDC\nub3ENjyH1h8M4xFh0bMquFHURmF7ChZS9zj/MO/fPjPzpyogRvSJth3hH1Q/490D\nVavDfc4XcSJEwDUXLJnPUU9AY+otDf7GE85SGIPBJpXbYUGj2KXc7yOWOII9yZaF\n3lPyitTl85azAZddiwBeptgX5jpjjrWGiu3RBGFaNwKBgQCfGf3ii8t9ZBiQBEKs\nSYweErWlCYVCMJj/PZZS7yZo8X6bCiXm9+I55sfSYpcV0UW7MfZpNCmCxMYPRGFX\nWPiD6wf/v6/s0L2xFdon3LKIrQThiyreTco9Gyi1KySxdefE+fNqPqT+maNQtnFo\nTFK9eA4Akb9r5IH37a285ZHq2g==\n-----END PRIVATE KEY-----\n",
+  "client_email": "laradex-storage@bright-gearbox-223020.iam.gserviceaccount.com",
+  "client_id": "112132089378949340410",
+  "auth_uri": "https://accounts.google.com/o/oauth2/auth",
+  "token_uri": "https://oauth2.googleapis.com/token",
+  "auth_provider_x509_cert_url": "https://www.googleapis.com/oauth2/v1/certs",
+  "client_x509_cert_url": "https://www.googleapis.com/robot/v1/metadata/x509/laradex-storage%40bright-gearbox-223020.iam.gserviceaccount.com"
+}
