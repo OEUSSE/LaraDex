@@ -9,7 +9,7 @@
             <h1>{{ $pokemon->name }}</h1>
             <img style="height: 100px; width: 100px; background-color: lightgray; margin: 10px;"
                 class="card-img-top rounded-circle mx-auto d-block"
-                src="/images/{{ $pokemon->image }}"}
+                src="{{ $pokemon->image }}"
                 alt="Card image cap">
         </div>
         <div class="card-body text-center">

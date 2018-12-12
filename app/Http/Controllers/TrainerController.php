@@ -2,7 +2,9 @@
 
 namespace LaraDex\Http\Controllers;
 
+use Storage;
 use Illuminate\Http\Request;
+use Illuminate\Http\File;
 use LaraDex\Trainer;
 use LaraDex\Http\Requests\StoreTrainerRequest;
 
@@ -52,14 +54,13 @@ class TrainerController extends Controller
             $file = $request->file('avatar');
             // Dando al archivo un nombre único
             $avatar_name = time().$file->getClientOriginalName();
-            // Mover a una carpeta a public/images
-            $file->move(public_path().'/images/', $avatar_name);
+            $url_image = self::StoreInGoogle($avatar_name, $file);
         }
 
         $trainer = new Trainer(); // Instancia de Trainer Model
         // Asignar a la propiedad de name de trainer el valor que viene del request
         $trainer->name = $request->input('name');
-        $trainer->avatar = $avatar_name;
+        $trainer->avatar = $url_image;
         $trainer->description = $description;
         $trainer->slug = $slug;
         $trainer->save(); // Almacenar nuevo recurso
@@ -118,15 +119,14 @@ class TrainerController extends Controller
             // Creando un archivo
             $file = $request->file('avatar');
             // Dando al archivo un nombre único
-            $avatar = time().$file->getClientOriginalName();
-            // Mover a una carpeta a public/images
-            $file->move(public_path().'/images/', $avatar);
+            $avatar_name = time().$file->getClientOriginalName();
+            $url_image = self::StoreInGoogle($avatar_name, $file);
         }
         
         // fill actualiza los datos
         // El metodo execpt del request permite no pasar ciertos valores
         $trainer->fill($request->except('avatar', 'slug'));
-        $trainer->avatar = $avatar;
+        $trainer->avatar = $url_image;
         $trainer->slug = $slug;
         $trainer->save();
 
@@ -153,5 +153,21 @@ class TrainerController extends Controller
         $trainer->delete();
         
         return redirect()->route('trainers.index');
+    }
+
+    /**
+     * Store in Google Cloud Storage
+     * 
+     * @param string $nombre
+     * @param string $file
+     */
+    public static function StoreInGoogle($image_name, $file) {
+        $disk = Storage::disk('gcs');
+        
+        if (!$disk->exists('trainers/'.$image_name)) {
+            $disk->putFileAs('trainers', new File($file->getPathname()), $image_name, 'public');
+        }
+
+        return $disk->url('trainers/'.$image_name);
     }
 }

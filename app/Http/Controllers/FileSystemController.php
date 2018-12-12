@@ -11,7 +11,7 @@ class FileSystemController extends Controller
         $diskLocal = Storage::disk('local');
 
         if (!$diskLocal->exists('example.txt')) {
-            $diskLocal->put("example.txt", "Esto es un ejemplo");
+            $diskLocal->put("example.txt", "Esto es un ejemplo nuevo");
         } else {
             return $diskLocal->get('example.txt');
         }
@@ -19,12 +19,19 @@ class FileSystemController extends Controller
 
     public function GoogleCloudStorage() {
         $diskGCS = Storage::disk('gcs');
+
+        $diskGCS->put('example.txt', 'hello from local');
+
+
+        /* $diskGCS = Storage::disk('gcs');
+        $folder = "images/";
+        $file_name = "ash.png";
+        $file = $folder.$file_name;
         
-        if ($diskGCS->exists('images/ash.png')) {
-            $url_file = $diskGCS->url('images/ash.png');
-            
+        if ($diskGCS->exists($file)) {
+            $url_file = $diskGCS->url($file);
             
             return view('trainers.download', compact('url_file'));
-        }
+        } */
     }
 }

@@ -9,7 +9,7 @@
             <h1>{{ $trainer->name }}</h1>
             <img style="height: 100px; width: 100px; background-color: lightgray; margin: 10px;"
                 class="card-img-top rounded-circle mx-auto d-block" 
-                src="/images/{{ $trainer->avatar }}"} 
+                src="{{ $trainer->avatar }}"
                 alt="Card image cap">
             <a href="/trainers/{{ $trainer->slug }}/pokemons" class="btn btn-dark">Ver los Pokemons de <span>{{ $trainer->name }}</span></a>
         </div>

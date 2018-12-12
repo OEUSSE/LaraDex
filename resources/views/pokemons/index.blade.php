@@ -12,7 +12,7 @@
                 <div class="card text-center" style="width: 18rem; margin: 30px auto;">
                     <img style="height: 100px; width: 100px; background-color: lightgray; margin: 10px;"
                         class="card-img-top rounded-circle mx-auto d-block"
-                        src="images/{{$pokemon->image}}"}
+                        src="{{$pokemon->image}}"
                         alt="Card image cap">
                     <div class="card-body text-left">
                         <h5 class="card-title">{{$pokemon->name}}</h5>

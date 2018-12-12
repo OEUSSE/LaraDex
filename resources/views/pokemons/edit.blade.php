@@ -7,7 +7,7 @@
     @include('common.errors')
     {!! Form::model($pokemon, ['route' => ['pokemons.update', $pokemon], 'method' => 'PUT', 'files' => true]) !!}
         <div class="image-container col-sm-6">
-            <img src="/images/{{ $pokemon->image }}"
+            <img src="{{ $pokemon->image }}"
                 alt="{{ $pokemon->name }}"
                 style="height: 200px; width: 300px; object-fit: contain; box-shadow: -1px 0px 18px 2px rgba(0, 0, 0, 0.53);">
         </div>
