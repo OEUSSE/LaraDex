@@ -43,7 +43,7 @@
                         @can('validar_ruta', 'realizar_compra')
                             <li class="nav-item"><a class="nav-link" href="#">Realizar compra</a></li>
                         @endcan
-                        <!-- test -->
+                        <!-- test dos -->
                     </ul>
 
                     <!-- Right Side Of Navbar -->
