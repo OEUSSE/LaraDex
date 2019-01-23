@@ -1,6 +1,9 @@
 <?php
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
+use LaraDex\Mail\Welcome;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -31,6 +34,16 @@ Route::get('/list-pokemons', 'ListPokemonController@index');
 Route::get('/api/trainer', 'ListTrainerController@getData');
 Route::get('/api/pokemon', 'ListPokemonController@getData');
 Route::get('/searchComments', 'CommentsController@getComments');
+
+# MailTest
+Route::get('/sendMail', function () {
+    $data = array('name' => 'Enviar correos');
+
+    Mail::to('scr.eusse@gmail.com')
+        ->send(new Welcome('Hola bienvenido'));
+
+    return "Tu correo ha sido enviado";
+});
 
 Auth::routes();
 
