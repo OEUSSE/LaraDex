@@ -160,6 +160,7 @@ return [
          * Package Service Providers...
          */
         Barryvdh\Debugbar\ServiceProvider::class,
+        Superbalist\LaravelGoogleCloudStorage\GoogleCloudStorageServiceProvider::class,
 
         /*
          * Application Service Providers...
@@ -174,7 +175,6 @@ return [
          * Laravel Collective Providers
          */
         Collective\Html\HtmlServiceProvider::class,
-
     ],
 
     /*

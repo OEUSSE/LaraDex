@@ -2,7 +2,9 @@
 
 namespace LaraDex\Http\Controllers;
 
+use Storage;
 use Illuminate\Http\Request;
+use Illuminate\Http\File;
 use LaraDex\Pokemon;
 use LaraDex\Http\Requests\StorePokemonRequest;
 
@@ -38,13 +40,11 @@ class PokemonController extends Controller
     public function store(StorePokemonRequest $request)
     {
         $slug = strtolower(str_replace(' ', '-', $request->input('name')));
-        $image_name = '';
 
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $image_name = time().$file->getClientOriginalName();
-
-            $file->move(public_path().'/images/', $image_name);
+            $url_image = self::StoreInGoogle($image_name, $file);
         }
 
         $pokemon = new Pokemon();
@@ -54,7 +54,7 @@ class PokemonController extends Controller
         $pokemon->height = $request->input('height');
         $pokemon->ranking = $request->input('ranking');
         $pokemon->type = $request->input('type');
-        $pokemon->image = $image_name;
+        $pokemon->image = $url_image;
         $pokemon->slug = $slug;
         $pokemon->save();
 
@@ -98,12 +98,11 @@ class PokemonController extends Controller
         if ($request->hasFile('image')) {
             $file = $request->file('image');
             $image_name = time().$file->getClientOriginalName();
-
-            $file->move(public_path().'/images/', $image_name);
+            $url_image = self::StoreInGoogle($image_name, $file);
         }
 
         $pokemon->fill($request->except('image'));
-        $pokemon->image = $image_name;
+        $pokemon->image = $url_image;
         $pokemon->slug = $slug;
         $pokemon->save();
 
@@ -123,5 +122,21 @@ class PokemonController extends Controller
         $pokemon->delete();
 
         return redirect()->route('pokemons.index');
+    }
+
+    /**
+     * Store in Google Cloud Storage
+     * 
+     * @param string $nombre
+     * @param string $file
+     */
+    public static function StoreInGoogle($image_name, $file) {
+        $disk = Storage::disk('gcs');
+
+        if (!$disk->exists('pokemons/'.$image_name)) {
+            $disk->putFileAs('pokemons', new File($file->getPathname()), $image_name, 'public');
+        }
+
+        return $disk->url('pokemons/'.$image_name);
     }
 }

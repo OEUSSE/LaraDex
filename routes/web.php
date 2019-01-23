@@ -157,6 +157,12 @@ Route::post('/notify-slack', 'ApiController@notifySlack');
 // Call CustomError
 Route::get('exception/index', 'ExceptionController@index');
 
+// Guardar un archivo en disco local FileSystem.
+Route::prefix('filesystem')->group(function () {
+    Route::get('local', 'FileSystemController@Local');
+    Route::get('gcs', 'FileSystemController@GoogleCloudStorage');
+});
+
 // Log Error
 Route::get('log', function () {
     /* Log::channel('slack')->emergency('test');
