@@ -18,20 +18,23 @@ class TestController extends Controller
             // Open output stream
             $handle = fopen('php://output', 'w');
 
+            // Exporting UTF-8 data
+            fputs($handle, chr(0xEF).chr(0xBB).chr(0xBF));
+
             // Add CSV headers
             fputcsv($handle, [
                 'Nombre',
                 'Tipo',
-                utf8_decode('Clasificación'),
+                'Clasificación',
                 'Peso'
             ]);
             
             foreach (Pokemon::all() as $pokemon) {
                 // Add new row with data
                 fputcsv($handle, [
-                    utf8_decode($pokemon->name),
-                    utf8_decode($pokemon->type),
-                    utf8_decode($pokemon->clasification),
+                    $pokemon->name,
+                    $pokemon->type,
+                    $pokemon->clasification,
                     $pokemon->weight
                 ]);
             }
