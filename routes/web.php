@@ -36,6 +36,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::prefix('test')->group(function () {
+    Route::get('test-exporte', 'TestController@ExportCsv');
+});
+
 # Test Routes
 Route::prefix('home')->group(function() {
     # Use multiples http verbs in the same route
