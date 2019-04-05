@@ -7,6 +7,6 @@
   <title>Document</title>
 </head>
 <body>
-  <h1>{{ $welcomeMessage }}</h1>
+<p style="text-align: center;">Hola Mundo😀<img src="https://media.wired.com/photos/5c1d53145ecee564c8186fd9/master/pass/SpaceX-1074353714.jpg" alt="SpaceX" width="2400" height="1800" /></p>
 </body>
 </html>
