@@ -24,7 +24,7 @@
         <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
             <div class="container">
                 <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'LaraDex') }}
+                    {{ config('app.name', 'Laravel') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
@@ -33,17 +33,7 @@
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
-                        <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Clientes</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Productos</a></li>
-                        <li class="nav-item"><a class="nav-link" href="#">Contacto</a></li>
-                        @can('validar_ruta', 'ver_compras')
-                            <li class="nav-item"><a class="nav-link" href="#">Ver compras</a></li>
-                        @endcan
-                        @can('validar_ruta', 'realizar_compra')
-                            <li class="nav-item"><a class="nav-link" href="#">Realizar compra</a></li>
-                        @endcan
-                        <!-- test dos -->
+
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -57,29 +47,12 @@
                                 <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
                             </li>
                         @else
-                            <li class="nav-item">
-                                <a href="#!" class="nav-link" role="button">
-                                    Campana
-                                </a>
-                            </li>
                             <li class="nav-item dropdown">
                                 <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                     {{ Auth::user()->name }} <span class="caret"></span>
                                 </a>
 
                                 <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                    <a class="dropdown-item" href="/trainers">Trainers</a>
-                                    <a class="dropdown-item" href="/pokemons">Pokemons</a>
-                                    <hr>
-                                    <div class="create-opitions-container">
-                                        <a class="dropdown-item" href="/trainers/create">Create Trainers</a>
-                                        <a class="dropdown-item" href="/pokemons/create">Create Pokemons</a>
-                                    </div>
-                                    <div class="list-data-container">
-                                        <a class="dropdown-item" href="/list-trainers">Listar Trainers</a>
-                                        <a class="dropdown-item" href="/list-pokemons">Listar Pokemons</a>
-                                    </div>
-                                    <hr>
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                        onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
@@ -98,9 +71,7 @@
         </nav>
 
         <main class="py-4">
-            <div class="container">
-                @yield('content')
-            </div>
+            @yield('content')
         </main>
     </div>
 </body>

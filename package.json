@@ -27,6 +27,7 @@
         "vue-tables-2": "^1.4.70"
     },
     "dependencies": {
+        "bootstrap-fileinput": "^5.0.3",
         "ion-sound": "^3.0.7"
     }
 }

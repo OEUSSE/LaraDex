@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 use LaraDex\Mail\Welcome;
+use LaraDex\Mail\Bienvenida;
 
 /*
 |--------------------------------------------------------------------------
@@ -37,10 +38,13 @@ Route::get('/searchComments', 'CommentsController@getComments');
 
 # MailTest
 Route::get('/sendMail', function () {
-    $data = array('name' => 'Enviar correos');
+    /* $data = array('name' => 'Enviar correos');
 
     Mail::to('scr.eusse@gmail.com')
-        ->send(new Welcome('Hola bienvenido'));
+        ->send(new Welcome('Hola bienvenido')); */
+
+    Mail::to('scr.eusse@gmail.com')
+        ->send(new Bienvenida());
 
     return "Tu correo ha sido enviado";
 });
@@ -178,3 +182,7 @@ Route::get('log', function () {
     Log::channel('slack')->warning('test');/*
     Log::channel('slack')->debug('test'); */
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');

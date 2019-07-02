@@ -2,6 +2,7 @@
 
 namespace LaraDex\Providers;
 
+use Laravel\Passport\Passport;
 use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -24,6 +25,9 @@ class AuthServiceProvider extends ServiceProvider
     public function boot()
     {
         $this->registerPolicies();
+
+        // Habilitar passport routes
+        Passport::routes();
 
         Gate::define('validar_ruta', function ($model, $ruta) {
             \Log::info($ruta);

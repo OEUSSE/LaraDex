@@ -6,14 +6,24 @@
             :columns="columns"
             :options="options">
         </v-client-table>
+        <label for="file-0b">Test invalid input type</label>
+        <div class="file-loading">
+            <input id="input-id" name="file-0b" class="file" type="file" multiple data-min-file-count="1" data-theme="fas">
+        </div>
     </div>
 </template>
 
 <script>
+import 'bootstrap-fileinput';
+import 'bootstrap-fileinput/css/fileinput.css'
+
 export default {
     props: ['source', 'title'],
     mounted() {
-        this.initData()
+        this.initData();
+        $(document).on('ready', function () {
+            $("#input-id").fileinput({'showUpload':false, 'previewFileType':'any'});
+        });
     },
     data() {
         return {

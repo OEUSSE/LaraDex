@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "/";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 42);
+/******/ 	return __webpack_require__(__webpack_require__.s = 43);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -242,7 +242,7 @@
 	}
 
 })(typeof module === 'object' && module && typeof module.exports === 'object' && module.exports);
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(13)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(15)(module)))
 
 /***/ }),
 /* 1 */
@@ -251,7 +251,7 @@
 "use strict";
 
 
-var bind = __webpack_require__(36);
+var bind = __webpack_require__(37);
 var isBuffer = __webpack_require__(8);
 
 /*global toString:true*/
@@ -11756,7 +11756,7 @@ Vue.compile = compileToFunctions;
 
 module.exports = Vue;
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(44).setImmediate))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(45).setImmediate))
 
 /***/ }),
 /* 6 */
@@ -11767,25 +11767,25 @@ module.exports = Vue;
 
 var win32 = process && process.platform === 'win32';
 var path = __webpack_require__(7);
-var fileRe = __webpack_require__(88);
+var fileRe = __webpack_require__(89);
 var utils = module.exports;
 
 /**
  * Module dependencies
  */
 
-utils.diff = __webpack_require__(89);
-utils.unique = __webpack_require__(91);
-utils.braces = __webpack_require__(92);
-utils.brackets = __webpack_require__(103);
-utils.extglob = __webpack_require__(105);
+utils.diff = __webpack_require__(90);
+utils.unique = __webpack_require__(92);
+utils.braces = __webpack_require__(93);
+utils.brackets = __webpack_require__(104);
+utils.extglob = __webpack_require__(106);
 utils.isExtglob = __webpack_require__(9);
-utils.isGlob = __webpack_require__(106);
-utils.typeOf = __webpack_require__(107);
-utils.normalize = __webpack_require__(108);
-utils.omit = __webpack_require__(110);
-utils.parseGlob = __webpack_require__(113);
-utils.cache = __webpack_require__(119);
+utils.isGlob = __webpack_require__(107);
+utils.typeOf = __webpack_require__(108);
+utils.normalize = __webpack_require__(109);
+utils.omit = __webpack_require__(111);
+utils.parseGlob = __webpack_require__(114);
+utils.cache = __webpack_require__(120);
 
 /**
  * Get the filename of a filepath
@@ -12268,5378 +12268,6 @@ module.exports = debounce;
 
 /***/ }),
 /* 11 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(process) {
-
-var utils = __webpack_require__(1);
-var normalizeHeaderName = __webpack_require__(225);
-
-var DEFAULT_CONTENT_TYPE = {
-  'Content-Type': 'application/x-www-form-urlencoded'
-};
-
-function setContentTypeIfUnset(headers, value) {
-  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
-    headers['Content-Type'] = value;
-  }
-}
-
-function getDefaultAdapter() {
-  var adapter;
-  if (typeof XMLHttpRequest !== 'undefined') {
-    // For browsers use XHR adapter
-    adapter = __webpack_require__(37);
-  } else if (typeof process !== 'undefined') {
-    // For node use HTTP adapter
-    adapter = __webpack_require__(37);
-  }
-  return adapter;
-}
-
-var defaults = {
-  adapter: getDefaultAdapter(),
-
-  transformRequest: [function transformRequest(data, headers) {
-    normalizeHeaderName(headers, 'Content-Type');
-    if (utils.isFormData(data) ||
-      utils.isArrayBuffer(data) ||
-      utils.isBuffer(data) ||
-      utils.isStream(data) ||
-      utils.isFile(data) ||
-      utils.isBlob(data)
-    ) {
-      return data;
-    }
-    if (utils.isArrayBufferView(data)) {
-      return data.buffer;
-    }
-    if (utils.isURLSearchParams(data)) {
-      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
-      return data.toString();
-    }
-    if (utils.isObject(data)) {
-      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
-      return JSON.stringify(data);
-    }
-    return data;
-  }],
-
-  transformResponse: [function transformResponse(data) {
-    /*eslint no-param-reassign:0*/
-    if (typeof data === 'string') {
-      try {
-        data = JSON.parse(data);
-      } catch (e) { /* Ignore */ }
-    }
-    return data;
-  }],
-
-  /**
-   * A timeout in milliseconds to abort a request. If set to 0 (default) a
-   * timeout is not created.
-   */
-  timeout: 0,
-
-  xsrfCookieName: 'XSRF-TOKEN',
-  xsrfHeaderName: 'X-XSRF-TOKEN',
-
-  maxContentLength: -1,
-
-  validateStatus: function validateStatus(status) {
-    return status >= 200 && status < 300;
-  }
-};
-
-defaults.headers = {
-  common: {
-    'Accept': 'application/json, text/plain, */*'
-  }
-};
-
-utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
-  defaults.headers[method] = {};
-});
-
-utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
-  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
-});
-
-module.exports = defaults;
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
-
-/***/ }),
-/* 12 */
-/***/ (function(module, exports, __webpack_require__) {
-
-var Pagination = __webpack_require__(48);
-var PaginationEvent = __webpack_require__(14);
-
-module.exports = {
-  Pagination:Pagination,
-  PaginationEvent:PaginationEvent
-}
-
-
-/***/ }),
-/* 13 */
-/***/ (function(module, exports) {
-
-module.exports = function(module) {
-	if(!module.webpackPolyfill) {
-		module.deprecate = function() {};
-		module.paths = [];
-		// module.parent = undefined by default
-		if(!module.children) module.children = [];
-		Object.defineProperty(module, "loaded", {
-			enumerable: true,
-			get: function() {
-				return module.l;
-			}
-		});
-		Object.defineProperty(module, "id", {
-			enumerable: true,
-			get: function() {
-				return module.i;
-			}
-		});
-		module.webpackPolyfill = 1;
-	}
-	return module;
-};
-
-
-/***/ }),
-/* 14 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _vue = __webpack_require__(5);
-
-var _vue2 = _interopRequireDefault(_vue);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-var bus = new _vue2.default();
-
-module.exports = bus;
-
-/***/ }),
-/* 15 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-exports.default = function (source) {
-
-  var extra = source == 'server' ? serverExtra() : clientExtra();
-
-  return _merge2.default.recursive(true, {
-    props: {
-      name: {
-        type: String,
-        required: true
-      }
-    },
-    computed: {
-      state: function state() {
-        return this.$store.state[this.name];
-      },
-      Page: function Page() {
-        return this.state.page;
-      },
-      count: function count() {
-        return this.state.count;
-      },
-      Columns: function Columns() {
-        return this.state.columns;
-      },
-      tableData: function tableData() {
-        return this.state.data;
-      },
-      page: function page() {
-        return this.state.page;
-      },
-      limit: function limit() {
-        return this.state.limit;
-      },
-      customQueries: function customQueries() {
-        return this.state.customQueries;
-      },
-      query: function query() {
-        return this.state.query;
-      },
-      orderBy: function orderBy() {
-        return {
-          column: this.state.sortBy,
-          ascending: this.state.ascending
-        };
-      }
-    },
-    methods: {
-      commit: function commit(action, payload) {
-        return this.$store.commit(this.name + '/' + action, payload);
-      },
-      orderByColumn: function orderByColumn(column, ev) {
-
-        if (!this.sortable(column)) return;
-
-        if (ev.shiftKey && this.orderBy.column && this.hasMultiSort) {
-          this.setUserMultiSort(column);
-        } else {
-          var ascending = this.orderBy.column === column ? !this.orderBy.ascending : this._initialOrderAscending(column);
-          var orderBy = { column: column, ascending: ascending };
-          this.updateState('orderBy', orderBy);
-          this.commit('SORT', orderBy);
-          this.dispatch('sorted', orderBy);
-        }
-      },
-      setLimit: function setLimit(e) {
-        var limit = (typeof e === 'undefined' ? 'undefined' : _typeof(e)) === 'object' ? parseInt(e.target.value) : e;
-        this.updateState('perPage', limit);
-        this.commit('SET_LIMIT', limit);
-        this.dispatch('limit', limit);
-      },
-      setOrder: function setOrder(column, ascending) {
-        this.updateState('orderBy', { column: column, ascending: ascending });
-        this.commit('SORT', { column: column, ascending: ascending });
-      },
-      setPage: function setPage(page) {
-
-        if (!page) {
-          page = this.$refs.page.value;
-        }
-
-        if (!this.opts.pagination.dropdown) this.$refs.pagination.Page = page;
-
-        this.commit('PAGINATE', page);
-      }
-
-    }
-  }, extra);
-};
-
-var _merge = __webpack_require__(0);
-
-var _merge2 = _interopRequireDefault(_merge);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-function serverExtra() {
-  return {
-    methods: {
-      setData: function setData(data) {
-        this.commit('SET_DATA', data);
-
-        setTimeout(function () {
-          this.dispatch('loaded', data);
-        }.bind(this), 0);
-      }
-    }
-  };
-}
-
-function clientExtra() {
-  return {};
-}
-
-/***/ }),
-/* 16 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-exports.default = function () {
-  return {
-    computed: {
-      Columns: function Columns() {
-        return this.columns;
-      }
-    }
-  };
-};
-
-/***/ }),
-/* 17 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-exports.default = function () {
-  return { methods: methods, computed: computed, directives: directives, beforeDestroy: beforeDestroy };
-};
-
-var methods = __webpack_require__(54);
-var computed = __webpack_require__(162);
-var directives = __webpack_require__(174);
-var beforeDestroy = __webpack_require__(177);
-
-/***/ }),
-/* 18 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function (e, dateEvent) {
-
-  // we need to handle the store this.query to make sure we're not mutating outside of it
-  var query = this.vuex ? JSON.parse(JSON.stringify(this.query)) : this.query;
-
-  // in case we pass an object manually (mostly used for init-date-filters should refactor
-  if (Object.prototype.toString.call(e).slice(8, -1) == 'Object') {
-    query = this.vuex ? JSON.parse(JSON.stringify(e)) : e;
-
-    if (!this.vuex) this.query = query;
-
-    var name = dateEvent.target.name;
-    var value = dateEvent.target.value;
-
-    if (name) {
-      this.dispatch('filter', { name: name, value: value });
-      this.dispatch('filter::' + name, value);
-    } else {
-      this.dispatch('filter', value);
-    }
-
-    this.updateState('query', query);
-  } else if (e) {
-    var _name = this.getName(e.target.name);
-    var _value = e.target.value;
-
-    if (_name) {
-      query[_name] = _value;
-    } else {
-      query = _value;
-    }
-
-    if (!this.vuex) this.query = query;
-
-    if (_name) {
-      this.dispatch('filter', { name: _name, value: _value });
-      this.dispatch('filter::' + _name, _value);
-    } else {
-      this.dispatch('filter', _value);
-    }
-
-    this.updateState('query', query);
-  }
-
-  return search(this, query);
-};
-
-function search(that, query) {
-
-  if (that.vuex) {
-    that.commit('SET_FILTER', query);
-  } else {
-    that.initPagination();
-
-    if (that.opts.pagination.dropdown) {
-      that.getData();
-    }
-  }
-}
-
-function noDebounce(e, name, opts) {
-  return !e || name && (opts.dateColumns.indexOf(name) > -1 || Object.keys(opts.listColumns).indexOf(name) > -1);
-}
-
-/***/ }),
-/* 19 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function (val) {
-  return val && typeof val.isValid == 'function' && val.isValid();
-};
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/* WEBPACK VAR INJECTION */(function(global) {/*!
- * The buffer module from node.js, for the browser.
- *
- * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
- * @license  MIT
- */
-/* eslint-disable no-proto */
-
-
-
-var base64 = __webpack_require__(82)
-var ieee754 = __webpack_require__(83)
-var isArray = __webpack_require__(21)
-
-exports.Buffer = Buffer
-exports.SlowBuffer = SlowBuffer
-exports.INSPECT_MAX_BYTES = 50
-
-/**
- * If `Buffer.TYPED_ARRAY_SUPPORT`:
- *   === true    Use Uint8Array implementation (fastest)
- *   === false   Use Object implementation (most compatible, even IE6)
- *
- * Browsers that support typed arrays are IE 10+, Firefox 4+, Chrome 7+, Safari 5.1+,
- * Opera 11.6+, iOS 4.2+.
- *
- * Due to various browser bugs, sometimes the Object implementation will be used even
- * when the browser supports typed arrays.
- *
- * Note:
- *
- *   - Firefox 4-29 lacks support for adding new properties to `Uint8Array` instances,
- *     See: https://bugzilla.mozilla.org/show_bug.cgi?id=695438.
- *
- *   - Chrome 9-10 is missing the `TypedArray.prototype.subarray` function.
- *
- *   - IE10 has a broken `TypedArray.prototype.subarray` function which returns arrays of
- *     incorrect length in some situations.
-
- * We detect these buggy browsers and set `Buffer.TYPED_ARRAY_SUPPORT` to `false` so they
- * get the Object implementation, which is slower but behaves correctly.
- */
-Buffer.TYPED_ARRAY_SUPPORT = global.TYPED_ARRAY_SUPPORT !== undefined
-  ? global.TYPED_ARRAY_SUPPORT
-  : typedArraySupport()
-
-/*
- * Export kMaxLength after typed array support is determined.
- */
-exports.kMaxLength = kMaxLength()
-
-function typedArraySupport () {
-  try {
-    var arr = new Uint8Array(1)
-    arr.__proto__ = {__proto__: Uint8Array.prototype, foo: function () { return 42 }}
-    return arr.foo() === 42 && // typed array instances can be augmented
-        typeof arr.subarray === 'function' && // chrome 9-10 lack `subarray`
-        arr.subarray(1, 1).byteLength === 0 // ie10 has broken `subarray`
-  } catch (e) {
-    return false
-  }
-}
-
-function kMaxLength () {
-  return Buffer.TYPED_ARRAY_SUPPORT
-    ? 0x7fffffff
-    : 0x3fffffff
-}
-
-function createBuffer (that, length) {
-  if (kMaxLength() < length) {
-    throw new RangeError('Invalid typed array length')
-  }
-  if (Buffer.TYPED_ARRAY_SUPPORT) {
-    // Return an augmented `Uint8Array` instance, for best performance
-    that = new Uint8Array(length)
-    that.__proto__ = Buffer.prototype
-  } else {
-    // Fallback: Return an object instance of the Buffer class
-    if (that === null) {
-      that = new Buffer(length)
-    }
-    that.length = length
-  }
-
-  return that
-}
-
-/**
- * The Buffer constructor returns instances of `Uint8Array` that have their
- * prototype changed to `Buffer.prototype`. Furthermore, `Buffer` is a subclass of
- * `Uint8Array`, so the returned instances will have all the node `Buffer` methods
- * and the `Uint8Array` methods. Square bracket notation works as expected -- it
- * returns a single octet.
- *
- * The `Uint8Array` prototype remains unmodified.
- */
-
-function Buffer (arg, encodingOrOffset, length) {
-  if (!Buffer.TYPED_ARRAY_SUPPORT && !(this instanceof Buffer)) {
-    return new Buffer(arg, encodingOrOffset, length)
-  }
-
-  // Common case.
-  if (typeof arg === 'number') {
-    if (typeof encodingOrOffset === 'string') {
-      throw new Error(
-        'If encoding is specified then the first argument must be a string'
-      )
-    }
-    return allocUnsafe(this, arg)
-  }
-  return from(this, arg, encodingOrOffset, length)
-}
-
-Buffer.poolSize = 8192 // not used by this implementation
-
-// TODO: Legacy, not needed anymore. Remove in next major version.
-Buffer._augment = function (arr) {
-  arr.__proto__ = Buffer.prototype
-  return arr
-}
-
-function from (that, value, encodingOrOffset, length) {
-  if (typeof value === 'number') {
-    throw new TypeError('"value" argument must not be a number')
-  }
-
-  if (typeof ArrayBuffer !== 'undefined' && value instanceof ArrayBuffer) {
-    return fromArrayBuffer(that, value, encodingOrOffset, length)
-  }
-
-  if (typeof value === 'string') {
-    return fromString(that, value, encodingOrOffset)
-  }
-
-  return fromObject(that, value)
-}
-
-/**
- * Functionally equivalent to Buffer(arg, encoding) but throws a TypeError
- * if value is a number.
- * Buffer.from(str[, encoding])
- * Buffer.from(array)
- * Buffer.from(buffer)
- * Buffer.from(arrayBuffer[, byteOffset[, length]])
- **/
-Buffer.from = function (value, encodingOrOffset, length) {
-  return from(null, value, encodingOrOffset, length)
-}
-
-if (Buffer.TYPED_ARRAY_SUPPORT) {
-  Buffer.prototype.__proto__ = Uint8Array.prototype
-  Buffer.__proto__ = Uint8Array
-  if (typeof Symbol !== 'undefined' && Symbol.species &&
-      Buffer[Symbol.species] === Buffer) {
-    // Fix subarray() in ES2016. See: https://github.com/feross/buffer/pull/97
-    Object.defineProperty(Buffer, Symbol.species, {
-      value: null,
-      configurable: true
-    })
-  }
-}
-
-function assertSize (size) {
-  if (typeof size !== 'number') {
-    throw new TypeError('"size" argument must be a number')
-  } else if (size < 0) {
-    throw new RangeError('"size" argument must not be negative')
-  }
-}
-
-function alloc (that, size, fill, encoding) {
-  assertSize(size)
-  if (size <= 0) {
-    return createBuffer(that, size)
-  }
-  if (fill !== undefined) {
-    // Only pay attention to encoding if it's a string. This
-    // prevents accidentally sending in a number that would
-    // be interpretted as a start offset.
-    return typeof encoding === 'string'
-      ? createBuffer(that, size).fill(fill, encoding)
-      : createBuffer(that, size).fill(fill)
-  }
-  return createBuffer(that, size)
-}
-
-/**
- * Creates a new filled Buffer instance.
- * alloc(size[, fill[, encoding]])
- **/
-Buffer.alloc = function (size, fill, encoding) {
-  return alloc(null, size, fill, encoding)
-}
-
-function allocUnsafe (that, size) {
-  assertSize(size)
-  that = createBuffer(that, size < 0 ? 0 : checked(size) | 0)
-  if (!Buffer.TYPED_ARRAY_SUPPORT) {
-    for (var i = 0; i < size; ++i) {
-      that[i] = 0
-    }
-  }
-  return that
-}
-
-/**
- * Equivalent to Buffer(num), by default creates a non-zero-filled Buffer instance.
- * */
-Buffer.allocUnsafe = function (size) {
-  return allocUnsafe(null, size)
-}
-/**
- * Equivalent to SlowBuffer(num), by default creates a non-zero-filled Buffer instance.
- */
-Buffer.allocUnsafeSlow = function (size) {
-  return allocUnsafe(null, size)
-}
-
-function fromString (that, string, encoding) {
-  if (typeof encoding !== 'string' || encoding === '') {
-    encoding = 'utf8'
-  }
-
-  if (!Buffer.isEncoding(encoding)) {
-    throw new TypeError('"encoding" must be a valid string encoding')
-  }
-
-  var length = byteLength(string, encoding) | 0
-  that = createBuffer(that, length)
-
-  var actual = that.write(string, encoding)
-
-  if (actual !== length) {
-    // Writing a hex string, for example, that contains invalid characters will
-    // cause everything after the first invalid character to be ignored. (e.g.
-    // 'abxxcd' will be treated as 'ab')
-    that = that.slice(0, actual)
-  }
-
-  return that
-}
-
-function fromArrayLike (that, array) {
-  var length = array.length < 0 ? 0 : checked(array.length) | 0
-  that = createBuffer(that, length)
-  for (var i = 0; i < length; i += 1) {
-    that[i] = array[i] & 255
-  }
-  return that
-}
-
-function fromArrayBuffer (that, array, byteOffset, length) {
-  array.byteLength // this throws if `array` is not a valid ArrayBuffer
-
-  if (byteOffset < 0 || array.byteLength < byteOffset) {
-    throw new RangeError('\'offset\' is out of bounds')
-  }
-
-  if (array.byteLength < byteOffset + (length || 0)) {
-    throw new RangeError('\'length\' is out of bounds')
-  }
-
-  if (byteOffset === undefined && length === undefined) {
-    array = new Uint8Array(array)
-  } else if (length === undefined) {
-    array = new Uint8Array(array, byteOffset)
-  } else {
-    array = new Uint8Array(array, byteOffset, length)
-  }
-
-  if (Buffer.TYPED_ARRAY_SUPPORT) {
-    // Return an augmented `Uint8Array` instance, for best performance
-    that = array
-    that.__proto__ = Buffer.prototype
-  } else {
-    // Fallback: Return an object instance of the Buffer class
-    that = fromArrayLike(that, array)
-  }
-  return that
-}
-
-function fromObject (that, obj) {
-  if (Buffer.isBuffer(obj)) {
-    var len = checked(obj.length) | 0
-    that = createBuffer(that, len)
-
-    if (that.length === 0) {
-      return that
-    }
-
-    obj.copy(that, 0, 0, len)
-    return that
-  }
-
-  if (obj) {
-    if ((typeof ArrayBuffer !== 'undefined' &&
-        obj.buffer instanceof ArrayBuffer) || 'length' in obj) {
-      if (typeof obj.length !== 'number' || isnan(obj.length)) {
-        return createBuffer(that, 0)
-      }
-      return fromArrayLike(that, obj)
-    }
-
-    if (obj.type === 'Buffer' && isArray(obj.data)) {
-      return fromArrayLike(that, obj.data)
-    }
-  }
-
-  throw new TypeError('First argument must be a string, Buffer, ArrayBuffer, Array, or array-like object.')
-}
-
-function checked (length) {
-  // Note: cannot use `length < kMaxLength()` here because that fails when
-  // length is NaN (which is otherwise coerced to zero.)
-  if (length >= kMaxLength()) {
-    throw new RangeError('Attempt to allocate Buffer larger than maximum ' +
-                         'size: 0x' + kMaxLength().toString(16) + ' bytes')
-  }
-  return length | 0
-}
-
-function SlowBuffer (length) {
-  if (+length != length) { // eslint-disable-line eqeqeq
-    length = 0
-  }
-  return Buffer.alloc(+length)
-}
-
-Buffer.isBuffer = function isBuffer (b) {
-  return !!(b != null && b._isBuffer)
-}
-
-Buffer.compare = function compare (a, b) {
-  if (!Buffer.isBuffer(a) || !Buffer.isBuffer(b)) {
-    throw new TypeError('Arguments must be Buffers')
-  }
-
-  if (a === b) return 0
-
-  var x = a.length
-  var y = b.length
-
-  for (var i = 0, len = Math.min(x, y); i < len; ++i) {
-    if (a[i] !== b[i]) {
-      x = a[i]
-      y = b[i]
-      break
-    }
-  }
-
-  if (x < y) return -1
-  if (y < x) return 1
-  return 0
-}
-
-Buffer.isEncoding = function isEncoding (encoding) {
-  switch (String(encoding).toLowerCase()) {
-    case 'hex':
-    case 'utf8':
-    case 'utf-8':
-    case 'ascii':
-    case 'latin1':
-    case 'binary':
-    case 'base64':
-    case 'ucs2':
-    case 'ucs-2':
-    case 'utf16le':
-    case 'utf-16le':
-      return true
-    default:
-      return false
-  }
-}
-
-Buffer.concat = function concat (list, length) {
-  if (!isArray(list)) {
-    throw new TypeError('"list" argument must be an Array of Buffers')
-  }
-
-  if (list.length === 0) {
-    return Buffer.alloc(0)
-  }
-
-  var i
-  if (length === undefined) {
-    length = 0
-    for (i = 0; i < list.length; ++i) {
-      length += list[i].length
-    }
-  }
-
-  var buffer = Buffer.allocUnsafe(length)
-  var pos = 0
-  for (i = 0; i < list.length; ++i) {
-    var buf = list[i]
-    if (!Buffer.isBuffer(buf)) {
-      throw new TypeError('"list" argument must be an Array of Buffers')
-    }
-    buf.copy(buffer, pos)
-    pos += buf.length
-  }
-  return buffer
-}
-
-function byteLength (string, encoding) {
-  if (Buffer.isBuffer(string)) {
-    return string.length
-  }
-  if (typeof ArrayBuffer !== 'undefined' && typeof ArrayBuffer.isView === 'function' &&
-      (ArrayBuffer.isView(string) || string instanceof ArrayBuffer)) {
-    return string.byteLength
-  }
-  if (typeof string !== 'string') {
-    string = '' + string
-  }
-
-  var len = string.length
-  if (len === 0) return 0
-
-  // Use a for loop to avoid recursion
-  var loweredCase = false
-  for (;;) {
-    switch (encoding) {
-      case 'ascii':
-      case 'latin1':
-      case 'binary':
-        return len
-      case 'utf8':
-      case 'utf-8':
-      case undefined:
-        return utf8ToBytes(string).length
-      case 'ucs2':
-      case 'ucs-2':
-      case 'utf16le':
-      case 'utf-16le':
-        return len * 2
-      case 'hex':
-        return len >>> 1
-      case 'base64':
-        return base64ToBytes(string).length
-      default:
-        if (loweredCase) return utf8ToBytes(string).length // assume utf8
-        encoding = ('' + encoding).toLowerCase()
-        loweredCase = true
-    }
-  }
-}
-Buffer.byteLength = byteLength
-
-function slowToString (encoding, start, end) {
-  var loweredCase = false
-
-  // No need to verify that "this.length <= MAX_UINT32" since it's a read-only
-  // property of a typed array.
-
-  // This behaves neither like String nor Uint8Array in that we set start/end
-  // to their upper/lower bounds if the value passed is out of range.
-  // undefined is handled specially as per ECMA-262 6th Edition,
-  // Section 13.3.3.7 Runtime Semantics: KeyedBindingInitialization.
-  if (start === undefined || start < 0) {
-    start = 0
-  }
-  // Return early if start > this.length. Done here to prevent potential uint32
-  // coercion fail below.
-  if (start > this.length) {
-    return ''
-  }
-
-  if (end === undefined || end > this.length) {
-    end = this.length
-  }
-
-  if (end <= 0) {
-    return ''
-  }
-
-  // Force coersion to uint32. This will also coerce falsey/NaN values to 0.
-  end >>>= 0
-  start >>>= 0
-
-  if (end <= start) {
-    return ''
-  }
-
-  if (!encoding) encoding = 'utf8'
-
-  while (true) {
-    switch (encoding) {
-      case 'hex':
-        return hexSlice(this, start, end)
-
-      case 'utf8':
-      case 'utf-8':
-        return utf8Slice(this, start, end)
-
-      case 'ascii':
-        return asciiSlice(this, start, end)
-
-      case 'latin1':
-      case 'binary':
-        return latin1Slice(this, start, end)
-
-      case 'base64':
-        return base64Slice(this, start, end)
-
-      case 'ucs2':
-      case 'ucs-2':
-      case 'utf16le':
-      case 'utf-16le':
-        return utf16leSlice(this, start, end)
-
-      default:
-        if (loweredCase) throw new TypeError('Unknown encoding: ' + encoding)
-        encoding = (encoding + '').toLowerCase()
-        loweredCase = true
-    }
-  }
-}
-
-// The property is used by `Buffer.isBuffer` and `is-buffer` (in Safari 5-7) to detect
-// Buffer instances.
-Buffer.prototype._isBuffer = true
-
-function swap (b, n, m) {
-  var i = b[n]
-  b[n] = b[m]
-  b[m] = i
-}
-
-Buffer.prototype.swap16 = function swap16 () {
-  var len = this.length
-  if (len % 2 !== 0) {
-    throw new RangeError('Buffer size must be a multiple of 16-bits')
-  }
-  for (var i = 0; i < len; i += 2) {
-    swap(this, i, i + 1)
-  }
-  return this
-}
-
-Buffer.prototype.swap32 = function swap32 () {
-  var len = this.length
-  if (len % 4 !== 0) {
-    throw new RangeError('Buffer size must be a multiple of 32-bits')
-  }
-  for (var i = 0; i < len; i += 4) {
-    swap(this, i, i + 3)
-    swap(this, i + 1, i + 2)
-  }
-  return this
-}
-
-Buffer.prototype.swap64 = function swap64 () {
-  var len = this.length
-  if (len % 8 !== 0) {
-    throw new RangeError('Buffer size must be a multiple of 64-bits')
-  }
-  for (var i = 0; i < len; i += 8) {
-    swap(this, i, i + 7)
-    swap(this, i + 1, i + 6)
-    swap(this, i + 2, i + 5)
-    swap(this, i + 3, i + 4)
-  }
-  return this
-}
-
-Buffer.prototype.toString = function toString () {
-  var length = this.length | 0
-  if (length === 0) return ''
-  if (arguments.length === 0) return utf8Slice(this, 0, length)
-  return slowToString.apply(this, arguments)
-}
-
-Buffer.prototype.equals = function equals (b) {
-  if (!Buffer.isBuffer(b)) throw new TypeError('Argument must be a Buffer')
-  if (this === b) return true
-  return Buffer.compare(this, b) === 0
-}
-
-Buffer.prototype.inspect = function inspect () {
-  var str = ''
-  var max = exports.INSPECT_MAX_BYTES
-  if (this.length > 0) {
-    str = this.toString('hex', 0, max).match(/.{2}/g).join(' ')
-    if (this.length > max) str += ' ... '
-  }
-  return '<Buffer ' + str + '>'
-}
-
-Buffer.prototype.compare = function compare (target, start, end, thisStart, thisEnd) {
-  if (!Buffer.isBuffer(target)) {
-    throw new TypeError('Argument must be a Buffer')
-  }
-
-  if (start === undefined) {
-    start = 0
-  }
-  if (end === undefined) {
-    end = target ? target.length : 0
-  }
-  if (thisStart === undefined) {
-    thisStart = 0
-  }
-  if (thisEnd === undefined) {
-    thisEnd = this.length
-  }
-
-  if (start < 0 || end > target.length || thisStart < 0 || thisEnd > this.length) {
-    throw new RangeError('out of range index')
-  }
-
-  if (thisStart >= thisEnd && start >= end) {
-    return 0
-  }
-  if (thisStart >= thisEnd) {
-    return -1
-  }
-  if (start >= end) {
-    return 1
-  }
-
-  start >>>= 0
-  end >>>= 0
-  thisStart >>>= 0
-  thisEnd >>>= 0
-
-  if (this === target) return 0
-
-  var x = thisEnd - thisStart
-  var y = end - start
-  var len = Math.min(x, y)
-
-  var thisCopy = this.slice(thisStart, thisEnd)
-  var targetCopy = target.slice(start, end)
-
-  for (var i = 0; i < len; ++i) {
-    if (thisCopy[i] !== targetCopy[i]) {
-      x = thisCopy[i]
-      y = targetCopy[i]
-      break
-    }
-  }
-
-  if (x < y) return -1
-  if (y < x) return 1
-  return 0
-}
-
-// Finds either the first index of `val` in `buffer` at offset >= `byteOffset`,
-// OR the last index of `val` in `buffer` at offset <= `byteOffset`.
-//
-// Arguments:
-// - buffer - a Buffer to search
-// - val - a string, Buffer, or number
-// - byteOffset - an index into `buffer`; will be clamped to an int32
-// - encoding - an optional encoding, relevant is val is a string
-// - dir - true for indexOf, false for lastIndexOf
-function bidirectionalIndexOf (buffer, val, byteOffset, encoding, dir) {
-  // Empty buffer means no match
-  if (buffer.length === 0) return -1
-
-  // Normalize byteOffset
-  if (typeof byteOffset === 'string') {
-    encoding = byteOffset
-    byteOffset = 0
-  } else if (byteOffset > 0x7fffffff) {
-    byteOffset = 0x7fffffff
-  } else if (byteOffset < -0x80000000) {
-    byteOffset = -0x80000000
-  }
-  byteOffset = +byteOffset  // Coerce to Number.
-  if (isNaN(byteOffset)) {
-    // byteOffset: it it's undefined, null, NaN, "foo", etc, search whole buffer
-    byteOffset = dir ? 0 : (buffer.length - 1)
-  }
-
-  // Normalize byteOffset: negative offsets start from the end of the buffer
-  if (byteOffset < 0) byteOffset = buffer.length + byteOffset
-  if (byteOffset >= buffer.length) {
-    if (dir) return -1
-    else byteOffset = buffer.length - 1
-  } else if (byteOffset < 0) {
-    if (dir) byteOffset = 0
-    else return -1
-  }
-
-  // Normalize val
-  if (typeof val === 'string') {
-    val = Buffer.from(val, encoding)
-  }
-
-  // Finally, search either indexOf (if dir is true) or lastIndexOf
-  if (Buffer.isBuffer(val)) {
-    // Special case: looking for empty string/buffer always fails
-    if (val.length === 0) {
-      return -1
-    }
-    return arrayIndexOf(buffer, val, byteOffset, encoding, dir)
-  } else if (typeof val === 'number') {
-    val = val & 0xFF // Search for a byte value [0-255]
-    if (Buffer.TYPED_ARRAY_SUPPORT &&
-        typeof Uint8Array.prototype.indexOf === 'function') {
-      if (dir) {
-        return Uint8Array.prototype.indexOf.call(buffer, val, byteOffset)
-      } else {
-        return Uint8Array.prototype.lastIndexOf.call(buffer, val, byteOffset)
-      }
-    }
-    return arrayIndexOf(buffer, [ val ], byteOffset, encoding, dir)
-  }
-
-  throw new TypeError('val must be string, number or Buffer')
-}
-
-function arrayIndexOf (arr, val, byteOffset, encoding, dir) {
-  var indexSize = 1
-  var arrLength = arr.length
-  var valLength = val.length
-
-  if (encoding !== undefined) {
-    encoding = String(encoding).toLowerCase()
-    if (encoding === 'ucs2' || encoding === 'ucs-2' ||
-        encoding === 'utf16le' || encoding === 'utf-16le') {
-      if (arr.length < 2 || val.length < 2) {
-        return -1
-      }
-      indexSize = 2
-      arrLength /= 2
-      valLength /= 2
-      byteOffset /= 2
-    }
-  }
-
-  function read (buf, i) {
-    if (indexSize === 1) {
-      return buf[i]
-    } else {
-      return buf.readUInt16BE(i * indexSize)
-    }
-  }
-
-  var i
-  if (dir) {
-    var foundIndex = -1
-    for (i = byteOffset; i < arrLength; i++) {
-      if (read(arr, i) === read(val, foundIndex === -1 ? 0 : i - foundIndex)) {
-        if (foundIndex === -1) foundIndex = i
-        if (i - foundIndex + 1 === valLength) return foundIndex * indexSize
-      } else {
-        if (foundIndex !== -1) i -= i - foundIndex
-        foundIndex = -1
-      }
-    }
-  } else {
-    if (byteOffset + valLength > arrLength) byteOffset = arrLength - valLength
-    for (i = byteOffset; i >= 0; i--) {
-      var found = true
-      for (var j = 0; j < valLength; j++) {
-        if (read(arr, i + j) !== read(val, j)) {
-          found = false
-          break
-        }
-      }
-      if (found) return i
-    }
-  }
-
-  return -1
-}
-
-Buffer.prototype.includes = function includes (val, byteOffset, encoding) {
-  return this.indexOf(val, byteOffset, encoding) !== -1
-}
-
-Buffer.prototype.indexOf = function indexOf (val, byteOffset, encoding) {
-  return bidirectionalIndexOf(this, val, byteOffset, encoding, true)
-}
-
-Buffer.prototype.lastIndexOf = function lastIndexOf (val, byteOffset, encoding) {
-  return bidirectionalIndexOf(this, val, byteOffset, encoding, false)
-}
-
-function hexWrite (buf, string, offset, length) {
-  offset = Number(offset) || 0
-  var remaining = buf.length - offset
-  if (!length) {
-    length = remaining
-  } else {
-    length = Number(length)
-    if (length > remaining) {
-      length = remaining
-    }
-  }
-
-  // must be an even number of digits
-  var strLen = string.length
-  if (strLen % 2 !== 0) throw new TypeError('Invalid hex string')
-
-  if (length > strLen / 2) {
-    length = strLen / 2
-  }
-  for (var i = 0; i < length; ++i) {
-    var parsed = parseInt(string.substr(i * 2, 2), 16)
-    if (isNaN(parsed)) return i
-    buf[offset + i] = parsed
-  }
-  return i
-}
-
-function utf8Write (buf, string, offset, length) {
-  return blitBuffer(utf8ToBytes(string, buf.length - offset), buf, offset, length)
-}
-
-function asciiWrite (buf, string, offset, length) {
-  return blitBuffer(asciiToBytes(string), buf, offset, length)
-}
-
-function latin1Write (buf, string, offset, length) {
-  return asciiWrite(buf, string, offset, length)
-}
-
-function base64Write (buf, string, offset, length) {
-  return blitBuffer(base64ToBytes(string), buf, offset, length)
-}
-
-function ucs2Write (buf, string, offset, length) {
-  return blitBuffer(utf16leToBytes(string, buf.length - offset), buf, offset, length)
-}
-
-Buffer.prototype.write = function write (string, offset, length, encoding) {
-  // Buffer#write(string)
-  if (offset === undefined) {
-    encoding = 'utf8'
-    length = this.length
-    offset = 0
-  // Buffer#write(string, encoding)
-  } else if (length === undefined && typeof offset === 'string') {
-    encoding = offset
-    length = this.length
-    offset = 0
-  // Buffer#write(string, offset[, length][, encoding])
-  } else if (isFinite(offset)) {
-    offset = offset | 0
-    if (isFinite(length)) {
-      length = length | 0
-      if (encoding === undefined) encoding = 'utf8'
-    } else {
-      encoding = length
-      length = undefined
-    }
-  // legacy write(string, encoding, offset, length) - remove in v0.13
-  } else {
-    throw new Error(
-      'Buffer.write(string, encoding, offset[, length]) is no longer supported'
-    )
-  }
-
-  var remaining = this.length - offset
-  if (length === undefined || length > remaining) length = remaining
-
-  if ((string.length > 0 && (length < 0 || offset < 0)) || offset > this.length) {
-    throw new RangeError('Attempt to write outside buffer bounds')
-  }
-
-  if (!encoding) encoding = 'utf8'
-
-  var loweredCase = false
-  for (;;) {
-    switch (encoding) {
-      case 'hex':
-        return hexWrite(this, string, offset, length)
-
-      case 'utf8':
-      case 'utf-8':
-        return utf8Write(this, string, offset, length)
-
-      case 'ascii':
-        return asciiWrite(this, string, offset, length)
-
-      case 'latin1':
-      case 'binary':
-        return latin1Write(this, string, offset, length)
-
-      case 'base64':
-        // Warning: maxLength not taken into account in base64Write
-        return base64Write(this, string, offset, length)
-
-      case 'ucs2':
-      case 'ucs-2':
-      case 'utf16le':
-      case 'utf-16le':
-        return ucs2Write(this, string, offset, length)
-
-      default:
-        if (loweredCase) throw new TypeError('Unknown encoding: ' + encoding)
-        encoding = ('' + encoding).toLowerCase()
-        loweredCase = true
-    }
-  }
-}
-
-Buffer.prototype.toJSON = function toJSON () {
-  return {
-    type: 'Buffer',
-    data: Array.prototype.slice.call(this._arr || this, 0)
-  }
-}
-
-function base64Slice (buf, start, end) {
-  if (start === 0 && end === buf.length) {
-    return base64.fromByteArray(buf)
-  } else {
-    return base64.fromByteArray(buf.slice(start, end))
-  }
-}
-
-function utf8Slice (buf, start, end) {
-  end = Math.min(buf.length, end)
-  var res = []
-
-  var i = start
-  while (i < end) {
-    var firstByte = buf[i]
-    var codePoint = null
-    var bytesPerSequence = (firstByte > 0xEF) ? 4
-      : (firstByte > 0xDF) ? 3
-      : (firstByte > 0xBF) ? 2
-      : 1
-
-    if (i + bytesPerSequence <= end) {
-      var secondByte, thirdByte, fourthByte, tempCodePoint
-
-      switch (bytesPerSequence) {
-        case 1:
-          if (firstByte < 0x80) {
-            codePoint = firstByte
-          }
-          break
-        case 2:
-          secondByte = buf[i + 1]
-          if ((secondByte & 0xC0) === 0x80) {
-            tempCodePoint = (firstByte & 0x1F) << 0x6 | (secondByte & 0x3F)
-            if (tempCodePoint > 0x7F) {
-              codePoint = tempCodePoint
-            }
-          }
-          break
-        case 3:
-          secondByte = buf[i + 1]
-          thirdByte = buf[i + 2]
-          if ((secondByte & 0xC0) === 0x80 && (thirdByte & 0xC0) === 0x80) {
-            tempCodePoint = (firstByte & 0xF) << 0xC | (secondByte & 0x3F) << 0x6 | (thirdByte & 0x3F)
-            if (tempCodePoint > 0x7FF && (tempCodePoint < 0xD800 || tempCodePoint > 0xDFFF)) {
-              codePoint = tempCodePoint
-            }
-          }
-          break
-        case 4:
-          secondByte = buf[i + 1]
-          thirdByte = buf[i + 2]
-          fourthByte = buf[i + 3]
-          if ((secondByte & 0xC0) === 0x80 && (thirdByte & 0xC0) === 0x80 && (fourthByte & 0xC0) === 0x80) {
-            tempCodePoint = (firstByte & 0xF) << 0x12 | (secondByte & 0x3F) << 0xC | (thirdByte & 0x3F) << 0x6 | (fourthByte & 0x3F)
-            if (tempCodePoint > 0xFFFF && tempCodePoint < 0x110000) {
-              codePoint = tempCodePoint
-            }
-          }
-      }
-    }
-
-    if (codePoint === null) {
-      // we did not generate a valid codePoint so insert a
-      // replacement char (U+FFFD) and advance only 1 byte
-      codePoint = 0xFFFD
-      bytesPerSequence = 1
-    } else if (codePoint > 0xFFFF) {
-      // encode to utf16 (surrogate pair dance)
-      codePoint -= 0x10000
-      res.push(codePoint >>> 10 & 0x3FF | 0xD800)
-      codePoint = 0xDC00 | codePoint & 0x3FF
-    }
-
-    res.push(codePoint)
-    i += bytesPerSequence
-  }
-
-  return decodeCodePointsArray(res)
-}
-
-// Based on http://stackoverflow.com/a/22747272/680742, the browser with
-// the lowest limit is Chrome, with 0x10000 args.
-// We go 1 magnitude less, for safety
-var MAX_ARGUMENTS_LENGTH = 0x1000
-
-function decodeCodePointsArray (codePoints) {
-  var len = codePoints.length
-  if (len <= MAX_ARGUMENTS_LENGTH) {
-    return String.fromCharCode.apply(String, codePoints) // avoid extra slice()
-  }
-
-  // Decode in chunks to avoid "call stack size exceeded".
-  var res = ''
-  var i = 0
-  while (i < len) {
-    res += String.fromCharCode.apply(
-      String,
-      codePoints.slice(i, i += MAX_ARGUMENTS_LENGTH)
-    )
-  }
-  return res
-}
-
-function asciiSlice (buf, start, end) {
-  var ret = ''
-  end = Math.min(buf.length, end)
-
-  for (var i = start; i < end; ++i) {
-    ret += String.fromCharCode(buf[i] & 0x7F)
-  }
-  return ret
-}
-
-function latin1Slice (buf, start, end) {
-  var ret = ''
-  end = Math.min(buf.length, end)
-
-  for (var i = start; i < end; ++i) {
-    ret += String.fromCharCode(buf[i])
-  }
-  return ret
-}
-
-function hexSlice (buf, start, end) {
-  var len = buf.length
-
-  if (!start || start < 0) start = 0
-  if (!end || end < 0 || end > len) end = len
-
-  var out = ''
-  for (var i = start; i < end; ++i) {
-    out += toHex(buf[i])
-  }
-  return out
-}
-
-function utf16leSlice (buf, start, end) {
-  var bytes = buf.slice(start, end)
-  var res = ''
-  for (var i = 0; i < bytes.length; i += 2) {
-    res += String.fromCharCode(bytes[i] + bytes[i + 1] * 256)
-  }
-  return res
-}
-
-Buffer.prototype.slice = function slice (start, end) {
-  var len = this.length
-  start = ~~start
-  end = end === undefined ? len : ~~end
-
-  if (start < 0) {
-    start += len
-    if (start < 0) start = 0
-  } else if (start > len) {
-    start = len
-  }
-
-  if (end < 0) {
-    end += len
-    if (end < 0) end = 0
-  } else if (end > len) {
-    end = len
-  }
-
-  if (end < start) end = start
-
-  var newBuf
-  if (Buffer.TYPED_ARRAY_SUPPORT) {
-    newBuf = this.subarray(start, end)
-    newBuf.__proto__ = Buffer.prototype
-  } else {
-    var sliceLen = end - start
-    newBuf = new Buffer(sliceLen, undefined)
-    for (var i = 0; i < sliceLen; ++i) {
-      newBuf[i] = this[i + start]
-    }
-  }
-
-  return newBuf
-}
-
-/*
- * Need to make sure that buffer isn't trying to write out of bounds.
- */
-function checkOffset (offset, ext, length) {
-  if ((offset % 1) !== 0 || offset < 0) throw new RangeError('offset is not uint')
-  if (offset + ext > length) throw new RangeError('Trying to access beyond buffer length')
-}
-
-Buffer.prototype.readUIntLE = function readUIntLE (offset, byteLength, noAssert) {
-  offset = offset | 0
-  byteLength = byteLength | 0
-  if (!noAssert) checkOffset(offset, byteLength, this.length)
-
-  var val = this[offset]
-  var mul = 1
-  var i = 0
-  while (++i < byteLength && (mul *= 0x100)) {
-    val += this[offset + i] * mul
-  }
-
-  return val
-}
-
-Buffer.prototype.readUIntBE = function readUIntBE (offset, byteLength, noAssert) {
-  offset = offset | 0
-  byteLength = byteLength | 0
-  if (!noAssert) {
-    checkOffset(offset, byteLength, this.length)
-  }
-
-  var val = this[offset + --byteLength]
-  var mul = 1
-  while (byteLength > 0 && (mul *= 0x100)) {
-    val += this[offset + --byteLength] * mul
-  }
-
-  return val
-}
-
-Buffer.prototype.readUInt8 = function readUInt8 (offset, noAssert) {
-  if (!noAssert) checkOffset(offset, 1, this.length)
-  return this[offset]
-}
-
-Buffer.prototype.readUInt16LE = function readUInt16LE (offset, noAssert) {
-  if (!noAssert) checkOffset(offset, 2, this.length)
-  return this[offset] | (this[offset + 1] << 8)
-}
-
-Buffer.prototype.readUInt16BE = function readUInt16BE (offset, noAssert) {
-  if (!noAssert) checkOffset(offset, 2, this.length)
-  return (this[offset] << 8) | this[offset + 1]
-}
-
-Buffer.prototype.readUInt32LE = function readUInt32LE (offset, noAssert) {
-  if (!noAssert) checkOffset(offset, 4, this.length)
-
-  return ((this[offset]) |
-      (this[offset + 1] << 8) |
-      (this[offset + 2] << 16)) +
-      (this[offset + 3] * 0x1000000)
-}
-
-Buffer.prototype.readUInt32BE = function readUInt32BE (offset, noAssert) {
-  if (!noAssert) checkOffset(offset, 4, this.length)
-
-  return (this[offset] * 0x1000000) +
-    ((this[offset + 1] << 16) |
-    (this[offset + 2] << 8) |
-    this[offset + 3])
-}
-
-Buffer.prototype.readIntLE = function readIntLE (offset, byteLength, noAssert) {
-  offset = offset | 0
-  byteLength = byteLength | 0
-  if (!noAssert) checkOffset(offset, byteLength, this.length)
-
-  var val = this[offset]
-  var mul = 1
-  var i = 0
-  while (++i < byteLength && (mul *= 0x100)) {
-    val += this[offset + i] * mul
-  }
-  mul *= 0x80
-
-  if (val >= mul) val -= Math.pow(2, 8 * byteLength)
-
-  return val
-}
-
-Buffer.prototype.readIntBE = function readIntBE (offset, byteLength, noAssert) {
-  offset = offset | 0
-  byteLength = byteLength | 0
-  if (!noAssert) checkOffset(offset, byteLength, this.length)
-
-  var i = byteLength
-  var mul = 1
-  var val = this[offset + --i]
-  while (i > 0 && (mul *= 0x100)) {
-    val += this[offset + --i] * mul
-  }
-  mul *= 0x80
-
-  if (val >= mul) val -= Math.pow(2, 8 * byteLength)
-
-  return val
-}
-
-Buffer.prototype.readInt8 = function readInt8 (offset, noAssert) {
-  if (!noAssert) checkOffset(offset, 1, this.length)
-  if (!(this[offset] & 0x80)) return (this[offset])
-  return ((0xff - this[offset] + 1) * -1)
-}
-
-Buffer.prototype.readInt16LE = function readInt16LE (offset, noAssert) {
-  if (!noAssert) checkOffset(offset, 2, this.length)
-  var val = this[offset] | (this[offset + 1] << 8)
-  return (val & 0x8000) ? val | 0xFFFF0000 : val
-}
-
-Buffer.prototype.readInt16BE = function readInt16BE (offset, noAssert) {
-  if (!noAssert) checkOffset(offset, 2, this.length)
-  var val = this[offset + 1] | (this[offset] << 8)
-  return (val & 0x8000) ? val | 0xFFFF0000 : val
-}
-
-Buffer.prototype.readInt32LE = function readInt32LE (offset, noAssert) {
-  if (!noAssert) checkOffset(offset, 4, this.length)
-
-  return (this[offset]) |
-    (this[offset + 1] << 8) |
-    (this[offset + 2] << 16) |
-    (this[offset + 3] << 24)
-}
-
-Buffer.prototype.readInt32BE = function readInt32BE (offset, noAssert) {
-  if (!noAssert) checkOffset(offset, 4, this.length)
-
-  return (this[offset] << 24) |
-    (this[offset + 1] << 16) |
-    (this[offset + 2] << 8) |
-    (this[offset + 3])
-}
-
-Buffer.prototype.readFloatLE = function readFloatLE (offset, noAssert) {
-  if (!noAssert) checkOffset(offset, 4, this.length)
-  return ieee754.read(this, offset, true, 23, 4)
-}
-
-Buffer.prototype.readFloatBE = function readFloatBE (offset, noAssert) {
-  if (!noAssert) checkOffset(offset, 4, this.length)
-  return ieee754.read(this, offset, false, 23, 4)
-}
-
-Buffer.prototype.readDoubleLE = function readDoubleLE (offset, noAssert) {
-  if (!noAssert) checkOffset(offset, 8, this.length)
-  return ieee754.read(this, offset, true, 52, 8)
-}
-
-Buffer.prototype.readDoubleBE = function readDoubleBE (offset, noAssert) {
-  if (!noAssert) checkOffset(offset, 8, this.length)
-  return ieee754.read(this, offset, false, 52, 8)
-}
-
-function checkInt (buf, value, offset, ext, max, min) {
-  if (!Buffer.isBuffer(buf)) throw new TypeError('"buffer" argument must be a Buffer instance')
-  if (value > max || value < min) throw new RangeError('"value" argument is out of bounds')
-  if (offset + ext > buf.length) throw new RangeError('Index out of range')
-}
-
-Buffer.prototype.writeUIntLE = function writeUIntLE (value, offset, byteLength, noAssert) {
-  value = +value
-  offset = offset | 0
-  byteLength = byteLength | 0
-  if (!noAssert) {
-    var maxBytes = Math.pow(2, 8 * byteLength) - 1
-    checkInt(this, value, offset, byteLength, maxBytes, 0)
-  }
-
-  var mul = 1
-  var i = 0
-  this[offset] = value & 0xFF
-  while (++i < byteLength && (mul *= 0x100)) {
-    this[offset + i] = (value / mul) & 0xFF
-  }
-
-  return offset + byteLength
-}
-
-Buffer.prototype.writeUIntBE = function writeUIntBE (value, offset, byteLength, noAssert) {
-  value = +value
-  offset = offset | 0
-  byteLength = byteLength | 0
-  if (!noAssert) {
-    var maxBytes = Math.pow(2, 8 * byteLength) - 1
-    checkInt(this, value, offset, byteLength, maxBytes, 0)
-  }
-
-  var i = byteLength - 1
-  var mul = 1
-  this[offset + i] = value & 0xFF
-  while (--i >= 0 && (mul *= 0x100)) {
-    this[offset + i] = (value / mul) & 0xFF
-  }
-
-  return offset + byteLength
-}
-
-Buffer.prototype.writeUInt8 = function writeUInt8 (value, offset, noAssert) {
-  value = +value
-  offset = offset | 0
-  if (!noAssert) checkInt(this, value, offset, 1, 0xff, 0)
-  if (!Buffer.TYPED_ARRAY_SUPPORT) value = Math.floor(value)
-  this[offset] = (value & 0xff)
-  return offset + 1
-}
-
-function objectWriteUInt16 (buf, value, offset, littleEndian) {
-  if (value < 0) value = 0xffff + value + 1
-  for (var i = 0, j = Math.min(buf.length - offset, 2); i < j; ++i) {
-    buf[offset + i] = (value & (0xff << (8 * (littleEndian ? i : 1 - i)))) >>>
-      (littleEndian ? i : 1 - i) * 8
-  }
-}
-
-Buffer.prototype.writeUInt16LE = function writeUInt16LE (value, offset, noAssert) {
-  value = +value
-  offset = offset | 0
-  if (!noAssert) checkInt(this, value, offset, 2, 0xffff, 0)
-  if (Buffer.TYPED_ARRAY_SUPPORT) {
-    this[offset] = (value & 0xff)
-    this[offset + 1] = (value >>> 8)
-  } else {
-    objectWriteUInt16(this, value, offset, true)
-  }
-  return offset + 2
-}
-
-Buffer.prototype.writeUInt16BE = function writeUInt16BE (value, offset, noAssert) {
-  value = +value
-  offset = offset | 0
-  if (!noAssert) checkInt(this, value, offset, 2, 0xffff, 0)
-  if (Buffer.TYPED_ARRAY_SUPPORT) {
-    this[offset] = (value >>> 8)
-    this[offset + 1] = (value & 0xff)
-  } else {
-    objectWriteUInt16(this, value, offset, false)
-  }
-  return offset + 2
-}
-
-function objectWriteUInt32 (buf, value, offset, littleEndian) {
-  if (value < 0) value = 0xffffffff + value + 1
-  for (var i = 0, j = Math.min(buf.length - offset, 4); i < j; ++i) {
-    buf[offset + i] = (value >>> (littleEndian ? i : 3 - i) * 8) & 0xff
-  }
-}
-
-Buffer.prototype.writeUInt32LE = function writeUInt32LE (value, offset, noAssert) {
-  value = +value
-  offset = offset | 0
-  if (!noAssert) checkInt(this, value, offset, 4, 0xffffffff, 0)
-  if (Buffer.TYPED_ARRAY_SUPPORT) {
-    this[offset + 3] = (value >>> 24)
-    this[offset + 2] = (value >>> 16)
-    this[offset + 1] = (value >>> 8)
-    this[offset] = (value & 0xff)
-  } else {
-    objectWriteUInt32(this, value, offset, true)
-  }
-  return offset + 4
-}
-
-Buffer.prototype.writeUInt32BE = function writeUInt32BE (value, offset, noAssert) {
-  value = +value
-  offset = offset | 0
-  if (!noAssert) checkInt(this, value, offset, 4, 0xffffffff, 0)
-  if (Buffer.TYPED_ARRAY_SUPPORT) {
-    this[offset] = (value >>> 24)
-    this[offset + 1] = (value >>> 16)
-    this[offset + 2] = (value >>> 8)
-    this[offset + 3] = (value & 0xff)
-  } else {
-    objectWriteUInt32(this, value, offset, false)
-  }
-  return offset + 4
-}
-
-Buffer.prototype.writeIntLE = function writeIntLE (value, offset, byteLength, noAssert) {
-  value = +value
-  offset = offset | 0
-  if (!noAssert) {
-    var limit = Math.pow(2, 8 * byteLength - 1)
-
-    checkInt(this, value, offset, byteLength, limit - 1, -limit)
-  }
-
-  var i = 0
-  var mul = 1
-  var sub = 0
-  this[offset] = value & 0xFF
-  while (++i < byteLength && (mul *= 0x100)) {
-    if (value < 0 && sub === 0 && this[offset + i - 1] !== 0) {
-      sub = 1
-    }
-    this[offset + i] = ((value / mul) >> 0) - sub & 0xFF
-  }
-
-  return offset + byteLength
-}
-
-Buffer.prototype.writeIntBE = function writeIntBE (value, offset, byteLength, noAssert) {
-  value = +value
-  offset = offset | 0
-  if (!noAssert) {
-    var limit = Math.pow(2, 8 * byteLength - 1)
-
-    checkInt(this, value, offset, byteLength, limit - 1, -limit)
-  }
-
-  var i = byteLength - 1
-  var mul = 1
-  var sub = 0
-  this[offset + i] = value & 0xFF
-  while (--i >= 0 && (mul *= 0x100)) {
-    if (value < 0 && sub === 0 && this[offset + i + 1] !== 0) {
-      sub = 1
-    }
-    this[offset + i] = ((value / mul) >> 0) - sub & 0xFF
-  }
-
-  return offset + byteLength
-}
-
-Buffer.prototype.writeInt8 = function writeInt8 (value, offset, noAssert) {
-  value = +value
-  offset = offset | 0
-  if (!noAssert) checkInt(this, value, offset, 1, 0x7f, -0x80)
-  if (!Buffer.TYPED_ARRAY_SUPPORT) value = Math.floor(value)
-  if (value < 0) value = 0xff + value + 1
-  this[offset] = (value & 0xff)
-  return offset + 1
-}
-
-Buffer.prototype.writeInt16LE = function writeInt16LE (value, offset, noAssert) {
-  value = +value
-  offset = offset | 0
-  if (!noAssert) checkInt(this, value, offset, 2, 0x7fff, -0x8000)
-  if (Buffer.TYPED_ARRAY_SUPPORT) {
-    this[offset] = (value & 0xff)
-    this[offset + 1] = (value >>> 8)
-  } else {
-    objectWriteUInt16(this, value, offset, true)
-  }
-  return offset + 2
-}
-
-Buffer.prototype.writeInt16BE = function writeInt16BE (value, offset, noAssert) {
-  value = +value
-  offset = offset | 0
-  if (!noAssert) checkInt(this, value, offset, 2, 0x7fff, -0x8000)
-  if (Buffer.TYPED_ARRAY_SUPPORT) {
-    this[offset] = (value >>> 8)
-    this[offset + 1] = (value & 0xff)
-  } else {
-    objectWriteUInt16(this, value, offset, false)
-  }
-  return offset + 2
-}
-
-Buffer.prototype.writeInt32LE = function writeInt32LE (value, offset, noAssert) {
-  value = +value
-  offset = offset | 0
-  if (!noAssert) checkInt(this, value, offset, 4, 0x7fffffff, -0x80000000)
-  if (Buffer.TYPED_ARRAY_SUPPORT) {
-    this[offset] = (value & 0xff)
-    this[offset + 1] = (value >>> 8)
-    this[offset + 2] = (value >>> 16)
-    this[offset + 3] = (value >>> 24)
-  } else {
-    objectWriteUInt32(this, value, offset, true)
-  }
-  return offset + 4
-}
-
-Buffer.prototype.writeInt32BE = function writeInt32BE (value, offset, noAssert) {
-  value = +value
-  offset = offset | 0
-  if (!noAssert) checkInt(this, value, offset, 4, 0x7fffffff, -0x80000000)
-  if (value < 0) value = 0xffffffff + value + 1
-  if (Buffer.TYPED_ARRAY_SUPPORT) {
-    this[offset] = (value >>> 24)
-    this[offset + 1] = (value >>> 16)
-    this[offset + 2] = (value >>> 8)
-    this[offset + 3] = (value & 0xff)
-  } else {
-    objectWriteUInt32(this, value, offset, false)
-  }
-  return offset + 4
-}
-
-function checkIEEE754 (buf, value, offset, ext, max, min) {
-  if (offset + ext > buf.length) throw new RangeError('Index out of range')
-  if (offset < 0) throw new RangeError('Index out of range')
-}
-
-function writeFloat (buf, value, offset, littleEndian, noAssert) {
-  if (!noAssert) {
-    checkIEEE754(buf, value, offset, 4, 3.4028234663852886e+38, -3.4028234663852886e+38)
-  }
-  ieee754.write(buf, value, offset, littleEndian, 23, 4)
-  return offset + 4
-}
-
-Buffer.prototype.writeFloatLE = function writeFloatLE (value, offset, noAssert) {
-  return writeFloat(this, value, offset, true, noAssert)
-}
-
-Buffer.prototype.writeFloatBE = function writeFloatBE (value, offset, noAssert) {
-  return writeFloat(this, value, offset, false, noAssert)
-}
-
-function writeDouble (buf, value, offset, littleEndian, noAssert) {
-  if (!noAssert) {
-    checkIEEE754(buf, value, offset, 8, 1.7976931348623157E+308, -1.7976931348623157E+308)
-  }
-  ieee754.write(buf, value, offset, littleEndian, 52, 8)
-  return offset + 8
-}
-
-Buffer.prototype.writeDoubleLE = function writeDoubleLE (value, offset, noAssert) {
-  return writeDouble(this, value, offset, true, noAssert)
-}
-
-Buffer.prototype.writeDoubleBE = function writeDoubleBE (value, offset, noAssert) {
-  return writeDouble(this, value, offset, false, noAssert)
-}
-
-// copy(targetBuffer, targetStart=0, sourceStart=0, sourceEnd=buffer.length)
-Buffer.prototype.copy = function copy (target, targetStart, start, end) {
-  if (!start) start = 0
-  if (!end && end !== 0) end = this.length
-  if (targetStart >= target.length) targetStart = target.length
-  if (!targetStart) targetStart = 0
-  if (end > 0 && end < start) end = start
-
-  // Copy 0 bytes; we're done
-  if (end === start) return 0
-  if (target.length === 0 || this.length === 0) return 0
-
-  // Fatal error conditions
-  if (targetStart < 0) {
-    throw new RangeError('targetStart out of bounds')
-  }
-  if (start < 0 || start >= this.length) throw new RangeError('sourceStart out of bounds')
-  if (end < 0) throw new RangeError('sourceEnd out of bounds')
-
-  // Are we oob?
-  if (end > this.length) end = this.length
-  if (target.length - targetStart < end - start) {
-    end = target.length - targetStart + start
-  }
-
-  var len = end - start
-  var i
-
-  if (this === target && start < targetStart && targetStart < end) {
-    // descending copy from end
-    for (i = len - 1; i >= 0; --i) {
-      target[i + targetStart] = this[i + start]
-    }
-  } else if (len < 1000 || !Buffer.TYPED_ARRAY_SUPPORT) {
-    // ascending copy from start
-    for (i = 0; i < len; ++i) {
-      target[i + targetStart] = this[i + start]
-    }
-  } else {
-    Uint8Array.prototype.set.call(
-      target,
-      this.subarray(start, start + len),
-      targetStart
-    )
-  }
-
-  return len
-}
-
-// Usage:
-//    buffer.fill(number[, offset[, end]])
-//    buffer.fill(buffer[, offset[, end]])
-//    buffer.fill(string[, offset[, end]][, encoding])
-Buffer.prototype.fill = function fill (val, start, end, encoding) {
-  // Handle string cases:
-  if (typeof val === 'string') {
-    if (typeof start === 'string') {
-      encoding = start
-      start = 0
-      end = this.length
-    } else if (typeof end === 'string') {
-      encoding = end
-      end = this.length
-    }
-    if (val.length === 1) {
-      var code = val.charCodeAt(0)
-      if (code < 256) {
-        val = code
-      }
-    }
-    if (encoding !== undefined && typeof encoding !== 'string') {
-      throw new TypeError('encoding must be a string')
-    }
-    if (typeof encoding === 'string' && !Buffer.isEncoding(encoding)) {
-      throw new TypeError('Unknown encoding: ' + encoding)
-    }
-  } else if (typeof val === 'number') {
-    val = val & 255
-  }
-
-  // Invalid ranges are not set to a default, so can range check early.
-  if (start < 0 || this.length < start || this.length < end) {
-    throw new RangeError('Out of range index')
-  }
-
-  if (end <= start) {
-    return this
-  }
-
-  start = start >>> 0
-  end = end === undefined ? this.length : end >>> 0
-
-  if (!val) val = 0
-
-  var i
-  if (typeof val === 'number') {
-    for (i = start; i < end; ++i) {
-      this[i] = val
-    }
-  } else {
-    var bytes = Buffer.isBuffer(val)
-      ? val
-      : utf8ToBytes(new Buffer(val, encoding).toString())
-    var len = bytes.length
-    for (i = 0; i < end - start; ++i) {
-      this[i + start] = bytes[i % len]
-    }
-  }
-
-  return this
-}
-
-// HELPER FUNCTIONS
-// ================
-
-var INVALID_BASE64_RE = /[^+\/0-9A-Za-z-_]/g
-
-function base64clean (str) {
-  // Node strips out invalid characters like \n and \t from the string, base64-js does not
-  str = stringtrim(str).replace(INVALID_BASE64_RE, '')
-  // Node converts strings with length < 2 to ''
-  if (str.length < 2) return ''
-  // Node allows for non-padded base64 strings (missing trailing ===), base64-js does not
-  while (str.length % 4 !== 0) {
-    str = str + '='
-  }
-  return str
-}
-
-function stringtrim (str) {
-  if (str.trim) return str.trim()
-  return str.replace(/^\s+|\s+$/g, '')
-}
-
-function toHex (n) {
-  if (n < 16) return '0' + n.toString(16)
-  return n.toString(16)
-}
-
-function utf8ToBytes (string, units) {
-  units = units || Infinity
-  var codePoint
-  var length = string.length
-  var leadSurrogate = null
-  var bytes = []
-
-  for (var i = 0; i < length; ++i) {
-    codePoint = string.charCodeAt(i)
-
-    // is surrogate component
-    if (codePoint > 0xD7FF && codePoint < 0xE000) {
-      // last char was a lead
-      if (!leadSurrogate) {
-        // no lead yet
-        if (codePoint > 0xDBFF) {
-          // unexpected trail
-          if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
-          continue
-        } else if (i + 1 === length) {
-          // unpaired lead
-          if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
-          continue
-        }
-
-        // valid lead
-        leadSurrogate = codePoint
-
-        continue
-      }
-
-      // 2 leads in a row
-      if (codePoint < 0xDC00) {
-        if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
-        leadSurrogate = codePoint
-        continue
-      }
-
-      // valid surrogate pair
-      codePoint = (leadSurrogate - 0xD800 << 10 | codePoint - 0xDC00) + 0x10000
-    } else if (leadSurrogate) {
-      // valid bmp char, but last char was a lead
-      if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
-    }
-
-    leadSurrogate = null
-
-    // encode utf8
-    if (codePoint < 0x80) {
-      if ((units -= 1) < 0) break
-      bytes.push(codePoint)
-    } else if (codePoint < 0x800) {
-      if ((units -= 2) < 0) break
-      bytes.push(
-        codePoint >> 0x6 | 0xC0,
-        codePoint & 0x3F | 0x80
-      )
-    } else if (codePoint < 0x10000) {
-      if ((units -= 3) < 0) break
-      bytes.push(
-        codePoint >> 0xC | 0xE0,
-        codePoint >> 0x6 & 0x3F | 0x80,
-        codePoint & 0x3F | 0x80
-      )
-    } else if (codePoint < 0x110000) {
-      if ((units -= 4) < 0) break
-      bytes.push(
-        codePoint >> 0x12 | 0xF0,
-        codePoint >> 0xC & 0x3F | 0x80,
-        codePoint >> 0x6 & 0x3F | 0x80,
-        codePoint & 0x3F | 0x80
-      )
-    } else {
-      throw new Error('Invalid code point')
-    }
-  }
-
-  return bytes
-}
-
-function asciiToBytes (str) {
-  var byteArray = []
-  for (var i = 0; i < str.length; ++i) {
-    // Node's code seems to be doing this and not & 0x7F..
-    byteArray.push(str.charCodeAt(i) & 0xFF)
-  }
-  return byteArray
-}
-
-function utf16leToBytes (str, units) {
-  var c, hi, lo
-  var byteArray = []
-  for (var i = 0; i < str.length; ++i) {
-    if ((units -= 2) < 0) break
-
-    c = str.charCodeAt(i)
-    hi = c >> 8
-    lo = c % 256
-    byteArray.push(lo)
-    byteArray.push(hi)
-  }
-
-  return byteArray
-}
-
-function base64ToBytes (str) {
-  return base64.toByteArray(base64clean(str))
-}
-
-function blitBuffer (src, dst, offset, length) {
-  for (var i = 0; i < length; ++i) {
-    if ((i + offset >= dst.length) || (i >= src.length)) break
-    dst[i + offset] = src[i]
-  }
-  return i
-}
-
-function isnan (val) {
-  return val !== val // eslint-disable-line no-self-compare
-}
-
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
-
-/***/ }),
-/* 21 */
-/***/ (function(module, exports) {
-
-var toString = {}.toString;
-
-module.exports = Array.isArray || function (arr) {
-  return toString.call(arr) == '[object Array]';
-};
-
-
-/***/ }),
-/* 22 */
-/***/ (function(module, exports) {
-
-var toString = Object.prototype.toString;
-
-module.exports = function kindOf(val) {
-  if (val === void 0) return 'undefined';
-  if (val === null) return 'null';
-
-  var type = typeof val;
-  if (type === 'boolean') return 'boolean';
-  if (type === 'string') return 'string';
-  if (type === 'number') return 'number';
-  if (type === 'symbol') return 'symbol';
-  if (type === 'function') {
-    return isGeneratorFn(val) ? 'generatorfunction' : 'function';
-  }
-
-  if (isArray(val)) return 'array';
-  if (isBuffer(val)) return 'buffer';
-  if (isArguments(val)) return 'arguments';
-  if (isDate(val)) return 'date';
-  if (isError(val)) return 'error';
-  if (isRegexp(val)) return 'regexp';
-
-  switch (ctorName(val)) {
-    case 'Symbol': return 'symbol';
-    case 'Promise': return 'promise';
-
-    // Set, Map, WeakSet, WeakMap
-    case 'WeakMap': return 'weakmap';
-    case 'WeakSet': return 'weakset';
-    case 'Map': return 'map';
-    case 'Set': return 'set';
-
-    // 8-bit typed arrays
-    case 'Int8Array': return 'int8array';
-    case 'Uint8Array': return 'uint8array';
-    case 'Uint8ClampedArray': return 'uint8clampedarray';
-
-    // 16-bit typed arrays
-    case 'Int16Array': return 'int16array';
-    case 'Uint16Array': return 'uint16array';
-
-    // 32-bit typed arrays
-    case 'Int32Array': return 'int32array';
-    case 'Uint32Array': return 'uint32array';
-    case 'Float32Array': return 'float32array';
-    case 'Float64Array': return 'float64array';
-  }
-
-  if (isGeneratorObj(val)) {
-    return 'generator';
-  }
-
-  // Non-plain objects
-  type = toString.call(val);
-  switch (type) {
-    case '[object Object]': return 'object';
-    // iterators
-    case '[object Map Iterator]': return 'mapiterator';
-    case '[object Set Iterator]': return 'setiterator';
-    case '[object String Iterator]': return 'stringiterator';
-    case '[object Array Iterator]': return 'arrayiterator';
-  }
-
-  // other
-  return type.slice(8, -1).toLowerCase().replace(/\s/g, '');
-};
-
-function ctorName(val) {
-  return val.constructor ? val.constructor.name : null;
-}
-
-function isArray(val) {
-  if (Array.isArray) return Array.isArray(val);
-  return val instanceof Array;
-}
-
-function isError(val) {
-  return val instanceof Error || (typeof val.message === 'string' && val.constructor && typeof val.constructor.stackTraceLimit === 'number');
-}
-
-function isDate(val) {
-  if (val instanceof Date) return true;
-  return typeof val.toDateString === 'function'
-    && typeof val.getDate === 'function'
-    && typeof val.setDate === 'function';
-}
-
-function isRegexp(val) {
-  if (val instanceof RegExp) return true;
-  return typeof val.flags === 'string'
-    && typeof val.ignoreCase === 'boolean'
-    && typeof val.multiline === 'boolean'
-    && typeof val.global === 'boolean';
-}
-
-function isGeneratorFn(name, val) {
-  return ctorName(name) === 'GeneratorFunction';
-}
-
-function isGeneratorObj(val) {
-  return typeof val.throw === 'function'
-    && typeof val.return === 'function'
-    && typeof val.next === 'function';
-}
-
-function isArguments(val) {
-  try {
-    if (typeof val.length === 'number' && typeof val.callee === 'function') {
-      return true;
-    }
-  } catch (err) {
-    if (err.message.indexOf('callee') !== -1) {
-      return true;
-    }
-  }
-  return false;
-}
-
-/**
- * If you need to support Safari 5-7 (8-10 yr-old browser),
- * take a look at https://github.com/feross/is-buffer
- */
-
-function isBuffer(val) {
-  if (val.constructor && typeof val.constructor.isBuffer === 'function') {
-    return val.constructor.isBuffer(val);
-  }
-  return false;
-}
-
-
-/***/ }),
-/* 23 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*!
- * repeat-element <https://github.com/jonschlinkert/repeat-element>
- *
- * Copyright (c) 2015-present, Jon Schlinkert.
- * Licensed under the MIT license.
- */
-
-
-
-module.exports = function repeat(ele, num) {
-  var arr = new Array(num);
-
-  for (var i = 0; i < num; i++) {
-    arr[i] = ele;
-  }
-
-  return arr;
-};
-
-
-/***/ }),
-/* 24 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-/*!
- * for-in <https://github.com/jonschlinkert/for-in>
- *
- * Copyright (c) 2014-2017, Jon Schlinkert.
- * Released under the MIT License.
- */
-
-
-
-module.exports = function forIn(obj, fn, thisArg) {
-  for (var key in obj) {
-    if (fn.call(thisArg, obj[key], key, obj) === false) {
-      break;
-    }
-  }
-};
-
-
-/***/ }),
-/* 25 */
-/***/ (function(module, exports) {
-
-/*!
- * is-extglob <https://github.com/jonschlinkert/is-extglob>
- *
- * Copyright (c) 2014-2015, Jon Schlinkert.
- * Licensed under the MIT License.
- */
-
-module.exports = function isExtglob(str) {
-  return typeof str === 'string'
-    && /[@?!+*]\(/.test(str);
-};
-
-
-/***/ }),
-/* 26 */
-/***/ (function(module, exports, __webpack_require__) {
-
-/*!
- * is-glob <https://github.com/jonschlinkert/is-glob>
- *
- * Copyright (c) 2014-2015, Jon Schlinkert.
- * Licensed under the MIT License.
- */
-
-var isExtglob = __webpack_require__(117);
-
-module.exports = function isGlob(str) {
-  return typeof str === 'string'
-    && (/[*!?{}(|)[\]]/.test(str)
-     || isExtglob(str));
-};
-
-/***/ }),
-/* 27 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-Object.defineProperty(exports, "__esModule", {
-  value: true
-});
-
-exports.default = function (useVuex, source) {
-  var page = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
-
-
-  var data = {
-    vuex: true,
-    activeState: false,
-    userColumnsDisplay: [],
-    userControlsColumns: false,
-    displayColumnsDropdown: false,
-    collapsedGroups: []
-  };
-
-  if (useVuex) return data;
-
-  data = (0, _merge2.default)(data, {
-    vuex: false,
-    count: 0,
-    customQueries: {},
-    query: null,
-    page: page,
-    limit: 10,
-    windowWidth: typeof window !== 'undefined' ? window.innerWidth : null,
-    orderBy: {
-      column: false,
-      ascending: true
-    }
-  });
-
-  if (source == 'server') data.data = [];
-
-  return data;
-};
-
-var _merge = __webpack_require__(0);
-
-var _merge2 = _interopRequireDefault(_merge);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
-
-/***/ }),
-/* 28 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function () {
-  return {
-    id: makeId(),
-    allFilteredData: [],
-    openChildRows: [],
-    windowWidth: typeof window !== 'undefined' ? window.innerWidth : null,
-    userMultiSorting: {}
-  };
-};
-
-function makeId() {
-  var text = "";
-  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
-
-  for (var i = 0; i < 5; i++) {
-    text += possible.charAt(Math.floor(Math.random() * possible.length));
-  }return text;
-}
-
-/***/ }),
-/* 29 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var is_empty = __webpack_require__(178);
-
-var registerVuexModule = __webpack_require__(179);
-
-module.exports = function (self) {
-
-  if (self.vuex) {
-    registerVuexModule(self);
-  } else {
-    self.limit = self.opts.perPage;
-  }
-
-  if (is_empty(self.opts.columnsDisplay) || typeof window === 'undefined') return;
-
-  self.columnsDisplay = getColumnsDisplay(self.opts.columnsDisplay);
-
-  window.addEventListener('resize', function () {
-    self.windowWidth = window.innerWidth;
-  }.bind(self));
-};
-
-function getColumnsDisplay(columnsDisplay) {
-  var res = {};
-  var range;
-  var device;
-  var operator;
-
-  for (var column in columnsDisplay) {
-    operator = getOperator(columnsDisplay[column]);
-    try {
-      device = getDevice(columnsDisplay[column]);
-      range = getRange(device, operator);
-      res[column] = range.concat([operator]);
-    } catch (err) {
-      console.warn('Unknown device ' + device);
-    }
-  }
-
-  return res;
-}
-
-function getRange(device, operator) {
-
-  var devices = {
-    desktop: [1024, null],
-    tablet: [480, 1024],
-    mobile: [0, 480],
-    tabletL: [768, 1024],
-    tabletP: [480, 768],
-    mobileL: [320, 480],
-    mobileP: [0, 320]
-  };
-
-  switch (operator) {
-    case 'min':
-      return [devices[device][0], null];
-    case 'max':
-      return [0, devices[device][1]];
-    default:
-      return devices[device];
-  }
-}
-
-function getOperator(val) {
-
-  var pieces = val.split('_');
-
-  if (['not', 'min', 'max'].indexOf(pieces[0]) > -1) return pieces[0];
-
-  return false;
-}
-
-function getDevice(val) {
-  var pieces = val.split('_');
-  return pieces.length > 1 ? pieces[1] : pieces[0];
-}
-
-/***/ }),
-/* 30 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-module.exports = function (template, theme) {
-
-    var themes = {
-        bootstrap3: __webpack_require__(182)(),
-        bootstrap4: __webpack_require__(183)(),
-        bulma: __webpack_require__(184)()
-    };
-
-    var templates = {
-        default: __webpack_require__(185),
-        footerPagination: __webpack_require__(186)
-    };
-
-    return function (h) {
-
-        var modules = {
-            rows: __webpack_require__(187).call(this, h),
-            normalFilter: __webpack_require__(188).call(this, h),
-            dropdownPagination: __webpack_require__(189).call(this, h),
-            dropdownPaginationCount: __webpack_require__(190).call(this, h),
-            columnFilters: __webpack_require__(191).call(this, h),
-            pagination: __webpack_require__(195).call(this, h),
-            headings: __webpack_require__(196).call(this, h),
-            perPage: __webpack_require__(198).call(this, h),
-            columnsDropdown: __webpack_require__(199).call(this, h)
-        };
-
-        if (typeof template === 'string' && (!templates[template] || typeof templates[template] !== 'function')) {
-            throw 'vue-tables-2: Template "' + template + '" does not exist';
-        }
-
-        if (typeof theme === 'string' && (!themes[theme] || _typeof(themes[theme]) !== 'object')) {
-            throw 'vue-tables-2: Theme "' + theme + '" does not exist';
-        }
-
-        var tpl = typeof template === 'string' ? templates[template] : template;
-        var thm = typeof theme === 'string' ? themes[theme] : theme();
-        var slots = __webpack_require__(202).call(this);
-
-        return tpl.call(this, h, modules, thm, slots);
-    };
-};
-
-/***/ }),
-/* 31 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function (h) {
-  var _this = this;
-
-  var perpageValues = [];
-
-  this.opts.perPageValues.every(function (value) {
-    var isLastEntry = value >= _this.count;
-    var selected = _this.limit == value || isLastEntry && _this.limit > value;
-    perpageValues.push(h(
-      "option",
-      {
-        domProps: {
-          "value": value,
-          "selected": selected
-        }
-      },
-      [value]
-    ));
-    return !isLastEntry;
-  });
-
-  return perpageValues;
-};
-
-/***/ }),
-/* 32 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = function () {
-  return Math.ceil(this.count / this.limit);
-};
-
-/***/ }),
-/* 33 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
-
-var object_filled_keys_count = __webpack_require__(206);
-var is_valid_moment_object = __webpack_require__(19);
-var filterByCustomFilters = __webpack_require__(207);
-
-module.exports = function (data, e) {
-
-  if (e) {
-
-    var _query = this.query;
-
-    this.setPage(1, true);
-
-    var name = this.getName(e.target.name);
-    var value = _typeof(e.target.value) === 'object' ? e.target.value : '' + e.target.value;
-
-    if (name) {
-      _query[name] = value;
-    } else {
-      _query = value;
-    }
-
-    this.vuex ? this.commit('SET_FILTER', _query) : this.query = _query;
-
-    this.updateState('query', _query);
-
-    if (name) {
-      this.dispatch('filter', { name: name, value: value });
-      this.dispatch('filter::' + name, value);
-    } else {
-      this.dispatch('filter', value);
-    }
-  }
-
-  var query = this.query;
-
-  var totalQueries = !query ? 0 : 1;
-
-  if (!this.opts) return data;
-
-  if (this.opts.filterByColumn) {
-    totalQueries = object_filled_keys_count(query);
-  }
-
-  var value;
-  var found;
-  var currentQuery;
-  var dateFormat;
-  var filterByDate;
-  var isListFilter;
-
-  var data = filterByCustomFilters(data, this.opts.customFilters, this.customQueries);
-
-  if (!totalQueries) return data;
-
-  return data.filter(function (row, index) {
-
-    found = 0;
-
-    this.filterableColumns.forEach(function (column) {
-
-      filterByDate = this.opts.dateColumns.indexOf(column) > -1 && this.opts.filterByColumn;
-      isListFilter = this.isListFilter(column) && this.opts.filterByColumn;
-      dateFormat = this.dateFormat(column);
-
-      value = this._getValue(row, column);
-
-      if (is_valid_moment_object(value) && !filterByDate) {
-        value = value.format(dateFormat);
-      }
-
-      currentQuery = this.opts.filterByColumn ? query[column] : query;
-
-      currentQuery = setCurrentQuery(currentQuery);
-
-      if (currentQuery && foundMatch(currentQuery, value, isListFilter)) found++;
-    }.bind(this));
-
-    return found >= totalQueries;
-  }.bind(this));
-};
-
-function setCurrentQuery(query) {
-
-  if (!query) return '';
-
-  if (typeof query == 'string') return query.toLowerCase();
-
-  // Date Range
-
-  return query;
-}
-
-function foundMatch(query, value, isListFilter) {
-
-  if (['string', 'number', 'boolean'].indexOf(typeof value === 'undefined' ? 'undefined' : _typeof(value)) > -1) {
-    value = String(value).toLowerCase();
-  }
-
-  // List Filter
-  if (isListFilter) {
-    return value == query;
-  }
-
-  //Text Filter
-  if (typeof value === 'string') {
-    return value.indexOf(query) > -1;
-  }
-
-  // Date range
-
-  if (is_valid_moment_object(value)) {
-    var start = moment(query.start, 'YYYY-MM-DD HH:mm:ss');
-    var end = moment(query.end, 'YYYY-MM-DD HH:mm:ss');
-
-    return value >= start && value <= end;
-  }
-
-  if ((typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object') {
-
-    for (var key in value) {
-      if (foundMatch(query, value[key])) return true;
-    }
-
-    return false;
-  }
-
-  return value >= start && value <= end;
-}
-
-/***/ }),
-/* 34 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* WEBPACK VAR INJECTION */(function(global) {/**!
- * @fileOverview Kickass library to create and place poppers near their reference elements.
- * @version 1.14.4
- * @license
- * Copyright (c) 2016 Federico Zivolo and contributors
- *
- * Permission is hereby granted, free of charge, to any person obtaining a copy
- * of this software and associated documentation files (the "Software"), to deal
- * in the Software without restriction, including without limitation the rights
- * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- * copies of the Software, and to permit persons to whom the Software is
- * furnished to do so, subject to the following conditions:
- *
- * The above copyright notice and this permission notice shall be included in all
- * copies or substantial portions of the Software.
- *
- * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
- * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
- * SOFTWARE.
- */
-var isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined';
-
-var longerTimeoutBrowsers = ['Edge', 'Trident', 'Firefox'];
-var timeoutDuration = 0;
-for (var i = 0; i < longerTimeoutBrowsers.length; i += 1) {
-  if (isBrowser && navigator.userAgent.indexOf(longerTimeoutBrowsers[i]) >= 0) {
-    timeoutDuration = 1;
-    break;
-  }
-}
-
-function microtaskDebounce(fn) {
-  var called = false;
-  return function () {
-    if (called) {
-      return;
-    }
-    called = true;
-    window.Promise.resolve().then(function () {
-      called = false;
-      fn();
-    });
-  };
-}
-
-function taskDebounce(fn) {
-  var scheduled = false;
-  return function () {
-    if (!scheduled) {
-      scheduled = true;
-      setTimeout(function () {
-        scheduled = false;
-        fn();
-      }, timeoutDuration);
-    }
-  };
-}
-
-var supportsMicroTasks = isBrowser && window.Promise;
-
-/**
-* Create a debounced version of a method, that's asynchronously deferred
-* but called in the minimum time possible.
-*
-* @method
-* @memberof Popper.Utils
-* @argument {Function} fn
-* @returns {Function}
-*/
-var debounce = supportsMicroTasks ? microtaskDebounce : taskDebounce;
-
-/**
- * Check if the given variable is a function
- * @method
- * @memberof Popper.Utils
- * @argument {Any} functionToCheck - variable to check
- * @returns {Boolean} answer to: is a function?
- */
-function isFunction(functionToCheck) {
-  var getType = {};
-  return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
-}
-
-/**
- * Get CSS computed property of the given element
- * @method
- * @memberof Popper.Utils
- * @argument {Eement} element
- * @argument {String} property
- */
-function getStyleComputedProperty(element, property) {
-  if (element.nodeType !== 1) {
-    return [];
-  }
-  // NOTE: 1 DOM access here
-  var css = getComputedStyle(element, null);
-  return property ? css[property] : css;
-}
-
-/**
- * Returns the parentNode or the host of the element
- * @method
- * @memberof Popper.Utils
- * @argument {Element} element
- * @returns {Element} parent
- */
-function getParentNode(element) {
-  if (element.nodeName === 'HTML') {
-    return element;
-  }
-  return element.parentNode || element.host;
-}
-
-/**
- * Returns the scrolling parent of the given element
- * @method
- * @memberof Popper.Utils
- * @argument {Element} element
- * @returns {Element} scroll parent
- */
-function getScrollParent(element) {
-  // Return body, `getScroll` will take care to get the correct `scrollTop` from it
-  if (!element) {
-    return document.body;
-  }
-
-  switch (element.nodeName) {
-    case 'HTML':
-    case 'BODY':
-      return element.ownerDocument.body;
-    case '#document':
-      return element.body;
-  }
-
-  // Firefox want us to check `-x` and `-y` variations as well
-
-  var _getStyleComputedProp = getStyleComputedProperty(element),
-      overflow = _getStyleComputedProp.overflow,
-      overflowX = _getStyleComputedProp.overflowX,
-      overflowY = _getStyleComputedProp.overflowY;
-
-  if (/(auto|scroll|overlay)/.test(overflow + overflowY + overflowX)) {
-    return element;
-  }
-
-  return getScrollParent(getParentNode(element));
-}
-
-var isIE11 = isBrowser && !!(window.MSInputMethodContext && document.documentMode);
-var isIE10 = isBrowser && /MSIE 10/.test(navigator.userAgent);
-
-/**
- * Determines if the browser is Internet Explorer
- * @method
- * @memberof Popper.Utils
- * @param {Number} version to check
- * @returns {Boolean} isIE
- */
-function isIE(version) {
-  if (version === 11) {
-    return isIE11;
-  }
-  if (version === 10) {
-    return isIE10;
-  }
-  return isIE11 || isIE10;
-}
-
-/**
- * Returns the offset parent of the given element
- * @method
- * @memberof Popper.Utils
- * @argument {Element} element
- * @returns {Element} offset parent
- */
-function getOffsetParent(element) {
-  if (!element) {
-    return document.documentElement;
-  }
-
-  var noOffsetParent = isIE(10) ? document.body : null;
-
-  // NOTE: 1 DOM access here
-  var offsetParent = element.offsetParent;
-  // Skip hidden elements which don't have an offsetParent
-  while (offsetParent === noOffsetParent && element.nextElementSibling) {
-    offsetParent = (element = element.nextElementSibling).offsetParent;
-  }
-
-  var nodeName = offsetParent && offsetParent.nodeName;
-
-  if (!nodeName || nodeName === 'BODY' || nodeName === 'HTML') {
-    return element ? element.ownerDocument.documentElement : document.documentElement;
-  }
-
-  // .offsetParent will return the closest TD or TABLE in case
-  // no offsetParent is present, I hate this job...
-  if (['TD', 'TABLE'].indexOf(offsetParent.nodeName) !== -1 && getStyleComputedProperty(offsetParent, 'position') === 'static') {
-    return getOffsetParent(offsetParent);
-  }
-
-  return offsetParent;
-}
-
-function isOffsetContainer(element) {
-  var nodeName = element.nodeName;
-
-  if (nodeName === 'BODY') {
-    return false;
-  }
-  return nodeName === 'HTML' || getOffsetParent(element.firstElementChild) === element;
-}
-
-/**
- * Finds the root node (document, shadowDOM root) of the given element
- * @method
- * @memberof Popper.Utils
- * @argument {Element} node
- * @returns {Element} root node
- */
-function getRoot(node) {
-  if (node.parentNode !== null) {
-    return getRoot(node.parentNode);
-  }
-
-  return node;
-}
-
-/**
- * Finds the offset parent common to the two provided nodes
- * @method
- * @memberof Popper.Utils
- * @argument {Element} element1
- * @argument {Element} element2
- * @returns {Element} common offset parent
- */
-function findCommonOffsetParent(element1, element2) {
-  // This check is needed to avoid errors in case one of the elements isn't defined for any reason
-  if (!element1 || !element1.nodeType || !element2 || !element2.nodeType) {
-    return document.documentElement;
-  }
-
-  // Here we make sure to give as "start" the element that comes first in the DOM
-  var order = element1.compareDocumentPosition(element2) & Node.DOCUMENT_POSITION_FOLLOWING;
-  var start = order ? element1 : element2;
-  var end = order ? element2 : element1;
-
-  // Get common ancestor container
-  var range = document.createRange();
-  range.setStart(start, 0);
-  range.setEnd(end, 0);
-  var commonAncestorContainer = range.commonAncestorContainer;
-
-  // Both nodes are inside #document
-
-  if (element1 !== commonAncestorContainer && element2 !== commonAncestorContainer || start.contains(end)) {
-    if (isOffsetContainer(commonAncestorContainer)) {
-      return commonAncestorContainer;
-    }
-
-    return getOffsetParent(commonAncestorContainer);
-  }
-
-  // one of the nodes is inside shadowDOM, find which one
-  var element1root = getRoot(element1);
-  if (element1root.host) {
-    return findCommonOffsetParent(element1root.host, element2);
-  } else {
-    return findCommonOffsetParent(element1, getRoot(element2).host);
-  }
-}
-
-/**
- * Gets the scroll value of the given element in the given side (top and left)
- * @method
- * @memberof Popper.Utils
- * @argument {Element} element
- * @argument {String} side `top` or `left`
- * @returns {number} amount of scrolled pixels
- */
-function getScroll(element) {
-  var side = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'top';
-
-  var upperSide = side === 'top' ? 'scrollTop' : 'scrollLeft';
-  var nodeName = element.nodeName;
-
-  if (nodeName === 'BODY' || nodeName === 'HTML') {
-    var html = element.ownerDocument.documentElement;
-    var scrollingElement = element.ownerDocument.scrollingElement || html;
-    return scrollingElement[upperSide];
-  }
-
-  return element[upperSide];
-}
-
-/*
- * Sum or subtract the element scroll values (left and top) from a given rect object
- * @method
- * @memberof Popper.Utils
- * @param {Object} rect - Rect object you want to change
- * @param {HTMLElement} element - The element from the function reads the scroll values
- * @param {Boolean} subtract - set to true if you want to subtract the scroll values
- * @return {Object} rect - The modifier rect object
- */
-function includeScroll(rect, element) {
-  var subtract = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-
-  var scrollTop = getScroll(element, 'top');
-  var scrollLeft = getScroll(element, 'left');
-  var modifier = subtract ? -1 : 1;
-  rect.top += scrollTop * modifier;
-  rect.bottom += scrollTop * modifier;
-  rect.left += scrollLeft * modifier;
-  rect.right += scrollLeft * modifier;
-  return rect;
-}
-
-/*
- * Helper to detect borders of a given element
- * @method
- * @memberof Popper.Utils
- * @param {CSSStyleDeclaration} styles
- * Result of `getStyleComputedProperty` on the given element
- * @param {String} axis - `x` or `y`
- * @return {number} borders - The borders size of the given axis
- */
-
-function getBordersSize(styles, axis) {
-  var sideA = axis === 'x' ? 'Left' : 'Top';
-  var sideB = sideA === 'Left' ? 'Right' : 'Bottom';
-
-  return parseFloat(styles['border' + sideA + 'Width'], 10) + parseFloat(styles['border' + sideB + 'Width'], 10);
-}
-
-function getSize(axis, body, html, computedStyle) {
-  return Math.max(body['offset' + axis], body['scroll' + axis], html['client' + axis], html['offset' + axis], html['scroll' + axis], isIE(10) ? parseInt(html['offset' + axis]) + parseInt(computedStyle['margin' + (axis === 'Height' ? 'Top' : 'Left')]) + parseInt(computedStyle['margin' + (axis === 'Height' ? 'Bottom' : 'Right')]) : 0);
-}
-
-function getWindowSizes(document) {
-  var body = document.body;
-  var html = document.documentElement;
-  var computedStyle = isIE(10) && getComputedStyle(html);
-
-  return {
-    height: getSize('Height', body, html, computedStyle),
-    width: getSize('Width', body, html, computedStyle)
-  };
-}
-
-var classCallCheck = function (instance, Constructor) {
-  if (!(instance instanceof Constructor)) {
-    throw new TypeError("Cannot call a class as a function");
-  }
-};
-
-var createClass = function () {
-  function defineProperties(target, props) {
-    for (var i = 0; i < props.length; i++) {
-      var descriptor = props[i];
-      descriptor.enumerable = descriptor.enumerable || false;
-      descriptor.configurable = true;
-      if ("value" in descriptor) descriptor.writable = true;
-      Object.defineProperty(target, descriptor.key, descriptor);
-    }
-  }
-
-  return function (Constructor, protoProps, staticProps) {
-    if (protoProps) defineProperties(Constructor.prototype, protoProps);
-    if (staticProps) defineProperties(Constructor, staticProps);
-    return Constructor;
-  };
-}();
-
-
-
-
-
-var defineProperty = function (obj, key, value) {
-  if (key in obj) {
-    Object.defineProperty(obj, key, {
-      value: value,
-      enumerable: true,
-      configurable: true,
-      writable: true
-    });
-  } else {
-    obj[key] = value;
-  }
-
-  return obj;
-};
-
-var _extends = Object.assign || function (target) {
-  for (var i = 1; i < arguments.length; i++) {
-    var source = arguments[i];
-
-    for (var key in source) {
-      if (Object.prototype.hasOwnProperty.call(source, key)) {
-        target[key] = source[key];
-      }
-    }
-  }
-
-  return target;
-};
-
-/**
- * Given element offsets, generate an output similar to getBoundingClientRect
- * @method
- * @memberof Popper.Utils
- * @argument {Object} offsets
- * @returns {Object} ClientRect like output
- */
-function getClientRect(offsets) {
-  return _extends({}, offsets, {
-    right: offsets.left + offsets.width,
-    bottom: offsets.top + offsets.height
-  });
-}
-
-/**
- * Get bounding client rect of given element
- * @method
- * @memberof Popper.Utils
- * @param {HTMLElement} element
- * @return {Object} client rect
- */
-function getBoundingClientRect(element) {
-  var rect = {};
-
-  // IE10 10 FIX: Please, don't ask, the element isn't
-  // considered in DOM in some circumstances...
-  // This isn't reproducible in IE10 compatibility mode of IE11
-  try {
-    if (isIE(10)) {
-      rect = element.getBoundingClientRect();
-      var scrollTop = getScroll(element, 'top');
-      var scrollLeft = getScroll(element, 'left');
-      rect.top += scrollTop;
-      rect.left += scrollLeft;
-      rect.bottom += scrollTop;
-      rect.right += scrollLeft;
-    } else {
-      rect = element.getBoundingClientRect();
-    }
-  } catch (e) {}
-
-  var result = {
-    left: rect.left,
-    top: rect.top,
-    width: rect.right - rect.left,
-    height: rect.bottom - rect.top
-  };
-
-  // subtract scrollbar size from sizes
-  var sizes = element.nodeName === 'HTML' ? getWindowSizes(element.ownerDocument) : {};
-  var width = sizes.width || element.clientWidth || result.right - result.left;
-  var height = sizes.height || element.clientHeight || result.bottom - result.top;
-
-  var horizScrollbar = element.offsetWidth - width;
-  var vertScrollbar = element.offsetHeight - height;
-
-  // if an hypothetical scrollbar is detected, we must be sure it's not a `border`
-  // we make this check conditional for performance reasons
-  if (horizScrollbar || vertScrollbar) {
-    var styles = getStyleComputedProperty(element);
-    horizScrollbar -= getBordersSize(styles, 'x');
-    vertScrollbar -= getBordersSize(styles, 'y');
-
-    result.width -= horizScrollbar;
-    result.height -= vertScrollbar;
-  }
-
-  return getClientRect(result);
-}
-
-function getOffsetRectRelativeToArbitraryNode(children, parent) {
-  var fixedPosition = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
-
-  var isIE10 = isIE(10);
-  var isHTML = parent.nodeName === 'HTML';
-  var childrenRect = getBoundingClientRect(children);
-  var parentRect = getBoundingClientRect(parent);
-  var scrollParent = getScrollParent(children);
-
-  var styles = getStyleComputedProperty(parent);
-  var borderTopWidth = parseFloat(styles.borderTopWidth, 10);
-  var borderLeftWidth = parseFloat(styles.borderLeftWidth, 10);
-
-  // In cases where the parent is fixed, we must ignore negative scroll in offset calc
-  if (fixedPosition && isHTML) {
-    parentRect.top = Math.max(parentRect.top, 0);
-    parentRect.left = Math.max(parentRect.left, 0);
-  }
-  var offsets = getClientRect({
-    top: childrenRect.top - parentRect.top - borderTopWidth,
-    left: childrenRect.left - parentRect.left - borderLeftWidth,
-    width: childrenRect.width,
-    height: childrenRect.height
-  });
-  offsets.marginTop = 0;
-  offsets.marginLeft = 0;
-
-  // Subtract margins of documentElement in case it's being used as parent
-  // we do this only on HTML because it's the only element that behaves
-  // differently when margins are applied to it. The margins are included in
-  // the box of the documentElement, in the other cases not.
-  if (!isIE10 && isHTML) {
-    var marginTop = parseFloat(styles.marginTop, 10);
-    var marginLeft = parseFloat(styles.marginLeft, 10);
-
-    offsets.top -= borderTopWidth - marginTop;
-    offsets.bottom -= borderTopWidth - marginTop;
-    offsets.left -= borderLeftWidth - marginLeft;
-    offsets.right -= borderLeftWidth - marginLeft;
-
-    // Attach marginTop and marginLeft because in some circumstances we may need them
-    offsets.marginTop = marginTop;
-    offsets.marginLeft = marginLeft;
-  }
-
-  if (isIE10 && !fixedPosition ? parent.contains(scrollParent) : parent === scrollParent && scrollParent.nodeName !== 'BODY') {
-    offsets = includeScroll(offsets, parent);
-  }
-
-  return offsets;
-}
-
-function getViewportOffsetRectRelativeToArtbitraryNode(element) {
-  var excludeScroll = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-
-  var html = element.ownerDocument.documentElement;
-  var relativeOffset = getOffsetRectRelativeToArbitraryNode(element, html);
-  var width = Math.max(html.clientWidth, window.innerWidth || 0);
-  var height = Math.max(html.clientHeight, window.innerHeight || 0);
-
-  var scrollTop = !excludeScroll ? getScroll(html) : 0;
-  var scrollLeft = !excludeScroll ? getScroll(html, 'left') : 0;
-
-  var offset = {
-    top: scrollTop - relativeOffset.top + relativeOffset.marginTop,
-    left: scrollLeft - relativeOffset.left + relativeOffset.marginLeft,
-    width: width,
-    height: height
-  };
-
-  return getClientRect(offset);
-}
-
-/**
- * Check if the given element is fixed or is inside a fixed parent
- * @method
- * @memberof Popper.Utils
- * @argument {Element} element
- * @argument {Element} customContainer
- * @returns {Boolean} answer to "isFixed?"
- */
-function isFixed(element) {
-  var nodeName = element.nodeName;
-  if (nodeName === 'BODY' || nodeName === 'HTML') {
-    return false;
-  }
-  if (getStyleComputedProperty(element, 'position') === 'fixed') {
-    return true;
-  }
-  return isFixed(getParentNode(element));
-}
-
-/**
- * Finds the first parent of an element that has a transformed property defined
- * @method
- * @memberof Popper.Utils
- * @argument {Element} element
- * @returns {Element} first transformed parent or documentElement
- */
-
-function getFixedPositionOffsetParent(element) {
-  // This check is needed to avoid errors in case one of the elements isn't defined for any reason
-  if (!element || !element.parentElement || isIE()) {
-    return document.documentElement;
-  }
-  var el = element.parentElement;
-  while (el && getStyleComputedProperty(el, 'transform') === 'none') {
-    el = el.parentElement;
-  }
-  return el || document.documentElement;
-}
-
-/**
- * Computed the boundaries limits and return them
- * @method
- * @memberof Popper.Utils
- * @param {HTMLElement} popper
- * @param {HTMLElement} reference
- * @param {number} padding
- * @param {HTMLElement} boundariesElement - Element used to define the boundaries
- * @param {Boolean} fixedPosition - Is in fixed position mode
- * @returns {Object} Coordinates of the boundaries
- */
-function getBoundaries(popper, reference, padding, boundariesElement) {
-  var fixedPosition = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
-
-  // NOTE: 1 DOM access here
-
-  var boundaries = { top: 0, left: 0 };
-  var offsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, reference);
-
-  // Handle viewport case
-  if (boundariesElement === 'viewport') {
-    boundaries = getViewportOffsetRectRelativeToArtbitraryNode(offsetParent, fixedPosition);
-  } else {
-    // Handle other cases based on DOM element used as boundaries
-    var boundariesNode = void 0;
-    if (boundariesElement === 'scrollParent') {
-      boundariesNode = getScrollParent(getParentNode(reference));
-      if (boundariesNode.nodeName === 'BODY') {
-        boundariesNode = popper.ownerDocument.documentElement;
-      }
-    } else if (boundariesElement === 'window') {
-      boundariesNode = popper.ownerDocument.documentElement;
-    } else {
-      boundariesNode = boundariesElement;
-    }
-
-    var offsets = getOffsetRectRelativeToArbitraryNode(boundariesNode, offsetParent, fixedPosition);
-
-    // In case of HTML, we need a different computation
-    if (boundariesNode.nodeName === 'HTML' && !isFixed(offsetParent)) {
-      var _getWindowSizes = getWindowSizes(popper.ownerDocument),
-          height = _getWindowSizes.height,
-          width = _getWindowSizes.width;
-
-      boundaries.top += offsets.top - offsets.marginTop;
-      boundaries.bottom = height + offsets.top;
-      boundaries.left += offsets.left - offsets.marginLeft;
-      boundaries.right = width + offsets.left;
-    } else {
-      // for all the other DOM elements, this one is good
-      boundaries = offsets;
-    }
-  }
-
-  // Add paddings
-  padding = padding || 0;
-  var isPaddingNumber = typeof padding === 'number';
-  boundaries.left += isPaddingNumber ? padding : padding.left || 0;
-  boundaries.top += isPaddingNumber ? padding : padding.top || 0;
-  boundaries.right -= isPaddingNumber ? padding : padding.right || 0;
-  boundaries.bottom -= isPaddingNumber ? padding : padding.bottom || 0;
-
-  return boundaries;
-}
-
-function getArea(_ref) {
-  var width = _ref.width,
-      height = _ref.height;
-
-  return width * height;
-}
-
-/**
- * Utility used to transform the `auto` placement to the placement with more
- * available space.
- * @method
- * @memberof Popper.Utils
- * @argument {Object} data - The data object generated by update method
- * @argument {Object} options - Modifiers configuration and options
- * @returns {Object} The data object, properly modified
- */
-function computeAutoPlacement(placement, refRect, popper, reference, boundariesElement) {
-  var padding = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0;
-
-  if (placement.indexOf('auto') === -1) {
-    return placement;
-  }
-
-  var boundaries = getBoundaries(popper, reference, padding, boundariesElement);
-
-  var rects = {
-    top: {
-      width: boundaries.width,
-      height: refRect.top - boundaries.top
-    },
-    right: {
-      width: boundaries.right - refRect.right,
-      height: boundaries.height
-    },
-    bottom: {
-      width: boundaries.width,
-      height: boundaries.bottom - refRect.bottom
-    },
-    left: {
-      width: refRect.left - boundaries.left,
-      height: boundaries.height
-    }
-  };
-
-  var sortedAreas = Object.keys(rects).map(function (key) {
-    return _extends({
-      key: key
-    }, rects[key], {
-      area: getArea(rects[key])
-    });
-  }).sort(function (a, b) {
-    return b.area - a.area;
-  });
-
-  var filteredAreas = sortedAreas.filter(function (_ref2) {
-    var width = _ref2.width,
-        height = _ref2.height;
-    return width >= popper.clientWidth && height >= popper.clientHeight;
-  });
-
-  var computedPlacement = filteredAreas.length > 0 ? filteredAreas[0].key : sortedAreas[0].key;
-
-  var variation = placement.split('-')[1];
-
-  return computedPlacement + (variation ? '-' + variation : '');
-}
-
-/**
- * Get offsets to the reference element
- * @method
- * @memberof Popper.Utils
- * @param {Object} state
- * @param {Element} popper - the popper element
- * @param {Element} reference - the reference element (the popper will be relative to this)
- * @param {Element} fixedPosition - is in fixed position mode
- * @returns {Object} An object containing the offsets which will be applied to the popper
- */
-function getReferenceOffsets(state, popper, reference) {
-  var fixedPosition = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
-
-  var commonOffsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, reference);
-  return getOffsetRectRelativeToArbitraryNode(reference, commonOffsetParent, fixedPosition);
-}
-
-/**
- * Get the outer sizes of the given element (offset size + margins)
- * @method
- * @memberof Popper.Utils
- * @argument {Element} element
- * @returns {Object} object containing width and height properties
- */
-function getOuterSizes(element) {
-  var styles = getComputedStyle(element);
-  var x = parseFloat(styles.marginTop) + parseFloat(styles.marginBottom);
-  var y = parseFloat(styles.marginLeft) + parseFloat(styles.marginRight);
-  var result = {
-    width: element.offsetWidth + y,
-    height: element.offsetHeight + x
-  };
-  return result;
-}
-
-/**
- * Get the opposite placement of the given one
- * @method
- * @memberof Popper.Utils
- * @argument {String} placement
- * @returns {String} flipped placement
- */
-function getOppositePlacement(placement) {
-  var hash = { left: 'right', right: 'left', bottom: 'top', top: 'bottom' };
-  return placement.replace(/left|right|bottom|top/g, function (matched) {
-    return hash[matched];
-  });
-}
-
-/**
- * Get offsets to the popper
- * @method
- * @memberof Popper.Utils
- * @param {Object} position - CSS position the Popper will get applied
- * @param {HTMLElement} popper - the popper element
- * @param {Object} referenceOffsets - the reference offsets (the popper will be relative to this)
- * @param {String} placement - one of the valid placement options
- * @returns {Object} popperOffsets - An object containing the offsets which will be applied to the popper
- */
-function getPopperOffsets(popper, referenceOffsets, placement) {
-  placement = placement.split('-')[0];
-
-  // Get popper node sizes
-  var popperRect = getOuterSizes(popper);
-
-  // Add position, width and height to our offsets object
-  var popperOffsets = {
-    width: popperRect.width,
-    height: popperRect.height
-  };
-
-  // depending by the popper placement we have to compute its offsets slightly differently
-  var isHoriz = ['right', 'left'].indexOf(placement) !== -1;
-  var mainSide = isHoriz ? 'top' : 'left';
-  var secondarySide = isHoriz ? 'left' : 'top';
-  var measurement = isHoriz ? 'height' : 'width';
-  var secondaryMeasurement = !isHoriz ? 'height' : 'width';
-
-  popperOffsets[mainSide] = referenceOffsets[mainSide] + referenceOffsets[measurement] / 2 - popperRect[measurement] / 2;
-  if (placement === secondarySide) {
-    popperOffsets[secondarySide] = referenceOffsets[secondarySide] - popperRect[secondaryMeasurement];
-  } else {
-    popperOffsets[secondarySide] = referenceOffsets[getOppositePlacement(secondarySide)];
-  }
-
-  return popperOffsets;
-}
-
-/**
- * Mimics the `find` method of Array
- * @method
- * @memberof Popper.Utils
- * @argument {Array} arr
- * @argument prop
- * @argument value
- * @returns index or -1
- */
-function find(arr, check) {
-  // use native find if supported
-  if (Array.prototype.find) {
-    return arr.find(check);
-  }
-
-  // use `filter` to obtain the same behavior of `find`
-  return arr.filter(check)[0];
-}
-
-/**
- * Return the index of the matching object
- * @method
- * @memberof Popper.Utils
- * @argument {Array} arr
- * @argument prop
- * @argument value
- * @returns index or -1
- */
-function findIndex(arr, prop, value) {
-  // use native findIndex if supported
-  if (Array.prototype.findIndex) {
-    return arr.findIndex(function (cur) {
-      return cur[prop] === value;
-    });
-  }
-
-  // use `find` + `indexOf` if `findIndex` isn't supported
-  var match = find(arr, function (obj) {
-    return obj[prop] === value;
-  });
-  return arr.indexOf(match);
-}
-
-/**
- * Loop trough the list of modifiers and run them in order,
- * each of them will then edit the data object.
- * @method
- * @memberof Popper.Utils
- * @param {dataObject} data
- * @param {Array} modifiers
- * @param {String} ends - Optional modifier name used as stopper
- * @returns {dataObject}
- */
-function runModifiers(modifiers, data, ends) {
-  var modifiersToRun = ends === undefined ? modifiers : modifiers.slice(0, findIndex(modifiers, 'name', ends));
-
-  modifiersToRun.forEach(function (modifier) {
-    if (modifier['function']) {
-      // eslint-disable-line dot-notation
-      console.warn('`modifier.function` is deprecated, use `modifier.fn`!');
-    }
-    var fn = modifier['function'] || modifier.fn; // eslint-disable-line dot-notation
-    if (modifier.enabled && isFunction(fn)) {
-      // Add properties to offsets to make them a complete clientRect object
-      // we do this before each modifier to make sure the previous one doesn't
-      // mess with these values
-      data.offsets.popper = getClientRect(data.offsets.popper);
-      data.offsets.reference = getClientRect(data.offsets.reference);
-
-      data = fn(data, modifier);
-    }
-  });
-
-  return data;
-}
-
-/**
- * Updates the position of the popper, computing the new offsets and applying
- * the new style.<br />
- * Prefer `scheduleUpdate` over `update` because of performance reasons.
- * @method
- * @memberof Popper
- */
-function update() {
-  // if popper is destroyed, don't perform any further update
-  if (this.state.isDestroyed) {
-    return;
-  }
-
-  var data = {
-    instance: this,
-    styles: {},
-    arrowStyles: {},
-    attributes: {},
-    flipped: false,
-    offsets: {}
-  };
-
-  // compute reference element offsets
-  data.offsets.reference = getReferenceOffsets(this.state, this.popper, this.reference, this.options.positionFixed);
-
-  // compute auto placement, store placement inside the data object,
-  // modifiers will be able to edit `placement` if needed
-  // and refer to originalPlacement to know the original value
-  data.placement = computeAutoPlacement(this.options.placement, data.offsets.reference, this.popper, this.reference, this.options.modifiers.flip.boundariesElement, this.options.modifiers.flip.padding);
-
-  // store the computed placement inside `originalPlacement`
-  data.originalPlacement = data.placement;
-
-  data.positionFixed = this.options.positionFixed;
-
-  // compute the popper offsets
-  data.offsets.popper = getPopperOffsets(this.popper, data.offsets.reference, data.placement);
-
-  data.offsets.popper.position = this.options.positionFixed ? 'fixed' : 'absolute';
-
-  // run the modifiers
-  data = runModifiers(this.modifiers, data);
-
-  // the first `update` will call `onCreate` callback
-  // the other ones will call `onUpdate` callback
-  if (!this.state.isCreated) {
-    this.state.isCreated = true;
-    this.options.onCreate(data);
-  } else {
-    this.options.onUpdate(data);
-  }
-}
-
-/**
- * Helper used to know if the given modifier is enabled.
- * @method
- * @memberof Popper.Utils
- * @returns {Boolean}
- */
-function isModifierEnabled(modifiers, modifierName) {
-  return modifiers.some(function (_ref) {
-    var name = _ref.name,
-        enabled = _ref.enabled;
-    return enabled && name === modifierName;
-  });
-}
-
-/**
- * Get the prefixed supported property name
- * @method
- * @memberof Popper.Utils
- * @argument {String} property (camelCase)
- * @returns {String} prefixed property (camelCase or PascalCase, depending on the vendor prefix)
- */
-function getSupportedPropertyName(property) {
-  var prefixes = [false, 'ms', 'Webkit', 'Moz', 'O'];
-  var upperProp = property.charAt(0).toUpperCase() + property.slice(1);
-
-  for (var i = 0; i < prefixes.length; i++) {
-    var prefix = prefixes[i];
-    var toCheck = prefix ? '' + prefix + upperProp : property;
-    if (typeof document.body.style[toCheck] !== 'undefined') {
-      return toCheck;
-    }
-  }
-  return null;
-}
-
-/**
- * Destroys the popper.
- * @method
- * @memberof Popper
- */
-function destroy() {
-  this.state.isDestroyed = true;
-
-  // touch DOM only if `applyStyle` modifier is enabled
-  if (isModifierEnabled(this.modifiers, 'applyStyle')) {
-    this.popper.removeAttribute('x-placement');
-    this.popper.style.position = '';
-    this.popper.style.top = '';
-    this.popper.style.left = '';
-    this.popper.style.right = '';
-    this.popper.style.bottom = '';
-    this.popper.style.willChange = '';
-    this.popper.style[getSupportedPropertyName('transform')] = '';
-  }
-
-  this.disableEventListeners();
-
-  // remove the popper if user explicity asked for the deletion on destroy
-  // do not use `remove` because IE11 doesn't support it
-  if (this.options.removeOnDestroy) {
-    this.popper.parentNode.removeChild(this.popper);
-  }
-  return this;
-}
-
-/**
- * Get the window associated with the element
- * @argument {Element} element
- * @returns {Window}
- */
-function getWindow(element) {
-  var ownerDocument = element.ownerDocument;
-  return ownerDocument ? ownerDocument.defaultView : window;
-}
-
-function attachToScrollParents(scrollParent, event, callback, scrollParents) {
-  var isBody = scrollParent.nodeName === 'BODY';
-  var target = isBody ? scrollParent.ownerDocument.defaultView : scrollParent;
-  target.addEventListener(event, callback, { passive: true });
-
-  if (!isBody) {
-    attachToScrollParents(getScrollParent(target.parentNode), event, callback, scrollParents);
-  }
-  scrollParents.push(target);
-}
-
-/**
- * Setup needed event listeners used to update the popper position
- * @method
- * @memberof Popper.Utils
- * @private
- */
-function setupEventListeners(reference, options, state, updateBound) {
-  // Resize event listener on window
-  state.updateBound = updateBound;
-  getWindow(reference).addEventListener('resize', state.updateBound, { passive: true });
-
-  // Scroll event listener on scroll parents
-  var scrollElement = getScrollParent(reference);
-  attachToScrollParents(scrollElement, 'scroll', state.updateBound, state.scrollParents);
-  state.scrollElement = scrollElement;
-  state.eventsEnabled = true;
-
-  return state;
-}
-
-/**
- * It will add resize/scroll events and start recalculating
- * position of the popper element when they are triggered.
- * @method
- * @memberof Popper
- */
-function enableEventListeners() {
-  if (!this.state.eventsEnabled) {
-    this.state = setupEventListeners(this.reference, this.options, this.state, this.scheduleUpdate);
-  }
-}
-
-/**
- * Remove event listeners used to update the popper position
- * @method
- * @memberof Popper.Utils
- * @private
- */
-function removeEventListeners(reference, state) {
-  // Remove resize event listener on window
-  getWindow(reference).removeEventListener('resize', state.updateBound);
-
-  // Remove scroll event listener on scroll parents
-  state.scrollParents.forEach(function (target) {
-    target.removeEventListener('scroll', state.updateBound);
-  });
-
-  // Reset state
-  state.updateBound = null;
-  state.scrollParents = [];
-  state.scrollElement = null;
-  state.eventsEnabled = false;
-  return state;
-}
-
-/**
- * It will remove resize/scroll events and won't recalculate popper position
- * when they are triggered. It also won't trigger `onUpdate` callback anymore,
- * unless you call `update` method manually.
- * @method
- * @memberof Popper
- */
-function disableEventListeners() {
-  if (this.state.eventsEnabled) {
-    cancelAnimationFrame(this.scheduleUpdate);
-    this.state = removeEventListeners(this.reference, this.state);
-  }
-}
-
-/**
- * Tells if a given input is a number
- * @method
- * @memberof Popper.Utils
- * @param {*} input to check
- * @return {Boolean}
- */
-function isNumeric(n) {
-  return n !== '' && !isNaN(parseFloat(n)) && isFinite(n);
-}
-
-/**
- * Set the style to the given popper
- * @method
- * @memberof Popper.Utils
- * @argument {Element} element - Element to apply the style to
- * @argument {Object} styles
- * Object with a list of properties and values which will be applied to the element
- */
-function setStyles(element, styles) {
-  Object.keys(styles).forEach(function (prop) {
-    var unit = '';
-    // add unit if the value is numeric and is one of the following
-    if (['width', 'height', 'top', 'right', 'bottom', 'left'].indexOf(prop) !== -1 && isNumeric(styles[prop])) {
-      unit = 'px';
-    }
-    element.style[prop] = styles[prop] + unit;
-  });
-}
-
-/**
- * Set the attributes to the given popper
- * @method
- * @memberof Popper.Utils
- * @argument {Element} element - Element to apply the attributes to
- * @argument {Object} styles
- * Object with a list of properties and values which will be applied to the element
- */
-function setAttributes(element, attributes) {
-  Object.keys(attributes).forEach(function (prop) {
-    var value = attributes[prop];
-    if (value !== false) {
-      element.setAttribute(prop, attributes[prop]);
-    } else {
-      element.removeAttribute(prop);
-    }
-  });
-}
-
-/**
- * @function
- * @memberof Modifiers
- * @argument {Object} data - The data object generated by `update` method
- * @argument {Object} data.styles - List of style properties - values to apply to popper element
- * @argument {Object} data.attributes - List of attribute properties - values to apply to popper element
- * @argument {Object} options - Modifiers configuration and options
- * @returns {Object} The same data object
- */
-function applyStyle(data) {
-  // any property present in `data.styles` will be applied to the popper,
-  // in this way we can make the 3rd party modifiers add custom styles to it
-  // Be aware, modifiers could override the properties defined in the previous
-  // lines of this modifier!
-  setStyles(data.instance.popper, data.styles);
-
-  // any property present in `data.attributes` will be applied to the popper,
-  // they will be set as HTML attributes of the element
-  setAttributes(data.instance.popper, data.attributes);
-
-  // if arrowElement is defined and arrowStyles has some properties
-  if (data.arrowElement && Object.keys(data.arrowStyles).length) {
-    setStyles(data.arrowElement, data.arrowStyles);
-  }
-
-  return data;
-}
-
-/**
- * Set the x-placement attribute before everything else because it could be used
- * to add margins to the popper margins needs to be calculated to get the
- * correct popper offsets.
- * @method
- * @memberof Popper.modifiers
- * @param {HTMLElement} reference - The reference element used to position the popper
- * @param {HTMLElement} popper - The HTML element used as popper
- * @param {Object} options - Popper.js options
- */
-function applyStyleOnLoad(reference, popper, options, modifierOptions, state) {
-  // compute reference element offsets
-  var referenceOffsets = getReferenceOffsets(state, popper, reference, options.positionFixed);
-
-  // compute auto placement, store placement inside the data object,
-  // modifiers will be able to edit `placement` if needed
-  // and refer to originalPlacement to know the original value
-  var placement = computeAutoPlacement(options.placement, referenceOffsets, popper, reference, options.modifiers.flip.boundariesElement, options.modifiers.flip.padding);
-
-  popper.setAttribute('x-placement', placement);
-
-  // Apply `position` to popper before anything else because
-  // without the position applied we can't guarantee correct computations
-  setStyles(popper, { position: options.positionFixed ? 'fixed' : 'absolute' });
-
-  return options;
-}
-
-/**
- * @function
- * @memberof Modifiers
- * @argument {Object} data - The data object generated by `update` method
- * @argument {Object} options - Modifiers configuration and options
- * @returns {Object} The data object, properly modified
- */
-function computeStyle(data, options) {
-  var x = options.x,
-      y = options.y;
-  var popper = data.offsets.popper;
-
-  // Remove this legacy support in Popper.js v2
-
-  var legacyGpuAccelerationOption = find(data.instance.modifiers, function (modifier) {
-    return modifier.name === 'applyStyle';
-  }).gpuAcceleration;
-  if (legacyGpuAccelerationOption !== undefined) {
-    console.warn('WARNING: `gpuAcceleration` option moved to `computeStyle` modifier and will not be supported in future versions of Popper.js!');
-  }
-  var gpuAcceleration = legacyGpuAccelerationOption !== undefined ? legacyGpuAccelerationOption : options.gpuAcceleration;
-
-  var offsetParent = getOffsetParent(data.instance.popper);
-  var offsetParentRect = getBoundingClientRect(offsetParent);
-
-  // Styles
-  var styles = {
-    position: popper.position
-  };
-
-  // Avoid blurry text by using full pixel integers.
-  // For pixel-perfect positioning, top/bottom prefers rounded
-  // values, while left/right prefers floored values.
-  var offsets = {
-    left: Math.floor(popper.left),
-    top: Math.round(popper.top),
-    bottom: Math.round(popper.bottom),
-    right: Math.floor(popper.right)
-  };
-
-  var sideA = x === 'bottom' ? 'top' : 'bottom';
-  var sideB = y === 'right' ? 'left' : 'right';
-
-  // if gpuAcceleration is set to `true` and transform is supported,
-  //  we use `translate3d` to apply the position to the popper we
-  // automatically use the supported prefixed version if needed
-  var prefixedProperty = getSupportedPropertyName('transform');
-
-  // now, let's make a step back and look at this code closely (wtf?)
-  // If the content of the popper grows once it's been positioned, it
-  // may happen that the popper gets misplaced because of the new content
-  // overflowing its reference element
-  // To avoid this problem, we provide two options (x and y), which allow
-  // the consumer to define the offset origin.
-  // If we position a popper on top of a reference element, we can set
-  // `x` to `top` to make the popper grow towards its top instead of
-  // its bottom.
-  var left = void 0,
-      top = void 0;
-  if (sideA === 'bottom') {
-    // when offsetParent is <html> the positioning is relative to the bottom of the screen (excluding the scrollbar)
-    // and not the bottom of the html element
-    if (offsetParent.nodeName === 'HTML') {
-      top = -offsetParent.clientHeight + offsets.bottom;
-    } else {
-      top = -offsetParentRect.height + offsets.bottom;
-    }
-  } else {
-    top = offsets.top;
-  }
-  if (sideB === 'right') {
-    if (offsetParent.nodeName === 'HTML') {
-      left = -offsetParent.clientWidth + offsets.right;
-    } else {
-      left = -offsetParentRect.width + offsets.right;
-    }
-  } else {
-    left = offsets.left;
-  }
-  if (gpuAcceleration && prefixedProperty) {
-    styles[prefixedProperty] = 'translate3d(' + left + 'px, ' + top + 'px, 0)';
-    styles[sideA] = 0;
-    styles[sideB] = 0;
-    styles.willChange = 'transform';
-  } else {
-    // othwerise, we use the standard `top`, `left`, `bottom` and `right` properties
-    var invertTop = sideA === 'bottom' ? -1 : 1;
-    var invertLeft = sideB === 'right' ? -1 : 1;
-    styles[sideA] = top * invertTop;
-    styles[sideB] = left * invertLeft;
-    styles.willChange = sideA + ', ' + sideB;
-  }
-
-  // Attributes
-  var attributes = {
-    'x-placement': data.placement
-  };
-
-  // Update `data` attributes, styles and arrowStyles
-  data.attributes = _extends({}, attributes, data.attributes);
-  data.styles = _extends({}, styles, data.styles);
-  data.arrowStyles = _extends({}, data.offsets.arrow, data.arrowStyles);
-
-  return data;
-}
-
-/**
- * Helper used to know if the given modifier depends from another one.<br />
- * It checks if the needed modifier is listed and enabled.
- * @method
- * @memberof Popper.Utils
- * @param {Array} modifiers - list of modifiers
- * @param {String} requestingName - name of requesting modifier
- * @param {String} requestedName - name of requested modifier
- * @returns {Boolean}
- */
-function isModifierRequired(modifiers, requestingName, requestedName) {
-  var requesting = find(modifiers, function (_ref) {
-    var name = _ref.name;
-    return name === requestingName;
-  });
-
-  var isRequired = !!requesting && modifiers.some(function (modifier) {
-    return modifier.name === requestedName && modifier.enabled && modifier.order < requesting.order;
-  });
-
-  if (!isRequired) {
-    var _requesting = '`' + requestingName + '`';
-    var requested = '`' + requestedName + '`';
-    console.warn(requested + ' modifier is required by ' + _requesting + ' modifier in order to work, be sure to include it before ' + _requesting + '!');
-  }
-  return isRequired;
-}
-
-/**
- * @function
- * @memberof Modifiers
- * @argument {Object} data - The data object generated by update method
- * @argument {Object} options - Modifiers configuration and options
- * @returns {Object} The data object, properly modified
- */
-function arrow(data, options) {
-  var _data$offsets$arrow;
-
-  // arrow depends on keepTogether in order to work
-  if (!isModifierRequired(data.instance.modifiers, 'arrow', 'keepTogether')) {
-    return data;
-  }
-
-  var arrowElement = options.element;
-
-  // if arrowElement is a string, suppose it's a CSS selector
-  if (typeof arrowElement === 'string') {
-    arrowElement = data.instance.popper.querySelector(arrowElement);
-
-    // if arrowElement is not found, don't run the modifier
-    if (!arrowElement) {
-      return data;
-    }
-  } else {
-    // if the arrowElement isn't a query selector we must check that the
-    // provided DOM node is child of its popper node
-    if (!data.instance.popper.contains(arrowElement)) {
-      console.warn('WARNING: `arrow.element` must be child of its popper element!');
-      return data;
-    }
-  }
-
-  var placement = data.placement.split('-')[0];
-  var _data$offsets = data.offsets,
-      popper = _data$offsets.popper,
-      reference = _data$offsets.reference;
-
-  var isVertical = ['left', 'right'].indexOf(placement) !== -1;
-
-  var len = isVertical ? 'height' : 'width';
-  var sideCapitalized = isVertical ? 'Top' : 'Left';
-  var side = sideCapitalized.toLowerCase();
-  var altSide = isVertical ? 'left' : 'top';
-  var opSide = isVertical ? 'bottom' : 'right';
-  var arrowElementSize = getOuterSizes(arrowElement)[len];
-
-  //
-  // extends keepTogether behavior making sure the popper and its
-  // reference have enough pixels in conjunction
-  //
-
-  // top/left side
-  if (reference[opSide] - arrowElementSize < popper[side]) {
-    data.offsets.popper[side] -= popper[side] - (reference[opSide] - arrowElementSize);
-  }
-  // bottom/right side
-  if (reference[side] + arrowElementSize > popper[opSide]) {
-    data.offsets.popper[side] += reference[side] + arrowElementSize - popper[opSide];
-  }
-  data.offsets.popper = getClientRect(data.offsets.popper);
-
-  // compute center of the popper
-  var center = reference[side] + reference[len] / 2 - arrowElementSize / 2;
-
-  // Compute the sideValue using the updated popper offsets
-  // take popper margin in account because we don't have this info available
-  var css = getStyleComputedProperty(data.instance.popper);
-  var popperMarginSide = parseFloat(css['margin' + sideCapitalized], 10);
-  var popperBorderSide = parseFloat(css['border' + sideCapitalized + 'Width'], 10);
-  var sideValue = center - data.offsets.popper[side] - popperMarginSide - popperBorderSide;
-
-  // prevent arrowElement from being placed not contiguously to its popper
-  sideValue = Math.max(Math.min(popper[len] - arrowElementSize, sideValue), 0);
-
-  data.arrowElement = arrowElement;
-  data.offsets.arrow = (_data$offsets$arrow = {}, defineProperty(_data$offsets$arrow, side, Math.round(sideValue)), defineProperty(_data$offsets$arrow, altSide, ''), _data$offsets$arrow);
-
-  return data;
-}
-
-/**
- * Get the opposite placement variation of the given one
- * @method
- * @memberof Popper.Utils
- * @argument {String} placement variation
- * @returns {String} flipped placement variation
- */
-function getOppositeVariation(variation) {
-  if (variation === 'end') {
-    return 'start';
-  } else if (variation === 'start') {
-    return 'end';
-  }
-  return variation;
-}
-
-/**
- * List of accepted placements to use as values of the `placement` option.<br />
- * Valid placements are:
- * - `auto`
- * - `top`
- * - `right`
- * - `bottom`
- * - `left`
- *
- * Each placement can have a variation from this list:
- * - `-start`
- * - `-end`
- *
- * Variations are interpreted easily if you think of them as the left to right
- * written languages. Horizontally (`top` and `bottom`), `start` is left and `end`
- * is right.<br />
- * Vertically (`left` and `right`), `start` is top and `end` is bottom.
- *
- * Some valid examples are:
- * - `top-end` (on top of reference, right aligned)
- * - `right-start` (on right of reference, top aligned)
- * - `bottom` (on bottom, centered)
- * - `auto-end` (on the side with more space available, alignment depends by placement)
- *
- * @static
- * @type {Array}
- * @enum {String}
- * @readonly
- * @method placements
- * @memberof Popper
- */
-var placements = ['auto-start', 'auto', 'auto-end', 'top-start', 'top', 'top-end', 'right-start', 'right', 'right-end', 'bottom-end', 'bottom', 'bottom-start', 'left-end', 'left', 'left-start'];
-
-// Get rid of `auto` `auto-start` and `auto-end`
-var validPlacements = placements.slice(3);
-
-/**
- * Given an initial placement, returns all the subsequent placements
- * clockwise (or counter-clockwise).
- *
- * @method
- * @memberof Popper.Utils
- * @argument {String} placement - A valid placement (it accepts variations)
- * @argument {Boolean} counter - Set to true to walk the placements counterclockwise
- * @returns {Array} placements including their variations
- */
-function clockwise(placement) {
-  var counter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
-
-  var index = validPlacements.indexOf(placement);
-  var arr = validPlacements.slice(index + 1).concat(validPlacements.slice(0, index));
-  return counter ? arr.reverse() : arr;
-}
-
-var BEHAVIORS = {
-  FLIP: 'flip',
-  CLOCKWISE: 'clockwise',
-  COUNTERCLOCKWISE: 'counterclockwise'
-};
-
-/**
- * @function
- * @memberof Modifiers
- * @argument {Object} data - The data object generated by update method
- * @argument {Object} options - Modifiers configuration and options
- * @returns {Object} The data object, properly modified
- */
-function flip(data, options) {
-  // if `inner` modifier is enabled, we can't use the `flip` modifier
-  if (isModifierEnabled(data.instance.modifiers, 'inner')) {
-    return data;
-  }
-
-  if (data.flipped && data.placement === data.originalPlacement) {
-    // seems like flip is trying to loop, probably there's not enough space on any of the flippable sides
-    return data;
-  }
-
-  var boundaries = getBoundaries(data.instance.popper, data.instance.reference, options.padding, options.boundariesElement, data.positionFixed);
-
-  var placement = data.placement.split('-')[0];
-  var placementOpposite = getOppositePlacement(placement);
-  var variation = data.placement.split('-')[1] || '';
-
-  var flipOrder = [];
-
-  switch (options.behavior) {
-    case BEHAVIORS.FLIP:
-      flipOrder = [placement, placementOpposite];
-      break;
-    case BEHAVIORS.CLOCKWISE:
-      flipOrder = clockwise(placement);
-      break;
-    case BEHAVIORS.COUNTERCLOCKWISE:
-      flipOrder = clockwise(placement, true);
-      break;
-    default:
-      flipOrder = options.behavior;
-  }
-
-  flipOrder.forEach(function (step, index) {
-    if (placement !== step || flipOrder.length === index + 1) {
-      return data;
-    }
-
-    placement = data.placement.split('-')[0];
-    placementOpposite = getOppositePlacement(placement);
-
-    var popperOffsets = data.offsets.popper;
-    var refOffsets = data.offsets.reference;
-
-    // using floor because the reference offsets may contain decimals we are not going to consider here
-    var floor = Math.floor;
-    var overlapsRef = placement === 'left' && floor(popperOffsets.right) > floor(refOffsets.left) || placement === 'right' && floor(popperOffsets.left) < floor(refOffsets.right) || placement === 'top' && floor(popperOffsets.bottom) > floor(refOffsets.top) || placement === 'bottom' && floor(popperOffsets.top) < floor(refOffsets.bottom);
-
-    var overflowsLeft = floor(popperOffsets.left) < floor(boundaries.left);
-    var overflowsRight = floor(popperOffsets.right) > floor(boundaries.right);
-    var overflowsTop = floor(popperOffsets.top) < floor(boundaries.top);
-    var overflowsBottom = floor(popperOffsets.bottom) > floor(boundaries.bottom);
-
-    var overflowsBoundaries = placement === 'left' && overflowsLeft || placement === 'right' && overflowsRight || placement === 'top' && overflowsTop || placement === 'bottom' && overflowsBottom;
-
-    // flip the variation if required
-    var isVertical = ['top', 'bottom'].indexOf(placement) !== -1;
-    var flippedVariation = !!options.flipVariations && (isVertical && variation === 'start' && overflowsLeft || isVertical && variation === 'end' && overflowsRight || !isVertical && variation === 'start' && overflowsTop || !isVertical && variation === 'end' && overflowsBottom);
-
-    if (overlapsRef || overflowsBoundaries || flippedVariation) {
-      // this boolean to detect any flip loop
-      data.flipped = true;
-
-      if (overlapsRef || overflowsBoundaries) {
-        placement = flipOrder[index + 1];
-      }
-
-      if (flippedVariation) {
-        variation = getOppositeVariation(variation);
-      }
-
-      data.placement = placement + (variation ? '-' + variation : '');
-
-      // this object contains `position`, we want to preserve it along with
-      // any additional property we may add in the future
-      data.offsets.popper = _extends({}, data.offsets.popper, getPopperOffsets(data.instance.popper, data.offsets.reference, data.placement));
-
-      data = runModifiers(data.instance.modifiers, data, 'flip');
-    }
-  });
-  return data;
-}
-
-/**
- * @function
- * @memberof Modifiers
- * @argument {Object} data - The data object generated by update method
- * @argument {Object} options - Modifiers configuration and options
- * @returns {Object} The data object, properly modified
- */
-function keepTogether(data) {
-  var _data$offsets = data.offsets,
-      popper = _data$offsets.popper,
-      reference = _data$offsets.reference;
-
-  var placement = data.placement.split('-')[0];
-  var floor = Math.floor;
-  var isVertical = ['top', 'bottom'].indexOf(placement) !== -1;
-  var side = isVertical ? 'right' : 'bottom';
-  var opSide = isVertical ? 'left' : 'top';
-  var measurement = isVertical ? 'width' : 'height';
-
-  if (popper[side] < floor(reference[opSide])) {
-    data.offsets.popper[opSide] = floor(reference[opSide]) - popper[measurement];
-  }
-  if (popper[opSide] > floor(reference[side])) {
-    data.offsets.popper[opSide] = floor(reference[side]);
-  }
-
-  return data;
-}
-
-/**
- * Converts a string containing value + unit into a px value number
- * @function
- * @memberof {modifiers~offset}
- * @private
- * @argument {String} str - Value + unit string
- * @argument {String} measurement - `height` or `width`
- * @argument {Object} popperOffsets
- * @argument {Object} referenceOffsets
- * @returns {Number|String}
- * Value in pixels, or original string if no values were extracted
- */
-function toValue(str, measurement, popperOffsets, referenceOffsets) {
-  // separate value from unit
-  var split = str.match(/((?:\-|\+)?\d*\.?\d*)(.*)/);
-  var value = +split[1];
-  var unit = split[2];
-
-  // If it's not a number it's an operator, I guess
-  if (!value) {
-    return str;
-  }
-
-  if (unit.indexOf('%') === 0) {
-    var element = void 0;
-    switch (unit) {
-      case '%p':
-        element = popperOffsets;
-        break;
-      case '%':
-      case '%r':
-      default:
-        element = referenceOffsets;
-    }
-
-    var rect = getClientRect(element);
-    return rect[measurement] / 100 * value;
-  } else if (unit === 'vh' || unit === 'vw') {
-    // if is a vh or vw, we calculate the size based on the viewport
-    var size = void 0;
-    if (unit === 'vh') {
-      size = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
-    } else {
-      size = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
-    }
-    return size / 100 * value;
-  } else {
-    // if is an explicit pixel unit, we get rid of the unit and keep the value
-    // if is an implicit unit, it's px, and we return just the value
-    return value;
-  }
-}
-
-/**
- * Parse an `offset` string to extrapolate `x` and `y` numeric offsets.
- * @function
- * @memberof {modifiers~offset}
- * @private
- * @argument {String} offset
- * @argument {Object} popperOffsets
- * @argument {Object} referenceOffsets
- * @argument {String} basePlacement
- * @returns {Array} a two cells array with x and y offsets in numbers
- */
-function parseOffset(offset, popperOffsets, referenceOffsets, basePlacement) {
-  var offsets = [0, 0];
-
-  // Use height if placement is left or right and index is 0 otherwise use width
-  // in this way the first offset will use an axis and the second one
-  // will use the other one
-  var useHeight = ['right', 'left'].indexOf(basePlacement) !== -1;
-
-  // Split the offset string to obtain a list of values and operands
-  // The regex addresses values with the plus or minus sign in front (+10, -20, etc)
-  var fragments = offset.split(/(\+|\-)/).map(function (frag) {
-    return frag.trim();
-  });
-
-  // Detect if the offset string contains a pair of values or a single one
-  // they could be separated by comma or space
-  var divider = fragments.indexOf(find(fragments, function (frag) {
-    return frag.search(/,|\s/) !== -1;
-  }));
-
-  if (fragments[divider] && fragments[divider].indexOf(',') === -1) {
-    console.warn('Offsets separated by white space(s) are deprecated, use a comma (,) instead.');
-  }
-
-  // If divider is found, we divide the list of values and operands to divide
-  // them by ofset X and Y.
-  var splitRegex = /\s*,\s*|\s+/;
-  var ops = divider !== -1 ? [fragments.slice(0, divider).concat([fragments[divider].split(splitRegex)[0]]), [fragments[divider].split(splitRegex)[1]].concat(fragments.slice(divider + 1))] : [fragments];
-
-  // Convert the values with units to absolute pixels to allow our computations
-  ops = ops.map(function (op, index) {
-    // Most of the units rely on the orientation of the popper
-    var measurement = (index === 1 ? !useHeight : useHeight) ? 'height' : 'width';
-    var mergeWithPrevious = false;
-    return op
-    // This aggregates any `+` or `-` sign that aren't considered operators
-    // e.g.: 10 + +5 => [10, +, +5]
-    .reduce(function (a, b) {
-      if (a[a.length - 1] === '' && ['+', '-'].indexOf(b) !== -1) {
-        a[a.length - 1] = b;
-        mergeWithPrevious = true;
-        return a;
-      } else if (mergeWithPrevious) {
-        a[a.length - 1] += b;
-        mergeWithPrevious = false;
-        return a;
-      } else {
-        return a.concat(b);
-      }
-    }, [])
-    // Here we convert the string values into number values (in px)
-    .map(function (str) {
-      return toValue(str, measurement, popperOffsets, referenceOffsets);
-    });
-  });
-
-  // Loop trough the offsets arrays and execute the operations
-  ops.forEach(function (op, index) {
-    op.forEach(function (frag, index2) {
-      if (isNumeric(frag)) {
-        offsets[index] += frag * (op[index2 - 1] === '-' ? -1 : 1);
-      }
-    });
-  });
-  return offsets;
-}
-
-/**
- * @function
- * @memberof Modifiers
- * @argument {Object} data - The data object generated by update method
- * @argument {Object} options - Modifiers configuration and options
- * @argument {Number|String} options.offset=0
- * The offset value as described in the modifier description
- * @returns {Object} The data object, properly modified
- */
-function offset(data, _ref) {
-  var offset = _ref.offset;
-  var placement = data.placement,
-      _data$offsets = data.offsets,
-      popper = _data$offsets.popper,
-      reference = _data$offsets.reference;
-
-  var basePlacement = placement.split('-')[0];
-
-  var offsets = void 0;
-  if (isNumeric(+offset)) {
-    offsets = [+offset, 0];
-  } else {
-    offsets = parseOffset(offset, popper, reference, basePlacement);
-  }
-
-  if (basePlacement === 'left') {
-    popper.top += offsets[0];
-    popper.left -= offsets[1];
-  } else if (basePlacement === 'right') {
-    popper.top += offsets[0];
-    popper.left += offsets[1];
-  } else if (basePlacement === 'top') {
-    popper.left += offsets[0];
-    popper.top -= offsets[1];
-  } else if (basePlacement === 'bottom') {
-    popper.left += offsets[0];
-    popper.top += offsets[1];
-  }
-
-  data.popper = popper;
-  return data;
-}
-
-/**
- * @function
- * @memberof Modifiers
- * @argument {Object} data - The data object generated by `update` method
- * @argument {Object} options - Modifiers configuration and options
- * @returns {Object} The data object, properly modified
- */
-function preventOverflow(data, options) {
-  var boundariesElement = options.boundariesElement || getOffsetParent(data.instance.popper);
-
-  // If offsetParent is the reference element, we really want to
-  // go one step up and use the next offsetParent as reference to
-  // avoid to make this modifier completely useless and look like broken
-  if (data.instance.reference === boundariesElement) {
-    boundariesElement = getOffsetParent(boundariesElement);
-  }
-
-  // NOTE: DOM access here
-  // resets the popper's position so that the document size can be calculated excluding
-  // the size of the popper element itself
-  var transformProp = getSupportedPropertyName('transform');
-  var popperStyles = data.instance.popper.style; // assignment to help minification
-  var top = popperStyles.top,
-      left = popperStyles.left,
-      transform = popperStyles[transformProp];
-
-  popperStyles.top = '';
-  popperStyles.left = '';
-  popperStyles[transformProp] = '';
-
-  var boundaries = getBoundaries(data.instance.popper, data.instance.reference, options.padding, boundariesElement, data.positionFixed);
-
-  // NOTE: DOM access here
-  // restores the original style properties after the offsets have been computed
-  popperStyles.top = top;
-  popperStyles.left = left;
-  popperStyles[transformProp] = transform;
-
-  options.boundaries = boundaries;
-
-  var order = options.priority;
-  var popper = data.offsets.popper;
-
-  var check = {
-    primary: function primary(placement) {
-      var value = popper[placement];
-      if (popper[placement] < boundaries[placement] && !options.escapeWithReference) {
-        value = Math.max(popper[placement], boundaries[placement]);
-      }
-      return defineProperty({}, placement, value);
-    },
-    secondary: function secondary(placement) {
-      var mainSide = placement === 'right' ? 'left' : 'top';
-      var value = popper[mainSide];
-      if (popper[placement] > boundaries[placement] && !options.escapeWithReference) {
-        value = Math.min(popper[mainSide], boundaries[placement] - (placement === 'right' ? popper.width : popper.height));
-      }
-      return defineProperty({}, mainSide, value);
-    }
-  };
-
-  order.forEach(function (placement) {
-    var side = ['left', 'top'].indexOf(placement) !== -1 ? 'primary' : 'secondary';
-    popper = _extends({}, popper, check[side](placement));
-  });
-
-  data.offsets.popper = popper;
-
-  return data;
-}
-
-/**
- * @function
- * @memberof Modifiers
- * @argument {Object} data - The data object generated by `update` method
- * @argument {Object} options - Modifiers configuration and options
- * @returns {Object} The data object, properly modified
- */
-function shift(data) {
-  var placement = data.placement;
-  var basePlacement = placement.split('-')[0];
-  var shiftvariation = placement.split('-')[1];
-
-  // if shift shiftvariation is specified, run the modifier
-  if (shiftvariation) {
-    var _data$offsets = data.offsets,
-        reference = _data$offsets.reference,
-        popper = _data$offsets.popper;
-
-    var isVertical = ['bottom', 'top'].indexOf(basePlacement) !== -1;
-    var side = isVertical ? 'left' : 'top';
-    var measurement = isVertical ? 'width' : 'height';
-
-    var shiftOffsets = {
-      start: defineProperty({}, side, reference[side]),
-      end: defineProperty({}, side, reference[side] + reference[measurement] - popper[measurement])
-    };
-
-    data.offsets.popper = _extends({}, popper, shiftOffsets[shiftvariation]);
-  }
-
-  return data;
-}
-
-/**
- * @function
- * @memberof Modifiers
- * @argument {Object} data - The data object generated by update method
- * @argument {Object} options - Modifiers configuration and options
- * @returns {Object} The data object, properly modified
- */
-function hide(data) {
-  if (!isModifierRequired(data.instance.modifiers, 'hide', 'preventOverflow')) {
-    return data;
-  }
-
-  var refRect = data.offsets.reference;
-  var bound = find(data.instance.modifiers, function (modifier) {
-    return modifier.name === 'preventOverflow';
-  }).boundaries;
-
-  if (refRect.bottom < bound.top || refRect.left > bound.right || refRect.top > bound.bottom || refRect.right < bound.left) {
-    // Avoid unnecessary DOM access if visibility hasn't changed
-    if (data.hide === true) {
-      return data;
-    }
-
-    data.hide = true;
-    data.attributes['x-out-of-boundaries'] = '';
-  } else {
-    // Avoid unnecessary DOM access if visibility hasn't changed
-    if (data.hide === false) {
-      return data;
-    }
-
-    data.hide = false;
-    data.attributes['x-out-of-boundaries'] = false;
-  }
-
-  return data;
-}
-
-/**
- * @function
- * @memberof Modifiers
- * @argument {Object} data - The data object generated by `update` method
- * @argument {Object} options - Modifiers configuration and options
- * @returns {Object} The data object, properly modified
- */
-function inner(data) {
-  var placement = data.placement;
-  var basePlacement = placement.split('-')[0];
-  var _data$offsets = data.offsets,
-      popper = _data$offsets.popper,
-      reference = _data$offsets.reference;
-
-  var isHoriz = ['left', 'right'].indexOf(basePlacement) !== -1;
-
-  var subtractLength = ['top', 'left'].indexOf(basePlacement) === -1;
-
-  popper[isHoriz ? 'left' : 'top'] = reference[basePlacement] - (subtractLength ? popper[isHoriz ? 'width' : 'height'] : 0);
-
-  data.placement = getOppositePlacement(placement);
-  data.offsets.popper = getClientRect(popper);
-
-  return data;
-}
-
-/**
- * Modifier function, each modifier can have a function of this type assigned
- * to its `fn` property.<br />
- * These functions will be called on each update, this means that you must
- * make sure they are performant enough to avoid performance bottlenecks.
- *
- * @function ModifierFn
- * @argument {dataObject} data - The data object generated by `update` method
- * @argument {Object} options - Modifiers configuration and options
- * @returns {dataObject} The data object, properly modified
- */
-
-/**
- * Modifiers are plugins used to alter the behavior of your poppers.<br />
- * Popper.js uses a set of 9 modifiers to provide all the basic functionalities
- * needed by the library.
- *
- * Usually you don't want to override the `order`, `fn` and `onLoad` props.
- * All the other properties are configurations that could be tweaked.
- * @namespace modifiers
- */
-var modifiers = {
-  /**
-   * Modifier used to shift the popper on the start or end of its reference
-   * element.<br />
-   * It will read the variation of the `placement` property.<br />
-   * It can be one either `-end` or `-start`.
-   * @memberof modifiers
-   * @inner
-   */
-  shift: {
-    /** @prop {number} order=100 - Index used to define the order of execution */
-    order: 100,
-    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
-    enabled: true,
-    /** @prop {ModifierFn} */
-    fn: shift
-  },
-
-  /**
-   * The `offset` modifier can shift your popper on both its axis.
-   *
-   * It accepts the following units:
-   * - `px` or unit-less, interpreted as pixels
-   * - `%` or `%r`, percentage relative to the length of the reference element
-   * - `%p`, percentage relative to the length of the popper element
-   * - `vw`, CSS viewport width unit
-   * - `vh`, CSS viewport height unit
-   *
-   * For length is intended the main axis relative to the placement of the popper.<br />
-   * This means that if the placement is `top` or `bottom`, the length will be the
-   * `width`. In case of `left` or `right`, it will be the `height`.
-   *
-   * You can provide a single value (as `Number` or `String`), or a pair of values
-   * as `String` divided by a comma or one (or more) white spaces.<br />
-   * The latter is a deprecated method because it leads to confusion and will be
-   * removed in v2.<br />
-   * Additionally, it accepts additions and subtractions between different units.
-   * Note that multiplications and divisions aren't supported.
-   *
-   * Valid examples are:
-   * ```
-   * 10
-   * '10%'
-   * '10, 10'
-   * '10%, 10'
-   * '10 + 10%'
-   * '10 - 5vh + 3%'
-   * '-10px + 5vh, 5px - 6%'
-   * ```
-   * > **NB**: If you desire to apply offsets to your poppers in a way that may make them overlap
-   * > with their reference element, unfortunately, you will have to disable the `flip` modifier.
-   * > You can read more on this at this [issue](https://github.com/FezVrasta/popper.js/issues/373).
-   *
-   * @memberof modifiers
-   * @inner
-   */
-  offset: {
-    /** @prop {number} order=200 - Index used to define the order of execution */
-    order: 200,
-    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
-    enabled: true,
-    /** @prop {ModifierFn} */
-    fn: offset,
-    /** @prop {Number|String} offset=0
-     * The offset value as described in the modifier description
-     */
-    offset: 0
-  },
-
-  /**
-   * Modifier used to prevent the popper from being positioned outside the boundary.
-   *
-   * A scenario exists where the reference itself is not within the boundaries.<br />
-   * We can say it has "escaped the boundaries" — or just "escaped".<br />
-   * In this case we need to decide whether the popper should either:
-   *
-   * - detach from the reference and remain "trapped" in the boundaries, or
-   * - if it should ignore the boundary and "escape with its reference"
-   *
-   * When `escapeWithReference` is set to`true` and reference is completely
-   * outside its boundaries, the popper will overflow (or completely leave)
-   * the boundaries in order to remain attached to the edge of the reference.
-   *
-   * @memberof modifiers
-   * @inner
-   */
-  preventOverflow: {
-    /** @prop {number} order=300 - Index used to define the order of execution */
-    order: 300,
-    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
-    enabled: true,
-    /** @prop {ModifierFn} */
-    fn: preventOverflow,
-    /**
-     * @prop {Array} [priority=['left','right','top','bottom']]
-     * Popper will try to prevent overflow following these priorities by default,
-     * then, it could overflow on the left and on top of the `boundariesElement`
-     */
-    priority: ['left', 'right', 'top', 'bottom'],
-    /**
-     * @prop {number} padding=5
-     * Amount of pixel used to define a minimum distance between the boundaries
-     * and the popper. This makes sure the popper always has a little padding
-     * between the edges of its container
-     */
-    padding: 5,
-    /**
-     * @prop {String|HTMLElement} boundariesElement='scrollParent'
-     * Boundaries used by the modifier. Can be `scrollParent`, `window`,
-     * `viewport` or any DOM element.
-     */
-    boundariesElement: 'scrollParent'
-  },
-
-  /**
-   * Modifier used to make sure the reference and its popper stay near each other
-   * without leaving any gap between the two. Especially useful when the arrow is
-   * enabled and you want to ensure that it points to its reference element.
-   * It cares only about the first axis. You can still have poppers with margin
-   * between the popper and its reference element.
-   * @memberof modifiers
-   * @inner
-   */
-  keepTogether: {
-    /** @prop {number} order=400 - Index used to define the order of execution */
-    order: 400,
-    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
-    enabled: true,
-    /** @prop {ModifierFn} */
-    fn: keepTogether
-  },
-
-  /**
-   * This modifier is used to move the `arrowElement` of the popper to make
-   * sure it is positioned between the reference element and its popper element.
-   * It will read the outer size of the `arrowElement` node to detect how many
-   * pixels of conjunction are needed.
-   *
-   * It has no effect if no `arrowElement` is provided.
-   * @memberof modifiers
-   * @inner
-   */
-  arrow: {
-    /** @prop {number} order=500 - Index used to define the order of execution */
-    order: 500,
-    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
-    enabled: true,
-    /** @prop {ModifierFn} */
-    fn: arrow,
-    /** @prop {String|HTMLElement} element='[x-arrow]' - Selector or node used as arrow */
-    element: '[x-arrow]'
-  },
-
-  /**
-   * Modifier used to flip the popper's placement when it starts to overlap its
-   * reference element.
-   *
-   * Requires the `preventOverflow` modifier before it in order to work.
-   *
-   * **NOTE:** this modifier will interrupt the current update cycle and will
-   * restart it if it detects the need to flip the placement.
-   * @memberof modifiers
-   * @inner
-   */
-  flip: {
-    /** @prop {number} order=600 - Index used to define the order of execution */
-    order: 600,
-    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
-    enabled: true,
-    /** @prop {ModifierFn} */
-    fn: flip,
-    /**
-     * @prop {String|Array} behavior='flip'
-     * The behavior used to change the popper's placement. It can be one of
-     * `flip`, `clockwise`, `counterclockwise` or an array with a list of valid
-     * placements (with optional variations)
-     */
-    behavior: 'flip',
-    /**
-     * @prop {number} padding=5
-     * The popper will flip if it hits the edges of the `boundariesElement`
-     */
-    padding: 5,
-    /**
-     * @prop {String|HTMLElement} boundariesElement='viewport'
-     * The element which will define the boundaries of the popper position.
-     * The popper will never be placed outside of the defined boundaries
-     * (except if `keepTogether` is enabled)
-     */
-    boundariesElement: 'viewport'
-  },
-
-  /**
-   * Modifier used to make the popper flow toward the inner of the reference element.
-   * By default, when this modifier is disabled, the popper will be placed outside
-   * the reference element.
-   * @memberof modifiers
-   * @inner
-   */
-  inner: {
-    /** @prop {number} order=700 - Index used to define the order of execution */
-    order: 700,
-    /** @prop {Boolean} enabled=false - Whether the modifier is enabled or not */
-    enabled: false,
-    /** @prop {ModifierFn} */
-    fn: inner
-  },
-
-  /**
-   * Modifier used to hide the popper when its reference element is outside of the
-   * popper boundaries. It will set a `x-out-of-boundaries` attribute which can
-   * be used to hide with a CSS selector the popper when its reference is
-   * out of boundaries.
-   *
-   * Requires the `preventOverflow` modifier before it in order to work.
-   * @memberof modifiers
-   * @inner
-   */
-  hide: {
-    /** @prop {number} order=800 - Index used to define the order of execution */
-    order: 800,
-    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
-    enabled: true,
-    /** @prop {ModifierFn} */
-    fn: hide
-  },
-
-  /**
-   * Computes the style that will be applied to the popper element to gets
-   * properly positioned.
-   *
-   * Note that this modifier will not touch the DOM, it just prepares the styles
-   * so that `applyStyle` modifier can apply it. This separation is useful
-   * in case you need to replace `applyStyle` with a custom implementation.
-   *
-   * This modifier has `850` as `order` value to maintain backward compatibility
-   * with previous versions of Popper.js. Expect the modifiers ordering method
-   * to change in future major versions of the library.
-   *
-   * @memberof modifiers
-   * @inner
-   */
-  computeStyle: {
-    /** @prop {number} order=850 - Index used to define the order of execution */
-    order: 850,
-    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
-    enabled: true,
-    /** @prop {ModifierFn} */
-    fn: computeStyle,
-    /**
-     * @prop {Boolean} gpuAcceleration=true
-     * If true, it uses the CSS 3D transformation to position the popper.
-     * Otherwise, it will use the `top` and `left` properties
-     */
-    gpuAcceleration: true,
-    /**
-     * @prop {string} [x='bottom']
-     * Where to anchor the X axis (`bottom` or `top`). AKA X offset origin.
-     * Change this if your popper should grow in a direction different from `bottom`
-     */
-    x: 'bottom',
-    /**
-     * @prop {string} [x='left']
-     * Where to anchor the Y axis (`left` or `right`). AKA Y offset origin.
-     * Change this if your popper should grow in a direction different from `right`
-     */
-    y: 'right'
-  },
-
-  /**
-   * Applies the computed styles to the popper element.
-   *
-   * All the DOM manipulations are limited to this modifier. This is useful in case
-   * you want to integrate Popper.js inside a framework or view library and you
-   * want to delegate all the DOM manipulations to it.
-   *
-   * Note that if you disable this modifier, you must make sure the popper element
-   * has its position set to `absolute` before Popper.js can do its work!
-   *
-   * Just disable this modifier and define your own to achieve the desired effect.
-   *
-   * @memberof modifiers
-   * @inner
-   */
-  applyStyle: {
-    /** @prop {number} order=900 - Index used to define the order of execution */
-    order: 900,
-    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
-    enabled: true,
-    /** @prop {ModifierFn} */
-    fn: applyStyle,
-    /** @prop {Function} */
-    onLoad: applyStyleOnLoad,
-    /**
-     * @deprecated since version 1.10.0, the property moved to `computeStyle` modifier
-     * @prop {Boolean} gpuAcceleration=true
-     * If true, it uses the CSS 3D transformation to position the popper.
-     * Otherwise, it will use the `top` and `left` properties
-     */
-    gpuAcceleration: undefined
-  }
-};
-
-/**
- * The `dataObject` is an object containing all the information used by Popper.js.
- * This object is passed to modifiers and to the `onCreate` and `onUpdate` callbacks.
- * @name dataObject
- * @property {Object} data.instance The Popper.js instance
- * @property {String} data.placement Placement applied to popper
- * @property {String} data.originalPlacement Placement originally defined on init
- * @property {Boolean} data.flipped True if popper has been flipped by flip modifier
- * @property {Boolean} data.hide True if the reference element is out of boundaries, useful to know when to hide the popper
- * @property {HTMLElement} data.arrowElement Node used as arrow by arrow modifier
- * @property {Object} data.styles Any CSS property defined here will be applied to the popper. It expects the JavaScript nomenclature (eg. `marginBottom`)
- * @property {Object} data.arrowStyles Any CSS property defined here will be applied to the popper arrow. It expects the JavaScript nomenclature (eg. `marginBottom`)
- * @property {Object} data.boundaries Offsets of the popper boundaries
- * @property {Object} data.offsets The measurements of popper, reference and arrow elements
- * @property {Object} data.offsets.popper `top`, `left`, `width`, `height` values
- * @property {Object} data.offsets.reference `top`, `left`, `width`, `height` values
- * @property {Object} data.offsets.arrow] `top` and `left` offsets, only one of them will be different from 0
- */
-
-/**
- * Default options provided to Popper.js constructor.<br />
- * These can be overridden using the `options` argument of Popper.js.<br />
- * To override an option, simply pass an object with the same
- * structure of the `options` object, as the 3rd argument. For example:
- * ```
- * new Popper(ref, pop, {
- *   modifiers: {
- *     preventOverflow: { enabled: false }
- *   }
- * })
- * ```
- * @type {Object}
- * @static
- * @memberof Popper
- */
-var Defaults = {
-  /**
-   * Popper's placement.
-   * @prop {Popper.placements} placement='bottom'
-   */
-  placement: 'bottom',
-
-  /**
-   * Set this to true if you want popper to position it self in 'fixed' mode
-   * @prop {Boolean} positionFixed=false
-   */
-  positionFixed: false,
-
-  /**
-   * Whether events (resize, scroll) are initially enabled.
-   * @prop {Boolean} eventsEnabled=true
-   */
-  eventsEnabled: true,
-
-  /**
-   * Set to true if you want to automatically remove the popper when
-   * you call the `destroy` method.
-   * @prop {Boolean} removeOnDestroy=false
-   */
-  removeOnDestroy: false,
-
-  /**
-   * Callback called when the popper is created.<br />
-   * By default, it is set to no-op.<br />
-   * Access Popper.js instance with `data.instance`.
-   * @prop {onCreate}
-   */
-  onCreate: function onCreate() {},
-
-  /**
-   * Callback called when the popper is updated. This callback is not called
-   * on the initialization/creation of the popper, but only on subsequent
-   * updates.<br />
-   * By default, it is set to no-op.<br />
-   * Access Popper.js instance with `data.instance`.
-   * @prop {onUpdate}
-   */
-  onUpdate: function onUpdate() {},
-
-  /**
-   * List of modifiers used to modify the offsets before they are applied to the popper.
-   * They provide most of the functionalities of Popper.js.
-   * @prop {modifiers}
-   */
-  modifiers: modifiers
-};
-
-/**
- * @callback onCreate
- * @param {dataObject} data
- */
-
-/**
- * @callback onUpdate
- * @param {dataObject} data
- */
-
-// Utils
-// Methods
-var Popper = function () {
-  /**
-   * Creates a new Popper.js instance.
-   * @class Popper
-   * @param {HTMLElement|referenceObject} reference - The reference element used to position the popper
-   * @param {HTMLElement} popper - The HTML element used as the popper
-   * @param {Object} options - Your custom options to override the ones defined in [Defaults](#defaults)
-   * @return {Object} instance - The generated Popper.js instance
-   */
-  function Popper(reference, popper) {
-    var _this = this;
-
-    var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
-    classCallCheck(this, Popper);
-
-    this.scheduleUpdate = function () {
-      return requestAnimationFrame(_this.update);
-    };
-
-    // make update() debounced, so that it only runs at most once-per-tick
-    this.update = debounce(this.update.bind(this));
-
-    // with {} we create a new object with the options inside it
-    this.options = _extends({}, Popper.Defaults, options);
-
-    // init state
-    this.state = {
-      isDestroyed: false,
-      isCreated: false,
-      scrollParents: []
-    };
-
-    // get reference and popper elements (allow jQuery wrappers)
-    this.reference = reference && reference.jquery ? reference[0] : reference;
-    this.popper = popper && popper.jquery ? popper[0] : popper;
-
-    // Deep merge modifiers options
-    this.options.modifiers = {};
-    Object.keys(_extends({}, Popper.Defaults.modifiers, options.modifiers)).forEach(function (name) {
-      _this.options.modifiers[name] = _extends({}, Popper.Defaults.modifiers[name] || {}, options.modifiers ? options.modifiers[name] : {});
-    });
-
-    // Refactoring modifiers' list (Object => Array)
-    this.modifiers = Object.keys(this.options.modifiers).map(function (name) {
-      return _extends({
-        name: name
-      }, _this.options.modifiers[name]);
-    })
-    // sort the modifiers by order
-    .sort(function (a, b) {
-      return a.order - b.order;
-    });
-
-    // modifiers have the ability to execute arbitrary code when Popper.js get inited
-    // such code is executed in the same order of its modifier
-    // they could add new properties to their options configuration
-    // BE AWARE: don't add options to `options.modifiers.name` but to `modifierOptions`!
-    this.modifiers.forEach(function (modifierOptions) {
-      if (modifierOptions.enabled && isFunction(modifierOptions.onLoad)) {
-        modifierOptions.onLoad(_this.reference, _this.popper, _this.options, modifierOptions, _this.state);
-      }
-    });
-
-    // fire the first update to position the popper in the right place
-    this.update();
-
-    var eventsEnabled = this.options.eventsEnabled;
-    if (eventsEnabled) {
-      // setup event listeners, they will take care of update the position in specific situations
-      this.enableEventListeners();
-    }
-
-    this.state.eventsEnabled = eventsEnabled;
-  }
-
-  // We can't use class properties because they don't get listed in the
-  // class prototype and break stuff like Sinon stubs
-
-
-  createClass(Popper, [{
-    key: 'update',
-    value: function update$$1() {
-      return update.call(this);
-    }
-  }, {
-    key: 'destroy',
-    value: function destroy$$1() {
-      return destroy.call(this);
-    }
-  }, {
-    key: 'enableEventListeners',
-    value: function enableEventListeners$$1() {
-      return enableEventListeners.call(this);
-    }
-  }, {
-    key: 'disableEventListeners',
-    value: function disableEventListeners$$1() {
-      return disableEventListeners.call(this);
-    }
-
-    /**
-     * Schedules an update. It will run on the next UI update available.
-     * @method scheduleUpdate
-     * @memberof Popper
-     */
-
-
-    /**
-     * Collection of utilities useful when writing custom modifiers.
-     * Starting from version 1.7, this method is available only if you
-     * include `popper-utils.js` before `popper.js`.
-     *
-     * **DEPRECATION**: This way to access PopperUtils is deprecated
-     * and will be removed in v2! Use the PopperUtils module directly instead.
-     * Due to the high instability of the methods contained in Utils, we can't
-     * guarantee them to follow semver. Use them at your own risk!
-     * @static
-     * @private
-     * @type {Object}
-     * @deprecated since version 1.8
-     * @member Utils
-     * @memberof Popper
-     */
-
-  }]);
-  return Popper;
-}();
-
-/**
- * The `referenceObject` is an object that provides an interface compatible with Popper.js
- * and lets you use it as replacement of a real DOM node.<br />
- * You can use this method to position a popper relatively to a set of coordinates
- * in case you don't have a DOM node to use as reference.
- *
- * ```
- * new Popper(referenceObject, popperNode);
- * ```
- *
- * NB: This feature isn't supported in Internet Explorer 10.
- * @name referenceObject
- * @property {Function} data.getBoundingClientRect
- * A function that returns a set of coordinates compatible with the native `getBoundingClientRect` method.
- * @property {number} data.clientWidth
- * An ES6 getter that will return the width of the virtual reference element.
- * @property {number} data.clientHeight
- * An ES6 getter that will return the height of the virtual reference element.
- */
-
-
-Popper.Utils = (typeof window !== 'undefined' ? window : global).PopperUtils;
-Popper.placements = placements;
-Popper.Defaults = Defaults;
-
-/* harmony default export */ __webpack_exports__["default"] = (Popper);
-//# sourceMappingURL=popper.js.map
-
-/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(2)))
-
-/***/ }),
-/* 35 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
@@ -28010,7 +22638,5385 @@ return jQuery;
 
 
 /***/ }),
+/* 12 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(process) {
+
+var utils = __webpack_require__(1);
+var normalizeHeaderName = __webpack_require__(226);
+
+var DEFAULT_CONTENT_TYPE = {
+  'Content-Type': 'application/x-www-form-urlencoded'
+};
+
+function setContentTypeIfUnset(headers, value) {
+  if (!utils.isUndefined(headers) && utils.isUndefined(headers['Content-Type'])) {
+    headers['Content-Type'] = value;
+  }
+}
+
+function getDefaultAdapter() {
+  var adapter;
+  if (typeof XMLHttpRequest !== 'undefined') {
+    // For browsers use XHR adapter
+    adapter = __webpack_require__(38);
+  } else if (typeof process !== 'undefined') {
+    // For node use HTTP adapter
+    adapter = __webpack_require__(38);
+  }
+  return adapter;
+}
+
+var defaults = {
+  adapter: getDefaultAdapter(),
+
+  transformRequest: [function transformRequest(data, headers) {
+    normalizeHeaderName(headers, 'Content-Type');
+    if (utils.isFormData(data) ||
+      utils.isArrayBuffer(data) ||
+      utils.isBuffer(data) ||
+      utils.isStream(data) ||
+      utils.isFile(data) ||
+      utils.isBlob(data)
+    ) {
+      return data;
+    }
+    if (utils.isArrayBufferView(data)) {
+      return data.buffer;
+    }
+    if (utils.isURLSearchParams(data)) {
+      setContentTypeIfUnset(headers, 'application/x-www-form-urlencoded;charset=utf-8');
+      return data.toString();
+    }
+    if (utils.isObject(data)) {
+      setContentTypeIfUnset(headers, 'application/json;charset=utf-8');
+      return JSON.stringify(data);
+    }
+    return data;
+  }],
+
+  transformResponse: [function transformResponse(data) {
+    /*eslint no-param-reassign:0*/
+    if (typeof data === 'string') {
+      try {
+        data = JSON.parse(data);
+      } catch (e) { /* Ignore */ }
+    }
+    return data;
+  }],
+
+  /**
+   * A timeout in milliseconds to abort a request. If set to 0 (default) a
+   * timeout is not created.
+   */
+  timeout: 0,
+
+  xsrfCookieName: 'XSRF-TOKEN',
+  xsrfHeaderName: 'X-XSRF-TOKEN',
+
+  maxContentLength: -1,
+
+  validateStatus: function validateStatus(status) {
+    return status >= 200 && status < 300;
+  }
+};
+
+defaults.headers = {
+  common: {
+    'Accept': 'application/json, text/plain, */*'
+  }
+};
+
+utils.forEach(['delete', 'get', 'head'], function forEachMethodNoData(method) {
+  defaults.headers[method] = {};
+});
+
+utils.forEach(['post', 'put', 'patch'], function forEachMethodWithData(method) {
+  defaults.headers[method] = utils.merge(DEFAULT_CONTENT_TYPE);
+});
+
+module.exports = defaults;
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
+
+/***/ }),
+/* 13 */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/bootstrap-fileinput/loading.gif?13630905267b809161e71d0f8a0c017b";
+
+/***/ }),
+/* 14 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var Pagination = __webpack_require__(49);
+var PaginationEvent = __webpack_require__(16);
+
+module.exports = {
+  Pagination:Pagination,
+  PaginationEvent:PaginationEvent
+}
+
+
+/***/ }),
+/* 15 */
+/***/ (function(module, exports) {
+
+module.exports = function(module) {
+	if(!module.webpackPolyfill) {
+		module.deprecate = function() {};
+		module.paths = [];
+		// module.parent = undefined by default
+		if(!module.children) module.children = [];
+		Object.defineProperty(module, "loaded", {
+			enumerable: true,
+			get: function() {
+				return module.l;
+			}
+		});
+		Object.defineProperty(module, "id", {
+			enumerable: true,
+			get: function() {
+				return module.i;
+			}
+		});
+		module.webpackPolyfill = 1;
+	}
+	return module;
+};
+
+
+/***/ }),
+/* 16 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _vue = __webpack_require__(5);
+
+var _vue2 = _interopRequireDefault(_vue);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+var bus = new _vue2.default();
+
+module.exports = bus;
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+exports.default = function (source) {
+
+  var extra = source == 'server' ? serverExtra() : clientExtra();
+
+  return _merge2.default.recursive(true, {
+    props: {
+      name: {
+        type: String,
+        required: true
+      }
+    },
+    computed: {
+      state: function state() {
+        return this.$store.state[this.name];
+      },
+      Page: function Page() {
+        return this.state.page;
+      },
+      count: function count() {
+        return this.state.count;
+      },
+      Columns: function Columns() {
+        return this.state.columns;
+      },
+      tableData: function tableData() {
+        return this.state.data;
+      },
+      page: function page() {
+        return this.state.page;
+      },
+      limit: function limit() {
+        return this.state.limit;
+      },
+      customQueries: function customQueries() {
+        return this.state.customQueries;
+      },
+      query: function query() {
+        return this.state.query;
+      },
+      orderBy: function orderBy() {
+        return {
+          column: this.state.sortBy,
+          ascending: this.state.ascending
+        };
+      }
+    },
+    methods: {
+      commit: function commit(action, payload) {
+        return this.$store.commit(this.name + '/' + action, payload);
+      },
+      orderByColumn: function orderByColumn(column, ev) {
+
+        if (!this.sortable(column)) return;
+
+        if (ev.shiftKey && this.orderBy.column && this.hasMultiSort) {
+          this.setUserMultiSort(column);
+        } else {
+          var ascending = this.orderBy.column === column ? !this.orderBy.ascending : this._initialOrderAscending(column);
+          var orderBy = { column: column, ascending: ascending };
+          this.updateState('orderBy', orderBy);
+          this.commit('SORT', orderBy);
+          this.dispatch('sorted', orderBy);
+        }
+      },
+      setLimit: function setLimit(e) {
+        var limit = (typeof e === 'undefined' ? 'undefined' : _typeof(e)) === 'object' ? parseInt(e.target.value) : e;
+        this.updateState('perPage', limit);
+        this.commit('SET_LIMIT', limit);
+        this.dispatch('limit', limit);
+      },
+      setOrder: function setOrder(column, ascending) {
+        this.updateState('orderBy', { column: column, ascending: ascending });
+        this.commit('SORT', { column: column, ascending: ascending });
+      },
+      setPage: function setPage(page) {
+
+        if (!page) {
+          page = this.$refs.page.value;
+        }
+
+        if (!this.opts.pagination.dropdown) this.$refs.pagination.Page = page;
+
+        this.commit('PAGINATE', page);
+      }
+
+    }
+  }, extra);
+};
+
+var _merge = __webpack_require__(0);
+
+var _merge2 = _interopRequireDefault(_merge);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function serverExtra() {
+  return {
+    methods: {
+      setData: function setData(data) {
+        this.commit('SET_DATA', data);
+
+        setTimeout(function () {
+          this.dispatch('loaded', data);
+        }.bind(this), 0);
+      }
+    }
+  };
+}
+
+function clientExtra() {
+  return {};
+}
+
+/***/ }),
+/* 18 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function () {
+  return {
+    computed: {
+      Columns: function Columns() {
+        return this.columns;
+      }
+    }
+  };
+};
+
+/***/ }),
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function () {
+  return { methods: methods, computed: computed, directives: directives, beforeDestroy: beforeDestroy };
+};
+
+var methods = __webpack_require__(55);
+var computed = __webpack_require__(163);
+var directives = __webpack_require__(175);
+var beforeDestroy = __webpack_require__(178);
+
+/***/ }),
+/* 20 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function (e, dateEvent) {
+
+  // we need to handle the store this.query to make sure we're not mutating outside of it
+  var query = this.vuex ? JSON.parse(JSON.stringify(this.query)) : this.query;
+
+  // in case we pass an object manually (mostly used for init-date-filters should refactor
+  if (Object.prototype.toString.call(e).slice(8, -1) == 'Object') {
+    query = this.vuex ? JSON.parse(JSON.stringify(e)) : e;
+
+    if (!this.vuex) this.query = query;
+
+    var name = dateEvent.target.name;
+    var value = dateEvent.target.value;
+
+    if (name) {
+      this.dispatch('filter', { name: name, value: value });
+      this.dispatch('filter::' + name, value);
+    } else {
+      this.dispatch('filter', value);
+    }
+
+    this.updateState('query', query);
+  } else if (e) {
+    var _name = this.getName(e.target.name);
+    var _value = e.target.value;
+
+    if (_name) {
+      query[_name] = _value;
+    } else {
+      query = _value;
+    }
+
+    if (!this.vuex) this.query = query;
+
+    if (_name) {
+      this.dispatch('filter', { name: _name, value: _value });
+      this.dispatch('filter::' + _name, _value);
+    } else {
+      this.dispatch('filter', _value);
+    }
+
+    this.updateState('query', query);
+  }
+
+  return search(this, query);
+};
+
+function search(that, query) {
+
+  if (that.vuex) {
+    that.commit('SET_FILTER', query);
+  } else {
+    that.initPagination();
+
+    if (that.opts.pagination.dropdown) {
+      that.getData();
+    }
+  }
+}
+
+function noDebounce(e, name, opts) {
+  return !e || name && (opts.dateColumns.indexOf(name) > -1 || Object.keys(opts.listColumns).indexOf(name) > -1);
+}
+
+/***/ }),
+/* 21 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function (val) {
+  return val && typeof val.isValid == 'function' && val.isValid();
+};
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/* WEBPACK VAR INJECTION */(function(global) {/*!
+ * The buffer module from node.js, for the browser.
+ *
+ * @author   Feross Aboukhadijeh <feross@feross.org> <http://feross.org>
+ * @license  MIT
+ */
+/* eslint-disable no-proto */
+
+
+
+var base64 = __webpack_require__(83)
+var ieee754 = __webpack_require__(84)
+var isArray = __webpack_require__(23)
+
+exports.Buffer = Buffer
+exports.SlowBuffer = SlowBuffer
+exports.INSPECT_MAX_BYTES = 50
+
+/**
+ * If `Buffer.TYPED_ARRAY_SUPPORT`:
+ *   === true    Use Uint8Array implementation (fastest)
+ *   === false   Use Object implementation (most compatible, even IE6)
+ *
+ * Browsers that support typed arrays are IE 10+, Firefox 4+, Chrome 7+, Safari 5.1+,
+ * Opera 11.6+, iOS 4.2+.
+ *
+ * Due to various browser bugs, sometimes the Object implementation will be used even
+ * when the browser supports typed arrays.
+ *
+ * Note:
+ *
+ *   - Firefox 4-29 lacks support for adding new properties to `Uint8Array` instances,
+ *     See: https://bugzilla.mozilla.org/show_bug.cgi?id=695438.
+ *
+ *   - Chrome 9-10 is missing the `TypedArray.prototype.subarray` function.
+ *
+ *   - IE10 has a broken `TypedArray.prototype.subarray` function which returns arrays of
+ *     incorrect length in some situations.
+
+ * We detect these buggy browsers and set `Buffer.TYPED_ARRAY_SUPPORT` to `false` so they
+ * get the Object implementation, which is slower but behaves correctly.
+ */
+Buffer.TYPED_ARRAY_SUPPORT = global.TYPED_ARRAY_SUPPORT !== undefined
+  ? global.TYPED_ARRAY_SUPPORT
+  : typedArraySupport()
+
+/*
+ * Export kMaxLength after typed array support is determined.
+ */
+exports.kMaxLength = kMaxLength()
+
+function typedArraySupport () {
+  try {
+    var arr = new Uint8Array(1)
+    arr.__proto__ = {__proto__: Uint8Array.prototype, foo: function () { return 42 }}
+    return arr.foo() === 42 && // typed array instances can be augmented
+        typeof arr.subarray === 'function' && // chrome 9-10 lack `subarray`
+        arr.subarray(1, 1).byteLength === 0 // ie10 has broken `subarray`
+  } catch (e) {
+    return false
+  }
+}
+
+function kMaxLength () {
+  return Buffer.TYPED_ARRAY_SUPPORT
+    ? 0x7fffffff
+    : 0x3fffffff
+}
+
+function createBuffer (that, length) {
+  if (kMaxLength() < length) {
+    throw new RangeError('Invalid typed array length')
+  }
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    // Return an augmented `Uint8Array` instance, for best performance
+    that = new Uint8Array(length)
+    that.__proto__ = Buffer.prototype
+  } else {
+    // Fallback: Return an object instance of the Buffer class
+    if (that === null) {
+      that = new Buffer(length)
+    }
+    that.length = length
+  }
+
+  return that
+}
+
+/**
+ * The Buffer constructor returns instances of `Uint8Array` that have their
+ * prototype changed to `Buffer.prototype`. Furthermore, `Buffer` is a subclass of
+ * `Uint8Array`, so the returned instances will have all the node `Buffer` methods
+ * and the `Uint8Array` methods. Square bracket notation works as expected -- it
+ * returns a single octet.
+ *
+ * The `Uint8Array` prototype remains unmodified.
+ */
+
+function Buffer (arg, encodingOrOffset, length) {
+  if (!Buffer.TYPED_ARRAY_SUPPORT && !(this instanceof Buffer)) {
+    return new Buffer(arg, encodingOrOffset, length)
+  }
+
+  // Common case.
+  if (typeof arg === 'number') {
+    if (typeof encodingOrOffset === 'string') {
+      throw new Error(
+        'If encoding is specified then the first argument must be a string'
+      )
+    }
+    return allocUnsafe(this, arg)
+  }
+  return from(this, arg, encodingOrOffset, length)
+}
+
+Buffer.poolSize = 8192 // not used by this implementation
+
+// TODO: Legacy, not needed anymore. Remove in next major version.
+Buffer._augment = function (arr) {
+  arr.__proto__ = Buffer.prototype
+  return arr
+}
+
+function from (that, value, encodingOrOffset, length) {
+  if (typeof value === 'number') {
+    throw new TypeError('"value" argument must not be a number')
+  }
+
+  if (typeof ArrayBuffer !== 'undefined' && value instanceof ArrayBuffer) {
+    return fromArrayBuffer(that, value, encodingOrOffset, length)
+  }
+
+  if (typeof value === 'string') {
+    return fromString(that, value, encodingOrOffset)
+  }
+
+  return fromObject(that, value)
+}
+
+/**
+ * Functionally equivalent to Buffer(arg, encoding) but throws a TypeError
+ * if value is a number.
+ * Buffer.from(str[, encoding])
+ * Buffer.from(array)
+ * Buffer.from(buffer)
+ * Buffer.from(arrayBuffer[, byteOffset[, length]])
+ **/
+Buffer.from = function (value, encodingOrOffset, length) {
+  return from(null, value, encodingOrOffset, length)
+}
+
+if (Buffer.TYPED_ARRAY_SUPPORT) {
+  Buffer.prototype.__proto__ = Uint8Array.prototype
+  Buffer.__proto__ = Uint8Array
+  if (typeof Symbol !== 'undefined' && Symbol.species &&
+      Buffer[Symbol.species] === Buffer) {
+    // Fix subarray() in ES2016. See: https://github.com/feross/buffer/pull/97
+    Object.defineProperty(Buffer, Symbol.species, {
+      value: null,
+      configurable: true
+    })
+  }
+}
+
+function assertSize (size) {
+  if (typeof size !== 'number') {
+    throw new TypeError('"size" argument must be a number')
+  } else if (size < 0) {
+    throw new RangeError('"size" argument must not be negative')
+  }
+}
+
+function alloc (that, size, fill, encoding) {
+  assertSize(size)
+  if (size <= 0) {
+    return createBuffer(that, size)
+  }
+  if (fill !== undefined) {
+    // Only pay attention to encoding if it's a string. This
+    // prevents accidentally sending in a number that would
+    // be interpretted as a start offset.
+    return typeof encoding === 'string'
+      ? createBuffer(that, size).fill(fill, encoding)
+      : createBuffer(that, size).fill(fill)
+  }
+  return createBuffer(that, size)
+}
+
+/**
+ * Creates a new filled Buffer instance.
+ * alloc(size[, fill[, encoding]])
+ **/
+Buffer.alloc = function (size, fill, encoding) {
+  return alloc(null, size, fill, encoding)
+}
+
+function allocUnsafe (that, size) {
+  assertSize(size)
+  that = createBuffer(that, size < 0 ? 0 : checked(size) | 0)
+  if (!Buffer.TYPED_ARRAY_SUPPORT) {
+    for (var i = 0; i < size; ++i) {
+      that[i] = 0
+    }
+  }
+  return that
+}
+
+/**
+ * Equivalent to Buffer(num), by default creates a non-zero-filled Buffer instance.
+ * */
+Buffer.allocUnsafe = function (size) {
+  return allocUnsafe(null, size)
+}
+/**
+ * Equivalent to SlowBuffer(num), by default creates a non-zero-filled Buffer instance.
+ */
+Buffer.allocUnsafeSlow = function (size) {
+  return allocUnsafe(null, size)
+}
+
+function fromString (that, string, encoding) {
+  if (typeof encoding !== 'string' || encoding === '') {
+    encoding = 'utf8'
+  }
+
+  if (!Buffer.isEncoding(encoding)) {
+    throw new TypeError('"encoding" must be a valid string encoding')
+  }
+
+  var length = byteLength(string, encoding) | 0
+  that = createBuffer(that, length)
+
+  var actual = that.write(string, encoding)
+
+  if (actual !== length) {
+    // Writing a hex string, for example, that contains invalid characters will
+    // cause everything after the first invalid character to be ignored. (e.g.
+    // 'abxxcd' will be treated as 'ab')
+    that = that.slice(0, actual)
+  }
+
+  return that
+}
+
+function fromArrayLike (that, array) {
+  var length = array.length < 0 ? 0 : checked(array.length) | 0
+  that = createBuffer(that, length)
+  for (var i = 0; i < length; i += 1) {
+    that[i] = array[i] & 255
+  }
+  return that
+}
+
+function fromArrayBuffer (that, array, byteOffset, length) {
+  array.byteLength // this throws if `array` is not a valid ArrayBuffer
+
+  if (byteOffset < 0 || array.byteLength < byteOffset) {
+    throw new RangeError('\'offset\' is out of bounds')
+  }
+
+  if (array.byteLength < byteOffset + (length || 0)) {
+    throw new RangeError('\'length\' is out of bounds')
+  }
+
+  if (byteOffset === undefined && length === undefined) {
+    array = new Uint8Array(array)
+  } else if (length === undefined) {
+    array = new Uint8Array(array, byteOffset)
+  } else {
+    array = new Uint8Array(array, byteOffset, length)
+  }
+
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    // Return an augmented `Uint8Array` instance, for best performance
+    that = array
+    that.__proto__ = Buffer.prototype
+  } else {
+    // Fallback: Return an object instance of the Buffer class
+    that = fromArrayLike(that, array)
+  }
+  return that
+}
+
+function fromObject (that, obj) {
+  if (Buffer.isBuffer(obj)) {
+    var len = checked(obj.length) | 0
+    that = createBuffer(that, len)
+
+    if (that.length === 0) {
+      return that
+    }
+
+    obj.copy(that, 0, 0, len)
+    return that
+  }
+
+  if (obj) {
+    if ((typeof ArrayBuffer !== 'undefined' &&
+        obj.buffer instanceof ArrayBuffer) || 'length' in obj) {
+      if (typeof obj.length !== 'number' || isnan(obj.length)) {
+        return createBuffer(that, 0)
+      }
+      return fromArrayLike(that, obj)
+    }
+
+    if (obj.type === 'Buffer' && isArray(obj.data)) {
+      return fromArrayLike(that, obj.data)
+    }
+  }
+
+  throw new TypeError('First argument must be a string, Buffer, ArrayBuffer, Array, or array-like object.')
+}
+
+function checked (length) {
+  // Note: cannot use `length < kMaxLength()` here because that fails when
+  // length is NaN (which is otherwise coerced to zero.)
+  if (length >= kMaxLength()) {
+    throw new RangeError('Attempt to allocate Buffer larger than maximum ' +
+                         'size: 0x' + kMaxLength().toString(16) + ' bytes')
+  }
+  return length | 0
+}
+
+function SlowBuffer (length) {
+  if (+length != length) { // eslint-disable-line eqeqeq
+    length = 0
+  }
+  return Buffer.alloc(+length)
+}
+
+Buffer.isBuffer = function isBuffer (b) {
+  return !!(b != null && b._isBuffer)
+}
+
+Buffer.compare = function compare (a, b) {
+  if (!Buffer.isBuffer(a) || !Buffer.isBuffer(b)) {
+    throw new TypeError('Arguments must be Buffers')
+  }
+
+  if (a === b) return 0
+
+  var x = a.length
+  var y = b.length
+
+  for (var i = 0, len = Math.min(x, y); i < len; ++i) {
+    if (a[i] !== b[i]) {
+      x = a[i]
+      y = b[i]
+      break
+    }
+  }
+
+  if (x < y) return -1
+  if (y < x) return 1
+  return 0
+}
+
+Buffer.isEncoding = function isEncoding (encoding) {
+  switch (String(encoding).toLowerCase()) {
+    case 'hex':
+    case 'utf8':
+    case 'utf-8':
+    case 'ascii':
+    case 'latin1':
+    case 'binary':
+    case 'base64':
+    case 'ucs2':
+    case 'ucs-2':
+    case 'utf16le':
+    case 'utf-16le':
+      return true
+    default:
+      return false
+  }
+}
+
+Buffer.concat = function concat (list, length) {
+  if (!isArray(list)) {
+    throw new TypeError('"list" argument must be an Array of Buffers')
+  }
+
+  if (list.length === 0) {
+    return Buffer.alloc(0)
+  }
+
+  var i
+  if (length === undefined) {
+    length = 0
+    for (i = 0; i < list.length; ++i) {
+      length += list[i].length
+    }
+  }
+
+  var buffer = Buffer.allocUnsafe(length)
+  var pos = 0
+  for (i = 0; i < list.length; ++i) {
+    var buf = list[i]
+    if (!Buffer.isBuffer(buf)) {
+      throw new TypeError('"list" argument must be an Array of Buffers')
+    }
+    buf.copy(buffer, pos)
+    pos += buf.length
+  }
+  return buffer
+}
+
+function byteLength (string, encoding) {
+  if (Buffer.isBuffer(string)) {
+    return string.length
+  }
+  if (typeof ArrayBuffer !== 'undefined' && typeof ArrayBuffer.isView === 'function' &&
+      (ArrayBuffer.isView(string) || string instanceof ArrayBuffer)) {
+    return string.byteLength
+  }
+  if (typeof string !== 'string') {
+    string = '' + string
+  }
+
+  var len = string.length
+  if (len === 0) return 0
+
+  // Use a for loop to avoid recursion
+  var loweredCase = false
+  for (;;) {
+    switch (encoding) {
+      case 'ascii':
+      case 'latin1':
+      case 'binary':
+        return len
+      case 'utf8':
+      case 'utf-8':
+      case undefined:
+        return utf8ToBytes(string).length
+      case 'ucs2':
+      case 'ucs-2':
+      case 'utf16le':
+      case 'utf-16le':
+        return len * 2
+      case 'hex':
+        return len >>> 1
+      case 'base64':
+        return base64ToBytes(string).length
+      default:
+        if (loweredCase) return utf8ToBytes(string).length // assume utf8
+        encoding = ('' + encoding).toLowerCase()
+        loweredCase = true
+    }
+  }
+}
+Buffer.byteLength = byteLength
+
+function slowToString (encoding, start, end) {
+  var loweredCase = false
+
+  // No need to verify that "this.length <= MAX_UINT32" since it's a read-only
+  // property of a typed array.
+
+  // This behaves neither like String nor Uint8Array in that we set start/end
+  // to their upper/lower bounds if the value passed is out of range.
+  // undefined is handled specially as per ECMA-262 6th Edition,
+  // Section 13.3.3.7 Runtime Semantics: KeyedBindingInitialization.
+  if (start === undefined || start < 0) {
+    start = 0
+  }
+  // Return early if start > this.length. Done here to prevent potential uint32
+  // coercion fail below.
+  if (start > this.length) {
+    return ''
+  }
+
+  if (end === undefined || end > this.length) {
+    end = this.length
+  }
+
+  if (end <= 0) {
+    return ''
+  }
+
+  // Force coersion to uint32. This will also coerce falsey/NaN values to 0.
+  end >>>= 0
+  start >>>= 0
+
+  if (end <= start) {
+    return ''
+  }
+
+  if (!encoding) encoding = 'utf8'
+
+  while (true) {
+    switch (encoding) {
+      case 'hex':
+        return hexSlice(this, start, end)
+
+      case 'utf8':
+      case 'utf-8':
+        return utf8Slice(this, start, end)
+
+      case 'ascii':
+        return asciiSlice(this, start, end)
+
+      case 'latin1':
+      case 'binary':
+        return latin1Slice(this, start, end)
+
+      case 'base64':
+        return base64Slice(this, start, end)
+
+      case 'ucs2':
+      case 'ucs-2':
+      case 'utf16le':
+      case 'utf-16le':
+        return utf16leSlice(this, start, end)
+
+      default:
+        if (loweredCase) throw new TypeError('Unknown encoding: ' + encoding)
+        encoding = (encoding + '').toLowerCase()
+        loweredCase = true
+    }
+  }
+}
+
+// The property is used by `Buffer.isBuffer` and `is-buffer` (in Safari 5-7) to detect
+// Buffer instances.
+Buffer.prototype._isBuffer = true
+
+function swap (b, n, m) {
+  var i = b[n]
+  b[n] = b[m]
+  b[m] = i
+}
+
+Buffer.prototype.swap16 = function swap16 () {
+  var len = this.length
+  if (len % 2 !== 0) {
+    throw new RangeError('Buffer size must be a multiple of 16-bits')
+  }
+  for (var i = 0; i < len; i += 2) {
+    swap(this, i, i + 1)
+  }
+  return this
+}
+
+Buffer.prototype.swap32 = function swap32 () {
+  var len = this.length
+  if (len % 4 !== 0) {
+    throw new RangeError('Buffer size must be a multiple of 32-bits')
+  }
+  for (var i = 0; i < len; i += 4) {
+    swap(this, i, i + 3)
+    swap(this, i + 1, i + 2)
+  }
+  return this
+}
+
+Buffer.prototype.swap64 = function swap64 () {
+  var len = this.length
+  if (len % 8 !== 0) {
+    throw new RangeError('Buffer size must be a multiple of 64-bits')
+  }
+  for (var i = 0; i < len; i += 8) {
+    swap(this, i, i + 7)
+    swap(this, i + 1, i + 6)
+    swap(this, i + 2, i + 5)
+    swap(this, i + 3, i + 4)
+  }
+  return this
+}
+
+Buffer.prototype.toString = function toString () {
+  var length = this.length | 0
+  if (length === 0) return ''
+  if (arguments.length === 0) return utf8Slice(this, 0, length)
+  return slowToString.apply(this, arguments)
+}
+
+Buffer.prototype.equals = function equals (b) {
+  if (!Buffer.isBuffer(b)) throw new TypeError('Argument must be a Buffer')
+  if (this === b) return true
+  return Buffer.compare(this, b) === 0
+}
+
+Buffer.prototype.inspect = function inspect () {
+  var str = ''
+  var max = exports.INSPECT_MAX_BYTES
+  if (this.length > 0) {
+    str = this.toString('hex', 0, max).match(/.{2}/g).join(' ')
+    if (this.length > max) str += ' ... '
+  }
+  return '<Buffer ' + str + '>'
+}
+
+Buffer.prototype.compare = function compare (target, start, end, thisStart, thisEnd) {
+  if (!Buffer.isBuffer(target)) {
+    throw new TypeError('Argument must be a Buffer')
+  }
+
+  if (start === undefined) {
+    start = 0
+  }
+  if (end === undefined) {
+    end = target ? target.length : 0
+  }
+  if (thisStart === undefined) {
+    thisStart = 0
+  }
+  if (thisEnd === undefined) {
+    thisEnd = this.length
+  }
+
+  if (start < 0 || end > target.length || thisStart < 0 || thisEnd > this.length) {
+    throw new RangeError('out of range index')
+  }
+
+  if (thisStart >= thisEnd && start >= end) {
+    return 0
+  }
+  if (thisStart >= thisEnd) {
+    return -1
+  }
+  if (start >= end) {
+    return 1
+  }
+
+  start >>>= 0
+  end >>>= 0
+  thisStart >>>= 0
+  thisEnd >>>= 0
+
+  if (this === target) return 0
+
+  var x = thisEnd - thisStart
+  var y = end - start
+  var len = Math.min(x, y)
+
+  var thisCopy = this.slice(thisStart, thisEnd)
+  var targetCopy = target.slice(start, end)
+
+  for (var i = 0; i < len; ++i) {
+    if (thisCopy[i] !== targetCopy[i]) {
+      x = thisCopy[i]
+      y = targetCopy[i]
+      break
+    }
+  }
+
+  if (x < y) return -1
+  if (y < x) return 1
+  return 0
+}
+
+// Finds either the first index of `val` in `buffer` at offset >= `byteOffset`,
+// OR the last index of `val` in `buffer` at offset <= `byteOffset`.
+//
+// Arguments:
+// - buffer - a Buffer to search
+// - val - a string, Buffer, or number
+// - byteOffset - an index into `buffer`; will be clamped to an int32
+// - encoding - an optional encoding, relevant is val is a string
+// - dir - true for indexOf, false for lastIndexOf
+function bidirectionalIndexOf (buffer, val, byteOffset, encoding, dir) {
+  // Empty buffer means no match
+  if (buffer.length === 0) return -1
+
+  // Normalize byteOffset
+  if (typeof byteOffset === 'string') {
+    encoding = byteOffset
+    byteOffset = 0
+  } else if (byteOffset > 0x7fffffff) {
+    byteOffset = 0x7fffffff
+  } else if (byteOffset < -0x80000000) {
+    byteOffset = -0x80000000
+  }
+  byteOffset = +byteOffset  // Coerce to Number.
+  if (isNaN(byteOffset)) {
+    // byteOffset: it it's undefined, null, NaN, "foo", etc, search whole buffer
+    byteOffset = dir ? 0 : (buffer.length - 1)
+  }
+
+  // Normalize byteOffset: negative offsets start from the end of the buffer
+  if (byteOffset < 0) byteOffset = buffer.length + byteOffset
+  if (byteOffset >= buffer.length) {
+    if (dir) return -1
+    else byteOffset = buffer.length - 1
+  } else if (byteOffset < 0) {
+    if (dir) byteOffset = 0
+    else return -1
+  }
+
+  // Normalize val
+  if (typeof val === 'string') {
+    val = Buffer.from(val, encoding)
+  }
+
+  // Finally, search either indexOf (if dir is true) or lastIndexOf
+  if (Buffer.isBuffer(val)) {
+    // Special case: looking for empty string/buffer always fails
+    if (val.length === 0) {
+      return -1
+    }
+    return arrayIndexOf(buffer, val, byteOffset, encoding, dir)
+  } else if (typeof val === 'number') {
+    val = val & 0xFF // Search for a byte value [0-255]
+    if (Buffer.TYPED_ARRAY_SUPPORT &&
+        typeof Uint8Array.prototype.indexOf === 'function') {
+      if (dir) {
+        return Uint8Array.prototype.indexOf.call(buffer, val, byteOffset)
+      } else {
+        return Uint8Array.prototype.lastIndexOf.call(buffer, val, byteOffset)
+      }
+    }
+    return arrayIndexOf(buffer, [ val ], byteOffset, encoding, dir)
+  }
+
+  throw new TypeError('val must be string, number or Buffer')
+}
+
+function arrayIndexOf (arr, val, byteOffset, encoding, dir) {
+  var indexSize = 1
+  var arrLength = arr.length
+  var valLength = val.length
+
+  if (encoding !== undefined) {
+    encoding = String(encoding).toLowerCase()
+    if (encoding === 'ucs2' || encoding === 'ucs-2' ||
+        encoding === 'utf16le' || encoding === 'utf-16le') {
+      if (arr.length < 2 || val.length < 2) {
+        return -1
+      }
+      indexSize = 2
+      arrLength /= 2
+      valLength /= 2
+      byteOffset /= 2
+    }
+  }
+
+  function read (buf, i) {
+    if (indexSize === 1) {
+      return buf[i]
+    } else {
+      return buf.readUInt16BE(i * indexSize)
+    }
+  }
+
+  var i
+  if (dir) {
+    var foundIndex = -1
+    for (i = byteOffset; i < arrLength; i++) {
+      if (read(arr, i) === read(val, foundIndex === -1 ? 0 : i - foundIndex)) {
+        if (foundIndex === -1) foundIndex = i
+        if (i - foundIndex + 1 === valLength) return foundIndex * indexSize
+      } else {
+        if (foundIndex !== -1) i -= i - foundIndex
+        foundIndex = -1
+      }
+    }
+  } else {
+    if (byteOffset + valLength > arrLength) byteOffset = arrLength - valLength
+    for (i = byteOffset; i >= 0; i--) {
+      var found = true
+      for (var j = 0; j < valLength; j++) {
+        if (read(arr, i + j) !== read(val, j)) {
+          found = false
+          break
+        }
+      }
+      if (found) return i
+    }
+  }
+
+  return -1
+}
+
+Buffer.prototype.includes = function includes (val, byteOffset, encoding) {
+  return this.indexOf(val, byteOffset, encoding) !== -1
+}
+
+Buffer.prototype.indexOf = function indexOf (val, byteOffset, encoding) {
+  return bidirectionalIndexOf(this, val, byteOffset, encoding, true)
+}
+
+Buffer.prototype.lastIndexOf = function lastIndexOf (val, byteOffset, encoding) {
+  return bidirectionalIndexOf(this, val, byteOffset, encoding, false)
+}
+
+function hexWrite (buf, string, offset, length) {
+  offset = Number(offset) || 0
+  var remaining = buf.length - offset
+  if (!length) {
+    length = remaining
+  } else {
+    length = Number(length)
+    if (length > remaining) {
+      length = remaining
+    }
+  }
+
+  // must be an even number of digits
+  var strLen = string.length
+  if (strLen % 2 !== 0) throw new TypeError('Invalid hex string')
+
+  if (length > strLen / 2) {
+    length = strLen / 2
+  }
+  for (var i = 0; i < length; ++i) {
+    var parsed = parseInt(string.substr(i * 2, 2), 16)
+    if (isNaN(parsed)) return i
+    buf[offset + i] = parsed
+  }
+  return i
+}
+
+function utf8Write (buf, string, offset, length) {
+  return blitBuffer(utf8ToBytes(string, buf.length - offset), buf, offset, length)
+}
+
+function asciiWrite (buf, string, offset, length) {
+  return blitBuffer(asciiToBytes(string), buf, offset, length)
+}
+
+function latin1Write (buf, string, offset, length) {
+  return asciiWrite(buf, string, offset, length)
+}
+
+function base64Write (buf, string, offset, length) {
+  return blitBuffer(base64ToBytes(string), buf, offset, length)
+}
+
+function ucs2Write (buf, string, offset, length) {
+  return blitBuffer(utf16leToBytes(string, buf.length - offset), buf, offset, length)
+}
+
+Buffer.prototype.write = function write (string, offset, length, encoding) {
+  // Buffer#write(string)
+  if (offset === undefined) {
+    encoding = 'utf8'
+    length = this.length
+    offset = 0
+  // Buffer#write(string, encoding)
+  } else if (length === undefined && typeof offset === 'string') {
+    encoding = offset
+    length = this.length
+    offset = 0
+  // Buffer#write(string, offset[, length][, encoding])
+  } else if (isFinite(offset)) {
+    offset = offset | 0
+    if (isFinite(length)) {
+      length = length | 0
+      if (encoding === undefined) encoding = 'utf8'
+    } else {
+      encoding = length
+      length = undefined
+    }
+  // legacy write(string, encoding, offset, length) - remove in v0.13
+  } else {
+    throw new Error(
+      'Buffer.write(string, encoding, offset[, length]) is no longer supported'
+    )
+  }
+
+  var remaining = this.length - offset
+  if (length === undefined || length > remaining) length = remaining
+
+  if ((string.length > 0 && (length < 0 || offset < 0)) || offset > this.length) {
+    throw new RangeError('Attempt to write outside buffer bounds')
+  }
+
+  if (!encoding) encoding = 'utf8'
+
+  var loweredCase = false
+  for (;;) {
+    switch (encoding) {
+      case 'hex':
+        return hexWrite(this, string, offset, length)
+
+      case 'utf8':
+      case 'utf-8':
+        return utf8Write(this, string, offset, length)
+
+      case 'ascii':
+        return asciiWrite(this, string, offset, length)
+
+      case 'latin1':
+      case 'binary':
+        return latin1Write(this, string, offset, length)
+
+      case 'base64':
+        // Warning: maxLength not taken into account in base64Write
+        return base64Write(this, string, offset, length)
+
+      case 'ucs2':
+      case 'ucs-2':
+      case 'utf16le':
+      case 'utf-16le':
+        return ucs2Write(this, string, offset, length)
+
+      default:
+        if (loweredCase) throw new TypeError('Unknown encoding: ' + encoding)
+        encoding = ('' + encoding).toLowerCase()
+        loweredCase = true
+    }
+  }
+}
+
+Buffer.prototype.toJSON = function toJSON () {
+  return {
+    type: 'Buffer',
+    data: Array.prototype.slice.call(this._arr || this, 0)
+  }
+}
+
+function base64Slice (buf, start, end) {
+  if (start === 0 && end === buf.length) {
+    return base64.fromByteArray(buf)
+  } else {
+    return base64.fromByteArray(buf.slice(start, end))
+  }
+}
+
+function utf8Slice (buf, start, end) {
+  end = Math.min(buf.length, end)
+  var res = []
+
+  var i = start
+  while (i < end) {
+    var firstByte = buf[i]
+    var codePoint = null
+    var bytesPerSequence = (firstByte > 0xEF) ? 4
+      : (firstByte > 0xDF) ? 3
+      : (firstByte > 0xBF) ? 2
+      : 1
+
+    if (i + bytesPerSequence <= end) {
+      var secondByte, thirdByte, fourthByte, tempCodePoint
+
+      switch (bytesPerSequence) {
+        case 1:
+          if (firstByte < 0x80) {
+            codePoint = firstByte
+          }
+          break
+        case 2:
+          secondByte = buf[i + 1]
+          if ((secondByte & 0xC0) === 0x80) {
+            tempCodePoint = (firstByte & 0x1F) << 0x6 | (secondByte & 0x3F)
+            if (tempCodePoint > 0x7F) {
+              codePoint = tempCodePoint
+            }
+          }
+          break
+        case 3:
+          secondByte = buf[i + 1]
+          thirdByte = buf[i + 2]
+          if ((secondByte & 0xC0) === 0x80 && (thirdByte & 0xC0) === 0x80) {
+            tempCodePoint = (firstByte & 0xF) << 0xC | (secondByte & 0x3F) << 0x6 | (thirdByte & 0x3F)
+            if (tempCodePoint > 0x7FF && (tempCodePoint < 0xD800 || tempCodePoint > 0xDFFF)) {
+              codePoint = tempCodePoint
+            }
+          }
+          break
+        case 4:
+          secondByte = buf[i + 1]
+          thirdByte = buf[i + 2]
+          fourthByte = buf[i + 3]
+          if ((secondByte & 0xC0) === 0x80 && (thirdByte & 0xC0) === 0x80 && (fourthByte & 0xC0) === 0x80) {
+            tempCodePoint = (firstByte & 0xF) << 0x12 | (secondByte & 0x3F) << 0xC | (thirdByte & 0x3F) << 0x6 | (fourthByte & 0x3F)
+            if (tempCodePoint > 0xFFFF && tempCodePoint < 0x110000) {
+              codePoint = tempCodePoint
+            }
+          }
+      }
+    }
+
+    if (codePoint === null) {
+      // we did not generate a valid codePoint so insert a
+      // replacement char (U+FFFD) and advance only 1 byte
+      codePoint = 0xFFFD
+      bytesPerSequence = 1
+    } else if (codePoint > 0xFFFF) {
+      // encode to utf16 (surrogate pair dance)
+      codePoint -= 0x10000
+      res.push(codePoint >>> 10 & 0x3FF | 0xD800)
+      codePoint = 0xDC00 | codePoint & 0x3FF
+    }
+
+    res.push(codePoint)
+    i += bytesPerSequence
+  }
+
+  return decodeCodePointsArray(res)
+}
+
+// Based on http://stackoverflow.com/a/22747272/680742, the browser with
+// the lowest limit is Chrome, with 0x10000 args.
+// We go 1 magnitude less, for safety
+var MAX_ARGUMENTS_LENGTH = 0x1000
+
+function decodeCodePointsArray (codePoints) {
+  var len = codePoints.length
+  if (len <= MAX_ARGUMENTS_LENGTH) {
+    return String.fromCharCode.apply(String, codePoints) // avoid extra slice()
+  }
+
+  // Decode in chunks to avoid "call stack size exceeded".
+  var res = ''
+  var i = 0
+  while (i < len) {
+    res += String.fromCharCode.apply(
+      String,
+      codePoints.slice(i, i += MAX_ARGUMENTS_LENGTH)
+    )
+  }
+  return res
+}
+
+function asciiSlice (buf, start, end) {
+  var ret = ''
+  end = Math.min(buf.length, end)
+
+  for (var i = start; i < end; ++i) {
+    ret += String.fromCharCode(buf[i] & 0x7F)
+  }
+  return ret
+}
+
+function latin1Slice (buf, start, end) {
+  var ret = ''
+  end = Math.min(buf.length, end)
+
+  for (var i = start; i < end; ++i) {
+    ret += String.fromCharCode(buf[i])
+  }
+  return ret
+}
+
+function hexSlice (buf, start, end) {
+  var len = buf.length
+
+  if (!start || start < 0) start = 0
+  if (!end || end < 0 || end > len) end = len
+
+  var out = ''
+  for (var i = start; i < end; ++i) {
+    out += toHex(buf[i])
+  }
+  return out
+}
+
+function utf16leSlice (buf, start, end) {
+  var bytes = buf.slice(start, end)
+  var res = ''
+  for (var i = 0; i < bytes.length; i += 2) {
+    res += String.fromCharCode(bytes[i] + bytes[i + 1] * 256)
+  }
+  return res
+}
+
+Buffer.prototype.slice = function slice (start, end) {
+  var len = this.length
+  start = ~~start
+  end = end === undefined ? len : ~~end
+
+  if (start < 0) {
+    start += len
+    if (start < 0) start = 0
+  } else if (start > len) {
+    start = len
+  }
+
+  if (end < 0) {
+    end += len
+    if (end < 0) end = 0
+  } else if (end > len) {
+    end = len
+  }
+
+  if (end < start) end = start
+
+  var newBuf
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    newBuf = this.subarray(start, end)
+    newBuf.__proto__ = Buffer.prototype
+  } else {
+    var sliceLen = end - start
+    newBuf = new Buffer(sliceLen, undefined)
+    for (var i = 0; i < sliceLen; ++i) {
+      newBuf[i] = this[i + start]
+    }
+  }
+
+  return newBuf
+}
+
+/*
+ * Need to make sure that buffer isn't trying to write out of bounds.
+ */
+function checkOffset (offset, ext, length) {
+  if ((offset % 1) !== 0 || offset < 0) throw new RangeError('offset is not uint')
+  if (offset + ext > length) throw new RangeError('Trying to access beyond buffer length')
+}
+
+Buffer.prototype.readUIntLE = function readUIntLE (offset, byteLength, noAssert) {
+  offset = offset | 0
+  byteLength = byteLength | 0
+  if (!noAssert) checkOffset(offset, byteLength, this.length)
+
+  var val = this[offset]
+  var mul = 1
+  var i = 0
+  while (++i < byteLength && (mul *= 0x100)) {
+    val += this[offset + i] * mul
+  }
+
+  return val
+}
+
+Buffer.prototype.readUIntBE = function readUIntBE (offset, byteLength, noAssert) {
+  offset = offset | 0
+  byteLength = byteLength | 0
+  if (!noAssert) {
+    checkOffset(offset, byteLength, this.length)
+  }
+
+  var val = this[offset + --byteLength]
+  var mul = 1
+  while (byteLength > 0 && (mul *= 0x100)) {
+    val += this[offset + --byteLength] * mul
+  }
+
+  return val
+}
+
+Buffer.prototype.readUInt8 = function readUInt8 (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 1, this.length)
+  return this[offset]
+}
+
+Buffer.prototype.readUInt16LE = function readUInt16LE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 2, this.length)
+  return this[offset] | (this[offset + 1] << 8)
+}
+
+Buffer.prototype.readUInt16BE = function readUInt16BE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 2, this.length)
+  return (this[offset] << 8) | this[offset + 1]
+}
+
+Buffer.prototype.readUInt32LE = function readUInt32LE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 4, this.length)
+
+  return ((this[offset]) |
+      (this[offset + 1] << 8) |
+      (this[offset + 2] << 16)) +
+      (this[offset + 3] * 0x1000000)
+}
+
+Buffer.prototype.readUInt32BE = function readUInt32BE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 4, this.length)
+
+  return (this[offset] * 0x1000000) +
+    ((this[offset + 1] << 16) |
+    (this[offset + 2] << 8) |
+    this[offset + 3])
+}
+
+Buffer.prototype.readIntLE = function readIntLE (offset, byteLength, noAssert) {
+  offset = offset | 0
+  byteLength = byteLength | 0
+  if (!noAssert) checkOffset(offset, byteLength, this.length)
+
+  var val = this[offset]
+  var mul = 1
+  var i = 0
+  while (++i < byteLength && (mul *= 0x100)) {
+    val += this[offset + i] * mul
+  }
+  mul *= 0x80
+
+  if (val >= mul) val -= Math.pow(2, 8 * byteLength)
+
+  return val
+}
+
+Buffer.prototype.readIntBE = function readIntBE (offset, byteLength, noAssert) {
+  offset = offset | 0
+  byteLength = byteLength | 0
+  if (!noAssert) checkOffset(offset, byteLength, this.length)
+
+  var i = byteLength
+  var mul = 1
+  var val = this[offset + --i]
+  while (i > 0 && (mul *= 0x100)) {
+    val += this[offset + --i] * mul
+  }
+  mul *= 0x80
+
+  if (val >= mul) val -= Math.pow(2, 8 * byteLength)
+
+  return val
+}
+
+Buffer.prototype.readInt8 = function readInt8 (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 1, this.length)
+  if (!(this[offset] & 0x80)) return (this[offset])
+  return ((0xff - this[offset] + 1) * -1)
+}
+
+Buffer.prototype.readInt16LE = function readInt16LE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 2, this.length)
+  var val = this[offset] | (this[offset + 1] << 8)
+  return (val & 0x8000) ? val | 0xFFFF0000 : val
+}
+
+Buffer.prototype.readInt16BE = function readInt16BE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 2, this.length)
+  var val = this[offset + 1] | (this[offset] << 8)
+  return (val & 0x8000) ? val | 0xFFFF0000 : val
+}
+
+Buffer.prototype.readInt32LE = function readInt32LE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 4, this.length)
+
+  return (this[offset]) |
+    (this[offset + 1] << 8) |
+    (this[offset + 2] << 16) |
+    (this[offset + 3] << 24)
+}
+
+Buffer.prototype.readInt32BE = function readInt32BE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 4, this.length)
+
+  return (this[offset] << 24) |
+    (this[offset + 1] << 16) |
+    (this[offset + 2] << 8) |
+    (this[offset + 3])
+}
+
+Buffer.prototype.readFloatLE = function readFloatLE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 4, this.length)
+  return ieee754.read(this, offset, true, 23, 4)
+}
+
+Buffer.prototype.readFloatBE = function readFloatBE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 4, this.length)
+  return ieee754.read(this, offset, false, 23, 4)
+}
+
+Buffer.prototype.readDoubleLE = function readDoubleLE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 8, this.length)
+  return ieee754.read(this, offset, true, 52, 8)
+}
+
+Buffer.prototype.readDoubleBE = function readDoubleBE (offset, noAssert) {
+  if (!noAssert) checkOffset(offset, 8, this.length)
+  return ieee754.read(this, offset, false, 52, 8)
+}
+
+function checkInt (buf, value, offset, ext, max, min) {
+  if (!Buffer.isBuffer(buf)) throw new TypeError('"buffer" argument must be a Buffer instance')
+  if (value > max || value < min) throw new RangeError('"value" argument is out of bounds')
+  if (offset + ext > buf.length) throw new RangeError('Index out of range')
+}
+
+Buffer.prototype.writeUIntLE = function writeUIntLE (value, offset, byteLength, noAssert) {
+  value = +value
+  offset = offset | 0
+  byteLength = byteLength | 0
+  if (!noAssert) {
+    var maxBytes = Math.pow(2, 8 * byteLength) - 1
+    checkInt(this, value, offset, byteLength, maxBytes, 0)
+  }
+
+  var mul = 1
+  var i = 0
+  this[offset] = value & 0xFF
+  while (++i < byteLength && (mul *= 0x100)) {
+    this[offset + i] = (value / mul) & 0xFF
+  }
+
+  return offset + byteLength
+}
+
+Buffer.prototype.writeUIntBE = function writeUIntBE (value, offset, byteLength, noAssert) {
+  value = +value
+  offset = offset | 0
+  byteLength = byteLength | 0
+  if (!noAssert) {
+    var maxBytes = Math.pow(2, 8 * byteLength) - 1
+    checkInt(this, value, offset, byteLength, maxBytes, 0)
+  }
+
+  var i = byteLength - 1
+  var mul = 1
+  this[offset + i] = value & 0xFF
+  while (--i >= 0 && (mul *= 0x100)) {
+    this[offset + i] = (value / mul) & 0xFF
+  }
+
+  return offset + byteLength
+}
+
+Buffer.prototype.writeUInt8 = function writeUInt8 (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 1, 0xff, 0)
+  if (!Buffer.TYPED_ARRAY_SUPPORT) value = Math.floor(value)
+  this[offset] = (value & 0xff)
+  return offset + 1
+}
+
+function objectWriteUInt16 (buf, value, offset, littleEndian) {
+  if (value < 0) value = 0xffff + value + 1
+  for (var i = 0, j = Math.min(buf.length - offset, 2); i < j; ++i) {
+    buf[offset + i] = (value & (0xff << (8 * (littleEndian ? i : 1 - i)))) >>>
+      (littleEndian ? i : 1 - i) * 8
+  }
+}
+
+Buffer.prototype.writeUInt16LE = function writeUInt16LE (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 2, 0xffff, 0)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value & 0xff)
+    this[offset + 1] = (value >>> 8)
+  } else {
+    objectWriteUInt16(this, value, offset, true)
+  }
+  return offset + 2
+}
+
+Buffer.prototype.writeUInt16BE = function writeUInt16BE (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 2, 0xffff, 0)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value >>> 8)
+    this[offset + 1] = (value & 0xff)
+  } else {
+    objectWriteUInt16(this, value, offset, false)
+  }
+  return offset + 2
+}
+
+function objectWriteUInt32 (buf, value, offset, littleEndian) {
+  if (value < 0) value = 0xffffffff + value + 1
+  for (var i = 0, j = Math.min(buf.length - offset, 4); i < j; ++i) {
+    buf[offset + i] = (value >>> (littleEndian ? i : 3 - i) * 8) & 0xff
+  }
+}
+
+Buffer.prototype.writeUInt32LE = function writeUInt32LE (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 4, 0xffffffff, 0)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset + 3] = (value >>> 24)
+    this[offset + 2] = (value >>> 16)
+    this[offset + 1] = (value >>> 8)
+    this[offset] = (value & 0xff)
+  } else {
+    objectWriteUInt32(this, value, offset, true)
+  }
+  return offset + 4
+}
+
+Buffer.prototype.writeUInt32BE = function writeUInt32BE (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 4, 0xffffffff, 0)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value >>> 24)
+    this[offset + 1] = (value >>> 16)
+    this[offset + 2] = (value >>> 8)
+    this[offset + 3] = (value & 0xff)
+  } else {
+    objectWriteUInt32(this, value, offset, false)
+  }
+  return offset + 4
+}
+
+Buffer.prototype.writeIntLE = function writeIntLE (value, offset, byteLength, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) {
+    var limit = Math.pow(2, 8 * byteLength - 1)
+
+    checkInt(this, value, offset, byteLength, limit - 1, -limit)
+  }
+
+  var i = 0
+  var mul = 1
+  var sub = 0
+  this[offset] = value & 0xFF
+  while (++i < byteLength && (mul *= 0x100)) {
+    if (value < 0 && sub === 0 && this[offset + i - 1] !== 0) {
+      sub = 1
+    }
+    this[offset + i] = ((value / mul) >> 0) - sub & 0xFF
+  }
+
+  return offset + byteLength
+}
+
+Buffer.prototype.writeIntBE = function writeIntBE (value, offset, byteLength, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) {
+    var limit = Math.pow(2, 8 * byteLength - 1)
+
+    checkInt(this, value, offset, byteLength, limit - 1, -limit)
+  }
+
+  var i = byteLength - 1
+  var mul = 1
+  var sub = 0
+  this[offset + i] = value & 0xFF
+  while (--i >= 0 && (mul *= 0x100)) {
+    if (value < 0 && sub === 0 && this[offset + i + 1] !== 0) {
+      sub = 1
+    }
+    this[offset + i] = ((value / mul) >> 0) - sub & 0xFF
+  }
+
+  return offset + byteLength
+}
+
+Buffer.prototype.writeInt8 = function writeInt8 (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 1, 0x7f, -0x80)
+  if (!Buffer.TYPED_ARRAY_SUPPORT) value = Math.floor(value)
+  if (value < 0) value = 0xff + value + 1
+  this[offset] = (value & 0xff)
+  return offset + 1
+}
+
+Buffer.prototype.writeInt16LE = function writeInt16LE (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 2, 0x7fff, -0x8000)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value & 0xff)
+    this[offset + 1] = (value >>> 8)
+  } else {
+    objectWriteUInt16(this, value, offset, true)
+  }
+  return offset + 2
+}
+
+Buffer.prototype.writeInt16BE = function writeInt16BE (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 2, 0x7fff, -0x8000)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value >>> 8)
+    this[offset + 1] = (value & 0xff)
+  } else {
+    objectWriteUInt16(this, value, offset, false)
+  }
+  return offset + 2
+}
+
+Buffer.prototype.writeInt32LE = function writeInt32LE (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 4, 0x7fffffff, -0x80000000)
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value & 0xff)
+    this[offset + 1] = (value >>> 8)
+    this[offset + 2] = (value >>> 16)
+    this[offset + 3] = (value >>> 24)
+  } else {
+    objectWriteUInt32(this, value, offset, true)
+  }
+  return offset + 4
+}
+
+Buffer.prototype.writeInt32BE = function writeInt32BE (value, offset, noAssert) {
+  value = +value
+  offset = offset | 0
+  if (!noAssert) checkInt(this, value, offset, 4, 0x7fffffff, -0x80000000)
+  if (value < 0) value = 0xffffffff + value + 1
+  if (Buffer.TYPED_ARRAY_SUPPORT) {
+    this[offset] = (value >>> 24)
+    this[offset + 1] = (value >>> 16)
+    this[offset + 2] = (value >>> 8)
+    this[offset + 3] = (value & 0xff)
+  } else {
+    objectWriteUInt32(this, value, offset, false)
+  }
+  return offset + 4
+}
+
+function checkIEEE754 (buf, value, offset, ext, max, min) {
+  if (offset + ext > buf.length) throw new RangeError('Index out of range')
+  if (offset < 0) throw new RangeError('Index out of range')
+}
+
+function writeFloat (buf, value, offset, littleEndian, noAssert) {
+  if (!noAssert) {
+    checkIEEE754(buf, value, offset, 4, 3.4028234663852886e+38, -3.4028234663852886e+38)
+  }
+  ieee754.write(buf, value, offset, littleEndian, 23, 4)
+  return offset + 4
+}
+
+Buffer.prototype.writeFloatLE = function writeFloatLE (value, offset, noAssert) {
+  return writeFloat(this, value, offset, true, noAssert)
+}
+
+Buffer.prototype.writeFloatBE = function writeFloatBE (value, offset, noAssert) {
+  return writeFloat(this, value, offset, false, noAssert)
+}
+
+function writeDouble (buf, value, offset, littleEndian, noAssert) {
+  if (!noAssert) {
+    checkIEEE754(buf, value, offset, 8, 1.7976931348623157E+308, -1.7976931348623157E+308)
+  }
+  ieee754.write(buf, value, offset, littleEndian, 52, 8)
+  return offset + 8
+}
+
+Buffer.prototype.writeDoubleLE = function writeDoubleLE (value, offset, noAssert) {
+  return writeDouble(this, value, offset, true, noAssert)
+}
+
+Buffer.prototype.writeDoubleBE = function writeDoubleBE (value, offset, noAssert) {
+  return writeDouble(this, value, offset, false, noAssert)
+}
+
+// copy(targetBuffer, targetStart=0, sourceStart=0, sourceEnd=buffer.length)
+Buffer.prototype.copy = function copy (target, targetStart, start, end) {
+  if (!start) start = 0
+  if (!end && end !== 0) end = this.length
+  if (targetStart >= target.length) targetStart = target.length
+  if (!targetStart) targetStart = 0
+  if (end > 0 && end < start) end = start
+
+  // Copy 0 bytes; we're done
+  if (end === start) return 0
+  if (target.length === 0 || this.length === 0) return 0
+
+  // Fatal error conditions
+  if (targetStart < 0) {
+    throw new RangeError('targetStart out of bounds')
+  }
+  if (start < 0 || start >= this.length) throw new RangeError('sourceStart out of bounds')
+  if (end < 0) throw new RangeError('sourceEnd out of bounds')
+
+  // Are we oob?
+  if (end > this.length) end = this.length
+  if (target.length - targetStart < end - start) {
+    end = target.length - targetStart + start
+  }
+
+  var len = end - start
+  var i
+
+  if (this === target && start < targetStart && targetStart < end) {
+    // descending copy from end
+    for (i = len - 1; i >= 0; --i) {
+      target[i + targetStart] = this[i + start]
+    }
+  } else if (len < 1000 || !Buffer.TYPED_ARRAY_SUPPORT) {
+    // ascending copy from start
+    for (i = 0; i < len; ++i) {
+      target[i + targetStart] = this[i + start]
+    }
+  } else {
+    Uint8Array.prototype.set.call(
+      target,
+      this.subarray(start, start + len),
+      targetStart
+    )
+  }
+
+  return len
+}
+
+// Usage:
+//    buffer.fill(number[, offset[, end]])
+//    buffer.fill(buffer[, offset[, end]])
+//    buffer.fill(string[, offset[, end]][, encoding])
+Buffer.prototype.fill = function fill (val, start, end, encoding) {
+  // Handle string cases:
+  if (typeof val === 'string') {
+    if (typeof start === 'string') {
+      encoding = start
+      start = 0
+      end = this.length
+    } else if (typeof end === 'string') {
+      encoding = end
+      end = this.length
+    }
+    if (val.length === 1) {
+      var code = val.charCodeAt(0)
+      if (code < 256) {
+        val = code
+      }
+    }
+    if (encoding !== undefined && typeof encoding !== 'string') {
+      throw new TypeError('encoding must be a string')
+    }
+    if (typeof encoding === 'string' && !Buffer.isEncoding(encoding)) {
+      throw new TypeError('Unknown encoding: ' + encoding)
+    }
+  } else if (typeof val === 'number') {
+    val = val & 255
+  }
+
+  // Invalid ranges are not set to a default, so can range check early.
+  if (start < 0 || this.length < start || this.length < end) {
+    throw new RangeError('Out of range index')
+  }
+
+  if (end <= start) {
+    return this
+  }
+
+  start = start >>> 0
+  end = end === undefined ? this.length : end >>> 0
+
+  if (!val) val = 0
+
+  var i
+  if (typeof val === 'number') {
+    for (i = start; i < end; ++i) {
+      this[i] = val
+    }
+  } else {
+    var bytes = Buffer.isBuffer(val)
+      ? val
+      : utf8ToBytes(new Buffer(val, encoding).toString())
+    var len = bytes.length
+    for (i = 0; i < end - start; ++i) {
+      this[i + start] = bytes[i % len]
+    }
+  }
+
+  return this
+}
+
+// HELPER FUNCTIONS
+// ================
+
+var INVALID_BASE64_RE = /[^+\/0-9A-Za-z-_]/g
+
+function base64clean (str) {
+  // Node strips out invalid characters like \n and \t from the string, base64-js does not
+  str = stringtrim(str).replace(INVALID_BASE64_RE, '')
+  // Node converts strings with length < 2 to ''
+  if (str.length < 2) return ''
+  // Node allows for non-padded base64 strings (missing trailing ===), base64-js does not
+  while (str.length % 4 !== 0) {
+    str = str + '='
+  }
+  return str
+}
+
+function stringtrim (str) {
+  if (str.trim) return str.trim()
+  return str.replace(/^\s+|\s+$/g, '')
+}
+
+function toHex (n) {
+  if (n < 16) return '0' + n.toString(16)
+  return n.toString(16)
+}
+
+function utf8ToBytes (string, units) {
+  units = units || Infinity
+  var codePoint
+  var length = string.length
+  var leadSurrogate = null
+  var bytes = []
+
+  for (var i = 0; i < length; ++i) {
+    codePoint = string.charCodeAt(i)
+
+    // is surrogate component
+    if (codePoint > 0xD7FF && codePoint < 0xE000) {
+      // last char was a lead
+      if (!leadSurrogate) {
+        // no lead yet
+        if (codePoint > 0xDBFF) {
+          // unexpected trail
+          if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
+          continue
+        } else if (i + 1 === length) {
+          // unpaired lead
+          if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
+          continue
+        }
+
+        // valid lead
+        leadSurrogate = codePoint
+
+        continue
+      }
+
+      // 2 leads in a row
+      if (codePoint < 0xDC00) {
+        if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
+        leadSurrogate = codePoint
+        continue
+      }
+
+      // valid surrogate pair
+      codePoint = (leadSurrogate - 0xD800 << 10 | codePoint - 0xDC00) + 0x10000
+    } else if (leadSurrogate) {
+      // valid bmp char, but last char was a lead
+      if ((units -= 3) > -1) bytes.push(0xEF, 0xBF, 0xBD)
+    }
+
+    leadSurrogate = null
+
+    // encode utf8
+    if (codePoint < 0x80) {
+      if ((units -= 1) < 0) break
+      bytes.push(codePoint)
+    } else if (codePoint < 0x800) {
+      if ((units -= 2) < 0) break
+      bytes.push(
+        codePoint >> 0x6 | 0xC0,
+        codePoint & 0x3F | 0x80
+      )
+    } else if (codePoint < 0x10000) {
+      if ((units -= 3) < 0) break
+      bytes.push(
+        codePoint >> 0xC | 0xE0,
+        codePoint >> 0x6 & 0x3F | 0x80,
+        codePoint & 0x3F | 0x80
+      )
+    } else if (codePoint < 0x110000) {
+      if ((units -= 4) < 0) break
+      bytes.push(
+        codePoint >> 0x12 | 0xF0,
+        codePoint >> 0xC & 0x3F | 0x80,
+        codePoint >> 0x6 & 0x3F | 0x80,
+        codePoint & 0x3F | 0x80
+      )
+    } else {
+      throw new Error('Invalid code point')
+    }
+  }
+
+  return bytes
+}
+
+function asciiToBytes (str) {
+  var byteArray = []
+  for (var i = 0; i < str.length; ++i) {
+    // Node's code seems to be doing this and not & 0x7F..
+    byteArray.push(str.charCodeAt(i) & 0xFF)
+  }
+  return byteArray
+}
+
+function utf16leToBytes (str, units) {
+  var c, hi, lo
+  var byteArray = []
+  for (var i = 0; i < str.length; ++i) {
+    if ((units -= 2) < 0) break
+
+    c = str.charCodeAt(i)
+    hi = c >> 8
+    lo = c % 256
+    byteArray.push(lo)
+    byteArray.push(hi)
+  }
+
+  return byteArray
+}
+
+function base64ToBytes (str) {
+  return base64.toByteArray(base64clean(str))
+}
+
+function blitBuffer (src, dst, offset, length) {
+  for (var i = 0; i < length; ++i) {
+    if ((i + offset >= dst.length) || (i >= src.length)) break
+    dst[i + offset] = src[i]
+  }
+  return i
+}
+
+function isnan (val) {
+  return val !== val // eslint-disable-line no-self-compare
+}
+
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
+
+/***/ }),
+/* 23 */
+/***/ (function(module, exports) {
+
+var toString = {}.toString;
+
+module.exports = Array.isArray || function (arr) {
+  return toString.call(arr) == '[object Array]';
+};
+
+
+/***/ }),
+/* 24 */
+/***/ (function(module, exports) {
+
+var toString = Object.prototype.toString;
+
+module.exports = function kindOf(val) {
+  if (val === void 0) return 'undefined';
+  if (val === null) return 'null';
+
+  var type = typeof val;
+  if (type === 'boolean') return 'boolean';
+  if (type === 'string') return 'string';
+  if (type === 'number') return 'number';
+  if (type === 'symbol') return 'symbol';
+  if (type === 'function') {
+    return isGeneratorFn(val) ? 'generatorfunction' : 'function';
+  }
+
+  if (isArray(val)) return 'array';
+  if (isBuffer(val)) return 'buffer';
+  if (isArguments(val)) return 'arguments';
+  if (isDate(val)) return 'date';
+  if (isError(val)) return 'error';
+  if (isRegexp(val)) return 'regexp';
+
+  switch (ctorName(val)) {
+    case 'Symbol': return 'symbol';
+    case 'Promise': return 'promise';
+
+    // Set, Map, WeakSet, WeakMap
+    case 'WeakMap': return 'weakmap';
+    case 'WeakSet': return 'weakset';
+    case 'Map': return 'map';
+    case 'Set': return 'set';
+
+    // 8-bit typed arrays
+    case 'Int8Array': return 'int8array';
+    case 'Uint8Array': return 'uint8array';
+    case 'Uint8ClampedArray': return 'uint8clampedarray';
+
+    // 16-bit typed arrays
+    case 'Int16Array': return 'int16array';
+    case 'Uint16Array': return 'uint16array';
+
+    // 32-bit typed arrays
+    case 'Int32Array': return 'int32array';
+    case 'Uint32Array': return 'uint32array';
+    case 'Float32Array': return 'float32array';
+    case 'Float64Array': return 'float64array';
+  }
+
+  if (isGeneratorObj(val)) {
+    return 'generator';
+  }
+
+  // Non-plain objects
+  type = toString.call(val);
+  switch (type) {
+    case '[object Object]': return 'object';
+    // iterators
+    case '[object Map Iterator]': return 'mapiterator';
+    case '[object Set Iterator]': return 'setiterator';
+    case '[object String Iterator]': return 'stringiterator';
+    case '[object Array Iterator]': return 'arrayiterator';
+  }
+
+  // other
+  return type.slice(8, -1).toLowerCase().replace(/\s/g, '');
+};
+
+function ctorName(val) {
+  return val.constructor ? val.constructor.name : null;
+}
+
+function isArray(val) {
+  if (Array.isArray) return Array.isArray(val);
+  return val instanceof Array;
+}
+
+function isError(val) {
+  return val instanceof Error || (typeof val.message === 'string' && val.constructor && typeof val.constructor.stackTraceLimit === 'number');
+}
+
+function isDate(val) {
+  if (val instanceof Date) return true;
+  return typeof val.toDateString === 'function'
+    && typeof val.getDate === 'function'
+    && typeof val.setDate === 'function';
+}
+
+function isRegexp(val) {
+  if (val instanceof RegExp) return true;
+  return typeof val.flags === 'string'
+    && typeof val.ignoreCase === 'boolean'
+    && typeof val.multiline === 'boolean'
+    && typeof val.global === 'boolean';
+}
+
+function isGeneratorFn(name, val) {
+  return ctorName(name) === 'GeneratorFunction';
+}
+
+function isGeneratorObj(val) {
+  return typeof val.throw === 'function'
+    && typeof val.return === 'function'
+    && typeof val.next === 'function';
+}
+
+function isArguments(val) {
+  try {
+    if (typeof val.length === 'number' && typeof val.callee === 'function') {
+      return true;
+    }
+  } catch (err) {
+    if (err.message.indexOf('callee') !== -1) {
+      return true;
+    }
+  }
+  return false;
+}
+
+/**
+ * If you need to support Safari 5-7 (8-10 yr-old browser),
+ * take a look at https://github.com/feross/is-buffer
+ */
+
+function isBuffer(val) {
+  if (val.constructor && typeof val.constructor.isBuffer === 'function') {
+    return val.constructor.isBuffer(val);
+  }
+  return false;
+}
+
+
+/***/ }),
+/* 25 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/*!
+ * repeat-element <https://github.com/jonschlinkert/repeat-element>
+ *
+ * Copyright (c) 2015-present, Jon Schlinkert.
+ * Licensed under the MIT license.
+ */
+
+
+
+module.exports = function repeat(ele, num) {
+  var arr = new Array(num);
+
+  for (var i = 0; i < num; i++) {
+    arr[i] = ele;
+  }
+
+  return arr;
+};
+
+
+/***/ }),
+/* 26 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+/*!
+ * for-in <https://github.com/jonschlinkert/for-in>
+ *
+ * Copyright (c) 2014-2017, Jon Schlinkert.
+ * Released under the MIT License.
+ */
+
+
+
+module.exports = function forIn(obj, fn, thisArg) {
+  for (var key in obj) {
+    if (fn.call(thisArg, obj[key], key, obj) === false) {
+      break;
+    }
+  }
+};
+
+
+/***/ }),
+/* 27 */
+/***/ (function(module, exports) {
+
+/*!
+ * is-extglob <https://github.com/jonschlinkert/is-extglob>
+ *
+ * Copyright (c) 2014-2015, Jon Schlinkert.
+ * Licensed under the MIT License.
+ */
+
+module.exports = function isExtglob(str) {
+  return typeof str === 'string'
+    && /[@?!+*]\(/.test(str);
+};
+
+
+/***/ }),
+/* 28 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*!
+ * is-glob <https://github.com/jonschlinkert/is-glob>
+ *
+ * Copyright (c) 2014-2015, Jon Schlinkert.
+ * Licensed under the MIT License.
+ */
+
+var isExtglob = __webpack_require__(118);
+
+module.exports = function isGlob(str) {
+  return typeof str === 'string'
+    && (/[*!?{}(|)[\]]/.test(str)
+     || isExtglob(str));
+};
+
+/***/ }),
+/* 29 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+
+exports.default = function (useVuex, source) {
+  var page = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : 1;
+
+
+  var data = {
+    vuex: true,
+    activeState: false,
+    userColumnsDisplay: [],
+    userControlsColumns: false,
+    displayColumnsDropdown: false,
+    collapsedGroups: []
+  };
+
+  if (useVuex) return data;
+
+  data = (0, _merge2.default)(data, {
+    vuex: false,
+    count: 0,
+    customQueries: {},
+    query: null,
+    page: page,
+    limit: 10,
+    windowWidth: typeof window !== 'undefined' ? window.innerWidth : null,
+    orderBy: {
+      column: false,
+      ascending: true
+    }
+  });
+
+  if (source == 'server') data.data = [];
+
+  return data;
+};
+
+var _merge = __webpack_require__(0);
+
+var _merge2 = _interopRequireDefault(_merge);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+/***/ }),
+/* 30 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function () {
+  return {
+    id: makeId(),
+    allFilteredData: [],
+    openChildRows: [],
+    windowWidth: typeof window !== 'undefined' ? window.innerWidth : null,
+    userMultiSorting: {}
+  };
+};
+
+function makeId() {
+  var text = "";
+  var possible = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+  for (var i = 0; i < 5; i++) {
+    text += possible.charAt(Math.floor(Math.random() * possible.length));
+  }return text;
+}
+
+/***/ }),
+/* 31 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var is_empty = __webpack_require__(179);
+
+var registerVuexModule = __webpack_require__(180);
+
+module.exports = function (self) {
+
+  if (self.vuex) {
+    registerVuexModule(self);
+  } else {
+    self.limit = self.opts.perPage;
+  }
+
+  if (is_empty(self.opts.columnsDisplay) || typeof window === 'undefined') return;
+
+  self.columnsDisplay = getColumnsDisplay(self.opts.columnsDisplay);
+
+  window.addEventListener('resize', function () {
+    self.windowWidth = window.innerWidth;
+  }.bind(self));
+};
+
+function getColumnsDisplay(columnsDisplay) {
+  var res = {};
+  var range;
+  var device;
+  var operator;
+
+  for (var column in columnsDisplay) {
+    operator = getOperator(columnsDisplay[column]);
+    try {
+      device = getDevice(columnsDisplay[column]);
+      range = getRange(device, operator);
+      res[column] = range.concat([operator]);
+    } catch (err) {
+      console.warn('Unknown device ' + device);
+    }
+  }
+
+  return res;
+}
+
+function getRange(device, operator) {
+
+  var devices = {
+    desktop: [1024, null],
+    tablet: [480, 1024],
+    mobile: [0, 480],
+    tabletL: [768, 1024],
+    tabletP: [480, 768],
+    mobileL: [320, 480],
+    mobileP: [0, 320]
+  };
+
+  switch (operator) {
+    case 'min':
+      return [devices[device][0], null];
+    case 'max':
+      return [0, devices[device][1]];
+    default:
+      return devices[device];
+  }
+}
+
+function getOperator(val) {
+
+  var pieces = val.split('_');
+
+  if (['not', 'min', 'max'].indexOf(pieces[0]) > -1) return pieces[0];
+
+  return false;
+}
+
+function getDevice(val) {
+  var pieces = val.split('_');
+  return pieces.length > 1 ? pieces[1] : pieces[0];
+}
+
+/***/ }),
+/* 32 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+module.exports = function (template, theme) {
+
+    var themes = {
+        bootstrap3: __webpack_require__(183)(),
+        bootstrap4: __webpack_require__(184)(),
+        bulma: __webpack_require__(185)()
+    };
+
+    var templates = {
+        default: __webpack_require__(186),
+        footerPagination: __webpack_require__(187)
+    };
+
+    return function (h) {
+
+        var modules = {
+            rows: __webpack_require__(188).call(this, h),
+            normalFilter: __webpack_require__(189).call(this, h),
+            dropdownPagination: __webpack_require__(190).call(this, h),
+            dropdownPaginationCount: __webpack_require__(191).call(this, h),
+            columnFilters: __webpack_require__(192).call(this, h),
+            pagination: __webpack_require__(196).call(this, h),
+            headings: __webpack_require__(197).call(this, h),
+            perPage: __webpack_require__(199).call(this, h),
+            columnsDropdown: __webpack_require__(200).call(this, h)
+        };
+
+        if (typeof template === 'string' && (!templates[template] || typeof templates[template] !== 'function')) {
+            throw 'vue-tables-2: Template "' + template + '" does not exist';
+        }
+
+        if (typeof theme === 'string' && (!themes[theme] || _typeof(themes[theme]) !== 'object')) {
+            throw 'vue-tables-2: Theme "' + theme + '" does not exist';
+        }
+
+        var tpl = typeof template === 'string' ? templates[template] : template;
+        var thm = typeof theme === 'string' ? themes[theme] : theme();
+        var slots = __webpack_require__(203).call(this);
+
+        return tpl.call(this, h, modules, thm, slots);
+    };
+};
+
+/***/ }),
+/* 33 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function (h) {
+  var _this = this;
+
+  var perpageValues = [];
+
+  this.opts.perPageValues.every(function (value) {
+    var isLastEntry = value >= _this.count;
+    var selected = _this.limit == value || isLastEntry && _this.limit > value;
+    perpageValues.push(h(
+      "option",
+      {
+        domProps: {
+          "value": value,
+          "selected": selected
+        }
+      },
+      [value]
+    ));
+    return !isLastEntry;
+  });
+
+  return perpageValues;
+};
+
+/***/ }),
+/* 34 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = function () {
+  return Math.ceil(this.count / this.limit);
+};
+
+/***/ }),
+/* 35 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
+
+var object_filled_keys_count = __webpack_require__(207);
+var is_valid_moment_object = __webpack_require__(21);
+var filterByCustomFilters = __webpack_require__(208);
+
+module.exports = function (data, e) {
+
+  if (e) {
+
+    var _query = this.query;
+
+    this.setPage(1, true);
+
+    var name = this.getName(e.target.name);
+    var value = _typeof(e.target.value) === 'object' ? e.target.value : '' + e.target.value;
+
+    if (name) {
+      _query[name] = value;
+    } else {
+      _query = value;
+    }
+
+    this.vuex ? this.commit('SET_FILTER', _query) : this.query = _query;
+
+    this.updateState('query', _query);
+
+    if (name) {
+      this.dispatch('filter', { name: name, value: value });
+      this.dispatch('filter::' + name, value);
+    } else {
+      this.dispatch('filter', value);
+    }
+  }
+
+  var query = this.query;
+
+  var totalQueries = !query ? 0 : 1;
+
+  if (!this.opts) return data;
+
+  if (this.opts.filterByColumn) {
+    totalQueries = object_filled_keys_count(query);
+  }
+
+  var value;
+  var found;
+  var currentQuery;
+  var dateFormat;
+  var filterByDate;
+  var isListFilter;
+
+  var data = filterByCustomFilters(data, this.opts.customFilters, this.customQueries);
+
+  if (!totalQueries) return data;
+
+  return data.filter(function (row, index) {
+
+    found = 0;
+
+    this.filterableColumns.forEach(function (column) {
+
+      filterByDate = this.opts.dateColumns.indexOf(column) > -1 && this.opts.filterByColumn;
+      isListFilter = this.isListFilter(column) && this.opts.filterByColumn;
+      dateFormat = this.dateFormat(column);
+
+      value = this._getValue(row, column);
+
+      if (is_valid_moment_object(value) && !filterByDate) {
+        value = value.format(dateFormat);
+      }
+
+      currentQuery = this.opts.filterByColumn ? query[column] : query;
+
+      currentQuery = setCurrentQuery(currentQuery);
+
+      if (currentQuery && foundMatch(currentQuery, value, isListFilter)) found++;
+    }.bind(this));
+
+    return found >= totalQueries;
+  }.bind(this));
+};
+
+function setCurrentQuery(query) {
+
+  if (!query) return '';
+
+  if (typeof query == 'string') return query.toLowerCase();
+
+  // Date Range
+
+  return query;
+}
+
+function foundMatch(query, value, isListFilter) {
+
+  if (['string', 'number', 'boolean'].indexOf(typeof value === 'undefined' ? 'undefined' : _typeof(value)) > -1) {
+    value = String(value).toLowerCase();
+  }
+
+  // List Filter
+  if (isListFilter) {
+    return value == query;
+  }
+
+  //Text Filter
+  if (typeof value === 'string') {
+    return value.indexOf(query) > -1;
+  }
+
+  // Date range
+
+  if (is_valid_moment_object(value)) {
+    var start = moment(query.start, 'YYYY-MM-DD HH:mm:ss');
+    var end = moment(query.end, 'YYYY-MM-DD HH:mm:ss');
+
+    return value >= start && value <= end;
+  }
+
+  if ((typeof value === 'undefined' ? 'undefined' : _typeof(value)) === 'object') {
+
+    for (var key in value) {
+      if (foundMatch(query, value[key])) return true;
+    }
+
+    return false;
+  }
+
+  return value >= start && value <= end;
+}
+
+/***/ }),
 /* 36 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* WEBPACK VAR INJECTION */(function(global) {/**!
+ * @fileOverview Kickass library to create and place poppers near their reference elements.
+ * @version 1.14.4
+ * @license
+ * Copyright (c) 2016 Federico Zivolo and contributors
+ *
+ * Permission is hereby granted, free of charge, to any person obtaining a copy
+ * of this software and associated documentation files (the "Software"), to deal
+ * in the Software without restriction, including without limitation the rights
+ * to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+ * copies of the Software, and to permit persons to whom the Software is
+ * furnished to do so, subject to the following conditions:
+ *
+ * The above copyright notice and this permission notice shall be included in all
+ * copies or substantial portions of the Software.
+ *
+ * THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ * IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ * FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ * AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ * LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+ * OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+ * SOFTWARE.
+ */
+var isBrowser = typeof window !== 'undefined' && typeof document !== 'undefined';
+
+var longerTimeoutBrowsers = ['Edge', 'Trident', 'Firefox'];
+var timeoutDuration = 0;
+for (var i = 0; i < longerTimeoutBrowsers.length; i += 1) {
+  if (isBrowser && navigator.userAgent.indexOf(longerTimeoutBrowsers[i]) >= 0) {
+    timeoutDuration = 1;
+    break;
+  }
+}
+
+function microtaskDebounce(fn) {
+  var called = false;
+  return function () {
+    if (called) {
+      return;
+    }
+    called = true;
+    window.Promise.resolve().then(function () {
+      called = false;
+      fn();
+    });
+  };
+}
+
+function taskDebounce(fn) {
+  var scheduled = false;
+  return function () {
+    if (!scheduled) {
+      scheduled = true;
+      setTimeout(function () {
+        scheduled = false;
+        fn();
+      }, timeoutDuration);
+    }
+  };
+}
+
+var supportsMicroTasks = isBrowser && window.Promise;
+
+/**
+* Create a debounced version of a method, that's asynchronously deferred
+* but called in the minimum time possible.
+*
+* @method
+* @memberof Popper.Utils
+* @argument {Function} fn
+* @returns {Function}
+*/
+var debounce = supportsMicroTasks ? microtaskDebounce : taskDebounce;
+
+/**
+ * Check if the given variable is a function
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Any} functionToCheck - variable to check
+ * @returns {Boolean} answer to: is a function?
+ */
+function isFunction(functionToCheck) {
+  var getType = {};
+  return functionToCheck && getType.toString.call(functionToCheck) === '[object Function]';
+}
+
+/**
+ * Get CSS computed property of the given element
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Eement} element
+ * @argument {String} property
+ */
+function getStyleComputedProperty(element, property) {
+  if (element.nodeType !== 1) {
+    return [];
+  }
+  // NOTE: 1 DOM access here
+  var css = getComputedStyle(element, null);
+  return property ? css[property] : css;
+}
+
+/**
+ * Returns the parentNode or the host of the element
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @returns {Element} parent
+ */
+function getParentNode(element) {
+  if (element.nodeName === 'HTML') {
+    return element;
+  }
+  return element.parentNode || element.host;
+}
+
+/**
+ * Returns the scrolling parent of the given element
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @returns {Element} scroll parent
+ */
+function getScrollParent(element) {
+  // Return body, `getScroll` will take care to get the correct `scrollTop` from it
+  if (!element) {
+    return document.body;
+  }
+
+  switch (element.nodeName) {
+    case 'HTML':
+    case 'BODY':
+      return element.ownerDocument.body;
+    case '#document':
+      return element.body;
+  }
+
+  // Firefox want us to check `-x` and `-y` variations as well
+
+  var _getStyleComputedProp = getStyleComputedProperty(element),
+      overflow = _getStyleComputedProp.overflow,
+      overflowX = _getStyleComputedProp.overflowX,
+      overflowY = _getStyleComputedProp.overflowY;
+
+  if (/(auto|scroll|overlay)/.test(overflow + overflowY + overflowX)) {
+    return element;
+  }
+
+  return getScrollParent(getParentNode(element));
+}
+
+var isIE11 = isBrowser && !!(window.MSInputMethodContext && document.documentMode);
+var isIE10 = isBrowser && /MSIE 10/.test(navigator.userAgent);
+
+/**
+ * Determines if the browser is Internet Explorer
+ * @method
+ * @memberof Popper.Utils
+ * @param {Number} version to check
+ * @returns {Boolean} isIE
+ */
+function isIE(version) {
+  if (version === 11) {
+    return isIE11;
+  }
+  if (version === 10) {
+    return isIE10;
+  }
+  return isIE11 || isIE10;
+}
+
+/**
+ * Returns the offset parent of the given element
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @returns {Element} offset parent
+ */
+function getOffsetParent(element) {
+  if (!element) {
+    return document.documentElement;
+  }
+
+  var noOffsetParent = isIE(10) ? document.body : null;
+
+  // NOTE: 1 DOM access here
+  var offsetParent = element.offsetParent;
+  // Skip hidden elements which don't have an offsetParent
+  while (offsetParent === noOffsetParent && element.nextElementSibling) {
+    offsetParent = (element = element.nextElementSibling).offsetParent;
+  }
+
+  var nodeName = offsetParent && offsetParent.nodeName;
+
+  if (!nodeName || nodeName === 'BODY' || nodeName === 'HTML') {
+    return element ? element.ownerDocument.documentElement : document.documentElement;
+  }
+
+  // .offsetParent will return the closest TD or TABLE in case
+  // no offsetParent is present, I hate this job...
+  if (['TD', 'TABLE'].indexOf(offsetParent.nodeName) !== -1 && getStyleComputedProperty(offsetParent, 'position') === 'static') {
+    return getOffsetParent(offsetParent);
+  }
+
+  return offsetParent;
+}
+
+function isOffsetContainer(element) {
+  var nodeName = element.nodeName;
+
+  if (nodeName === 'BODY') {
+    return false;
+  }
+  return nodeName === 'HTML' || getOffsetParent(element.firstElementChild) === element;
+}
+
+/**
+ * Finds the root node (document, shadowDOM root) of the given element
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} node
+ * @returns {Element} root node
+ */
+function getRoot(node) {
+  if (node.parentNode !== null) {
+    return getRoot(node.parentNode);
+  }
+
+  return node;
+}
+
+/**
+ * Finds the offset parent common to the two provided nodes
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element1
+ * @argument {Element} element2
+ * @returns {Element} common offset parent
+ */
+function findCommonOffsetParent(element1, element2) {
+  // This check is needed to avoid errors in case one of the elements isn't defined for any reason
+  if (!element1 || !element1.nodeType || !element2 || !element2.nodeType) {
+    return document.documentElement;
+  }
+
+  // Here we make sure to give as "start" the element that comes first in the DOM
+  var order = element1.compareDocumentPosition(element2) & Node.DOCUMENT_POSITION_FOLLOWING;
+  var start = order ? element1 : element2;
+  var end = order ? element2 : element1;
+
+  // Get common ancestor container
+  var range = document.createRange();
+  range.setStart(start, 0);
+  range.setEnd(end, 0);
+  var commonAncestorContainer = range.commonAncestorContainer;
+
+  // Both nodes are inside #document
+
+  if (element1 !== commonAncestorContainer && element2 !== commonAncestorContainer || start.contains(end)) {
+    if (isOffsetContainer(commonAncestorContainer)) {
+      return commonAncestorContainer;
+    }
+
+    return getOffsetParent(commonAncestorContainer);
+  }
+
+  // one of the nodes is inside shadowDOM, find which one
+  var element1root = getRoot(element1);
+  if (element1root.host) {
+    return findCommonOffsetParent(element1root.host, element2);
+  } else {
+    return findCommonOffsetParent(element1, getRoot(element2).host);
+  }
+}
+
+/**
+ * Gets the scroll value of the given element in the given side (top and left)
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @argument {String} side `top` or `left`
+ * @returns {number} amount of scrolled pixels
+ */
+function getScroll(element) {
+  var side = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : 'top';
+
+  var upperSide = side === 'top' ? 'scrollTop' : 'scrollLeft';
+  var nodeName = element.nodeName;
+
+  if (nodeName === 'BODY' || nodeName === 'HTML') {
+    var html = element.ownerDocument.documentElement;
+    var scrollingElement = element.ownerDocument.scrollingElement || html;
+    return scrollingElement[upperSide];
+  }
+
+  return element[upperSide];
+}
+
+/*
+ * Sum or subtract the element scroll values (left and top) from a given rect object
+ * @method
+ * @memberof Popper.Utils
+ * @param {Object} rect - Rect object you want to change
+ * @param {HTMLElement} element - The element from the function reads the scroll values
+ * @param {Boolean} subtract - set to true if you want to subtract the scroll values
+ * @return {Object} rect - The modifier rect object
+ */
+function includeScroll(rect, element) {
+  var subtract = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+  var scrollTop = getScroll(element, 'top');
+  var scrollLeft = getScroll(element, 'left');
+  var modifier = subtract ? -1 : 1;
+  rect.top += scrollTop * modifier;
+  rect.bottom += scrollTop * modifier;
+  rect.left += scrollLeft * modifier;
+  rect.right += scrollLeft * modifier;
+  return rect;
+}
+
+/*
+ * Helper to detect borders of a given element
+ * @method
+ * @memberof Popper.Utils
+ * @param {CSSStyleDeclaration} styles
+ * Result of `getStyleComputedProperty` on the given element
+ * @param {String} axis - `x` or `y`
+ * @return {number} borders - The borders size of the given axis
+ */
+
+function getBordersSize(styles, axis) {
+  var sideA = axis === 'x' ? 'Left' : 'Top';
+  var sideB = sideA === 'Left' ? 'Right' : 'Bottom';
+
+  return parseFloat(styles['border' + sideA + 'Width'], 10) + parseFloat(styles['border' + sideB + 'Width'], 10);
+}
+
+function getSize(axis, body, html, computedStyle) {
+  return Math.max(body['offset' + axis], body['scroll' + axis], html['client' + axis], html['offset' + axis], html['scroll' + axis], isIE(10) ? parseInt(html['offset' + axis]) + parseInt(computedStyle['margin' + (axis === 'Height' ? 'Top' : 'Left')]) + parseInt(computedStyle['margin' + (axis === 'Height' ? 'Bottom' : 'Right')]) : 0);
+}
+
+function getWindowSizes(document) {
+  var body = document.body;
+  var html = document.documentElement;
+  var computedStyle = isIE(10) && getComputedStyle(html);
+
+  return {
+    height: getSize('Height', body, html, computedStyle),
+    width: getSize('Width', body, html, computedStyle)
+  };
+}
+
+var classCallCheck = function (instance, Constructor) {
+  if (!(instance instanceof Constructor)) {
+    throw new TypeError("Cannot call a class as a function");
+  }
+};
+
+var createClass = function () {
+  function defineProperties(target, props) {
+    for (var i = 0; i < props.length; i++) {
+      var descriptor = props[i];
+      descriptor.enumerable = descriptor.enumerable || false;
+      descriptor.configurable = true;
+      if ("value" in descriptor) descriptor.writable = true;
+      Object.defineProperty(target, descriptor.key, descriptor);
+    }
+  }
+
+  return function (Constructor, protoProps, staticProps) {
+    if (protoProps) defineProperties(Constructor.prototype, protoProps);
+    if (staticProps) defineProperties(Constructor, staticProps);
+    return Constructor;
+  };
+}();
+
+
+
+
+
+var defineProperty = function (obj, key, value) {
+  if (key in obj) {
+    Object.defineProperty(obj, key, {
+      value: value,
+      enumerable: true,
+      configurable: true,
+      writable: true
+    });
+  } else {
+    obj[key] = value;
+  }
+
+  return obj;
+};
+
+var _extends = Object.assign || function (target) {
+  for (var i = 1; i < arguments.length; i++) {
+    var source = arguments[i];
+
+    for (var key in source) {
+      if (Object.prototype.hasOwnProperty.call(source, key)) {
+        target[key] = source[key];
+      }
+    }
+  }
+
+  return target;
+};
+
+/**
+ * Given element offsets, generate an output similar to getBoundingClientRect
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Object} offsets
+ * @returns {Object} ClientRect like output
+ */
+function getClientRect(offsets) {
+  return _extends({}, offsets, {
+    right: offsets.left + offsets.width,
+    bottom: offsets.top + offsets.height
+  });
+}
+
+/**
+ * Get bounding client rect of given element
+ * @method
+ * @memberof Popper.Utils
+ * @param {HTMLElement} element
+ * @return {Object} client rect
+ */
+function getBoundingClientRect(element) {
+  var rect = {};
+
+  // IE10 10 FIX: Please, don't ask, the element isn't
+  // considered in DOM in some circumstances...
+  // This isn't reproducible in IE10 compatibility mode of IE11
+  try {
+    if (isIE(10)) {
+      rect = element.getBoundingClientRect();
+      var scrollTop = getScroll(element, 'top');
+      var scrollLeft = getScroll(element, 'left');
+      rect.top += scrollTop;
+      rect.left += scrollLeft;
+      rect.bottom += scrollTop;
+      rect.right += scrollLeft;
+    } else {
+      rect = element.getBoundingClientRect();
+    }
+  } catch (e) {}
+
+  var result = {
+    left: rect.left,
+    top: rect.top,
+    width: rect.right - rect.left,
+    height: rect.bottom - rect.top
+  };
+
+  // subtract scrollbar size from sizes
+  var sizes = element.nodeName === 'HTML' ? getWindowSizes(element.ownerDocument) : {};
+  var width = sizes.width || element.clientWidth || result.right - result.left;
+  var height = sizes.height || element.clientHeight || result.bottom - result.top;
+
+  var horizScrollbar = element.offsetWidth - width;
+  var vertScrollbar = element.offsetHeight - height;
+
+  // if an hypothetical scrollbar is detected, we must be sure it's not a `border`
+  // we make this check conditional for performance reasons
+  if (horizScrollbar || vertScrollbar) {
+    var styles = getStyleComputedProperty(element);
+    horizScrollbar -= getBordersSize(styles, 'x');
+    vertScrollbar -= getBordersSize(styles, 'y');
+
+    result.width -= horizScrollbar;
+    result.height -= vertScrollbar;
+  }
+
+  return getClientRect(result);
+}
+
+function getOffsetRectRelativeToArbitraryNode(children, parent) {
+  var fixedPosition = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : false;
+
+  var isIE10 = isIE(10);
+  var isHTML = parent.nodeName === 'HTML';
+  var childrenRect = getBoundingClientRect(children);
+  var parentRect = getBoundingClientRect(parent);
+  var scrollParent = getScrollParent(children);
+
+  var styles = getStyleComputedProperty(parent);
+  var borderTopWidth = parseFloat(styles.borderTopWidth, 10);
+  var borderLeftWidth = parseFloat(styles.borderLeftWidth, 10);
+
+  // In cases where the parent is fixed, we must ignore negative scroll in offset calc
+  if (fixedPosition && isHTML) {
+    parentRect.top = Math.max(parentRect.top, 0);
+    parentRect.left = Math.max(parentRect.left, 0);
+  }
+  var offsets = getClientRect({
+    top: childrenRect.top - parentRect.top - borderTopWidth,
+    left: childrenRect.left - parentRect.left - borderLeftWidth,
+    width: childrenRect.width,
+    height: childrenRect.height
+  });
+  offsets.marginTop = 0;
+  offsets.marginLeft = 0;
+
+  // Subtract margins of documentElement in case it's being used as parent
+  // we do this only on HTML because it's the only element that behaves
+  // differently when margins are applied to it. The margins are included in
+  // the box of the documentElement, in the other cases not.
+  if (!isIE10 && isHTML) {
+    var marginTop = parseFloat(styles.marginTop, 10);
+    var marginLeft = parseFloat(styles.marginLeft, 10);
+
+    offsets.top -= borderTopWidth - marginTop;
+    offsets.bottom -= borderTopWidth - marginTop;
+    offsets.left -= borderLeftWidth - marginLeft;
+    offsets.right -= borderLeftWidth - marginLeft;
+
+    // Attach marginTop and marginLeft because in some circumstances we may need them
+    offsets.marginTop = marginTop;
+    offsets.marginLeft = marginLeft;
+  }
+
+  if (isIE10 && !fixedPosition ? parent.contains(scrollParent) : parent === scrollParent && scrollParent.nodeName !== 'BODY') {
+    offsets = includeScroll(offsets, parent);
+  }
+
+  return offsets;
+}
+
+function getViewportOffsetRectRelativeToArtbitraryNode(element) {
+  var excludeScroll = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+  var html = element.ownerDocument.documentElement;
+  var relativeOffset = getOffsetRectRelativeToArbitraryNode(element, html);
+  var width = Math.max(html.clientWidth, window.innerWidth || 0);
+  var height = Math.max(html.clientHeight, window.innerHeight || 0);
+
+  var scrollTop = !excludeScroll ? getScroll(html) : 0;
+  var scrollLeft = !excludeScroll ? getScroll(html, 'left') : 0;
+
+  var offset = {
+    top: scrollTop - relativeOffset.top + relativeOffset.marginTop,
+    left: scrollLeft - relativeOffset.left + relativeOffset.marginLeft,
+    width: width,
+    height: height
+  };
+
+  return getClientRect(offset);
+}
+
+/**
+ * Check if the given element is fixed or is inside a fixed parent
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @argument {Element} customContainer
+ * @returns {Boolean} answer to "isFixed?"
+ */
+function isFixed(element) {
+  var nodeName = element.nodeName;
+  if (nodeName === 'BODY' || nodeName === 'HTML') {
+    return false;
+  }
+  if (getStyleComputedProperty(element, 'position') === 'fixed') {
+    return true;
+  }
+  return isFixed(getParentNode(element));
+}
+
+/**
+ * Finds the first parent of an element that has a transformed property defined
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @returns {Element} first transformed parent or documentElement
+ */
+
+function getFixedPositionOffsetParent(element) {
+  // This check is needed to avoid errors in case one of the elements isn't defined for any reason
+  if (!element || !element.parentElement || isIE()) {
+    return document.documentElement;
+  }
+  var el = element.parentElement;
+  while (el && getStyleComputedProperty(el, 'transform') === 'none') {
+    el = el.parentElement;
+  }
+  return el || document.documentElement;
+}
+
+/**
+ * Computed the boundaries limits and return them
+ * @method
+ * @memberof Popper.Utils
+ * @param {HTMLElement} popper
+ * @param {HTMLElement} reference
+ * @param {number} padding
+ * @param {HTMLElement} boundariesElement - Element used to define the boundaries
+ * @param {Boolean} fixedPosition - Is in fixed position mode
+ * @returns {Object} Coordinates of the boundaries
+ */
+function getBoundaries(popper, reference, padding, boundariesElement) {
+  var fixedPosition = arguments.length > 4 && arguments[4] !== undefined ? arguments[4] : false;
+
+  // NOTE: 1 DOM access here
+
+  var boundaries = { top: 0, left: 0 };
+  var offsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, reference);
+
+  // Handle viewport case
+  if (boundariesElement === 'viewport') {
+    boundaries = getViewportOffsetRectRelativeToArtbitraryNode(offsetParent, fixedPosition);
+  } else {
+    // Handle other cases based on DOM element used as boundaries
+    var boundariesNode = void 0;
+    if (boundariesElement === 'scrollParent') {
+      boundariesNode = getScrollParent(getParentNode(reference));
+      if (boundariesNode.nodeName === 'BODY') {
+        boundariesNode = popper.ownerDocument.documentElement;
+      }
+    } else if (boundariesElement === 'window') {
+      boundariesNode = popper.ownerDocument.documentElement;
+    } else {
+      boundariesNode = boundariesElement;
+    }
+
+    var offsets = getOffsetRectRelativeToArbitraryNode(boundariesNode, offsetParent, fixedPosition);
+
+    // In case of HTML, we need a different computation
+    if (boundariesNode.nodeName === 'HTML' && !isFixed(offsetParent)) {
+      var _getWindowSizes = getWindowSizes(popper.ownerDocument),
+          height = _getWindowSizes.height,
+          width = _getWindowSizes.width;
+
+      boundaries.top += offsets.top - offsets.marginTop;
+      boundaries.bottom = height + offsets.top;
+      boundaries.left += offsets.left - offsets.marginLeft;
+      boundaries.right = width + offsets.left;
+    } else {
+      // for all the other DOM elements, this one is good
+      boundaries = offsets;
+    }
+  }
+
+  // Add paddings
+  padding = padding || 0;
+  var isPaddingNumber = typeof padding === 'number';
+  boundaries.left += isPaddingNumber ? padding : padding.left || 0;
+  boundaries.top += isPaddingNumber ? padding : padding.top || 0;
+  boundaries.right -= isPaddingNumber ? padding : padding.right || 0;
+  boundaries.bottom -= isPaddingNumber ? padding : padding.bottom || 0;
+
+  return boundaries;
+}
+
+function getArea(_ref) {
+  var width = _ref.width,
+      height = _ref.height;
+
+  return width * height;
+}
+
+/**
+ * Utility used to transform the `auto` placement to the placement with more
+ * available space.
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Object} data - The data object generated by update method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function computeAutoPlacement(placement, refRect, popper, reference, boundariesElement) {
+  var padding = arguments.length > 5 && arguments[5] !== undefined ? arguments[5] : 0;
+
+  if (placement.indexOf('auto') === -1) {
+    return placement;
+  }
+
+  var boundaries = getBoundaries(popper, reference, padding, boundariesElement);
+
+  var rects = {
+    top: {
+      width: boundaries.width,
+      height: refRect.top - boundaries.top
+    },
+    right: {
+      width: boundaries.right - refRect.right,
+      height: boundaries.height
+    },
+    bottom: {
+      width: boundaries.width,
+      height: boundaries.bottom - refRect.bottom
+    },
+    left: {
+      width: refRect.left - boundaries.left,
+      height: boundaries.height
+    }
+  };
+
+  var sortedAreas = Object.keys(rects).map(function (key) {
+    return _extends({
+      key: key
+    }, rects[key], {
+      area: getArea(rects[key])
+    });
+  }).sort(function (a, b) {
+    return b.area - a.area;
+  });
+
+  var filteredAreas = sortedAreas.filter(function (_ref2) {
+    var width = _ref2.width,
+        height = _ref2.height;
+    return width >= popper.clientWidth && height >= popper.clientHeight;
+  });
+
+  var computedPlacement = filteredAreas.length > 0 ? filteredAreas[0].key : sortedAreas[0].key;
+
+  var variation = placement.split('-')[1];
+
+  return computedPlacement + (variation ? '-' + variation : '');
+}
+
+/**
+ * Get offsets to the reference element
+ * @method
+ * @memberof Popper.Utils
+ * @param {Object} state
+ * @param {Element} popper - the popper element
+ * @param {Element} reference - the reference element (the popper will be relative to this)
+ * @param {Element} fixedPosition - is in fixed position mode
+ * @returns {Object} An object containing the offsets which will be applied to the popper
+ */
+function getReferenceOffsets(state, popper, reference) {
+  var fixedPosition = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : null;
+
+  var commonOffsetParent = fixedPosition ? getFixedPositionOffsetParent(popper) : findCommonOffsetParent(popper, reference);
+  return getOffsetRectRelativeToArbitraryNode(reference, commonOffsetParent, fixedPosition);
+}
+
+/**
+ * Get the outer sizes of the given element (offset size + margins)
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element
+ * @returns {Object} object containing width and height properties
+ */
+function getOuterSizes(element) {
+  var styles = getComputedStyle(element);
+  var x = parseFloat(styles.marginTop) + parseFloat(styles.marginBottom);
+  var y = parseFloat(styles.marginLeft) + parseFloat(styles.marginRight);
+  var result = {
+    width: element.offsetWidth + y,
+    height: element.offsetHeight + x
+  };
+  return result;
+}
+
+/**
+ * Get the opposite placement of the given one
+ * @method
+ * @memberof Popper.Utils
+ * @argument {String} placement
+ * @returns {String} flipped placement
+ */
+function getOppositePlacement(placement) {
+  var hash = { left: 'right', right: 'left', bottom: 'top', top: 'bottom' };
+  return placement.replace(/left|right|bottom|top/g, function (matched) {
+    return hash[matched];
+  });
+}
+
+/**
+ * Get offsets to the popper
+ * @method
+ * @memberof Popper.Utils
+ * @param {Object} position - CSS position the Popper will get applied
+ * @param {HTMLElement} popper - the popper element
+ * @param {Object} referenceOffsets - the reference offsets (the popper will be relative to this)
+ * @param {String} placement - one of the valid placement options
+ * @returns {Object} popperOffsets - An object containing the offsets which will be applied to the popper
+ */
+function getPopperOffsets(popper, referenceOffsets, placement) {
+  placement = placement.split('-')[0];
+
+  // Get popper node sizes
+  var popperRect = getOuterSizes(popper);
+
+  // Add position, width and height to our offsets object
+  var popperOffsets = {
+    width: popperRect.width,
+    height: popperRect.height
+  };
+
+  // depending by the popper placement we have to compute its offsets slightly differently
+  var isHoriz = ['right', 'left'].indexOf(placement) !== -1;
+  var mainSide = isHoriz ? 'top' : 'left';
+  var secondarySide = isHoriz ? 'left' : 'top';
+  var measurement = isHoriz ? 'height' : 'width';
+  var secondaryMeasurement = !isHoriz ? 'height' : 'width';
+
+  popperOffsets[mainSide] = referenceOffsets[mainSide] + referenceOffsets[measurement] / 2 - popperRect[measurement] / 2;
+  if (placement === secondarySide) {
+    popperOffsets[secondarySide] = referenceOffsets[secondarySide] - popperRect[secondaryMeasurement];
+  } else {
+    popperOffsets[secondarySide] = referenceOffsets[getOppositePlacement(secondarySide)];
+  }
+
+  return popperOffsets;
+}
+
+/**
+ * Mimics the `find` method of Array
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Array} arr
+ * @argument prop
+ * @argument value
+ * @returns index or -1
+ */
+function find(arr, check) {
+  // use native find if supported
+  if (Array.prototype.find) {
+    return arr.find(check);
+  }
+
+  // use `filter` to obtain the same behavior of `find`
+  return arr.filter(check)[0];
+}
+
+/**
+ * Return the index of the matching object
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Array} arr
+ * @argument prop
+ * @argument value
+ * @returns index or -1
+ */
+function findIndex(arr, prop, value) {
+  // use native findIndex if supported
+  if (Array.prototype.findIndex) {
+    return arr.findIndex(function (cur) {
+      return cur[prop] === value;
+    });
+  }
+
+  // use `find` + `indexOf` if `findIndex` isn't supported
+  var match = find(arr, function (obj) {
+    return obj[prop] === value;
+  });
+  return arr.indexOf(match);
+}
+
+/**
+ * Loop trough the list of modifiers and run them in order,
+ * each of them will then edit the data object.
+ * @method
+ * @memberof Popper.Utils
+ * @param {dataObject} data
+ * @param {Array} modifiers
+ * @param {String} ends - Optional modifier name used as stopper
+ * @returns {dataObject}
+ */
+function runModifiers(modifiers, data, ends) {
+  var modifiersToRun = ends === undefined ? modifiers : modifiers.slice(0, findIndex(modifiers, 'name', ends));
+
+  modifiersToRun.forEach(function (modifier) {
+    if (modifier['function']) {
+      // eslint-disable-line dot-notation
+      console.warn('`modifier.function` is deprecated, use `modifier.fn`!');
+    }
+    var fn = modifier['function'] || modifier.fn; // eslint-disable-line dot-notation
+    if (modifier.enabled && isFunction(fn)) {
+      // Add properties to offsets to make them a complete clientRect object
+      // we do this before each modifier to make sure the previous one doesn't
+      // mess with these values
+      data.offsets.popper = getClientRect(data.offsets.popper);
+      data.offsets.reference = getClientRect(data.offsets.reference);
+
+      data = fn(data, modifier);
+    }
+  });
+
+  return data;
+}
+
+/**
+ * Updates the position of the popper, computing the new offsets and applying
+ * the new style.<br />
+ * Prefer `scheduleUpdate` over `update` because of performance reasons.
+ * @method
+ * @memberof Popper
+ */
+function update() {
+  // if popper is destroyed, don't perform any further update
+  if (this.state.isDestroyed) {
+    return;
+  }
+
+  var data = {
+    instance: this,
+    styles: {},
+    arrowStyles: {},
+    attributes: {},
+    flipped: false,
+    offsets: {}
+  };
+
+  // compute reference element offsets
+  data.offsets.reference = getReferenceOffsets(this.state, this.popper, this.reference, this.options.positionFixed);
+
+  // compute auto placement, store placement inside the data object,
+  // modifiers will be able to edit `placement` if needed
+  // and refer to originalPlacement to know the original value
+  data.placement = computeAutoPlacement(this.options.placement, data.offsets.reference, this.popper, this.reference, this.options.modifiers.flip.boundariesElement, this.options.modifiers.flip.padding);
+
+  // store the computed placement inside `originalPlacement`
+  data.originalPlacement = data.placement;
+
+  data.positionFixed = this.options.positionFixed;
+
+  // compute the popper offsets
+  data.offsets.popper = getPopperOffsets(this.popper, data.offsets.reference, data.placement);
+
+  data.offsets.popper.position = this.options.positionFixed ? 'fixed' : 'absolute';
+
+  // run the modifiers
+  data = runModifiers(this.modifiers, data);
+
+  // the first `update` will call `onCreate` callback
+  // the other ones will call `onUpdate` callback
+  if (!this.state.isCreated) {
+    this.state.isCreated = true;
+    this.options.onCreate(data);
+  } else {
+    this.options.onUpdate(data);
+  }
+}
+
+/**
+ * Helper used to know if the given modifier is enabled.
+ * @method
+ * @memberof Popper.Utils
+ * @returns {Boolean}
+ */
+function isModifierEnabled(modifiers, modifierName) {
+  return modifiers.some(function (_ref) {
+    var name = _ref.name,
+        enabled = _ref.enabled;
+    return enabled && name === modifierName;
+  });
+}
+
+/**
+ * Get the prefixed supported property name
+ * @method
+ * @memberof Popper.Utils
+ * @argument {String} property (camelCase)
+ * @returns {String} prefixed property (camelCase or PascalCase, depending on the vendor prefix)
+ */
+function getSupportedPropertyName(property) {
+  var prefixes = [false, 'ms', 'Webkit', 'Moz', 'O'];
+  var upperProp = property.charAt(0).toUpperCase() + property.slice(1);
+
+  for (var i = 0; i < prefixes.length; i++) {
+    var prefix = prefixes[i];
+    var toCheck = prefix ? '' + prefix + upperProp : property;
+    if (typeof document.body.style[toCheck] !== 'undefined') {
+      return toCheck;
+    }
+  }
+  return null;
+}
+
+/**
+ * Destroys the popper.
+ * @method
+ * @memberof Popper
+ */
+function destroy() {
+  this.state.isDestroyed = true;
+
+  // touch DOM only if `applyStyle` modifier is enabled
+  if (isModifierEnabled(this.modifiers, 'applyStyle')) {
+    this.popper.removeAttribute('x-placement');
+    this.popper.style.position = '';
+    this.popper.style.top = '';
+    this.popper.style.left = '';
+    this.popper.style.right = '';
+    this.popper.style.bottom = '';
+    this.popper.style.willChange = '';
+    this.popper.style[getSupportedPropertyName('transform')] = '';
+  }
+
+  this.disableEventListeners();
+
+  // remove the popper if user explicity asked for the deletion on destroy
+  // do not use `remove` because IE11 doesn't support it
+  if (this.options.removeOnDestroy) {
+    this.popper.parentNode.removeChild(this.popper);
+  }
+  return this;
+}
+
+/**
+ * Get the window associated with the element
+ * @argument {Element} element
+ * @returns {Window}
+ */
+function getWindow(element) {
+  var ownerDocument = element.ownerDocument;
+  return ownerDocument ? ownerDocument.defaultView : window;
+}
+
+function attachToScrollParents(scrollParent, event, callback, scrollParents) {
+  var isBody = scrollParent.nodeName === 'BODY';
+  var target = isBody ? scrollParent.ownerDocument.defaultView : scrollParent;
+  target.addEventListener(event, callback, { passive: true });
+
+  if (!isBody) {
+    attachToScrollParents(getScrollParent(target.parentNode), event, callback, scrollParents);
+  }
+  scrollParents.push(target);
+}
+
+/**
+ * Setup needed event listeners used to update the popper position
+ * @method
+ * @memberof Popper.Utils
+ * @private
+ */
+function setupEventListeners(reference, options, state, updateBound) {
+  // Resize event listener on window
+  state.updateBound = updateBound;
+  getWindow(reference).addEventListener('resize', state.updateBound, { passive: true });
+
+  // Scroll event listener on scroll parents
+  var scrollElement = getScrollParent(reference);
+  attachToScrollParents(scrollElement, 'scroll', state.updateBound, state.scrollParents);
+  state.scrollElement = scrollElement;
+  state.eventsEnabled = true;
+
+  return state;
+}
+
+/**
+ * It will add resize/scroll events and start recalculating
+ * position of the popper element when they are triggered.
+ * @method
+ * @memberof Popper
+ */
+function enableEventListeners() {
+  if (!this.state.eventsEnabled) {
+    this.state = setupEventListeners(this.reference, this.options, this.state, this.scheduleUpdate);
+  }
+}
+
+/**
+ * Remove event listeners used to update the popper position
+ * @method
+ * @memberof Popper.Utils
+ * @private
+ */
+function removeEventListeners(reference, state) {
+  // Remove resize event listener on window
+  getWindow(reference).removeEventListener('resize', state.updateBound);
+
+  // Remove scroll event listener on scroll parents
+  state.scrollParents.forEach(function (target) {
+    target.removeEventListener('scroll', state.updateBound);
+  });
+
+  // Reset state
+  state.updateBound = null;
+  state.scrollParents = [];
+  state.scrollElement = null;
+  state.eventsEnabled = false;
+  return state;
+}
+
+/**
+ * It will remove resize/scroll events and won't recalculate popper position
+ * when they are triggered. It also won't trigger `onUpdate` callback anymore,
+ * unless you call `update` method manually.
+ * @method
+ * @memberof Popper
+ */
+function disableEventListeners() {
+  if (this.state.eventsEnabled) {
+    cancelAnimationFrame(this.scheduleUpdate);
+    this.state = removeEventListeners(this.reference, this.state);
+  }
+}
+
+/**
+ * Tells if a given input is a number
+ * @method
+ * @memberof Popper.Utils
+ * @param {*} input to check
+ * @return {Boolean}
+ */
+function isNumeric(n) {
+  return n !== '' && !isNaN(parseFloat(n)) && isFinite(n);
+}
+
+/**
+ * Set the style to the given popper
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element - Element to apply the style to
+ * @argument {Object} styles
+ * Object with a list of properties and values which will be applied to the element
+ */
+function setStyles(element, styles) {
+  Object.keys(styles).forEach(function (prop) {
+    var unit = '';
+    // add unit if the value is numeric and is one of the following
+    if (['width', 'height', 'top', 'right', 'bottom', 'left'].indexOf(prop) !== -1 && isNumeric(styles[prop])) {
+      unit = 'px';
+    }
+    element.style[prop] = styles[prop] + unit;
+  });
+}
+
+/**
+ * Set the attributes to the given popper
+ * @method
+ * @memberof Popper.Utils
+ * @argument {Element} element - Element to apply the attributes to
+ * @argument {Object} styles
+ * Object with a list of properties and values which will be applied to the element
+ */
+function setAttributes(element, attributes) {
+  Object.keys(attributes).forEach(function (prop) {
+    var value = attributes[prop];
+    if (value !== false) {
+      element.setAttribute(prop, attributes[prop]);
+    } else {
+      element.removeAttribute(prop);
+    }
+  });
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by `update` method
+ * @argument {Object} data.styles - List of style properties - values to apply to popper element
+ * @argument {Object} data.attributes - List of attribute properties - values to apply to popper element
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The same data object
+ */
+function applyStyle(data) {
+  // any property present in `data.styles` will be applied to the popper,
+  // in this way we can make the 3rd party modifiers add custom styles to it
+  // Be aware, modifiers could override the properties defined in the previous
+  // lines of this modifier!
+  setStyles(data.instance.popper, data.styles);
+
+  // any property present in `data.attributes` will be applied to the popper,
+  // they will be set as HTML attributes of the element
+  setAttributes(data.instance.popper, data.attributes);
+
+  // if arrowElement is defined and arrowStyles has some properties
+  if (data.arrowElement && Object.keys(data.arrowStyles).length) {
+    setStyles(data.arrowElement, data.arrowStyles);
+  }
+
+  return data;
+}
+
+/**
+ * Set the x-placement attribute before everything else because it could be used
+ * to add margins to the popper margins needs to be calculated to get the
+ * correct popper offsets.
+ * @method
+ * @memberof Popper.modifiers
+ * @param {HTMLElement} reference - The reference element used to position the popper
+ * @param {HTMLElement} popper - The HTML element used as popper
+ * @param {Object} options - Popper.js options
+ */
+function applyStyleOnLoad(reference, popper, options, modifierOptions, state) {
+  // compute reference element offsets
+  var referenceOffsets = getReferenceOffsets(state, popper, reference, options.positionFixed);
+
+  // compute auto placement, store placement inside the data object,
+  // modifiers will be able to edit `placement` if needed
+  // and refer to originalPlacement to know the original value
+  var placement = computeAutoPlacement(options.placement, referenceOffsets, popper, reference, options.modifiers.flip.boundariesElement, options.modifiers.flip.padding);
+
+  popper.setAttribute('x-placement', placement);
+
+  // Apply `position` to popper before anything else because
+  // without the position applied we can't guarantee correct computations
+  setStyles(popper, { position: options.positionFixed ? 'fixed' : 'absolute' });
+
+  return options;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by `update` method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function computeStyle(data, options) {
+  var x = options.x,
+      y = options.y;
+  var popper = data.offsets.popper;
+
+  // Remove this legacy support in Popper.js v2
+
+  var legacyGpuAccelerationOption = find(data.instance.modifiers, function (modifier) {
+    return modifier.name === 'applyStyle';
+  }).gpuAcceleration;
+  if (legacyGpuAccelerationOption !== undefined) {
+    console.warn('WARNING: `gpuAcceleration` option moved to `computeStyle` modifier and will not be supported in future versions of Popper.js!');
+  }
+  var gpuAcceleration = legacyGpuAccelerationOption !== undefined ? legacyGpuAccelerationOption : options.gpuAcceleration;
+
+  var offsetParent = getOffsetParent(data.instance.popper);
+  var offsetParentRect = getBoundingClientRect(offsetParent);
+
+  // Styles
+  var styles = {
+    position: popper.position
+  };
+
+  // Avoid blurry text by using full pixel integers.
+  // For pixel-perfect positioning, top/bottom prefers rounded
+  // values, while left/right prefers floored values.
+  var offsets = {
+    left: Math.floor(popper.left),
+    top: Math.round(popper.top),
+    bottom: Math.round(popper.bottom),
+    right: Math.floor(popper.right)
+  };
+
+  var sideA = x === 'bottom' ? 'top' : 'bottom';
+  var sideB = y === 'right' ? 'left' : 'right';
+
+  // if gpuAcceleration is set to `true` and transform is supported,
+  //  we use `translate3d` to apply the position to the popper we
+  // automatically use the supported prefixed version if needed
+  var prefixedProperty = getSupportedPropertyName('transform');
+
+  // now, let's make a step back and look at this code closely (wtf?)
+  // If the content of the popper grows once it's been positioned, it
+  // may happen that the popper gets misplaced because of the new content
+  // overflowing its reference element
+  // To avoid this problem, we provide two options (x and y), which allow
+  // the consumer to define the offset origin.
+  // If we position a popper on top of a reference element, we can set
+  // `x` to `top` to make the popper grow towards its top instead of
+  // its bottom.
+  var left = void 0,
+      top = void 0;
+  if (sideA === 'bottom') {
+    // when offsetParent is <html> the positioning is relative to the bottom of the screen (excluding the scrollbar)
+    // and not the bottom of the html element
+    if (offsetParent.nodeName === 'HTML') {
+      top = -offsetParent.clientHeight + offsets.bottom;
+    } else {
+      top = -offsetParentRect.height + offsets.bottom;
+    }
+  } else {
+    top = offsets.top;
+  }
+  if (sideB === 'right') {
+    if (offsetParent.nodeName === 'HTML') {
+      left = -offsetParent.clientWidth + offsets.right;
+    } else {
+      left = -offsetParentRect.width + offsets.right;
+    }
+  } else {
+    left = offsets.left;
+  }
+  if (gpuAcceleration && prefixedProperty) {
+    styles[prefixedProperty] = 'translate3d(' + left + 'px, ' + top + 'px, 0)';
+    styles[sideA] = 0;
+    styles[sideB] = 0;
+    styles.willChange = 'transform';
+  } else {
+    // othwerise, we use the standard `top`, `left`, `bottom` and `right` properties
+    var invertTop = sideA === 'bottom' ? -1 : 1;
+    var invertLeft = sideB === 'right' ? -1 : 1;
+    styles[sideA] = top * invertTop;
+    styles[sideB] = left * invertLeft;
+    styles.willChange = sideA + ', ' + sideB;
+  }
+
+  // Attributes
+  var attributes = {
+    'x-placement': data.placement
+  };
+
+  // Update `data` attributes, styles and arrowStyles
+  data.attributes = _extends({}, attributes, data.attributes);
+  data.styles = _extends({}, styles, data.styles);
+  data.arrowStyles = _extends({}, data.offsets.arrow, data.arrowStyles);
+
+  return data;
+}
+
+/**
+ * Helper used to know if the given modifier depends from another one.<br />
+ * It checks if the needed modifier is listed and enabled.
+ * @method
+ * @memberof Popper.Utils
+ * @param {Array} modifiers - list of modifiers
+ * @param {String} requestingName - name of requesting modifier
+ * @param {String} requestedName - name of requested modifier
+ * @returns {Boolean}
+ */
+function isModifierRequired(modifiers, requestingName, requestedName) {
+  var requesting = find(modifiers, function (_ref) {
+    var name = _ref.name;
+    return name === requestingName;
+  });
+
+  var isRequired = !!requesting && modifiers.some(function (modifier) {
+    return modifier.name === requestedName && modifier.enabled && modifier.order < requesting.order;
+  });
+
+  if (!isRequired) {
+    var _requesting = '`' + requestingName + '`';
+    var requested = '`' + requestedName + '`';
+    console.warn(requested + ' modifier is required by ' + _requesting + ' modifier in order to work, be sure to include it before ' + _requesting + '!');
+  }
+  return isRequired;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by update method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function arrow(data, options) {
+  var _data$offsets$arrow;
+
+  // arrow depends on keepTogether in order to work
+  if (!isModifierRequired(data.instance.modifiers, 'arrow', 'keepTogether')) {
+    return data;
+  }
+
+  var arrowElement = options.element;
+
+  // if arrowElement is a string, suppose it's a CSS selector
+  if (typeof arrowElement === 'string') {
+    arrowElement = data.instance.popper.querySelector(arrowElement);
+
+    // if arrowElement is not found, don't run the modifier
+    if (!arrowElement) {
+      return data;
+    }
+  } else {
+    // if the arrowElement isn't a query selector we must check that the
+    // provided DOM node is child of its popper node
+    if (!data.instance.popper.contains(arrowElement)) {
+      console.warn('WARNING: `arrow.element` must be child of its popper element!');
+      return data;
+    }
+  }
+
+  var placement = data.placement.split('-')[0];
+  var _data$offsets = data.offsets,
+      popper = _data$offsets.popper,
+      reference = _data$offsets.reference;
+
+  var isVertical = ['left', 'right'].indexOf(placement) !== -1;
+
+  var len = isVertical ? 'height' : 'width';
+  var sideCapitalized = isVertical ? 'Top' : 'Left';
+  var side = sideCapitalized.toLowerCase();
+  var altSide = isVertical ? 'left' : 'top';
+  var opSide = isVertical ? 'bottom' : 'right';
+  var arrowElementSize = getOuterSizes(arrowElement)[len];
+
+  //
+  // extends keepTogether behavior making sure the popper and its
+  // reference have enough pixels in conjunction
+  //
+
+  // top/left side
+  if (reference[opSide] - arrowElementSize < popper[side]) {
+    data.offsets.popper[side] -= popper[side] - (reference[opSide] - arrowElementSize);
+  }
+  // bottom/right side
+  if (reference[side] + arrowElementSize > popper[opSide]) {
+    data.offsets.popper[side] += reference[side] + arrowElementSize - popper[opSide];
+  }
+  data.offsets.popper = getClientRect(data.offsets.popper);
+
+  // compute center of the popper
+  var center = reference[side] + reference[len] / 2 - arrowElementSize / 2;
+
+  // Compute the sideValue using the updated popper offsets
+  // take popper margin in account because we don't have this info available
+  var css = getStyleComputedProperty(data.instance.popper);
+  var popperMarginSide = parseFloat(css['margin' + sideCapitalized], 10);
+  var popperBorderSide = parseFloat(css['border' + sideCapitalized + 'Width'], 10);
+  var sideValue = center - data.offsets.popper[side] - popperMarginSide - popperBorderSide;
+
+  // prevent arrowElement from being placed not contiguously to its popper
+  sideValue = Math.max(Math.min(popper[len] - arrowElementSize, sideValue), 0);
+
+  data.arrowElement = arrowElement;
+  data.offsets.arrow = (_data$offsets$arrow = {}, defineProperty(_data$offsets$arrow, side, Math.round(sideValue)), defineProperty(_data$offsets$arrow, altSide, ''), _data$offsets$arrow);
+
+  return data;
+}
+
+/**
+ * Get the opposite placement variation of the given one
+ * @method
+ * @memberof Popper.Utils
+ * @argument {String} placement variation
+ * @returns {String} flipped placement variation
+ */
+function getOppositeVariation(variation) {
+  if (variation === 'end') {
+    return 'start';
+  } else if (variation === 'start') {
+    return 'end';
+  }
+  return variation;
+}
+
+/**
+ * List of accepted placements to use as values of the `placement` option.<br />
+ * Valid placements are:
+ * - `auto`
+ * - `top`
+ * - `right`
+ * - `bottom`
+ * - `left`
+ *
+ * Each placement can have a variation from this list:
+ * - `-start`
+ * - `-end`
+ *
+ * Variations are interpreted easily if you think of them as the left to right
+ * written languages. Horizontally (`top` and `bottom`), `start` is left and `end`
+ * is right.<br />
+ * Vertically (`left` and `right`), `start` is top and `end` is bottom.
+ *
+ * Some valid examples are:
+ * - `top-end` (on top of reference, right aligned)
+ * - `right-start` (on right of reference, top aligned)
+ * - `bottom` (on bottom, centered)
+ * - `auto-end` (on the side with more space available, alignment depends by placement)
+ *
+ * @static
+ * @type {Array}
+ * @enum {String}
+ * @readonly
+ * @method placements
+ * @memberof Popper
+ */
+var placements = ['auto-start', 'auto', 'auto-end', 'top-start', 'top', 'top-end', 'right-start', 'right', 'right-end', 'bottom-end', 'bottom', 'bottom-start', 'left-end', 'left', 'left-start'];
+
+// Get rid of `auto` `auto-start` and `auto-end`
+var validPlacements = placements.slice(3);
+
+/**
+ * Given an initial placement, returns all the subsequent placements
+ * clockwise (or counter-clockwise).
+ *
+ * @method
+ * @memberof Popper.Utils
+ * @argument {String} placement - A valid placement (it accepts variations)
+ * @argument {Boolean} counter - Set to true to walk the placements counterclockwise
+ * @returns {Array} placements including their variations
+ */
+function clockwise(placement) {
+  var counter = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+  var index = validPlacements.indexOf(placement);
+  var arr = validPlacements.slice(index + 1).concat(validPlacements.slice(0, index));
+  return counter ? arr.reverse() : arr;
+}
+
+var BEHAVIORS = {
+  FLIP: 'flip',
+  CLOCKWISE: 'clockwise',
+  COUNTERCLOCKWISE: 'counterclockwise'
+};
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by update method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function flip(data, options) {
+  // if `inner` modifier is enabled, we can't use the `flip` modifier
+  if (isModifierEnabled(data.instance.modifiers, 'inner')) {
+    return data;
+  }
+
+  if (data.flipped && data.placement === data.originalPlacement) {
+    // seems like flip is trying to loop, probably there's not enough space on any of the flippable sides
+    return data;
+  }
+
+  var boundaries = getBoundaries(data.instance.popper, data.instance.reference, options.padding, options.boundariesElement, data.positionFixed);
+
+  var placement = data.placement.split('-')[0];
+  var placementOpposite = getOppositePlacement(placement);
+  var variation = data.placement.split('-')[1] || '';
+
+  var flipOrder = [];
+
+  switch (options.behavior) {
+    case BEHAVIORS.FLIP:
+      flipOrder = [placement, placementOpposite];
+      break;
+    case BEHAVIORS.CLOCKWISE:
+      flipOrder = clockwise(placement);
+      break;
+    case BEHAVIORS.COUNTERCLOCKWISE:
+      flipOrder = clockwise(placement, true);
+      break;
+    default:
+      flipOrder = options.behavior;
+  }
+
+  flipOrder.forEach(function (step, index) {
+    if (placement !== step || flipOrder.length === index + 1) {
+      return data;
+    }
+
+    placement = data.placement.split('-')[0];
+    placementOpposite = getOppositePlacement(placement);
+
+    var popperOffsets = data.offsets.popper;
+    var refOffsets = data.offsets.reference;
+
+    // using floor because the reference offsets may contain decimals we are not going to consider here
+    var floor = Math.floor;
+    var overlapsRef = placement === 'left' && floor(popperOffsets.right) > floor(refOffsets.left) || placement === 'right' && floor(popperOffsets.left) < floor(refOffsets.right) || placement === 'top' && floor(popperOffsets.bottom) > floor(refOffsets.top) || placement === 'bottom' && floor(popperOffsets.top) < floor(refOffsets.bottom);
+
+    var overflowsLeft = floor(popperOffsets.left) < floor(boundaries.left);
+    var overflowsRight = floor(popperOffsets.right) > floor(boundaries.right);
+    var overflowsTop = floor(popperOffsets.top) < floor(boundaries.top);
+    var overflowsBottom = floor(popperOffsets.bottom) > floor(boundaries.bottom);
+
+    var overflowsBoundaries = placement === 'left' && overflowsLeft || placement === 'right' && overflowsRight || placement === 'top' && overflowsTop || placement === 'bottom' && overflowsBottom;
+
+    // flip the variation if required
+    var isVertical = ['top', 'bottom'].indexOf(placement) !== -1;
+    var flippedVariation = !!options.flipVariations && (isVertical && variation === 'start' && overflowsLeft || isVertical && variation === 'end' && overflowsRight || !isVertical && variation === 'start' && overflowsTop || !isVertical && variation === 'end' && overflowsBottom);
+
+    if (overlapsRef || overflowsBoundaries || flippedVariation) {
+      // this boolean to detect any flip loop
+      data.flipped = true;
+
+      if (overlapsRef || overflowsBoundaries) {
+        placement = flipOrder[index + 1];
+      }
+
+      if (flippedVariation) {
+        variation = getOppositeVariation(variation);
+      }
+
+      data.placement = placement + (variation ? '-' + variation : '');
+
+      // this object contains `position`, we want to preserve it along with
+      // any additional property we may add in the future
+      data.offsets.popper = _extends({}, data.offsets.popper, getPopperOffsets(data.instance.popper, data.offsets.reference, data.placement));
+
+      data = runModifiers(data.instance.modifiers, data, 'flip');
+    }
+  });
+  return data;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by update method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function keepTogether(data) {
+  var _data$offsets = data.offsets,
+      popper = _data$offsets.popper,
+      reference = _data$offsets.reference;
+
+  var placement = data.placement.split('-')[0];
+  var floor = Math.floor;
+  var isVertical = ['top', 'bottom'].indexOf(placement) !== -1;
+  var side = isVertical ? 'right' : 'bottom';
+  var opSide = isVertical ? 'left' : 'top';
+  var measurement = isVertical ? 'width' : 'height';
+
+  if (popper[side] < floor(reference[opSide])) {
+    data.offsets.popper[opSide] = floor(reference[opSide]) - popper[measurement];
+  }
+  if (popper[opSide] > floor(reference[side])) {
+    data.offsets.popper[opSide] = floor(reference[side]);
+  }
+
+  return data;
+}
+
+/**
+ * Converts a string containing value + unit into a px value number
+ * @function
+ * @memberof {modifiers~offset}
+ * @private
+ * @argument {String} str - Value + unit string
+ * @argument {String} measurement - `height` or `width`
+ * @argument {Object} popperOffsets
+ * @argument {Object} referenceOffsets
+ * @returns {Number|String}
+ * Value in pixels, or original string if no values were extracted
+ */
+function toValue(str, measurement, popperOffsets, referenceOffsets) {
+  // separate value from unit
+  var split = str.match(/((?:\-|\+)?\d*\.?\d*)(.*)/);
+  var value = +split[1];
+  var unit = split[2];
+
+  // If it's not a number it's an operator, I guess
+  if (!value) {
+    return str;
+  }
+
+  if (unit.indexOf('%') === 0) {
+    var element = void 0;
+    switch (unit) {
+      case '%p':
+        element = popperOffsets;
+        break;
+      case '%':
+      case '%r':
+      default:
+        element = referenceOffsets;
+    }
+
+    var rect = getClientRect(element);
+    return rect[measurement] / 100 * value;
+  } else if (unit === 'vh' || unit === 'vw') {
+    // if is a vh or vw, we calculate the size based on the viewport
+    var size = void 0;
+    if (unit === 'vh') {
+      size = Math.max(document.documentElement.clientHeight, window.innerHeight || 0);
+    } else {
+      size = Math.max(document.documentElement.clientWidth, window.innerWidth || 0);
+    }
+    return size / 100 * value;
+  } else {
+    // if is an explicit pixel unit, we get rid of the unit and keep the value
+    // if is an implicit unit, it's px, and we return just the value
+    return value;
+  }
+}
+
+/**
+ * Parse an `offset` string to extrapolate `x` and `y` numeric offsets.
+ * @function
+ * @memberof {modifiers~offset}
+ * @private
+ * @argument {String} offset
+ * @argument {Object} popperOffsets
+ * @argument {Object} referenceOffsets
+ * @argument {String} basePlacement
+ * @returns {Array} a two cells array with x and y offsets in numbers
+ */
+function parseOffset(offset, popperOffsets, referenceOffsets, basePlacement) {
+  var offsets = [0, 0];
+
+  // Use height if placement is left or right and index is 0 otherwise use width
+  // in this way the first offset will use an axis and the second one
+  // will use the other one
+  var useHeight = ['right', 'left'].indexOf(basePlacement) !== -1;
+
+  // Split the offset string to obtain a list of values and operands
+  // The regex addresses values with the plus or minus sign in front (+10, -20, etc)
+  var fragments = offset.split(/(\+|\-)/).map(function (frag) {
+    return frag.trim();
+  });
+
+  // Detect if the offset string contains a pair of values or a single one
+  // they could be separated by comma or space
+  var divider = fragments.indexOf(find(fragments, function (frag) {
+    return frag.search(/,|\s/) !== -1;
+  }));
+
+  if (fragments[divider] && fragments[divider].indexOf(',') === -1) {
+    console.warn('Offsets separated by white space(s) are deprecated, use a comma (,) instead.');
+  }
+
+  // If divider is found, we divide the list of values and operands to divide
+  // them by ofset X and Y.
+  var splitRegex = /\s*,\s*|\s+/;
+  var ops = divider !== -1 ? [fragments.slice(0, divider).concat([fragments[divider].split(splitRegex)[0]]), [fragments[divider].split(splitRegex)[1]].concat(fragments.slice(divider + 1))] : [fragments];
+
+  // Convert the values with units to absolute pixels to allow our computations
+  ops = ops.map(function (op, index) {
+    // Most of the units rely on the orientation of the popper
+    var measurement = (index === 1 ? !useHeight : useHeight) ? 'height' : 'width';
+    var mergeWithPrevious = false;
+    return op
+    // This aggregates any `+` or `-` sign that aren't considered operators
+    // e.g.: 10 + +5 => [10, +, +5]
+    .reduce(function (a, b) {
+      if (a[a.length - 1] === '' && ['+', '-'].indexOf(b) !== -1) {
+        a[a.length - 1] = b;
+        mergeWithPrevious = true;
+        return a;
+      } else if (mergeWithPrevious) {
+        a[a.length - 1] += b;
+        mergeWithPrevious = false;
+        return a;
+      } else {
+        return a.concat(b);
+      }
+    }, [])
+    // Here we convert the string values into number values (in px)
+    .map(function (str) {
+      return toValue(str, measurement, popperOffsets, referenceOffsets);
+    });
+  });
+
+  // Loop trough the offsets arrays and execute the operations
+  ops.forEach(function (op, index) {
+    op.forEach(function (frag, index2) {
+      if (isNumeric(frag)) {
+        offsets[index] += frag * (op[index2 - 1] === '-' ? -1 : 1);
+      }
+    });
+  });
+  return offsets;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by update method
+ * @argument {Object} options - Modifiers configuration and options
+ * @argument {Number|String} options.offset=0
+ * The offset value as described in the modifier description
+ * @returns {Object} The data object, properly modified
+ */
+function offset(data, _ref) {
+  var offset = _ref.offset;
+  var placement = data.placement,
+      _data$offsets = data.offsets,
+      popper = _data$offsets.popper,
+      reference = _data$offsets.reference;
+
+  var basePlacement = placement.split('-')[0];
+
+  var offsets = void 0;
+  if (isNumeric(+offset)) {
+    offsets = [+offset, 0];
+  } else {
+    offsets = parseOffset(offset, popper, reference, basePlacement);
+  }
+
+  if (basePlacement === 'left') {
+    popper.top += offsets[0];
+    popper.left -= offsets[1];
+  } else if (basePlacement === 'right') {
+    popper.top += offsets[0];
+    popper.left += offsets[1];
+  } else if (basePlacement === 'top') {
+    popper.left += offsets[0];
+    popper.top -= offsets[1];
+  } else if (basePlacement === 'bottom') {
+    popper.left += offsets[0];
+    popper.top += offsets[1];
+  }
+
+  data.popper = popper;
+  return data;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by `update` method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function preventOverflow(data, options) {
+  var boundariesElement = options.boundariesElement || getOffsetParent(data.instance.popper);
+
+  // If offsetParent is the reference element, we really want to
+  // go one step up and use the next offsetParent as reference to
+  // avoid to make this modifier completely useless and look like broken
+  if (data.instance.reference === boundariesElement) {
+    boundariesElement = getOffsetParent(boundariesElement);
+  }
+
+  // NOTE: DOM access here
+  // resets the popper's position so that the document size can be calculated excluding
+  // the size of the popper element itself
+  var transformProp = getSupportedPropertyName('transform');
+  var popperStyles = data.instance.popper.style; // assignment to help minification
+  var top = popperStyles.top,
+      left = popperStyles.left,
+      transform = popperStyles[transformProp];
+
+  popperStyles.top = '';
+  popperStyles.left = '';
+  popperStyles[transformProp] = '';
+
+  var boundaries = getBoundaries(data.instance.popper, data.instance.reference, options.padding, boundariesElement, data.positionFixed);
+
+  // NOTE: DOM access here
+  // restores the original style properties after the offsets have been computed
+  popperStyles.top = top;
+  popperStyles.left = left;
+  popperStyles[transformProp] = transform;
+
+  options.boundaries = boundaries;
+
+  var order = options.priority;
+  var popper = data.offsets.popper;
+
+  var check = {
+    primary: function primary(placement) {
+      var value = popper[placement];
+      if (popper[placement] < boundaries[placement] && !options.escapeWithReference) {
+        value = Math.max(popper[placement], boundaries[placement]);
+      }
+      return defineProperty({}, placement, value);
+    },
+    secondary: function secondary(placement) {
+      var mainSide = placement === 'right' ? 'left' : 'top';
+      var value = popper[mainSide];
+      if (popper[placement] > boundaries[placement] && !options.escapeWithReference) {
+        value = Math.min(popper[mainSide], boundaries[placement] - (placement === 'right' ? popper.width : popper.height));
+      }
+      return defineProperty({}, mainSide, value);
+    }
+  };
+
+  order.forEach(function (placement) {
+    var side = ['left', 'top'].indexOf(placement) !== -1 ? 'primary' : 'secondary';
+    popper = _extends({}, popper, check[side](placement));
+  });
+
+  data.offsets.popper = popper;
+
+  return data;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by `update` method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function shift(data) {
+  var placement = data.placement;
+  var basePlacement = placement.split('-')[0];
+  var shiftvariation = placement.split('-')[1];
+
+  // if shift shiftvariation is specified, run the modifier
+  if (shiftvariation) {
+    var _data$offsets = data.offsets,
+        reference = _data$offsets.reference,
+        popper = _data$offsets.popper;
+
+    var isVertical = ['bottom', 'top'].indexOf(basePlacement) !== -1;
+    var side = isVertical ? 'left' : 'top';
+    var measurement = isVertical ? 'width' : 'height';
+
+    var shiftOffsets = {
+      start: defineProperty({}, side, reference[side]),
+      end: defineProperty({}, side, reference[side] + reference[measurement] - popper[measurement])
+    };
+
+    data.offsets.popper = _extends({}, popper, shiftOffsets[shiftvariation]);
+  }
+
+  return data;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by update method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function hide(data) {
+  if (!isModifierRequired(data.instance.modifiers, 'hide', 'preventOverflow')) {
+    return data;
+  }
+
+  var refRect = data.offsets.reference;
+  var bound = find(data.instance.modifiers, function (modifier) {
+    return modifier.name === 'preventOverflow';
+  }).boundaries;
+
+  if (refRect.bottom < bound.top || refRect.left > bound.right || refRect.top > bound.bottom || refRect.right < bound.left) {
+    // Avoid unnecessary DOM access if visibility hasn't changed
+    if (data.hide === true) {
+      return data;
+    }
+
+    data.hide = true;
+    data.attributes['x-out-of-boundaries'] = '';
+  } else {
+    // Avoid unnecessary DOM access if visibility hasn't changed
+    if (data.hide === false) {
+      return data;
+    }
+
+    data.hide = false;
+    data.attributes['x-out-of-boundaries'] = false;
+  }
+
+  return data;
+}
+
+/**
+ * @function
+ * @memberof Modifiers
+ * @argument {Object} data - The data object generated by `update` method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {Object} The data object, properly modified
+ */
+function inner(data) {
+  var placement = data.placement;
+  var basePlacement = placement.split('-')[0];
+  var _data$offsets = data.offsets,
+      popper = _data$offsets.popper,
+      reference = _data$offsets.reference;
+
+  var isHoriz = ['left', 'right'].indexOf(basePlacement) !== -1;
+
+  var subtractLength = ['top', 'left'].indexOf(basePlacement) === -1;
+
+  popper[isHoriz ? 'left' : 'top'] = reference[basePlacement] - (subtractLength ? popper[isHoriz ? 'width' : 'height'] : 0);
+
+  data.placement = getOppositePlacement(placement);
+  data.offsets.popper = getClientRect(popper);
+
+  return data;
+}
+
+/**
+ * Modifier function, each modifier can have a function of this type assigned
+ * to its `fn` property.<br />
+ * These functions will be called on each update, this means that you must
+ * make sure they are performant enough to avoid performance bottlenecks.
+ *
+ * @function ModifierFn
+ * @argument {dataObject} data - The data object generated by `update` method
+ * @argument {Object} options - Modifiers configuration and options
+ * @returns {dataObject} The data object, properly modified
+ */
+
+/**
+ * Modifiers are plugins used to alter the behavior of your poppers.<br />
+ * Popper.js uses a set of 9 modifiers to provide all the basic functionalities
+ * needed by the library.
+ *
+ * Usually you don't want to override the `order`, `fn` and `onLoad` props.
+ * All the other properties are configurations that could be tweaked.
+ * @namespace modifiers
+ */
+var modifiers = {
+  /**
+   * Modifier used to shift the popper on the start or end of its reference
+   * element.<br />
+   * It will read the variation of the `placement` property.<br />
+   * It can be one either `-end` or `-start`.
+   * @memberof modifiers
+   * @inner
+   */
+  shift: {
+    /** @prop {number} order=100 - Index used to define the order of execution */
+    order: 100,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: shift
+  },
+
+  /**
+   * The `offset` modifier can shift your popper on both its axis.
+   *
+   * It accepts the following units:
+   * - `px` or unit-less, interpreted as pixels
+   * - `%` or `%r`, percentage relative to the length of the reference element
+   * - `%p`, percentage relative to the length of the popper element
+   * - `vw`, CSS viewport width unit
+   * - `vh`, CSS viewport height unit
+   *
+   * For length is intended the main axis relative to the placement of the popper.<br />
+   * This means that if the placement is `top` or `bottom`, the length will be the
+   * `width`. In case of `left` or `right`, it will be the `height`.
+   *
+   * You can provide a single value (as `Number` or `String`), or a pair of values
+   * as `String` divided by a comma or one (or more) white spaces.<br />
+   * The latter is a deprecated method because it leads to confusion and will be
+   * removed in v2.<br />
+   * Additionally, it accepts additions and subtractions between different units.
+   * Note that multiplications and divisions aren't supported.
+   *
+   * Valid examples are:
+   * ```
+   * 10
+   * '10%'
+   * '10, 10'
+   * '10%, 10'
+   * '10 + 10%'
+   * '10 - 5vh + 3%'
+   * '-10px + 5vh, 5px - 6%'
+   * ```
+   * > **NB**: If you desire to apply offsets to your poppers in a way that may make them overlap
+   * > with their reference element, unfortunately, you will have to disable the `flip` modifier.
+   * > You can read more on this at this [issue](https://github.com/FezVrasta/popper.js/issues/373).
+   *
+   * @memberof modifiers
+   * @inner
+   */
+  offset: {
+    /** @prop {number} order=200 - Index used to define the order of execution */
+    order: 200,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: offset,
+    /** @prop {Number|String} offset=0
+     * The offset value as described in the modifier description
+     */
+    offset: 0
+  },
+
+  /**
+   * Modifier used to prevent the popper from being positioned outside the boundary.
+   *
+   * A scenario exists where the reference itself is not within the boundaries.<br />
+   * We can say it has "escaped the boundaries" — or just "escaped".<br />
+   * In this case we need to decide whether the popper should either:
+   *
+   * - detach from the reference and remain "trapped" in the boundaries, or
+   * - if it should ignore the boundary and "escape with its reference"
+   *
+   * When `escapeWithReference` is set to`true` and reference is completely
+   * outside its boundaries, the popper will overflow (or completely leave)
+   * the boundaries in order to remain attached to the edge of the reference.
+   *
+   * @memberof modifiers
+   * @inner
+   */
+  preventOverflow: {
+    /** @prop {number} order=300 - Index used to define the order of execution */
+    order: 300,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: preventOverflow,
+    /**
+     * @prop {Array} [priority=['left','right','top','bottom']]
+     * Popper will try to prevent overflow following these priorities by default,
+     * then, it could overflow on the left and on top of the `boundariesElement`
+     */
+    priority: ['left', 'right', 'top', 'bottom'],
+    /**
+     * @prop {number} padding=5
+     * Amount of pixel used to define a minimum distance between the boundaries
+     * and the popper. This makes sure the popper always has a little padding
+     * between the edges of its container
+     */
+    padding: 5,
+    /**
+     * @prop {String|HTMLElement} boundariesElement='scrollParent'
+     * Boundaries used by the modifier. Can be `scrollParent`, `window`,
+     * `viewport` or any DOM element.
+     */
+    boundariesElement: 'scrollParent'
+  },
+
+  /**
+   * Modifier used to make sure the reference and its popper stay near each other
+   * without leaving any gap between the two. Especially useful when the arrow is
+   * enabled and you want to ensure that it points to its reference element.
+   * It cares only about the first axis. You can still have poppers with margin
+   * between the popper and its reference element.
+   * @memberof modifiers
+   * @inner
+   */
+  keepTogether: {
+    /** @prop {number} order=400 - Index used to define the order of execution */
+    order: 400,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: keepTogether
+  },
+
+  /**
+   * This modifier is used to move the `arrowElement` of the popper to make
+   * sure it is positioned between the reference element and its popper element.
+   * It will read the outer size of the `arrowElement` node to detect how many
+   * pixels of conjunction are needed.
+   *
+   * It has no effect if no `arrowElement` is provided.
+   * @memberof modifiers
+   * @inner
+   */
+  arrow: {
+    /** @prop {number} order=500 - Index used to define the order of execution */
+    order: 500,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: arrow,
+    /** @prop {String|HTMLElement} element='[x-arrow]' - Selector or node used as arrow */
+    element: '[x-arrow]'
+  },
+
+  /**
+   * Modifier used to flip the popper's placement when it starts to overlap its
+   * reference element.
+   *
+   * Requires the `preventOverflow` modifier before it in order to work.
+   *
+   * **NOTE:** this modifier will interrupt the current update cycle and will
+   * restart it if it detects the need to flip the placement.
+   * @memberof modifiers
+   * @inner
+   */
+  flip: {
+    /** @prop {number} order=600 - Index used to define the order of execution */
+    order: 600,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: flip,
+    /**
+     * @prop {String|Array} behavior='flip'
+     * The behavior used to change the popper's placement. It can be one of
+     * `flip`, `clockwise`, `counterclockwise` or an array with a list of valid
+     * placements (with optional variations)
+     */
+    behavior: 'flip',
+    /**
+     * @prop {number} padding=5
+     * The popper will flip if it hits the edges of the `boundariesElement`
+     */
+    padding: 5,
+    /**
+     * @prop {String|HTMLElement} boundariesElement='viewport'
+     * The element which will define the boundaries of the popper position.
+     * The popper will never be placed outside of the defined boundaries
+     * (except if `keepTogether` is enabled)
+     */
+    boundariesElement: 'viewport'
+  },
+
+  /**
+   * Modifier used to make the popper flow toward the inner of the reference element.
+   * By default, when this modifier is disabled, the popper will be placed outside
+   * the reference element.
+   * @memberof modifiers
+   * @inner
+   */
+  inner: {
+    /** @prop {number} order=700 - Index used to define the order of execution */
+    order: 700,
+    /** @prop {Boolean} enabled=false - Whether the modifier is enabled or not */
+    enabled: false,
+    /** @prop {ModifierFn} */
+    fn: inner
+  },
+
+  /**
+   * Modifier used to hide the popper when its reference element is outside of the
+   * popper boundaries. It will set a `x-out-of-boundaries` attribute which can
+   * be used to hide with a CSS selector the popper when its reference is
+   * out of boundaries.
+   *
+   * Requires the `preventOverflow` modifier before it in order to work.
+   * @memberof modifiers
+   * @inner
+   */
+  hide: {
+    /** @prop {number} order=800 - Index used to define the order of execution */
+    order: 800,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: hide
+  },
+
+  /**
+   * Computes the style that will be applied to the popper element to gets
+   * properly positioned.
+   *
+   * Note that this modifier will not touch the DOM, it just prepares the styles
+   * so that `applyStyle` modifier can apply it. This separation is useful
+   * in case you need to replace `applyStyle` with a custom implementation.
+   *
+   * This modifier has `850` as `order` value to maintain backward compatibility
+   * with previous versions of Popper.js. Expect the modifiers ordering method
+   * to change in future major versions of the library.
+   *
+   * @memberof modifiers
+   * @inner
+   */
+  computeStyle: {
+    /** @prop {number} order=850 - Index used to define the order of execution */
+    order: 850,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: computeStyle,
+    /**
+     * @prop {Boolean} gpuAcceleration=true
+     * If true, it uses the CSS 3D transformation to position the popper.
+     * Otherwise, it will use the `top` and `left` properties
+     */
+    gpuAcceleration: true,
+    /**
+     * @prop {string} [x='bottom']
+     * Where to anchor the X axis (`bottom` or `top`). AKA X offset origin.
+     * Change this if your popper should grow in a direction different from `bottom`
+     */
+    x: 'bottom',
+    /**
+     * @prop {string} [x='left']
+     * Where to anchor the Y axis (`left` or `right`). AKA Y offset origin.
+     * Change this if your popper should grow in a direction different from `right`
+     */
+    y: 'right'
+  },
+
+  /**
+   * Applies the computed styles to the popper element.
+   *
+   * All the DOM manipulations are limited to this modifier. This is useful in case
+   * you want to integrate Popper.js inside a framework or view library and you
+   * want to delegate all the DOM manipulations to it.
+   *
+   * Note that if you disable this modifier, you must make sure the popper element
+   * has its position set to `absolute` before Popper.js can do its work!
+   *
+   * Just disable this modifier and define your own to achieve the desired effect.
+   *
+   * @memberof modifiers
+   * @inner
+   */
+  applyStyle: {
+    /** @prop {number} order=900 - Index used to define the order of execution */
+    order: 900,
+    /** @prop {Boolean} enabled=true - Whether the modifier is enabled or not */
+    enabled: true,
+    /** @prop {ModifierFn} */
+    fn: applyStyle,
+    /** @prop {Function} */
+    onLoad: applyStyleOnLoad,
+    /**
+     * @deprecated since version 1.10.0, the property moved to `computeStyle` modifier
+     * @prop {Boolean} gpuAcceleration=true
+     * If true, it uses the CSS 3D transformation to position the popper.
+     * Otherwise, it will use the `top` and `left` properties
+     */
+    gpuAcceleration: undefined
+  }
+};
+
+/**
+ * The `dataObject` is an object containing all the information used by Popper.js.
+ * This object is passed to modifiers and to the `onCreate` and `onUpdate` callbacks.
+ * @name dataObject
+ * @property {Object} data.instance The Popper.js instance
+ * @property {String} data.placement Placement applied to popper
+ * @property {String} data.originalPlacement Placement originally defined on init
+ * @property {Boolean} data.flipped True if popper has been flipped by flip modifier
+ * @property {Boolean} data.hide True if the reference element is out of boundaries, useful to know when to hide the popper
+ * @property {HTMLElement} data.arrowElement Node used as arrow by arrow modifier
+ * @property {Object} data.styles Any CSS property defined here will be applied to the popper. It expects the JavaScript nomenclature (eg. `marginBottom`)
+ * @property {Object} data.arrowStyles Any CSS property defined here will be applied to the popper arrow. It expects the JavaScript nomenclature (eg. `marginBottom`)
+ * @property {Object} data.boundaries Offsets of the popper boundaries
+ * @property {Object} data.offsets The measurements of popper, reference and arrow elements
+ * @property {Object} data.offsets.popper `top`, `left`, `width`, `height` values
+ * @property {Object} data.offsets.reference `top`, `left`, `width`, `height` values
+ * @property {Object} data.offsets.arrow] `top` and `left` offsets, only one of them will be different from 0
+ */
+
+/**
+ * Default options provided to Popper.js constructor.<br />
+ * These can be overridden using the `options` argument of Popper.js.<br />
+ * To override an option, simply pass an object with the same
+ * structure of the `options` object, as the 3rd argument. For example:
+ * ```
+ * new Popper(ref, pop, {
+ *   modifiers: {
+ *     preventOverflow: { enabled: false }
+ *   }
+ * })
+ * ```
+ * @type {Object}
+ * @static
+ * @memberof Popper
+ */
+var Defaults = {
+  /**
+   * Popper's placement.
+   * @prop {Popper.placements} placement='bottom'
+   */
+  placement: 'bottom',
+
+  /**
+   * Set this to true if you want popper to position it self in 'fixed' mode
+   * @prop {Boolean} positionFixed=false
+   */
+  positionFixed: false,
+
+  /**
+   * Whether events (resize, scroll) are initially enabled.
+   * @prop {Boolean} eventsEnabled=true
+   */
+  eventsEnabled: true,
+
+  /**
+   * Set to true if you want to automatically remove the popper when
+   * you call the `destroy` method.
+   * @prop {Boolean} removeOnDestroy=false
+   */
+  removeOnDestroy: false,
+
+  /**
+   * Callback called when the popper is created.<br />
+   * By default, it is set to no-op.<br />
+   * Access Popper.js instance with `data.instance`.
+   * @prop {onCreate}
+   */
+  onCreate: function onCreate() {},
+
+  /**
+   * Callback called when the popper is updated. This callback is not called
+   * on the initialization/creation of the popper, but only on subsequent
+   * updates.<br />
+   * By default, it is set to no-op.<br />
+   * Access Popper.js instance with `data.instance`.
+   * @prop {onUpdate}
+   */
+  onUpdate: function onUpdate() {},
+
+  /**
+   * List of modifiers used to modify the offsets before they are applied to the popper.
+   * They provide most of the functionalities of Popper.js.
+   * @prop {modifiers}
+   */
+  modifiers: modifiers
+};
+
+/**
+ * @callback onCreate
+ * @param {dataObject} data
+ */
+
+/**
+ * @callback onUpdate
+ * @param {dataObject} data
+ */
+
+// Utils
+// Methods
+var Popper = function () {
+  /**
+   * Creates a new Popper.js instance.
+   * @class Popper
+   * @param {HTMLElement|referenceObject} reference - The reference element used to position the popper
+   * @param {HTMLElement} popper - The HTML element used as the popper
+   * @param {Object} options - Your custom options to override the ones defined in [Defaults](#defaults)
+   * @return {Object} instance - The generated Popper.js instance
+   */
+  function Popper(reference, popper) {
+    var _this = this;
+
+    var options = arguments.length > 2 && arguments[2] !== undefined ? arguments[2] : {};
+    classCallCheck(this, Popper);
+
+    this.scheduleUpdate = function () {
+      return requestAnimationFrame(_this.update);
+    };
+
+    // make update() debounced, so that it only runs at most once-per-tick
+    this.update = debounce(this.update.bind(this));
+
+    // with {} we create a new object with the options inside it
+    this.options = _extends({}, Popper.Defaults, options);
+
+    // init state
+    this.state = {
+      isDestroyed: false,
+      isCreated: false,
+      scrollParents: []
+    };
+
+    // get reference and popper elements (allow jQuery wrappers)
+    this.reference = reference && reference.jquery ? reference[0] : reference;
+    this.popper = popper && popper.jquery ? popper[0] : popper;
+
+    // Deep merge modifiers options
+    this.options.modifiers = {};
+    Object.keys(_extends({}, Popper.Defaults.modifiers, options.modifiers)).forEach(function (name) {
+      _this.options.modifiers[name] = _extends({}, Popper.Defaults.modifiers[name] || {}, options.modifiers ? options.modifiers[name] : {});
+    });
+
+    // Refactoring modifiers' list (Object => Array)
+    this.modifiers = Object.keys(this.options.modifiers).map(function (name) {
+      return _extends({
+        name: name
+      }, _this.options.modifiers[name]);
+    })
+    // sort the modifiers by order
+    .sort(function (a, b) {
+      return a.order - b.order;
+    });
+
+    // modifiers have the ability to execute arbitrary code when Popper.js get inited
+    // such code is executed in the same order of its modifier
+    // they could add new properties to their options configuration
+    // BE AWARE: don't add options to `options.modifiers.name` but to `modifierOptions`!
+    this.modifiers.forEach(function (modifierOptions) {
+      if (modifierOptions.enabled && isFunction(modifierOptions.onLoad)) {
+        modifierOptions.onLoad(_this.reference, _this.popper, _this.options, modifierOptions, _this.state);
+      }
+    });
+
+    // fire the first update to position the popper in the right place
+    this.update();
+
+    var eventsEnabled = this.options.eventsEnabled;
+    if (eventsEnabled) {
+      // setup event listeners, they will take care of update the position in specific situations
+      this.enableEventListeners();
+    }
+
+    this.state.eventsEnabled = eventsEnabled;
+  }
+
+  // We can't use class properties because they don't get listed in the
+  // class prototype and break stuff like Sinon stubs
+
+
+  createClass(Popper, [{
+    key: 'update',
+    value: function update$$1() {
+      return update.call(this);
+    }
+  }, {
+    key: 'destroy',
+    value: function destroy$$1() {
+      return destroy.call(this);
+    }
+  }, {
+    key: 'enableEventListeners',
+    value: function enableEventListeners$$1() {
+      return enableEventListeners.call(this);
+    }
+  }, {
+    key: 'disableEventListeners',
+    value: function disableEventListeners$$1() {
+      return disableEventListeners.call(this);
+    }
+
+    /**
+     * Schedules an update. It will run on the next UI update available.
+     * @method scheduleUpdate
+     * @memberof Popper
+     */
+
+
+    /**
+     * Collection of utilities useful when writing custom modifiers.
+     * Starting from version 1.7, this method is available only if you
+     * include `popper-utils.js` before `popper.js`.
+     *
+     * **DEPRECATION**: This way to access PopperUtils is deprecated
+     * and will be removed in v2! Use the PopperUtils module directly instead.
+     * Due to the high instability of the methods contained in Utils, we can't
+     * guarantee them to follow semver. Use them at your own risk!
+     * @static
+     * @private
+     * @type {Object}
+     * @deprecated since version 1.8
+     * @member Utils
+     * @memberof Popper
+     */
+
+  }]);
+  return Popper;
+}();
+
+/**
+ * The `referenceObject` is an object that provides an interface compatible with Popper.js
+ * and lets you use it as replacement of a real DOM node.<br />
+ * You can use this method to position a popper relatively to a set of coordinates
+ * in case you don't have a DOM node to use as reference.
+ *
+ * ```
+ * new Popper(referenceObject, popperNode);
+ * ```
+ *
+ * NB: This feature isn't supported in Internet Explorer 10.
+ * @name referenceObject
+ * @property {Function} data.getBoundingClientRect
+ * A function that returns a set of coordinates compatible with the native `getBoundingClientRect` method.
+ * @property {number} data.clientWidth
+ * An ES6 getter that will return the width of the virtual reference element.
+ * @property {number} data.clientHeight
+ * An ES6 getter that will return the height of the virtual reference element.
+ */
+
+
+Popper.Utils = (typeof window !== 'undefined' ? window : global).PopperUtils;
+Popper.placements = placements;
+Popper.Defaults = Defaults;
+
+/* harmony default export */ __webpack_exports__["default"] = (Popper);
+//# sourceMappingURL=popper.js.map
+
+/* WEBPACK VAR INJECTION */}.call(__webpack_exports__, __webpack_require__(2)))
+
+/***/ }),
+/* 37 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28028,19 +28034,19 @@ module.exports = function bind(fn, thisArg) {
 
 
 /***/ }),
-/* 37 */
+/* 38 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(1);
-var settle = __webpack_require__(226);
-var buildURL = __webpack_require__(228);
-var parseHeaders = __webpack_require__(229);
-var isURLSameOrigin = __webpack_require__(230);
-var createError = __webpack_require__(38);
-var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(231);
+var settle = __webpack_require__(227);
+var buildURL = __webpack_require__(229);
+var parseHeaders = __webpack_require__(230);
+var isURLSameOrigin = __webpack_require__(231);
+var createError = __webpack_require__(39);
+var btoa = (typeof window !== 'undefined' && window.btoa && window.btoa.bind(window)) || __webpack_require__(232);
 
 module.exports = function xhrAdapter(config) {
   return new Promise(function dispatchXhrRequest(resolve, reject) {
@@ -28137,7 +28143,7 @@ module.exports = function xhrAdapter(config) {
     // This is only done if running in a standard browser environment.
     // Specifically not if we're in a web worker, or react-native.
     if (utils.isStandardBrowserEnv()) {
-      var cookies = __webpack_require__(232);
+      var cookies = __webpack_require__(233);
 
       // Add xsrf header
       var xsrfValue = (config.withCredentials || isURLSameOrigin(config.url)) && config.xsrfCookieName ?
@@ -28215,13 +28221,13 @@ module.exports = function xhrAdapter(config) {
 
 
 /***/ }),
-/* 38 */
+/* 39 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var enhanceError = __webpack_require__(227);
+var enhanceError = __webpack_require__(228);
 
 /**
  * Create an Error with the specified message, config, error code, request and response.
@@ -28240,7 +28246,7 @@ module.exports = function createError(message, config, code, request, response) 
 
 
 /***/ }),
-/* 39 */
+/* 40 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28252,7 +28258,7 @@ module.exports = function isCancel(value) {
 
 
 /***/ }),
-/* 40 */
+/* 41 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28278,7 +28284,7 @@ module.exports = Cancel;
 
 
 /***/ }),
-/* 41 */
+/* 42 */
 /***/ (function(module, exports) {
 
 /* globals __VUE_SSR_CONTEXT__ */
@@ -28387,22 +28393,22 @@ module.exports = function normalizeComponent (
 
 
 /***/ }),
-/* 42 */
+/* 43 */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(43);
-module.exports = __webpack_require__(246);
+__webpack_require__(44);
+module.exports = __webpack_require__(255);
 
 
 /***/ }),
-/* 43 */
+/* 44 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue__ = __webpack_require__(5);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_vue___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_vue__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_tables_2__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_tables_2__ = __webpack_require__(47);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_vue_tables_2___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_vue_tables_2__);
 
 /**
@@ -28412,7 +28418,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
  */
 
 
-__webpack_require__(219);
+__webpack_require__(220);
 
 //  Uses
 __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_tables_2___default.a.ClientTable);
@@ -28429,15 +28435,15 @@ __WEBPACK_IMPORTED_MODULE_0_vue___default.a.use(__WEBPACK_IMPORTED_MODULE_1_vue_
  */
 
 //  Vue.component('example-component', require('./components/ExampleComponent.vue'));
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('data-viewer-trainers', __webpack_require__(240));
-__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('data-viewer-pokemons', __webpack_require__(243));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('data-viewer-trainers', __webpack_require__(241));
+__WEBPACK_IMPORTED_MODULE_0_vue___default.a.component('data-viewer-pokemons', __webpack_require__(252));
 
 var app = new __WEBPACK_IMPORTED_MODULE_0_vue___default.a({
   el: '#app'
 });
 
 /***/ }),
-/* 44 */
+/* 45 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global) {var scope = (typeof global !== "undefined" && global) ||
@@ -28493,7 +28499,7 @@ exports._unrefActive = exports.active = function(item) {
 };
 
 // setimmediate attaches itself to the global object
-__webpack_require__(45);
+__webpack_require__(46);
 // On some exotic environments, it's not clear which object `setimmediate` was
 // able to install onto.  Search each possibility in the same order as the
 // `setimmediate` library.
@@ -28507,7 +28513,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ }),
-/* 45 */
+/* 46 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, process) {(function (global, undefined) {
@@ -28700,7 +28706,7 @@ exports.clearImmediate = (typeof self !== "undefined" && self.clearImmediate) ||
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(3)))
 
 /***/ }),
-/* 46 */
+/* 47 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28712,8 +28718,8 @@ var _bus2 = _interopRequireDefault(_bus);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var ClientTable = __webpack_require__(47);
-var ServerTable = __webpack_require__(213);
+var ClientTable = __webpack_require__(48);
+var ServerTable = __webpack_require__(214);
 
 
 module.exports = {
@@ -28723,19 +28729,19 @@ module.exports = {
 };
 
 /***/ }),
-/* 47 */
+/* 48 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _vuePagination = __webpack_require__(12);
+var _vuePagination = __webpack_require__(14);
 
-var _vuex = __webpack_require__(15);
+var _vuex = __webpack_require__(17);
 
 var _vuex2 = _interopRequireDefault(_vuex);
 
-var _normal = __webpack_require__(16);
+var _normal = __webpack_require__(18);
 
 var _normal2 = _interopRequireDefault(_normal);
 
@@ -28743,20 +28749,20 @@ var _merge = __webpack_require__(0);
 
 var _merge2 = _interopRequireDefault(_merge);
 
-var _table = __webpack_require__(17);
+var _table = __webpack_require__(19);
 
 var _table2 = _interopRequireDefault(_table);
 
-var _data2 = __webpack_require__(27);
+var _data2 = __webpack_require__(29);
 
 var _data3 = _interopRequireDefault(_data2);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _data = __webpack_require__(28);
-var _created = __webpack_require__(29);
+var _data = __webpack_require__(30);
+var _created = __webpack_require__(31);
 
-var templateCompiler = __webpack_require__(30);
+var templateCompiler = __webpack_require__(32);
 
 exports.install = function (Vue, globalOptions, useVuex) {
   var theme = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'bootstrap3';
@@ -28837,20 +28843,20 @@ exports.install = function (Vue, globalOptions, useVuex) {
       }, (0, _data3.default)(useVuex, 'client', this.options.initialPage));
     },
     computed: {
-      q: __webpack_require__(203),
-      customQ: __webpack_require__(204),
-      totalPages: __webpack_require__(32),
-      filteredData: __webpack_require__(205),
+      q: __webpack_require__(204),
+      customQ: __webpack_require__(205),
+      totalPages: __webpack_require__(34),
+      filteredData: __webpack_require__(206),
       hasMultiSort: function hasMultiSort() {
         return this.opts.clientMultiSorting;
       }
     },
     methods: {
-      transformDateStringsToMoment: __webpack_require__(209),
-      registerClientFilters: __webpack_require__(210),
-      search: __webpack_require__(33),
-      defaultSort: __webpack_require__(211),
-      getGroupSlot: __webpack_require__(212),
+      transformDateStringsToMoment: __webpack_require__(210),
+      registerClientFilters: __webpack_require__(211),
+      search: __webpack_require__(35),
+      defaultSort: __webpack_require__(212),
+      getGroupSlot: __webpack_require__(213),
       toggleGroup: function toggleGroup(group, e) {
 
         e.stopPropagation();
@@ -28915,7 +28921,7 @@ exports.install = function (Vue, globalOptions, useVuex) {
 };
 
 /***/ }),
-/* 48 */
+/* 49 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -28923,7 +28929,7 @@ exports.install = function (Vue, globalOptions, useVuex) {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var _config = __webpack_require__(49);
+var _config = __webpack_require__(50);
 
 var _config2 = _interopRequireDefault(_config);
 
@@ -28935,8 +28941,8 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
-var template = __webpack_require__(50);
-var bus = __webpack_require__(14);
+var template = __webpack_require__(51);
+var bus = __webpack_require__(16);
 
 
 module.exports = {
@@ -28999,9 +29005,9 @@ module.exports = {
       }
 
       var themes = {
-        bootstrap3: __webpack_require__(51),
-        bootstrap4: __webpack_require__(52),
-        bulma: __webpack_require__(53)
+        bootstrap3: __webpack_require__(52),
+        bootstrap4: __webpack_require__(53),
+        bulma: __webpack_require__(54)
       };
 
       if (_typeof(themes[this.opts.theme]) === undefined) {
@@ -29144,7 +29150,7 @@ function range(start, count) {
 }
 
 /***/ }),
-/* 49 */
+/* 50 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29170,7 +29176,7 @@ exports.default = function () {
 };
 
 /***/ }),
-/* 50 */
+/* 51 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29343,26 +29349,6 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 51 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = {
-    nav: '',
-    count: '',
-    wrapper: '',
-    list: 'pagination',
-    item: 'page-item',
-    link: 'page-link',
-    next: '',
-    prev: '',
-    active: 'active',
-    disabled: 'disabled'
-};
-
-/***/ }),
 /* 52 */
 /***/ (function(module, exports, __webpack_require__) {
 
@@ -29392,6 +29378,26 @@ module.exports = {
 module.exports = {
     nav: '',
     count: '',
+    wrapper: '',
+    list: 'pagination',
+    item: 'page-item',
+    link: 'page-link',
+    next: '',
+    prev: '',
+    active: 'active',
+    disabled: 'disabled'
+};
+
+/***/ }),
+/* 54 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = {
+    nav: '',
+    count: '',
     wrapper: 'pagination',
     list: 'pagination-list',
     item: '',
@@ -29403,73 +29409,73 @@ module.exports = {
 };
 
 /***/ }),
-/* 54 */
+/* 55 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 module.exports = {
-      initQuery: __webpack_require__(55),
-      initCustomFilters: __webpack_require__(56),
-      initOptions: __webpack_require__(57),
-      sortableClass: __webpack_require__(58),
-      sortableChevronClass: __webpack_require__(59),
-      display: __webpack_require__(60),
-      orderByColumn: __webpack_require__(61),
-      getHeading: __webpack_require__(62),
-      getHeadingTooltip: __webpack_require__(64),
-      sortable: __webpack_require__(65),
-      serverSearch: __webpack_require__(18),
-      initOrderBy: __webpack_require__(66),
-      initDateFilters: __webpack_require__(67),
-      setFilter: __webpack_require__(68),
-      setPage: __webpack_require__(69),
-      setOrder: __webpack_require__(70),
-      initPagination: __webpack_require__(71),
-      filterable: __webpack_require__(72),
-      isTextFilter: __webpack_require__(73),
-      isDateFilter: __webpack_require__(74),
-      isListFilter: __webpack_require__(75),
-      highlightMatch: __webpack_require__(76),
-      formatDate: __webpack_require__(77),
-      hasDateFilters: __webpack_require__(78),
-      applyFilters: __webpack_require__(130),
-      optionText: __webpack_require__(131),
-      render: __webpack_require__(132),
-      rowWasClicked: __webpack_require__(133),
-      setLimit: __webpack_require__(134),
-      getOpenChildRows: __webpack_require__(135),
-      dispatch: __webpack_require__(136),
-      toggleChildRow: __webpack_require__(137),
-      childRowTogglerClass: __webpack_require__(138),
-      sendRequest: __webpack_require__(139),
-      getResponseData: __webpack_require__(140),
-      getSortFn: __webpack_require__(141),
-      initState: __webpack_require__(142),
-      updateState: __webpack_require__(143),
-      columnClass: __webpack_require__(144),
-      getName: __webpack_require__(145),
-      toggleColumn: __webpack_require__(146),
-      setUserMultiSort: __webpack_require__(147),
-      _setFiltersDOM: __webpack_require__(148),
-      _currentlySorted: __webpack_require__(149),
-      _getChildRowTemplate: __webpack_require__(150),
-      _toggleColumnsDropdown: __webpack_require__(151),
-      _onlyColumn: __webpack_require__(152),
-      _onPagination: __webpack_require__(153),
-      _toggleGroupDirection: __webpack_require__(154),
-      _getInitialDateRange: __webpack_require__(155),
-      _setDatepickerText: __webpack_require__(156),
-      _initialOrderAscending: __webpack_require__(157),
-      dateFormat: __webpack_require__(158),
-      _setColumnsDropdownCloseListener: __webpack_require__(159),
-      _getValue: __webpack_require__(160),
-      _getColumnName: __webpack_require__(161)
+      initQuery: __webpack_require__(56),
+      initCustomFilters: __webpack_require__(57),
+      initOptions: __webpack_require__(58),
+      sortableClass: __webpack_require__(59),
+      sortableChevronClass: __webpack_require__(60),
+      display: __webpack_require__(61),
+      orderByColumn: __webpack_require__(62),
+      getHeading: __webpack_require__(63),
+      getHeadingTooltip: __webpack_require__(65),
+      sortable: __webpack_require__(66),
+      serverSearch: __webpack_require__(20),
+      initOrderBy: __webpack_require__(67),
+      initDateFilters: __webpack_require__(68),
+      setFilter: __webpack_require__(69),
+      setPage: __webpack_require__(70),
+      setOrder: __webpack_require__(71),
+      initPagination: __webpack_require__(72),
+      filterable: __webpack_require__(73),
+      isTextFilter: __webpack_require__(74),
+      isDateFilter: __webpack_require__(75),
+      isListFilter: __webpack_require__(76),
+      highlightMatch: __webpack_require__(77),
+      formatDate: __webpack_require__(78),
+      hasDateFilters: __webpack_require__(79),
+      applyFilters: __webpack_require__(131),
+      optionText: __webpack_require__(132),
+      render: __webpack_require__(133),
+      rowWasClicked: __webpack_require__(134),
+      setLimit: __webpack_require__(135),
+      getOpenChildRows: __webpack_require__(136),
+      dispatch: __webpack_require__(137),
+      toggleChildRow: __webpack_require__(138),
+      childRowTogglerClass: __webpack_require__(139),
+      sendRequest: __webpack_require__(140),
+      getResponseData: __webpack_require__(141),
+      getSortFn: __webpack_require__(142),
+      initState: __webpack_require__(143),
+      updateState: __webpack_require__(144),
+      columnClass: __webpack_require__(145),
+      getName: __webpack_require__(146),
+      toggleColumn: __webpack_require__(147),
+      setUserMultiSort: __webpack_require__(148),
+      _setFiltersDOM: __webpack_require__(149),
+      _currentlySorted: __webpack_require__(150),
+      _getChildRowTemplate: __webpack_require__(151),
+      _toggleColumnsDropdown: __webpack_require__(152),
+      _onlyColumn: __webpack_require__(153),
+      _onPagination: __webpack_require__(154),
+      _toggleGroupDirection: __webpack_require__(155),
+      _getInitialDateRange: __webpack_require__(156),
+      _setDatepickerText: __webpack_require__(157),
+      _initialOrderAscending: __webpack_require__(158),
+      dateFormat: __webpack_require__(159),
+      _setColumnsDropdownCloseListener: __webpack_require__(160),
+      _getValue: __webpack_require__(161),
+      _getColumnName: __webpack_require__(162)
 };
 
 /***/ }),
-/* 55 */
+/* 56 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29507,7 +29513,7 @@ function getInitialValue(init, column) {
 }
 
 /***/ }),
-/* 56 */
+/* 57 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29531,7 +29537,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 57 */
+/* 58 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29549,7 +29555,7 @@ module.exports = function (defaults, globalOptions, localOptions) {
 };
 
 /***/ }),
-/* 58 */
+/* 59 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29565,7 +29571,7 @@ module.exports = function (column) {
 };
 
 /***/ }),
-/* 59 */
+/* 60 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29596,7 +29602,7 @@ module.exports = function (column) {
 };
 
 /***/ }),
-/* 60 */
+/* 61 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29617,7 +29623,7 @@ module.exports = function (text, replacements) {
 };
 
 /***/ }),
-/* 61 */
+/* 62 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29644,13 +29650,13 @@ module.exports = function (colName, ev) {
 };
 
 /***/ }),
-/* 62 */
+/* 63 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _ucfirst = __webpack_require__(63);
+var _ucfirst = __webpack_require__(64);
 
 var _ucfirst2 = _interopRequireDefault(_ucfirst);
 
@@ -29678,7 +29684,7 @@ module.exports = function (value, h) {
 };
 
 /***/ }),
-/* 63 */
+/* 64 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29693,7 +29699,7 @@ exports.default = function (str) {
 };
 
 /***/ }),
-/* 64 */
+/* 65 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29717,7 +29723,7 @@ module.exports = function (value, h) {
 };
 
 /***/ }),
-/* 65 */
+/* 66 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29733,7 +29739,7 @@ module.exports = function (column) {
 };
 
 /***/ }),
-/* 66 */
+/* 67 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29748,7 +29754,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 67 */
+/* 68 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29847,7 +29853,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 68 */
+/* 69 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29891,7 +29897,7 @@ module.exports = function (filter) {
 };
 
 /***/ }),
-/* 69 */
+/* 70 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29911,7 +29917,7 @@ module.exports = function (page, preventRequest) {
 };
 
 /***/ }),
-/* 70 */
+/* 71 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29930,7 +29936,7 @@ module.exports = function (column, ascending) {
 };
 
 /***/ }),
-/* 71 */
+/* 72 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29946,7 +29952,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 72 */
+/* 73 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29960,7 +29966,7 @@ module.exports = function (column) {
 };
 
 /***/ }),
-/* 73 */
+/* 74 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29972,7 +29978,7 @@ module.exports = function (column) {
 };
 
 /***/ }),
-/* 74 */
+/* 75 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29983,7 +29989,7 @@ module.exports = function (column) {
 };
 
 /***/ }),
-/* 75 */
+/* 76 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -29994,7 +30000,7 @@ module.exports = function (column) {
 };
 
 /***/ }),
-/* 76 */
+/* 77 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30028,13 +30034,13 @@ function escapeRegex(s) {
 };
 
 /***/ }),
-/* 77 */
+/* 78 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var validMoment = __webpack_require__(19);
+var validMoment = __webpack_require__(21);
 
 module.exports = function (value, dateFormat) {
 
@@ -30044,7 +30050,7 @@ module.exports = function (value, dateFormat) {
 };
 
 /***/ }),
-/* 78 */
+/* 79 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30052,7 +30058,7 @@ module.exports = function (value, dateFormat) {
 
 var _typeof = typeof Symbol === "function" && typeof Symbol.iterator === "symbol" ? function (obj) { return typeof obj; } : function (obj) { return obj && typeof Symbol === "function" && obj.constructor === Symbol && obj !== Symbol.prototype ? "symbol" : typeof obj; };
 
-var intersection = __webpack_require__(79);
+var intersection = __webpack_require__(80);
 
 module.exports = function () {
 
@@ -30062,7 +30068,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 79 */
+/* 80 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30075,11 +30081,11 @@ module.exports = function () {
 
 
 
-var filter = __webpack_require__(80);
-var every = __webpack_require__(124);
-var unique = __webpack_require__(127);
-var slice = __webpack_require__(128);
-var indexOf = __webpack_require__(129);
+var filter = __webpack_require__(81);
+var every = __webpack_require__(125);
+var unique = __webpack_require__(128);
+var slice = __webpack_require__(129);
+var indexOf = __webpack_require__(130);
 
 module.exports = function intersection(arr) {
   if (arr == null) {
@@ -30101,7 +30107,7 @@ module.exports = function intersection(arr) {
 
 
 /***/ }),
-/* 80 */
+/* 81 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30114,9 +30120,9 @@ module.exports = function intersection(arr) {
 
 
 
-var typeOf = __webpack_require__(81);
-var filter = __webpack_require__(84);
-var mm = __webpack_require__(86);
+var typeOf = __webpack_require__(82);
+var filter = __webpack_require__(85);
+var mm = __webpack_require__(87);
 
 /**
  * Filter array against given glob
@@ -30162,7 +30168,7 @@ module.exports = function filterArray(arr, filters, opts) {
 
 
 /***/ }),
-/* 81 */
+/* 82 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {var toString = Object.prototype.toString;
@@ -30211,10 +30217,10 @@ module.exports = function kindOf(val) {
   return type.slice(8, -1).toLowerCase();
 };
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(22).Buffer))
 
 /***/ }),
-/* 82 */
+/* 83 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30372,7 +30378,7 @@ function fromByteArray (uint8) {
 
 
 /***/ }),
-/* 83 */
+/* 84 */
 /***/ (function(module, exports) {
 
 exports.read = function (buffer, offset, isLE, mLen, nBytes) {
@@ -30462,7 +30468,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 /***/ }),
-/* 84 */
+/* 85 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30475,7 +30481,7 @@ exports.write = function (buffer, value, offset, isLE, mLen, nBytes) {
 
 
 
-var makeIterator = __webpack_require__(85);
+var makeIterator = __webpack_require__(86);
 
 module.exports = function filter(arr, fn, thisArg) {
   if (arr == null) {
@@ -30502,7 +30508,7 @@ module.exports = function filter(arr, fn, thisArg) {
 
 
 /***/ }),
-/* 85 */
+/* 86 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30515,7 +30521,7 @@ module.exports = function filter(arr, fn, thisArg) {
 
 
 
-var typeOf = __webpack_require__(22);
+var typeOf = __webpack_require__(24);
 
 module.exports = function makeIterator(target, thisArg) {
   switch (typeOf(target)) {
@@ -30608,7 +30614,7 @@ function noop(val) {
 
 
 /***/ }),
-/* 86 */
+/* 87 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -30621,7 +30627,7 @@ function noop(val) {
 
 
 
-var expand = __webpack_require__(87);
+var expand = __webpack_require__(88);
 var utils = __webpack_require__(6);
 
 /**
@@ -31046,7 +31052,7 @@ module.exports = micromatch;
 
 
 /***/ }),
-/* 87 */
+/* 88 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31060,7 +31066,7 @@ module.exports = micromatch;
 
 
 var utils = __webpack_require__(6);
-var Glob = __webpack_require__(122);
+var Glob = __webpack_require__(123);
 
 /**
  * Expose `expand`
@@ -31357,7 +31363,7 @@ function globstar(dotfile) {
 
 
 /***/ }),
-/* 88 */
+/* 89 */
 /***/ (function(module, exports) {
 
 /*!
@@ -31373,7 +31379,7 @@ module.exports = function filenameRegex() {
 
 
 /***/ }),
-/* 89 */
+/* 90 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31386,7 +31392,7 @@ module.exports = function filenameRegex() {
 
 
 
-var flatten = __webpack_require__(90);
+var flatten = __webpack_require__(91);
 var slice = [].slice;
 
 /**
@@ -31438,7 +31444,7 @@ module.exports = diff;
 
 
 /***/ }),
-/* 90 */
+/* 91 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31467,7 +31473,7 @@ function flat(arr, res) {
 
 
 /***/ }),
-/* 91 */
+/* 92 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31502,7 +31508,7 @@ module.exports = function unique(arr) {
 
 
 /***/ }),
-/* 92 */
+/* 93 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31519,9 +31525,9 @@ module.exports = function unique(arr) {
  * Module dependencies
  */
 
-var expand = __webpack_require__(93);
-var repeat = __webpack_require__(23);
-var tokens = __webpack_require__(102);
+var expand = __webpack_require__(94);
+var repeat = __webpack_require__(25);
+var tokens = __webpack_require__(103);
 
 /**
  * Expose `braces`
@@ -31908,7 +31914,7 @@ function filter(arr, cb) {
 
 
 /***/ }),
-/* 93 */
+/* 94 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31921,7 +31927,7 @@ function filter(arr, cb) {
 
 
 
-var fill = __webpack_require__(94);
+var fill = __webpack_require__(95);
 
 module.exports = function expandRange(str, options, fn) {
   if (typeof str !== 'string') {
@@ -31958,7 +31964,7 @@ module.exports = function expandRange(str, options, fn) {
 
 
 /***/ }),
-/* 94 */
+/* 95 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -31971,11 +31977,11 @@ module.exports = function expandRange(str, options, fn) {
 
 
 
-var isObject = __webpack_require__(95);
-var isNumber = __webpack_require__(96);
-var randomize = __webpack_require__(98);
-var repeatStr = __webpack_require__(101);
-var repeat = __webpack_require__(23);
+var isObject = __webpack_require__(96);
+var isNumber = __webpack_require__(97);
+var randomize = __webpack_require__(99);
+var repeatStr = __webpack_require__(102);
+var repeat = __webpack_require__(25);
 
 /**
  * Expose `fillRange`
@@ -32373,7 +32379,7 @@ function length(val) {
 
 
 /***/ }),
-/* 95 */
+/* 96 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32386,7 +32392,7 @@ function length(val) {
 
 
 
-var isArray = __webpack_require__(21);
+var isArray = __webpack_require__(23);
 
 module.exports = function isObject(val) {
   return val != null && typeof val === 'object' && isArray(val) === false;
@@ -32394,7 +32400,7 @@ module.exports = function isObject(val) {
 
 
 /***/ }),
-/* 96 */
+/* 97 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32407,7 +32413,7 @@ module.exports = function isObject(val) {
 
 
 
-var typeOf = __webpack_require__(97);
+var typeOf = __webpack_require__(98);
 
 module.exports = function isNumber(num) {
   var type = typeOf(num);
@@ -32420,7 +32426,7 @@ module.exports = function isNumber(num) {
 
 
 /***/ }),
-/* 97 */
+/* 98 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isBuffer = __webpack_require__(8);
@@ -32542,7 +32548,7 @@ module.exports = function kindOf(val) {
 
 
 /***/ }),
-/* 98 */
+/* 99 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32555,9 +32561,9 @@ module.exports = function kindOf(val) {
 
 
 
-var isNumber = __webpack_require__(99);
-var typeOf = __webpack_require__(22);
-var mathRandom = __webpack_require__(100);
+var isNumber = __webpack_require__(100);
+var typeOf = __webpack_require__(24);
+var mathRandom = __webpack_require__(101);
 
 /**
  * Expose `randomatic`
@@ -32641,7 +32647,7 @@ function randomatic(pattern, length, options) {
 
 
 /***/ }),
-/* 99 */
+/* 100 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32669,7 +32675,7 @@ module.exports = function isNumber(num) {
 
 
 /***/ }),
-/* 100 */
+/* 101 */
 /***/ (function(module, exports) {
 
 module.exports = (function (global) {
@@ -32692,7 +32698,7 @@ module.exports = (function (global) {
 
 
 /***/ }),
-/* 101 */
+/* 102 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32769,7 +32775,7 @@ function repeat(str, num) {
 
 
 /***/ }),
-/* 102 */
+/* 103 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32829,7 +32835,7 @@ function randomize() {
 var cache = {};
 
 /***/ }),
-/* 103 */
+/* 104 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -32842,7 +32848,7 @@ var cache = {};
 
 
 
-var isPosixBracket = __webpack_require__(104);
+var isPosixBracket = __webpack_require__(105);
 
 /**
  * POSIX character classes
@@ -32999,7 +33005,7 @@ brackets.match = function(arr, pattern) {
 
 
 /***/ }),
-/* 104 */
+/* 105 */
 /***/ (function(module, exports) {
 
 /*!
@@ -33015,7 +33021,7 @@ module.exports = function isPosixBracket(str) {
 
 
 /***/ }),
-/* 105 */
+/* 106 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33200,7 +33206,7 @@ function toRegex(pattern, contains, isNegated) {
 
 
 /***/ }),
-/* 106 */
+/* 107 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -33219,7 +33225,7 @@ module.exports = function isGlob(str) {
 };
 
 /***/ }),
-/* 107 */
+/* 108 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var isBuffer = __webpack_require__(8);
@@ -33341,7 +33347,7 @@ module.exports = function kindOf(val) {
 
 
 /***/ }),
-/* 108 */
+/* 109 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -33351,7 +33357,7 @@ module.exports = function kindOf(val) {
  * Released under the MIT License.
  */
 
-var removeTrailingSeparator = __webpack_require__(109);
+var removeTrailingSeparator = __webpack_require__(110);
 
 module.exports = function normalizePath(str, stripTrailing) {
   if (typeof str !== 'string') {
@@ -33366,7 +33372,7 @@ module.exports = function normalizePath(str, stripTrailing) {
 
 
 /***/ }),
-/* 109 */
+/* 110 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(process) {var isWin = process.platform === 'win32';
@@ -33390,7 +33396,7 @@ function isSeparator(str, i) {
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(3)))
 
 /***/ }),
-/* 110 */
+/* 111 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33403,8 +33409,8 @@ function isSeparator(str, i) {
 
 
 
-var isObject = __webpack_require__(111);
-var forOwn = __webpack_require__(112);
+var isObject = __webpack_require__(112);
+var forOwn = __webpack_require__(113);
 
 module.exports = function omit(obj, keys) {
   if (!isObject(obj)) return {};
@@ -33437,7 +33443,7 @@ module.exports = function omit(obj, keys) {
 
 
 /***/ }),
-/* 111 */
+/* 112 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33457,7 +33463,7 @@ module.exports = function isExtendable(val) {
 
 
 /***/ }),
-/* 112 */
+/* 113 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33470,7 +33476,7 @@ module.exports = function isExtendable(val) {
 
 
 
-var forIn = __webpack_require__(24);
+var forIn = __webpack_require__(26);
 var hasOwn = Object.prototype.hasOwnProperty;
 
 module.exports = function forOwn(obj, fn, thisArg) {
@@ -33483,7 +33489,7 @@ module.exports = function forOwn(obj, fn, thisArg) {
 
 
 /***/ }),
-/* 113 */
+/* 114 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33496,10 +33502,10 @@ module.exports = function forOwn(obj, fn, thisArg) {
 
 
 
-var isGlob = __webpack_require__(114);
-var findBase = __webpack_require__(115);
-var extglob = __webpack_require__(25);
-var dotfile = __webpack_require__(118);
+var isGlob = __webpack_require__(115);
+var findBase = __webpack_require__(116);
+var extglob = __webpack_require__(27);
+var dotfile = __webpack_require__(119);
 
 /**
  * Expose `cache`
@@ -33646,7 +33652,7 @@ function unescape(str) {
 
 
 /***/ }),
-/* 114 */
+/* 115 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -33656,7 +33662,7 @@ function unescape(str) {
  * Licensed under the MIT License.
  */
 
-var isExtglob = __webpack_require__(25);
+var isExtglob = __webpack_require__(27);
 
 module.exports = function isGlob(str) {
   return typeof str === 'string'
@@ -33665,7 +33671,7 @@ module.exports = function isGlob(str) {
 };
 
 /***/ }),
-/* 115 */
+/* 116 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33679,8 +33685,8 @@ module.exports = function isGlob(str) {
 
 
 var path = __webpack_require__(7);
-var parent = __webpack_require__(116);
-var isGlob = __webpack_require__(26);
+var parent = __webpack_require__(117);
+var isGlob = __webpack_require__(28);
 
 module.exports = function globBase(pattern) {
   if (typeof pattern !== 'string') {
@@ -33723,14 +33729,14 @@ function dirname(glob) {
 
 
 /***/ }),
-/* 116 */
+/* 117 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var path = __webpack_require__(7);
-var isglob = __webpack_require__(26);
+var isglob = __webpack_require__(28);
 
 module.exports = function globParent(str) {
 	str += 'a'; // preserves full path in case of trailing path separator
@@ -33740,7 +33746,7 @@ module.exports = function globParent(str) {
 
 
 /***/ }),
-/* 117 */
+/* 118 */
 /***/ (function(module, exports) {
 
 /*!
@@ -33757,7 +33763,7 @@ module.exports = function isExtglob(str) {
 
 
 /***/ }),
-/* 118 */
+/* 119 */
 /***/ (function(module, exports) {
 
 /*!
@@ -33777,7 +33783,7 @@ module.exports = function(str) {
 
 
 /***/ }),
-/* 119 */
+/* 120 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33790,7 +33796,7 @@ module.exports = function(str) {
 
 
 
-var equal = __webpack_require__(120);
+var equal = __webpack_require__(121);
 var basic = {};
 var cache = {};
 
@@ -33852,7 +33858,7 @@ module.exports.basic = basic;
 
 
 /***/ }),
-/* 120 */
+/* 121 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33865,7 +33871,7 @@ module.exports.basic = basic;
 
 
 
-var isPrimitive = __webpack_require__(121);
+var isPrimitive = __webpack_require__(122);
 
 module.exports = function isEqual(a, b) {
   if (!a && !b) { return true; }
@@ -33886,7 +33892,7 @@ module.exports = function isEqual(a, b) {
 
 
 /***/ }),
-/* 121 */
+/* 122 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -33906,13 +33912,13 @@ module.exports = function isPrimitive(value) {
 
 
 /***/ }),
-/* 122 */
+/* 123 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var chars = __webpack_require__(123);
+var chars = __webpack_require__(124);
 var utils = __webpack_require__(6);
 
 /**
@@ -34106,7 +34112,7 @@ function unesc(str) {
 
 
 /***/ }),
-/* 123 */
+/* 124 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34180,7 +34186,7 @@ module.exports = chars;
 
 
 /***/ }),
-/* 124 */
+/* 125 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34193,7 +34199,7 @@ module.exports = chars;
 
 
 
-var iterator = __webpack_require__(125);
+var iterator = __webpack_require__(126);
 
 module.exports = function every(arr, cb, thisArg) {
   cb = iterator(cb, thisArg);
@@ -34215,7 +34221,7 @@ module.exports = function every(arr, cb, thisArg) {
 
 
 /***/ }),
-/* 125 */
+/* 126 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34229,7 +34235,7 @@ module.exports = function every(arr, cb, thisArg) {
 
 
 
-var forOwn = __webpack_require__(126);
+var forOwn = __webpack_require__(127);
 
 /**
  * Convert an argument into a valid iterator.
@@ -34322,7 +34328,7 @@ function noop(val) {
 }
 
 /***/ }),
-/* 126 */
+/* 127 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34335,7 +34341,7 @@ function noop(val) {
 
 
 
-var forIn = __webpack_require__(24);
+var forIn = __webpack_require__(26);
 var hasOwn = Object.prototype.hasOwnProperty;
 
 module.exports = function forOwn(obj, fn, thisArg) {
@@ -34348,7 +34354,7 @@ module.exports = function forOwn(obj, fn, thisArg) {
 
 
 /***/ }),
-/* 127 */
+/* 128 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34383,7 +34389,7 @@ module.exports = function unique(arr) {
 
 
 /***/ }),
-/* 128 */
+/* 129 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34425,7 +34431,7 @@ function idx(arr, pos, end) {
 }
 
 /***/ }),
-/* 129 */
+/* 130 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34460,7 +34466,7 @@ module.exports = function indexOf(arr, ele, start) {
 
 
 /***/ }),
-/* 130 */
+/* 131 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34492,7 +34498,7 @@ module.exports = function (data) {
 };
 
 /***/ }),
-/* 131 */
+/* 132 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34508,7 +34514,7 @@ module.exports = function (value, column) {
 };
 
 /***/ }),
-/* 132 */
+/* 133 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34541,7 +34547,7 @@ module.exports = function (row, column, index, h) {
 };
 
 /***/ }),
-/* 133 */
+/* 134 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34564,7 +34570,7 @@ module.exports = function (row, event) {
 };
 
 /***/ }),
-/* 134 */
+/* 135 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34580,7 +34586,7 @@ module.exports = function (e) {
 };
 
 /***/ }),
-/* 135 */
+/* 136 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34610,7 +34616,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 136 */
+/* 137 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34639,7 +34645,7 @@ module.exports = function (event, payload) {
 };
 
 /***/ }),
-/* 137 */
+/* 138 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34658,7 +34664,7 @@ module.exports = function (rowId, e) {
 };
 
 /***/ }),
-/* 138 */
+/* 139 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34669,7 +34675,7 @@ module.exports = function (rowId) {
 };
 
 /***/ }),
-/* 139 */
+/* 140 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34699,7 +34705,7 @@ module.exports = function (data) {
 };
 
 /***/ }),
-/* 140 */
+/* 141 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34713,7 +34719,7 @@ module.exports = function (response) {
 };
 
 /***/ }),
-/* 141 */
+/* 142 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34731,7 +34737,7 @@ module.exports = function (column) {
 };
 
 /***/ }),
-/* 142 */
+/* 143 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34752,7 +34758,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 143 */
+/* 144 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34774,7 +34780,7 @@ module.exports = function (key, value) {
 };
 
 /***/ }),
-/* 144 */
+/* 145 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34787,7 +34793,7 @@ module.exports = function (column) {
 };
 
 /***/ }),
-/* 145 */
+/* 146 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34803,7 +34809,7 @@ module.exports = function (name) {
 };
 
 /***/ }),
-/* 146 */
+/* 147 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34837,7 +34843,7 @@ module.exports = function (column) {
 };
 
 /***/ }),
-/* 147 */
+/* 148 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34899,7 +34905,7 @@ function getMultiSortData(main, secondary) {
 };
 
 /***/ }),
-/* 148 */
+/* 149 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34942,7 +34948,7 @@ module.exports = function (query) {
 };
 
 /***/ }),
-/* 149 */
+/* 150 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34959,7 +34965,7 @@ module.exports = function (column) {
 };
 
 /***/ }),
-/* 150 */
+/* 151 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34983,7 +34989,7 @@ module.exports = function (h, row) {
 };
 
 /***/ }),
-/* 151 */
+/* 152 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -34994,7 +35000,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 152 */
+/* 153 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35005,7 +35011,7 @@ module.exports = function (column) {
 };
 
 /***/ }),
-/* 153 */
+/* 154 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35020,7 +35026,7 @@ module.exports = function (page) {
 };
 
 /***/ }),
-/* 154 */
+/* 155 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35036,7 +35042,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 155 */
+/* 156 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35058,7 +35064,7 @@ module.exports = function (column) {
 };
 
 /***/ }),
-/* 156 */
+/* 157 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35073,7 +35079,7 @@ module.exports = function (column, start, end) {
 };
 
 /***/ }),
-/* 157 */
+/* 158 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35084,7 +35090,7 @@ module.exports = function (column) {
 };
 
 /***/ }),
-/* 158 */
+/* 159 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35100,7 +35106,7 @@ module.exports = function (column) {
 };
 
 /***/ }),
-/* 159 */
+/* 160 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35131,7 +35137,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 160 */
+/* 161 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35158,7 +35164,7 @@ module.exports = function (row, column) {
 };
 
 /***/ }),
-/* 161 */
+/* 162 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35169,23 +35175,23 @@ module.exports = function (column) {
 };
 
 /***/ }),
-/* 162 */
+/* 163 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 module.exports = {
-    listColumnsObject: __webpack_require__(163),
-    allColumns: __webpack_require__(164),
-    templatesKeys: __webpack_require__(165),
-    opts: __webpack_require__(166),
-    tableData: __webpack_require__(168),
-    storage: __webpack_require__(169),
-    filterableColumns: __webpack_require__(170),
-    hasChildRow: __webpack_require__(171),
-    colspan: __webpack_require__(172),
-    hasGenericFilter: __webpack_require__(173),
+    listColumnsObject: __webpack_require__(164),
+    allColumns: __webpack_require__(165),
+    templatesKeys: __webpack_require__(166),
+    opts: __webpack_require__(167),
+    tableData: __webpack_require__(169),
+    storage: __webpack_require__(170),
+    filterableColumns: __webpack_require__(171),
+    hasChildRow: __webpack_require__(172),
+    colspan: __webpack_require__(173),
+    hasGenericFilter: __webpack_require__(174),
     stateKey: function stateKey() {
         var key = this.name ? this.name : this.id;
         return 'vuetables_' + key;
@@ -35197,7 +35203,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 163 */
+/* 164 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35220,7 +35226,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 164 */
+/* 165 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35263,7 +35269,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 165 */
+/* 166 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35274,19 +35280,19 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 166 */
+/* 167 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 module.exports = function () {
-  var defaults = __webpack_require__(167)();
+  var defaults = __webpack_require__(168)();
   return this.initOptions(defaults, this.globalOptions, this.options);
 };
 
 /***/ }),
-/* 167 */
+/* 168 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35398,7 +35404,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 168 */
+/* 169 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35409,7 +35415,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 169 */
+/* 170 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35423,7 +35429,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 170 */
+/* 171 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35434,7 +35440,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 171 */
+/* 172 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35445,7 +35451,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 172 */
+/* 173 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35456,7 +35462,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 173 */
+/* 174 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35469,19 +35475,19 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 174 */
+/* 175 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 module.exports = {
-    input: __webpack_require__(175),
-    select: __webpack_require__(176)
+    input: __webpack_require__(176),
+    select: __webpack_require__(177)
 };
 
 /***/ }),
-/* 175 */
+/* 176 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35501,7 +35507,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 176 */
+/* 177 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35527,7 +35533,7 @@ module.exports = {
 };
 
 /***/ }),
-/* 177 */
+/* 178 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35562,7 +35568,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 178 */
+/* 179 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35586,17 +35592,17 @@ module.exports = function (obj) {
 };
 
 /***/ }),
-/* 179 */
+/* 180 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var _state = __webpack_require__(180);
+var _state = __webpack_require__(181);
 
 var _state2 = _interopRequireDefault(_state);
 
-var _mutations = __webpack_require__(181);
+var _mutations = __webpack_require__(182);
 
 var _mutations2 = _interopRequireDefault(_mutations);
 
@@ -35622,7 +35628,7 @@ module.exports = function (self) {
 };
 
 /***/ }),
-/* 180 */
+/* 181 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35660,7 +35666,7 @@ var _merge2 = _interopRequireDefault(_merge);
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 /***/ }),
-/* 181 */
+/* 182 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35755,7 +35761,7 @@ function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { de
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 /***/ }),
-/* 182 */
+/* 183 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35804,7 +35810,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 183 */
+/* 184 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35853,7 +35859,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 184 */
+/* 185 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35903,7 +35909,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 185 */
+/* 186 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -35920,7 +35926,7 @@ module.exports = function (h, modules, classes, slots) {
   var filterId = 'VueTables__search_' + this.id;
   var ddpId = 'VueTables__dropdown-pagination_' + this.id;
   var perpageId = 'VueTables__limit_' + this.id;
-  var perpageValues = __webpack_require__(31).call(this, h);
+  var perpageValues = __webpack_require__(33).call(this, h);
 
   var genericFilter = this.hasGenericFilter ? h(
     'div',
@@ -36018,7 +36024,7 @@ module.exports = function (h, modules, classes, slots) {
 };
 
 /***/ }),
-/* 186 */
+/* 187 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36034,7 +36040,7 @@ module.exports = function (h, modules, classes, slots) {
 
   var filterId = 'VueTables__search_' + this.id;
   var perpageId = 'VueTables__limit_' + this.id;
-  var perpageValues = __webpack_require__(31).call(this, h);
+  var perpageValues = __webpack_require__(33).call(this, h);
 
   var genericFilter = this.hasGenericFilter ? h(
     'div',
@@ -36114,7 +36120,7 @@ module.exports = function (h, modules, classes, slots) {
 };
 
 /***/ }),
-/* 187 */
+/* 188 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36258,7 +36264,7 @@ module.exports = function (h) {
 };
 
 /***/ }),
-/* 188 */
+/* 189 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36291,7 +36297,7 @@ module.exports = function (h) {
 };
 
 /***/ }),
-/* 189 */
+/* 190 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36346,7 +36352,7 @@ module.exports = function (h) {
 };
 
 /***/ }),
-/* 190 */
+/* 191 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36384,7 +36390,7 @@ module.exports = function (h) {
 };
 
 /***/ }),
-/* 191 */
+/* 192 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36404,9 +36410,9 @@ module.exports = function (h) {
   return function (classes) {
     if (!_this.opts.filterByColumn || !_this.opts.filterable) return '';
 
-    var textFilter = __webpack_require__(192).call(_this, h, classes.input);
-    var dateFilter = __webpack_require__(193).call(_this, h);
-    var listFilter = __webpack_require__(194).call(_this, h, classes.select);
+    var textFilter = __webpack_require__(193).call(_this, h, classes.input);
+    var dateFilter = __webpack_require__(194).call(_this, h);
+    var listFilter = __webpack_require__(195).call(_this, h, classes.select);
 
     var filters = [];
     var filter;
@@ -36454,7 +36460,7 @@ module.exports = function (h) {
 };
 
 /***/ }),
-/* 192 */
+/* 193 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36499,7 +36505,7 @@ module.exports = function (h, inputClass) {
 };
 
 /***/ }),
-/* 193 */
+/* 194 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36524,7 +36530,7 @@ module.exports = function (h) {
 };
 
 /***/ }),
-/* 194 */
+/* 195 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36589,7 +36595,7 @@ module.exports = function (h, selectClass) {
 };
 
 /***/ }),
-/* 195 */
+/* 196 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36632,7 +36638,7 @@ module.exports = function (h) {
 };
 
 /***/ }),
-/* 196 */
+/* 197 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36642,7 +36648,7 @@ module.exports = function (h) {
   var _this = this;
 
   return function (right) {
-    var sortControl = __webpack_require__(197)(h, right);
+    var sortControl = __webpack_require__(198)(h, right);
 
     var headings = [];
 
@@ -36673,7 +36679,7 @@ module.exports = function (h) {
 };
 
 /***/ }),
-/* 197 */
+/* 198 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36688,7 +36694,7 @@ module.exports = function (h, right) {
 };
 
 /***/ }),
-/* 198 */
+/* 199 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36719,14 +36725,14 @@ module.exports = function (h) {
 };
 
 /***/ }),
-/* 199 */
+/* 200 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var dropdownWrapper = __webpack_require__(200);
-var dropdownItemWrapper = __webpack_require__(201);
+var dropdownWrapper = __webpack_require__(201);
+var dropdownItemWrapper = __webpack_require__(202);
 
 module.exports = function (h) {
     var _this = this;
@@ -36780,7 +36786,7 @@ module.exports = function (h) {
 };
 
 /***/ }),
-/* 200 */
+/* 201 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36815,7 +36821,7 @@ module.exports = function (h, classes, columns) {
 };
 
 /***/ }),
-/* 201 */
+/* 202 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36830,7 +36836,7 @@ module.exports = function (h, classes, item) {
 };
 
 /***/ }),
-/* 202 */
+/* 203 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36854,7 +36860,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 203 */
+/* 204 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36865,7 +36871,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 204 */
+/* 205 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36876,14 +36882,14 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 205 */
+/* 206 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var search = __webpack_require__(33);
-var clone = __webpack_require__(208);
+var search = __webpack_require__(35);
+var clone = __webpack_require__(209);
 
 module.exports = function () {
 
@@ -36918,7 +36924,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 206 */
+/* 207 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36936,7 +36942,7 @@ module.exports = function (obj) {
 };
 
 /***/ }),
-/* 207 */
+/* 208 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -36960,7 +36966,7 @@ module.exports = function (data, customFilters, customQueries) {
 };
 
 /***/ }),
-/* 208 */
+/* 209 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(Buffer) {var clone = (function() {
@@ -37221,10 +37227,10 @@ if (typeof module === 'object' && module.exports) {
   module.exports = clone;
 }
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(20).Buffer))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(22).Buffer))
 
 /***/ }),
-/* 209 */
+/* 210 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37239,7 +37245,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 210 */
+/* 211 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37267,7 +37273,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 211 */
+/* 212 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37308,7 +37314,7 @@ module.exports = function (column, ascending) {
 };
 
 /***/ }),
-/* 212 */
+/* 213 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37330,7 +37336,7 @@ module.exports = function (value) {
 };
 
 /***/ }),
-/* 213 */
+/* 214 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37340,30 +37346,30 @@ var _merge = __webpack_require__(0);
 
 var _merge2 = _interopRequireDefault(_merge);
 
-var _data2 = __webpack_require__(27);
+var _data2 = __webpack_require__(29);
 
 var _data3 = _interopRequireDefault(_data2);
 
-var _vuex = __webpack_require__(15);
+var _vuex = __webpack_require__(17);
 
 var _vuex2 = _interopRequireDefault(_vuex);
 
-var _normal = __webpack_require__(16);
+var _normal = __webpack_require__(18);
 
 var _normal2 = _interopRequireDefault(_normal);
 
-var _table = __webpack_require__(17);
+var _table = __webpack_require__(19);
 
 var _table2 = _interopRequireDefault(_table);
 
-var _vuePagination = __webpack_require__(12);
+var _vuePagination = __webpack_require__(14);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-var _data = __webpack_require__(28);
-var _created = __webpack_require__(29);
+var _data = __webpack_require__(30);
+var _created = __webpack_require__(31);
 
-var templateCompiler = __webpack_require__(30);
+var templateCompiler = __webpack_require__(32);
 
 exports.install = function (Vue, globalOptions, useVuex) {
   var theme = arguments.length > 3 && arguments[3] !== undefined ? arguments[3] : 'bootstrap3';
@@ -37446,11 +37452,11 @@ exports.install = function (Vue, globalOptions, useVuex) {
       }, (0, _data3.default)(useVuex, 'server', this.options.initialPage));
     },
     methods: {
-      refresh: __webpack_require__(214),
-      getData: __webpack_require__(215),
-      setData: __webpack_require__(216),
-      serverSearch: __webpack_require__(18),
-      registerServerFilters: __webpack_require__(217),
+      refresh: __webpack_require__(215),
+      getData: __webpack_require__(216),
+      setData: __webpack_require__(217),
+      serverSearch: __webpack_require__(20),
+      registerServerFilters: __webpack_require__(218),
       loadState: function loadState() {
         var _this = this;
 
@@ -37495,8 +37501,8 @@ exports.install = function (Vue, globalOptions, useVuex) {
       }
     },
     computed: {
-      totalPages: __webpack_require__(32),
-      filteredQuery: __webpack_require__(218),
+      totalPages: __webpack_require__(34),
+      filteredQuery: __webpack_require__(219),
       hasMultiSort: function hasMultiSort() {
         return this.opts.serverMultiSorting;
       }
@@ -37510,7 +37516,7 @@ exports.install = function (Vue, globalOptions, useVuex) {
 };
 
 /***/ }),
-/* 214 */
+/* 215 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37521,7 +37527,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 215 */
+/* 216 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37566,7 +37572,7 @@ module.exports = function (promiseOnly) {
 };
 
 /***/ }),
-/* 216 */
+/* 217 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37594,7 +37600,7 @@ module.exports = function (response) {
 };
 
 /***/ }),
-/* 217 */
+/* 218 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37622,7 +37628,7 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 218 */
+/* 219 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -37648,12 +37654,12 @@ module.exports = function () {
 };
 
 /***/ }),
-/* 219 */
+/* 220 */
 /***/ (function(module, exports, __webpack_require__) {
 
 
-window._ = __webpack_require__(220);
-window.Popper = __webpack_require__(34).default;
+window._ = __webpack_require__(221);
+window.Popper = __webpack_require__(36).default;
 
 /**
  * We'll load jQuery and the Bootstrap jQuery plugin which provides support
@@ -37662,9 +37668,9 @@ window.Popper = __webpack_require__(34).default;
  */
 
 try {
-  window.$ = window.jQuery = __webpack_require__(35);
+  window.$ = window.jQuery = __webpack_require__(11);
 
-  __webpack_require__(221);
+  __webpack_require__(222);
 } catch (e) {}
 
 /**
@@ -37673,7 +37679,7 @@ try {
  * CSRF token as a header based on the value of the "XSRF" token cookie.
  */
 
-window.axios = __webpack_require__(222);
+window.axios = __webpack_require__(223);
 
 window.axios.defaults.headers.common['X-Requested-With'] = 'XMLHttpRequest';
 
@@ -37709,7 +37715,7 @@ if (token) {
 // });
 
 /***/ }),
-/* 220 */
+/* 221 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /* WEBPACK VAR INJECTION */(function(global, module) {var __WEBPACK_AMD_DEFINE_RESULT__;/**
@@ -54821,10 +54827,10 @@ if (token) {
   }
 }.call(this));
 
-/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(13)(module)))
+/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(15)(module)))
 
 /***/ }),
-/* 221 */
+/* 222 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /*!
@@ -54833,7 +54839,7 @@ if (token) {
   * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
   */
 (function (global, factory) {
-   true ? factory(exports, __webpack_require__(35), __webpack_require__(34)) :
+   true ? factory(exports, __webpack_require__(11), __webpack_require__(36)) :
   typeof define === 'function' && define.amd ? define(['exports', 'jquery', 'popper.js'], factory) :
   (factory((global.bootstrap = {}),global.jQuery,global.Popper));
 }(this, (function (exports,$,Popper) { 'use strict';
@@ -58774,22 +58780,22 @@ if (token) {
 
 
 /***/ }),
-/* 222 */
+/* 223 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__(223);
+module.exports = __webpack_require__(224);
 
 /***/ }),
-/* 223 */
+/* 224 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(1);
-var bind = __webpack_require__(36);
-var Axios = __webpack_require__(224);
-var defaults = __webpack_require__(11);
+var bind = __webpack_require__(37);
+var Axios = __webpack_require__(225);
+var defaults = __webpack_require__(12);
 
 /**
  * Create an instance of Axios
@@ -58822,15 +58828,15 @@ axios.create = function create(instanceConfig) {
 };
 
 // Expose Cancel & CancelToken
-axios.Cancel = __webpack_require__(40);
-axios.CancelToken = __webpack_require__(238);
-axios.isCancel = __webpack_require__(39);
+axios.Cancel = __webpack_require__(41);
+axios.CancelToken = __webpack_require__(239);
+axios.isCancel = __webpack_require__(40);
 
 // Expose all/spread
 axios.all = function all(promises) {
   return Promise.all(promises);
 };
-axios.spread = __webpack_require__(239);
+axios.spread = __webpack_require__(240);
 
 module.exports = axios;
 
@@ -58839,16 +58845,16 @@ module.exports.default = axios;
 
 
 /***/ }),
-/* 224 */
+/* 225 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var defaults = __webpack_require__(11);
+var defaults = __webpack_require__(12);
 var utils = __webpack_require__(1);
-var InterceptorManager = __webpack_require__(233);
-var dispatchRequest = __webpack_require__(234);
+var InterceptorManager = __webpack_require__(234);
+var dispatchRequest = __webpack_require__(235);
 
 /**
  * Create a new instance of Axios
@@ -58925,7 +58931,7 @@ module.exports = Axios;
 
 
 /***/ }),
-/* 225 */
+/* 226 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -58944,13 +58950,13 @@ module.exports = function normalizeHeaderName(headers, normalizedName) {
 
 
 /***/ }),
-/* 226 */
+/* 227 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var createError = __webpack_require__(38);
+var createError = __webpack_require__(39);
 
 /**
  * Resolve or reject a Promise based on response status.
@@ -58977,7 +58983,7 @@ module.exports = function settle(resolve, reject, response) {
 
 
 /***/ }),
-/* 227 */
+/* 228 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59005,7 +59011,7 @@ module.exports = function enhanceError(error, config, code, request, response) {
 
 
 /***/ }),
-/* 228 */
+/* 229 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59078,7 +59084,7 @@ module.exports = function buildURL(url, params, paramsSerializer) {
 
 
 /***/ }),
-/* 229 */
+/* 230 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59138,7 +59144,7 @@ module.exports = function parseHeaders(headers) {
 
 
 /***/ }),
-/* 230 */
+/* 231 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59213,7 +59219,7 @@ module.exports = (
 
 
 /***/ }),
-/* 231 */
+/* 232 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59256,7 +59262,7 @@ module.exports = btoa;
 
 
 /***/ }),
-/* 232 */
+/* 233 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59316,7 +59322,7 @@ module.exports = (
 
 
 /***/ }),
-/* 233 */
+/* 234 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59375,18 +59381,18 @@ module.exports = InterceptorManager;
 
 
 /***/ }),
-/* 234 */
+/* 235 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
 var utils = __webpack_require__(1);
-var transformData = __webpack_require__(235);
-var isCancel = __webpack_require__(39);
-var defaults = __webpack_require__(11);
-var isAbsoluteURL = __webpack_require__(236);
-var combineURLs = __webpack_require__(237);
+var transformData = __webpack_require__(236);
+var isCancel = __webpack_require__(40);
+var defaults = __webpack_require__(12);
+var isAbsoluteURL = __webpack_require__(237);
+var combineURLs = __webpack_require__(238);
 
 /**
  * Throws a `Cancel` if cancellation has been requested.
@@ -59468,7 +59474,7 @@ module.exports = function dispatchRequest(config) {
 
 
 /***/ }),
-/* 235 */
+/* 236 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59495,7 +59501,7 @@ module.exports = function transformData(data, headers, fns) {
 
 
 /***/ }),
-/* 236 */
+/* 237 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59516,7 +59522,7 @@ module.exports = function isAbsoluteURL(url) {
 
 
 /***/ }),
-/* 237 */
+/* 238 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59537,13 +59543,13 @@ module.exports = function combineURLs(baseURL, relativeURL) {
 
 
 /***/ }),
-/* 238 */
+/* 239 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
 
 
-var Cancel = __webpack_require__(40);
+var Cancel = __webpack_require__(41);
 
 /**
  * A `CancelToken` is an object that can be used to request cancellation of an operation.
@@ -59601,7 +59607,7 @@ module.exports = CancelToken;
 
 
 /***/ }),
-/* 239 */
+/* 240 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -59635,15 +59641,15 @@ module.exports = function spread(callback) {
 
 
 /***/ }),
-/* 240 */
+/* 241 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(41)
+var normalizeComponent = __webpack_require__(42)
 /* script */
-var __vue_script__ = __webpack_require__(241)
+var __vue_script__ = __webpack_require__(242)
 /* template */
-var __vue_template__ = __webpack_require__(242)
+var __vue_template__ = __webpack_require__(251)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -59682,11 +59688,15 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 241 */
+/* 242 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bootstrap_fileinput__ = __webpack_require__(243);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_bootstrap_fileinput___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_bootstrap_fileinput__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bootstrap_fileinput_css_fileinput_css__ = __webpack_require__(244);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_bootstrap_fileinput_css_fileinput_css___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_bootstrap_fileinput_css_fileinput_css__);
 //
 //
 //
@@ -59698,11 +59708,21 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 //
 //
 //
+//
+//
+//
+//
+
+
+
 
 /* harmony default export */ __webpack_exports__["default"] = ({
     props: ['source', 'title'],
     mounted: function mounted() {
         this.initData();
+        $(document).on('ready', function () {
+            $("#input-id").fileinput({ 'showUpload': false, 'previewFileType': 'any' });
+        });
     },
     data: function data() {
         return {
@@ -59743,7 +59763,6224 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 242 */
+/* 243 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var __WEBPACK_AMD_DEFINE_FACTORY__, __WEBPACK_AMD_DEFINE_ARRAY__, __WEBPACK_AMD_DEFINE_RESULT__;/*!
+ * bootstrap-fileinput v5.0.3
+ * http://plugins.krajee.com/file-input
+ *
+ * Author: Kartik Visweswaran
+ * Copyright: 2014 - 2019, Kartik Visweswaran, Krajee.com
+ *
+ * Licensed under the BSD-3-Clause
+ * https://github.com/kartik-v/bootstrap-fileinput/blob/master/LICENSE.md
+ */
+(function (factory) {
+    'use strict';
+    //noinspection JSUnresolvedVariable
+    if (true) { // jshint ignore:line
+        // AMD. Register as an anonymous module.
+        !(__WEBPACK_AMD_DEFINE_ARRAY__ = [__webpack_require__(11)], __WEBPACK_AMD_DEFINE_FACTORY__ = (factory),
+				__WEBPACK_AMD_DEFINE_RESULT__ = (typeof __WEBPACK_AMD_DEFINE_FACTORY__ === 'function' ?
+				(__WEBPACK_AMD_DEFINE_FACTORY__.apply(exports, __WEBPACK_AMD_DEFINE_ARRAY__)) : __WEBPACK_AMD_DEFINE_FACTORY__),
+				__WEBPACK_AMD_DEFINE_RESULT__ !== undefined && (module.exports = __WEBPACK_AMD_DEFINE_RESULT__)); // jshint ignore:line
+    } else { // noinspection JSUnresolvedVariable
+        if (typeof module === 'object' && module.exports) { // jshint ignore:line
+            // Node/CommonJS
+            // noinspection JSUnresolvedVariable
+            module.exports = factory(require('jquery')); // jshint ignore:line
+        } else {
+            // Browser globals
+            factory(window.jQuery);
+        }
+    }
+}(function ($) {
+    'use strict';
+
+    $.fn.fileinputLocales = {};
+    $.fn.fileinputThemes = {};
+
+    String.prototype.setTokens = function (replacePairs) {
+        var str = this.toString(), key, re;
+        for (key in replacePairs) {
+            if (replacePairs.hasOwnProperty(key)) {
+                re = new RegExp('\{' + key + '\}', 'g');
+                str = str.replace(re, replacePairs[key]);
+            }
+        }
+        return str;
+    };
+
+    var $h, FileInput;
+
+    // fileinput helper object for all global variables and internal helper methods
+    //noinspection JSUnresolvedVariable
+    $h = {
+        FRAMES: '.kv-preview-thumb',
+        SORT_CSS: 'file-sortable',
+        OBJECT_PARAMS: '<param name="controller" value="true" />\n' +
+        '<param name="allowFullScreen" value="true" />\n' +
+        '<param name="allowScriptAccess" value="always" />\n' +
+        '<param name="autoPlay" value="false" />\n' +
+        '<param name="autoStart" value="false" />\n' +
+        '<param name="quality" value="high" />\n',
+        DEFAULT_PREVIEW: '<div class="file-preview-other">\n' +
+        '<span class="{previewFileIconClass}">{previewFileIcon}</span>\n' +
+        '</div>',
+        MODAL_ID: 'kvFileinputModal',
+        MODAL_EVENTS: ['show', 'shown', 'hide', 'hidden', 'loaded'],
+        logMessages: {
+            ajaxError: '{status}: {error}. Error Details: {text}.',
+            badDroppedFiles: 'Error scanning dropped files!',
+            badExifParser: 'Error loading the piexif.js library. {details}',
+            badInputType: 'The input "type" must be set to "file" for initializing the "bootstrap-fileinput" plugin.',
+            exifWarning: 'To avoid this warning, either set "autoOrientImage" to "false" OR ensure you have loaded ' +
+            'the "piexif.js" library correctly on your page before the "fileinput.js" script.',
+            invalidChunkSize: 'Invalid upload chunk size: "{chunkSize}". Resumable uploads are disabled.',
+            invalidThumb: 'Invalid thumb frame with id: "{id}".',
+            noResumableSupport: 'The browser does not support resumable or chunk uploads.',
+            noUploadUrl: 'The "uploadUrl" is not set. Ajax uploads and resumable uploads have been disabled.',
+            retryStatus: 'Retrying upload for chunk # {chunk} for {filename}... retry # {retry}.'
+        },
+        objUrl: window.URL || window.webkitURL,
+        now: function () {
+            return new Date();
+        },
+        round: function (num) {
+            num = parseFloat(num);
+            return isNaN(num) ? 0 : Math.floor(Math.round(num));
+        },
+        getFileRelativePath: function (file) {
+            /** @namespace file.relativePath */
+            /** @namespace file.webkitRelativePath */
+            return String(file.relativePath || file.webkitRelativePath || $h.getFileName(file) || null);
+
+        },
+        getFileId: function (file, generateFileId) {
+            var relativePath = $h.getFileRelativePath(file);
+            if (typeof generateFileId === 'function') {
+                return generateFileId(file);
+            }
+            if (!file) {
+                return null;
+            }
+            if (!relativePath) {
+                return null;
+            }
+            return (file.size + '_' + relativePath.replace(/\s/img, '_'));
+        },
+        getElapsed: function (seconds) {
+            var delta = seconds, out = '', result = {}, structure = {
+                year: 31536000,
+                month: 2592000,
+                week: 604800, // uncomment row to ignore
+                day: 86400,   // feel free to add your own row
+                hour: 3600,
+                minute: 60,
+                second: 1
+            };
+            Object.keys(structure).forEach(function (key) {
+                result[key] = Math.floor(delta / structure[key]);
+                delta -= result[key] * structure[key];
+            });
+            $.each(result, function (key, value) {
+                if (value > 0) {
+                    out += (out ? ' ' : '') + value + key.substring(0, 1);
+                }
+            });
+            return out;
+        },
+        debounce: function (func, delay) {
+            var inDebounce;
+            return function () {
+                var args = arguments, context = this;
+                clearTimeout(inDebounce);
+                inDebounce = setTimeout(function () {
+                    func.apply(context, args);
+                }, delay);
+            };
+        },
+        stopEvent: function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+        },
+        getFileName: function (file) {
+            /** @namespace file.fileName */
+            return file ? (file.fileName || file.name || '') : ''; // some confusion in different versions of Firefox
+        },
+        createObjectURL: function (data) {
+            if ($h.objUrl && $h.objUrl.createObjectURL && data) {
+                return $h.objUrl.createObjectURL(data);
+            }
+            return '';
+        },
+        revokeObjectURL: function (data) {
+            if ($h.objUrl && $h.objUrl.revokeObjectURL && data) {
+                $h.objUrl.revokeObjectURL(data);
+            }
+        },
+        compare: function (input, str, exact) {
+            return input !== undefined && (exact ? input === str : input.match(str));
+        },
+        isIE: function (ver) {
+            var div, status;
+            // check for IE versions < 11
+            if (navigator.appName !== 'Microsoft Internet Explorer') {
+                return false;
+            }
+            if (ver === 10) {
+                return new RegExp('msie\\s' + ver, 'i').test(navigator.userAgent);
+            }
+            div = document.createElement('div');
+            div.innerHTML = '<!--[if IE ' + ver + ']> <i></i> <![endif]-->';
+            status = div.getElementsByTagName('i').length;
+            document.body.appendChild(div);
+            div.parentNode.removeChild(div);
+            return status;
+        },
+        canAssignFilesToInput: function () {
+            var input = document.createElement('input');
+            try {
+                input.type = 'file';
+                input.files = null;
+                return true;
+            } catch (err) {
+                return false;
+            }
+        },
+        getDragDropFolders: function (items) {
+            var i, item, len = items ? items.length : 0, folders = 0;
+            if (len > 0 && items[0].webkitGetAsEntry()) {
+                for (i = 0; i < len; i++) {
+                    item = items[i].webkitGetAsEntry();
+                    if (item && item.isDirectory) {
+                        folders++;
+                    }
+                }
+            }
+            return folders;
+        },
+        initModal: function ($modal) {
+            var $body = $('body');
+            if ($body.length) {
+                $modal.appendTo($body);
+            }
+        },
+        isEmpty: function (value, trim) {
+            return value === undefined || value === null || value.length === 0 || (trim && $.trim(value) === '');
+        },
+        isArray: function (a) {
+            return Array.isArray(a) || Object.prototype.toString.call(a) === '[object Array]';
+        },
+        ifSet: function (needle, haystack, def) {
+            def = def || '';
+            return (haystack && typeof haystack === 'object' && needle in haystack) ? haystack[needle] : def;
+        },
+        cleanArray: function (arr) {
+            if (!(arr instanceof Array)) {
+                arr = [];
+            }
+            return arr.filter(function (e) {
+                return (e !== undefined && e !== null);
+            });
+        },
+        spliceArray: function (arr, index, reverseOrder) {
+            var i, j = 0, out = [], newArr;
+            if (!(arr instanceof Array)) {
+                return [];
+            }
+            newArr = $.extend(true, [], arr);
+            if (reverseOrder) {
+                newArr.reverse();
+            }
+            for (i = 0; i < newArr.length; i++) {
+                if (i !== index) {
+                    out[j] = newArr[i];
+                    j++;
+                }
+            }
+            if (reverseOrder) {
+                out.reverse();
+            }
+            return out;
+        },
+        getNum: function (num, def) {
+            def = def || 0;
+            if (typeof num === 'number') {
+                return num;
+            }
+            if (typeof num === 'string') {
+                num = parseFloat(num);
+            }
+            return isNaN(num) ? def : num;
+        },
+        hasFileAPISupport: function () {
+            return !!(window.File && window.FileReader);
+        },
+        hasDragDropSupport: function () {
+            var div = document.createElement('div');
+            /** @namespace div.draggable */
+            /** @namespace div.ondragstart */
+            /** @namespace div.ondrop */
+            return !$h.isIE(9) &&
+                (div.draggable !== undefined || (div.ondragstart !== undefined && div.ondrop !== undefined));
+        },
+        hasFileUploadSupport: function () {
+            return $h.hasFileAPISupport() && window.FormData;
+        },
+        hasBlobSupport: function () {
+            try {
+                return !!window.Blob && Boolean(new Blob());
+            } catch (e) {
+                return false;
+            }
+        },
+        hasArrayBufferViewSupport: function () {
+            try {
+                return new Blob([new Uint8Array(100)]).size === 100;
+            } catch (e) {
+                return false;
+            }
+        },
+        hasResumableUploadSupport: function () {
+            /** @namespace Blob.prototype.webkitSlice */
+            /** @namespace Blob.prototype.mozSlice */
+            return $h.hasFileUploadSupport() && $h.hasBlobSupport() && $h.hasArrayBufferViewSupport() &&
+                (!!Blob.prototype.webkitSlice || !!Blob.prototype.mozSlice || !!Blob.prototype.slice || false);
+        },
+        dataURI2Blob: function (dataURI) {
+            //noinspection JSUnresolvedVariable
+            var BlobBuilder = window.BlobBuilder || window.WebKitBlobBuilder || window.MozBlobBuilder ||
+                window.MSBlobBuilder, canBlob = $h.hasBlobSupport(), byteStr, arrayBuffer, intArray, i, mimeStr, bb,
+                canProceed = (canBlob || BlobBuilder) && window.atob && window.ArrayBuffer && window.Uint8Array;
+            if (!canProceed) {
+                return null;
+            }
+            if (dataURI.split(',')[0].indexOf('base64') >= 0) {
+                byteStr = atob(dataURI.split(',')[1]);
+            } else {
+                byteStr = decodeURIComponent(dataURI.split(',')[1]);
+            }
+            arrayBuffer = new ArrayBuffer(byteStr.length);
+            intArray = new Uint8Array(arrayBuffer);
+            for (i = 0; i < byteStr.length; i += 1) {
+                intArray[i] = byteStr.charCodeAt(i);
+            }
+            mimeStr = dataURI.split(',')[0].split(':')[1].split(';')[0];
+            if (canBlob) {
+                return new Blob([$h.hasArrayBufferViewSupport() ? intArray : arrayBuffer], {type: mimeStr});
+            }
+            bb = new BlobBuilder();
+            bb.append(arrayBuffer);
+            return bb.getBlob(mimeStr);
+        },
+        arrayBuffer2String: function (buffer) {
+            //noinspection JSUnresolvedVariable
+            if (window.TextDecoder) {
+                // noinspection JSUnresolvedFunction
+                return new TextDecoder('utf-8').decode(buffer);
+            }
+            var array = Array.prototype.slice.apply(new Uint8Array(buffer)), out = '', i = 0, len, c, char2, char3;
+            len = array.length;
+            while (i < len) {
+                c = array[i++];
+                switch (c >> 4) { // jshint ignore:line
+                    case 0:
+                    case 1:
+                    case 2:
+                    case 3:
+                    case 4:
+                    case 5:
+                    case 6:
+                    case 7:
+                        // 0xxxxxxx
+                        out += String.fromCharCode(c);
+                        break;
+                    case 12:
+                    case 13:
+                        // 110x xxxx   10xx xxxx
+                        char2 = array[i++];
+                        out += String.fromCharCode(((c & 0x1F) << 6) | (char2 & 0x3F)); // jshint ignore:line
+                        break;
+                    case 14:
+                        // 1110 xxxx  10xx xxxx  10xx xxxx
+                        char2 = array[i++];
+                        char3 = array[i++];
+                        out += String.fromCharCode(((c & 0x0F) << 12) | // jshint ignore:line
+                            ((char2 & 0x3F) << 6) |  // jshint ignore:line
+                            ((char3 & 0x3F) << 0)); // jshint ignore:line
+                        break;
+                }
+            }
+            return out;
+        },
+        isHtml: function (str) {
+            var a = document.createElement('div');
+            a.innerHTML = str;
+            for (var c = a.childNodes, i = c.length; i--;) {
+                if (c[i].nodeType === 1) {
+                    return true;
+                }
+            }
+            return false;
+        },
+        isSvg: function (str) {
+            return str.match(/^\s*<\?xml/i) && (str.match(/<!DOCTYPE svg/i) || str.match(/<svg/i));
+        },
+        getMimeType: function (signature, contents, type) {
+            switch (signature) {
+                case 'ffd8ffe0':
+                case 'ffd8ffe1':
+                case 'ffd8ffe2':
+                    return 'image/jpeg';
+                case '89504E47':
+                    return 'image/png';
+                case '47494638':
+                    return 'image/gif';
+                case '49492a00':
+                    return 'image/tiff';
+                case '52494646':
+                    return 'image/webp';
+                case '66747970':
+                    return 'video/3gp';
+                case '4f676753':
+                    return 'video/ogg';
+                case '1a45dfa3':
+                    return 'video/mkv';
+                case '000001ba':
+                case '000001b3':
+                    return 'video/mpeg';
+                case '3026b275':
+                    return 'video/wmv';
+                case '25504446':
+                    return 'application/pdf';
+                case '25215053':
+                    return 'application/ps';
+                case '504b0304':
+                case '504b0506':
+                case '504b0508':
+                    return 'application/zip';
+                case '377abcaf':
+                    return 'application/7z';
+                case '75737461':
+                    return 'application/tar';
+                case '7801730d':
+                    return 'application/dmg';
+                default:
+                    switch (signature.substring(0, 6)) {
+                        case '435753':
+                            return 'application/x-shockwave-flash';
+                        case '494433':
+                            return 'audio/mp3';
+                        case '425a68':
+                            return 'application/bzip';
+                        default:
+                            switch (signature.substring(0, 4)) {
+                                case '424d':
+                                    return 'image/bmp';
+                                case 'fffb':
+                                    return 'audio/mp3';
+                                case '4d5a':
+                                    return 'application/exe';
+                                case '1f9d':
+                                case '1fa0':
+                                    return 'application/zip';
+                                case '1f8b':
+                                    return 'application/gzip';
+                                default:
+                                    return contents && !contents.match(
+                                        /[^\u0000-\u007f]/) ? 'application/text-plain' : type;
+                            }
+                    }
+            }
+        },
+        addCss: function ($el, css) {
+            $el.removeClass(css).addClass(css);
+        },
+        getElement: function (options, param, value) {
+            return ($h.isEmpty(options) || $h.isEmpty(options[param])) ? value : $(options[param]);
+        },
+        uniqId: function () {
+            return Math.round(new Date().getTime()) + '_' + Math.round(Math.random() * 100);
+        },
+        htmlEncode: function (str, undefVal) {
+            if (str === undefined) {
+                return undefVal || null;
+            }
+            return str.replace(/&/g, '&amp;')
+                .replace(/</g, '&lt;')
+                .replace(/>/g, '&gt;')
+                .replace(/"/g, '&quot;')
+                .replace(/'/g, '&apos;');
+        },
+        replaceTags: function (str, tags) {
+            var out = str;
+            if (!tags) {
+                return out;
+            }
+            $.each(tags, function (key, value) {
+                if (typeof value === 'function') {
+                    value = value();
+                }
+                out = out.split(key).join(value);
+            });
+            return out;
+        },
+        cleanMemory: function ($thumb) {
+            var data = $thumb.is('img') ? $thumb.attr('src') : $thumb.find('source').attr('src');
+            $h.revokeObjectURL(data);
+        },
+        findFileName: function (filePath) {
+            var sepIndex = filePath.lastIndexOf('/');
+            if (sepIndex === -1) {
+                sepIndex = filePath.lastIndexOf('\\');
+            }
+            return filePath.split(filePath.substring(sepIndex, sepIndex + 1)).pop();
+        },
+        checkFullScreen: function () {
+            //noinspection JSUnresolvedVariable
+            return document.fullscreenElement || document.mozFullScreenElement || document.webkitFullscreenElement ||
+                document.msFullscreenElement;
+        },
+        toggleFullScreen: function (maximize) {
+            var doc = document, de = doc.documentElement;
+            if (de && maximize && !$h.checkFullScreen()) {
+                /** @namespace document.requestFullscreen */
+                /** @namespace document.msRequestFullscreen */
+                /** @namespace document.mozRequestFullScreen */
+                /** @namespace document.webkitRequestFullscreen */
+                /** @namespace Element.ALLOW_KEYBOARD_INPUT */
+                if (de.requestFullscreen) {
+                    de.requestFullscreen();
+                } else {
+                    if (de.msRequestFullscreen) {
+                        de.msRequestFullscreen();
+                    } else {
+                        if (de.mozRequestFullScreen) {
+                            de.mozRequestFullScreen();
+                        } else {
+                            if (de.webkitRequestFullscreen) {
+                                de.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+                            }
+                        }
+                    }
+                }
+            } else {
+                /** @namespace document.exitFullscreen */
+                /** @namespace document.msExitFullscreen */
+                /** @namespace document.mozCancelFullScreen */
+                /** @namespace document.webkitExitFullscreen */
+                if (doc.exitFullscreen) {
+                    doc.exitFullscreen();
+                } else {
+                    if (doc.msExitFullscreen) {
+                        doc.msExitFullscreen();
+                    } else {
+                        if (doc.mozCancelFullScreen) {
+                            doc.mozCancelFullScreen();
+                        } else {
+                            if (doc.webkitExitFullscreen) {
+                                doc.webkitExitFullscreen();
+                            }
+                        }
+                    }
+                }
+            }
+        },
+        moveArray: function (arr, oldIndex, newIndex, reverseOrder) {
+            var newArr = $.extend(true, [], arr);
+            if (reverseOrder) {
+                newArr.reverse();
+            }
+            if (newIndex >= newArr.length) {
+                var k = newIndex - newArr.length;
+                while ((k--) + 1) {
+                    newArr.push(undefined);
+                }
+            }
+            newArr.splice(newIndex, 0, newArr.splice(oldIndex, 1)[0]);
+            if (reverseOrder) {
+                newArr.reverse();
+            }
+            return newArr;
+        },
+        cleanZoomCache: function ($el) {
+            var $cache = $el.closest('.kv-zoom-cache-theme');
+            if (!$cache.length) {
+                $cache = $el.closest('.kv-zoom-cache');
+            }
+            $cache.remove();
+        },
+        closeButton: function (css) {
+            css = css ? 'close ' + css : 'close';
+            return '<button type="button" class="' + css + '" aria-label="Close">\n' +
+                '  <span aria-hidden="true">&times;</span>\n' +
+                '</button>';
+        },
+        getRotation: function (value) {
+            switch (value) {
+                case 2:
+                    return 'rotateY(180deg)';
+                case 3:
+                    return 'rotate(180deg)';
+                case 4:
+                    return 'rotate(180deg) rotateY(180deg)';
+                case 5:
+                    return 'rotate(270deg) rotateY(180deg)';
+                case 6:
+                    return 'rotate(90deg)';
+                case 7:
+                    return 'rotate(90deg) rotateY(180deg)';
+                case 8:
+                    return 'rotate(270deg)';
+                default:
+                    return '';
+            }
+        },
+        setTransform: function (el, val) {
+            if (!el) {
+                return;
+            }
+            el.style.transform = val;
+            el.style.webkitTransform = val;
+            el.style['-moz-transform'] = val;
+            el.style['-ms-transform'] = val;
+            el.style['-o-transform'] = val;
+        }
+    };
+    FileInput = function (element, options) {
+        var self = this;
+        self.$element = $(element);
+        self.$parent = self.$element.parent();
+        if (!self._validate()) {
+            return;
+        }
+        self.isPreviewable = $h.hasFileAPISupport();
+        self.isIE9 = $h.isIE(9);
+        self.isIE10 = $h.isIE(10);
+        if (self.isPreviewable || self.isIE9) {
+            self._init(options);
+            self._listen();
+        }
+        self.$element.removeClass('file-loading');
+    };
+    //noinspection JSUnusedGlobalSymbols
+    FileInput.prototype = {
+        constructor: FileInput,
+        _cleanup: function () {
+            var self = this;
+            self.reader = null;
+            self.clearFileStack();
+            self.fileBatchCompleted = true;
+            self.isError = false;
+            self.cancelling = false;
+            self.paused = false;
+            self.lastProgress = 0;
+            self._initAjax();
+        },
+        _initAjax: function () {
+            var self = this;
+            self.ajaxQueue = [];
+            self.ajaxRequests = [];
+            self.ajaxQueueIntervalId = null;
+            self.ajaxCurrentThreads = 0;
+            self.ajaxAborted = false;
+        },
+        _init: function (options, refreshMode) {
+            var self = this, f, $el = self.$element, $cont, t, tmp;
+            self.options = options;
+            $.each(options, function (key, value) {
+                switch (key) {
+                    case 'minFileCount':
+                    case 'maxFileCount':
+                    case 'minFileSize':
+                    case 'maxFileSize':
+                    case 'maxFilePreviewSize':
+                    case 'resizeImageQuality':
+                    case 'resizeIfSizeMoreThan':
+                    case 'progressUploadThreshold':
+                    case 'initialPreviewCount':
+                    case 'zoomModalHeight':
+                    case 'minImageHeight':
+                    case 'maxImageHeight':
+                    case 'minImageWidth':
+                    case 'maxImageWidth':
+                        self[key] = $h.getNum(value);
+                        break;
+                    default:
+                        self[key] = value;
+                        break;
+                }
+            });
+            if (self.rtl) { // swap buttons for rtl
+                tmp = self.previewZoomButtonIcons.prev;
+                self.previewZoomButtonIcons.prev = self.previewZoomButtonIcons.next;
+                self.previewZoomButtonIcons.next = tmp;
+            }
+            // validate chunk threads to not exceed maxAjaxThreads
+            if (!isNaN(self.maxAjaxThreads) && self.maxAjaxThreads < self.resumableUploadOptions.maxThreads) {
+                self.resumableUploadOptions.maxThreads = self.maxAjaxThreads;
+            }
+            self._initFileManager();
+            if (typeof self.autoOrientImage === 'function') {
+                self.autoOrientImage = self.autoOrientImage();
+            }
+            if (typeof self.autoOrientImageInitial === 'function') {
+                self.autoOrientImageInitial = self.autoOrientImageInitial();
+            }
+            if (!refreshMode) {
+                self._cleanup();
+            }
+            self.$form = $el.closest('form');
+            self._initTemplateDefaults();
+            self.uploadFileAttr = !$h.isEmpty($el.attr('name')) ? $el.attr('name') : 'file_data';
+            t = self._getLayoutTemplate('progress');
+            self.progressTemplate = t.replace('{class}', self.progressClass);
+            self.progressInfoTemplate = t.replace('{class}', self.progressInfoClass);
+            self.progressPauseTemplate = t.replace('{class}', self.progressPauseClass);
+            self.progressCompleteTemplate = t.replace('{class}', self.progressCompleteClass);
+            self.progressErrorTemplate = t.replace('{class}', self.progressErrorClass);
+            self.isDisabled = $el.attr('disabled') || $el.attr('readonly');
+            if (self.isDisabled) {
+                $el.attr('disabled', true);
+            }
+            self.isClickable = self.browseOnZoneClick && self.showPreview &&
+                (self.dropZoneEnabled || !$h.isEmpty(self.defaultPreviewContent));
+            self.isAjaxUpload = $h.hasFileUploadSupport() && !$h.isEmpty(self.uploadUrl);
+            self.dropZoneEnabled = $h.hasDragDropSupport() && self.dropZoneEnabled;
+            if (!self.isAjaxUpload) {
+                self.dropZoneEnabled = self.dropZoneEnabled && $h.canAssignFilesToInput();
+            }
+            self.slug = typeof options.slugCallback === 'function' ? options.slugCallback : self._slugDefault;
+            self.mainTemplate = self.showCaption ? self._getLayoutTemplate('main1') : self._getLayoutTemplate('main2');
+            self.captionTemplate = self._getLayoutTemplate('caption');
+            self.previewGenericTemplate = self._getPreviewTemplate('generic');
+            if (!self.imageCanvas && self.resizeImage && (self.maxImageWidth || self.maxImageHeight)) {
+                self.imageCanvas = document.createElement('canvas');
+                self.imageCanvasContext = self.imageCanvas.getContext('2d');
+            }
+            if ($h.isEmpty($el.attr('id'))) {
+                $el.attr('id', $h.uniqId());
+            }
+            self.namespace = '.fileinput_' + $el.attr('id').replace(/-/g, '_');
+            if (self.$container === undefined) {
+                self.$container = self._createContainer();
+            } else {
+                self._refreshContainer();
+            }
+            $cont = self.$container;
+            self.$dropZone = $cont.find('.file-drop-zone');
+            self.$progress = $cont.find('.kv-upload-progress');
+            self.$btnUpload = $cont.find('.fileinput-upload');
+            self.$captionContainer = $h.getElement(options, 'elCaptionContainer', $cont.find('.file-caption'));
+            self.$caption = $h.getElement(options, 'elCaptionText', $cont.find('.file-caption-name'));
+            if (!$h.isEmpty(self.msgPlaceholder)) {
+                f = $el.attr('multiple') ? self.filePlural : self.fileSingle;
+                self.$caption.attr('placeholder', self.msgPlaceholder.replace('{files}', f));
+            }
+            self.$captionIcon = self.$captionContainer.find('.file-caption-icon');
+            self.$previewContainer = $h.getElement(options, 'elPreviewContainer', $cont.find('.file-preview'));
+            self.$preview = $h.getElement(options, 'elPreviewImage', $cont.find('.file-preview-thumbnails'));
+            self.$previewStatus = $h.getElement(options, 'elPreviewStatus', $cont.find('.file-preview-status'));
+            self.$errorContainer = $h.getElement(options, 'elErrorContainer',
+                self.$previewContainer.find('.kv-fileinput-error'));
+            self._validateDisabled();
+            if (!$h.isEmpty(self.msgErrorClass)) {
+                $h.addCss(self.$errorContainer, self.msgErrorClass);
+            }
+            if (!refreshMode) {
+                self.$errorContainer.hide();
+                self.previewInitId = 'preview-' + $h.uniqId();
+                self._initPreviewCache();
+                self._initPreview(true);
+                self._initPreviewActions();
+                if (self.$parent.hasClass('file-loading')) {
+                    self.$container.insertBefore(self.$parent);
+                    self.$parent.remove();
+                }
+            } else {
+                if (!self._errorsExist()) {
+                    self.$errorContainer.hide();
+                }
+            }
+            self._setFileDropZoneTitle();
+            if ($el.attr('disabled')) {
+                self.disable();
+            }
+            self._initZoom();
+            if (self.hideThumbnailContent) {
+                $h.addCss(self.$preview, 'hide-content');
+            }
+        },
+        _initFileManager: function () {
+            var self = this;
+            self.fileManager = {
+                stack: {},
+                processed: [],
+                errors: [],
+                loadedImages: {},
+                totalImages: 0,
+                totalFiles: null,
+                totalSize: null,
+                uploadedSize: 0,
+                stats: {},
+                initStats: function (id) {
+                    var data = {started: $h.now().getTime()};
+                    if (id) {
+                        self.fileManager.stats[id] = data;
+                    } else {
+                        self.fileManager.stats = data;
+                    }
+                },
+                getUploadStats: function (id, loaded, total) {
+                    var fm = self.fileManager, started = id ? fm.stats[id] && fm.stats[id].started || null : null;
+                    if (!started) {
+                        started = $h.now().getTime();
+                    }
+                    var elapsed = ($h.now().getTime() - started) / 1000,
+                        speeds = ['B/s', 'KB/s', 'MB/s', 'GB/s', 'TB/s', 'PB/s', 'EB/s', 'ZB/s', 'YB/s'],
+                        bps = elapsed ? loaded / elapsed : 0, bitrate = self._getSize(bps, speeds),
+                        pendingBytes = total - loaded,
+                        out = {
+                            fileId: id,
+                            started: started,
+                            elapsed: elapsed,
+                            loaded: loaded,
+                            total: total,
+                            bps: bps,
+                            bitrate: bitrate,
+                            pendingBytes: pendingBytes
+                        };
+                    if (id) {
+                        fm.stats[id] = out;
+                    } else {
+                        fm.stats = out;
+                    }
+                    return out;
+                },
+                exists: function (id) {
+                    return $.inArray(id, self.fileManager.getIdList()) !== -1;
+                },
+                count: function () {
+                    return self.fileManager.getIdList().length;
+                },
+                total: function () {
+                    var fm = self.fileManager;
+                    if (!fm.totalFiles) {
+                        fm.totalFiles = fm.count();
+                    }
+                    return fm.totalFiles;
+                },
+                getTotalSize: function () {
+                    var fm = self.fileManager;
+                    if (fm.totalSize) {
+                        return fm.totalSize;
+                    }
+                    fm.totalSize = 0;
+                    $.each(self.fileManager.stack, function (id, f) {
+                        var size = parseFloat(f.size);
+                        fm.totalSize += isNaN(size) ? 0 : size;
+                    });
+                    return fm.totalSize;
+                },
+                add: function (file, id) {
+                    if (!id) {
+                        id = self.fileManager.getId(file);
+                    }
+                    if (!id) {
+                        return;
+                    }
+                    self.fileManager.stack[id] = {
+                        file: file,
+                        name: $h.getFileName(file),
+                        relativePath: $h.getFileRelativePath(file),
+                        size: file.size,
+                        nameFmt: self._getFileName(file, ''),
+                        sizeFmt: self._getSize(file.size)
+                    };
+                },
+                remove: function ($thumb) {
+                    var id = $thumb.attr('data-fileid');
+                    if (id) {
+                        self.fileManager.removeFile(id);
+                    }
+                },
+                removeFile: function (id) {
+                    delete self.fileManager.stack[id];
+                    delete self.fileManager.loadedImages[id];
+                },
+                move: function (idFrom, idTo) {
+                    var result = {}, stack = self.fileManager.stack;
+                    if (!idFrom && !idTo || idFrom === idTo) {
+                        return;
+                    }
+                    $.each(stack, function (k, v) {
+                        if (k !== idFrom) {
+                            result[k] = v;
+                        }
+                        if (k === idTo) {
+                            result[idFrom] = stack[idFrom];
+                        }
+                    });
+                    self.fileManager.stack = result;
+                },
+                list: function () {
+                    var files = [];
+                    $.each(self.fileManager.stack, function (k, v) {
+                        if (v && v.file) {
+                            files.push(v.file);
+                        }
+                    });
+                    return files;
+                },
+                isPending: function (id) {
+                    return $.inArray(id, self.fileManager.processed) === -1 && self.fileManager.exists(id);
+                },
+                isProcessed: function () {
+                    var processed = true, fm = self.fileManager;
+                    $.each(fm.stack, function (id) {
+                        if (fm.isPending(id)) {
+                            processed = false;
+                        }
+                    });
+                    return processed;
+                },
+                clear: function () {
+                    var fm = self.fileManager;
+                    fm.totalFiles = null;
+                    fm.totalSize = null;
+                    fm.uploadedSize = 0;
+                    fm.stack = {};
+                    fm.errors = [];
+                    fm.processed = [];
+                    fm.stats = {};
+                    fm.clearImages();
+                },
+                clearImages: function () {
+                    self.fileManager.loadedImages = {};
+                    self.fileManager.totalImages = 0;
+                },
+                addImage: function (id, config) {
+                    self.fileManager.loadedImages[id] = config;
+                },
+                removeImage: function (id) {
+                    delete self.fileManager.loadedImages[id];
+                },
+                getImageIdList: function () {
+                    return Object.keys(self.fileManager.loadedImages);
+                },
+                getImageCount: function () {
+                    return self.fileManager.getImageIdList().length;
+                },
+                getId: function (file) {
+                    return self._getFileId(file);
+                },
+                getIndex: function (id) {
+                    return self.fileManager.getIdList().indexOf(id);
+                },
+                getThumb: function (id) {
+                    var $thumb = null;
+                    self._getThumbs().each(function () {
+                        if ($(this).attr('data-fileid') === id) {
+                            $thumb = $(this);
+                        }
+                    });
+                    return $thumb;
+                },
+                getThumbIndex: function ($thumb) {
+                    var id = $thumb.attr('data-fileid');
+                    return self.fileManager.getIndex(id);
+                },
+                getIdList: function () {
+                    return Object.keys(self.fileManager.stack);
+                },
+                getFile: function (id) {
+                    return self.fileManager.stack[id] || null;
+                },
+                getFileName: function (id, fmt) {
+                    var file = self.fileManager.getFile(id);
+                    if (!file) {
+                        return '';
+                    }
+                    return fmt ? (file.nameFmt || '') : file.name || '';
+                },
+                getFirstFile: function () {
+                    var ids = self.fileManager.getIdList(), id = ids && ids.length ? ids[0] : null;
+                    return self.fileManager.getFile(id);
+                },
+                setFile: function (id, file) {
+                    if (self.fileManager.getFile(id)) {
+                        self.fileManager.stack[id].file = file;
+                    } else {
+                        self.fileManager.add(file, id);
+                    }
+                },
+                setProcessed: function (id) {
+                    self.fileManager.processed.push(id);
+                },
+                getProgress: function () {
+                    var total = self.fileManager.total(), processed = self.fileManager.processed.length;
+                    if (!total) {
+                        return 0;
+                    }
+                    return Math.ceil(processed / total * 100);
+
+                },
+                setProgress: function (id, pct) {
+                    var f = self.fileManager.getFile(id);
+                    if (!isNaN(pct) && f) {
+                        f.progress = pct;
+                    }
+                }
+            };
+        },
+        _setUploadData: function (fd, config) {
+            var self = this;
+            $.each(config, function (key, value) {
+                var param = self.uploadParamNames[key] || key;
+                if ($h.isArray(value)) {
+                    fd.append(param, value[0], value[1]);
+                } else {
+                    fd.append(param, value);
+                }
+            });
+        },
+        _initResumableUpload: function () {
+            var self = this, opts = self.resumableUploadOptions, logs = $h.logMessages;
+            if (!self.enableResumableUpload) {
+                return;
+            }
+            if (opts.fallback !== false && typeof opts.fallback !== 'function') {
+                opts.fallback = function (s) {
+                    s._log(logs.noResumableSupport);
+                    s.enableResumableUpload = false;
+                };
+            }
+            if (!$h.hasResumableUploadSupport() && opts.fallback !== false) {
+                opts.fallback(self);
+                return;
+            }
+            if (!self.uploadUrl && self.enableResumableUpload) {
+                self._log(logs.noUploadUrl);
+                self.enableResumableUpload = false;
+                return;
+
+            }
+            opts.chunkSize = parseFloat(opts.chunkSize);
+            if (opts.chunkSize <= 0 || isNaN(opts.chunkSize)) {
+                self._log(logs.invalidChunkSize, {chunkSize: opts.chunkSize});
+                self.enableResumableUpload = false;
+                return;
+            }
+            self.resumableManager = {
+                init: function (id, f, index) {
+                    var rm = self.resumableManager, fm = self.fileManager;
+                    rm.currThreads = 0;
+                    rm.logs = [];
+                    rm.stack = [];
+                    rm.error = '';
+                    rm.chunkIntervalId = null;
+                    rm.id = id;
+                    rm.file = f.file;
+                    rm.fileName = f.name;
+                    rm.fileIndex = index;
+                    rm.completed = false;
+                    rm.testing = false;
+                    rm.lastProgress = 0;
+                    if (self.showPreview) {
+                        rm.$thumb = fm.getThumb(id) || null;
+                        rm.$progress = rm.$btnDelete = null;
+                        if (rm.$thumb && rm.$thumb.length) {
+                            rm.$progress = rm.$thumb.find('.file-thumb-progress');
+                            rm.$btnDelete = rm.$thumb.find('.kv-file-remove');
+                        }
+                    }
+                    rm.chunkSize = self.resumableUploadOptions.chunkSize * 1024;
+                    rm.chunkCount = rm.getTotalChunks();
+                },
+                logAjaxError: function (jqXHR, textStatus, errorThrown) {
+                    if (self.resumableUploadOptions.showErrorLog) {
+                        self._log(logs.ajaxError, {
+                            status: jqXHR.status,
+                            error: errorThrown,
+                            text: jqXHR.responseText || ''
+                        });
+                    }
+                },
+                reset: function () {
+                    var rm = self.resumableManager;
+                    rm.processed = {};
+                },
+                setProcessed: function (status) {
+                    var rm = self.resumableManager, fm = self.fileManager, id = rm.id, msg,
+                        $thumb = rm.$thumb, $prog = rm.$progress, hasThumb = $thumb && $thumb.length,
+                        params = {id: hasThumb ? $thumb.attr('id') : '', index: fm.getIndex(id), fileId: id};
+                    rm.completed = true;
+                    rm.lastProgress = 0;
+                    fm.uploadedSize += rm.file.size;
+                    if (hasThumb) {
+                        $thumb.removeClass('file-uploading');
+                    }
+                    if (status === 'success') {
+                        if (self.showPreview) {
+                            self._setProgress(101, $prog);
+                            self._setThumbStatus($thumb, 'Success');
+                            self._initUploadSuccess(rm.processed[id].data, $thumb);
+                        }
+                        self.fileManager.removeFile(id);
+                        delete rm.processed[id];
+                        self._raise('fileuploaded', [params.id, params.index, params.fileId]);
+                        if (fm.isProcessed()) {
+                            self._setProgress(101);
+                        }
+                    } else {
+                        if (self.showPreview) {
+                            self._setThumbStatus($thumb, 'Error');
+                            self._setPreviewError($thumb, true);
+                            self._setProgress(101, $prog, self.msgProgressError);
+                            self._setProgress(101, self.$progress, self.msgProgressError);
+                            self.cancelling = true;
+                        }
+                        if (!self.$errorContainer.find('li[data-file-id="' + params.fileId + '"]').length) {
+                            msg = self.msgResumableUploadRetriesExceeded.setTokens({
+                                file: rm.fileName,
+                                max: self.resumableUploadOptions.maxRetries,
+                                error: rm.error
+                            });
+                            self._showFileError(msg, params);
+                        }
+                    }
+                    if (fm.isProcessed()) {
+                        rm.reset();
+                    }
+                },
+                check: function () {
+                    var rm = self.resumableManager, status = true;
+                    $.each(rm.logs, function (index, value) {
+                        if (!value) {
+                            status = false;
+                            return false;
+                        }
+                    });
+                    if (status) {
+                        clearInterval(rm.chunkIntervalId);
+                        rm.setProcessed('success');
+                    }
+                },
+                processedResumables: function () {
+                    var logs = self.resumableManager.logs, i, count = 0;
+                    if (!logs || !logs.length) {
+                        return 0;
+                    }
+                    for (i = 0; i < logs.length; i++) {
+                        if (logs[i] === true) {
+                            count++;
+                        }
+                    }
+                    return count;
+                },
+                getUploadedSize: function () {
+                    var rm = self.resumableManager, size = rm.processedResumables() * rm.chunkSize;
+                    return size > rm.file.size ? rm.file.size : size;
+                },
+                getTotalChunks: function () {
+                    var rm = self.resumableManager, chunkSize = parseFloat(rm.chunkSize);
+                    if (!isNaN(chunkSize) && chunkSize > 0) {
+                        return Math.ceil(rm.file.size / chunkSize);
+                    }
+                    return 0;
+                },
+                getProgress: function () {
+                    var rm = self.resumableManager, processed = rm.processedResumables(), total = rm.chunkCount;
+                    if (total === 0) {
+                        return 0;
+                    }
+                    return Math.ceil(processed / total * 100);
+                },
+                checkAborted: function (intervalId) {
+                    if (self.paused || self.cancelling) {
+                        clearInterval(intervalId);
+                        self.unlock();
+                    }
+                },
+                upload: function () {
+                    var rm = self.resumableManager, fm = self.fileManager, ids = fm.getIdList(), flag = 'new',
+                        intervalId;
+                    intervalId = setInterval(function () {
+                        var id;
+                        rm.checkAborted(intervalId);
+                        if (flag === 'new') {
+                            self.lock();
+                            flag = 'processing';
+                            id = ids.shift();
+                            fm.initStats(id);
+                            if (fm.stack[id]) {
+                                rm.init(id, fm.stack[id], fm.getIndex(id));
+                                rm.testUpload();
+                                rm.uploadResumable();
+                            }
+                        }
+                        if (!fm.isPending(id) && rm.completed) {
+                            flag = 'new';
+                        }
+                        if (fm.isProcessed()) {
+                            var $initThumbs = self.$preview.find('.file-preview-initial');
+                            if ($initThumbs.length) {
+                                $h.addCss($initThumbs, $h.SORT_CSS);
+                                self._initSortable();
+                            }
+                            clearInterval(intervalId);
+                            self._clearFileInput();
+                            self.unlock();
+                            setTimeout(function () {
+                                var data = self.previewCache.data;
+                                if (data) {
+                                    self.initialPreview = data.content;
+                                    self.initialPreviewConfig = data.config;
+                                    self.initialPreviewThumbTags = data.tags;
+                                }
+                                self._raise('filebatchuploadcomplete', [
+                                    self.initialPreview,
+                                    self.initialPreviewConfig,
+                                    self.initialPreviewThumbTags,
+                                    self._getExtraData()
+                                ]);
+                            }, self.processDelay);
+                        }
+                    }, self.processDelay);
+                },
+                uploadResumable: function () {
+                    var i, rm = self.resumableManager, total = rm.chunkCount;
+                    for (i = 0; i < total; i++) {
+                        rm.logs[i] = !!(rm.processed[rm.id] && rm.processed[rm.id][i]);
+                    }
+                    for (i = 0; i < total; i++) {
+                        rm.pushAjax(i, 0);
+                    }
+                    rm.chunkIntervalId = setInterval(rm.loopAjax, self.queueDelay);
+                },
+                testUpload: function () {
+                    var rm = self.resumableManager, opts = self.resumableUploadOptions, fd, f,
+                        fm = self.fileManager, id = rm.id, fnBefore, fnSuccess, fnError, fnComplete, outData;
+                    if (!opts.testUrl) {
+                        rm.testing = false;
+                        return;
+                    }
+                    rm.testing = true;
+                    fd = new FormData();
+                    f = fm.stack[id];
+                    self._setUploadData(fd, {
+                        fileId: id,
+                        fileName: f.fileName,
+                        fileSize: f.size,
+                        fileRelativePath: f.relativePath,
+                        chunkSize: rm.chunkSize,
+                        chunkCount: rm.chunkCount
+                    });
+                    fnBefore = function (jqXHR) {
+                        outData = self._getOutData(fd, jqXHR);
+                        self._raise('filetestbeforesend', [id, fm, rm, outData]);
+                    };
+                    fnSuccess = function (data, textStatus, jqXHR) {
+                        outData = self._getOutData(fd, jqXHR, data);
+                        var pNames = self.uploadParamNames, chunksUploaded = pNames.chunksUploaded || 'chunksUploaded',
+                            params = [id, fm, rm, outData];
+                        if (!data[chunksUploaded] || !$h.isArray(data[chunksUploaded])) {
+                            self._raise('filetesterror', params);
+                        } else {
+                            if (!rm.processed[id]) {
+                                rm.processed[id] = {};
+                            }
+                            $.each(data[chunksUploaded], function (key, index) {
+                                rm.logs[index] = true;
+                                rm.processed[id][index] = true;
+                            });
+                            rm.processed[id].data = data;
+                            self._raise('filetestsuccess', params);
+                        }
+                        rm.testing = false;
+                    };
+                    fnError = function (jqXHR, textStatus, errorThrown) {
+                        outData = self._getOutData(fd, jqXHR);
+                        self._raise('filetestajaxerror', [id, fm, rm, outData]);
+                        rm.logAjaxError(jqXHR, textStatus, errorThrown);
+                        rm.testing = false;
+                    };
+                    fnComplete = function () {
+                        self._raise('filetestcomplete', [id, fm, rm, self._getOutData(fd)]);
+                        rm.testing = false;
+                    };
+                    self._ajaxSubmit(fnBefore, fnSuccess, fnComplete, fnError, fd, id, rm.fileIndex, opts.testUrl);
+                },
+                pushAjax: function (index, retry) {
+                    self.resumableManager.stack.push([index, retry]);
+                },
+                sendAjax: function (index, retry) {
+                    var fm = self.fileManager, rm = self.resumableManager, opts = self.resumableUploadOptions, f,
+                        chunkSize = rm.chunkSize, id = rm.id, file = rm.file, $thumb = rm.$thumb,
+                        $btnDelete = rm.$btnDelete;
+                    if (rm.processed[id] && rm.processed[id][index]) {
+                        return;
+                    }
+                    rm.currThreads++;
+                    if (retry > opts.maxRetries) {
+                        rm.setProcessed('error');
+                        return;
+                    }
+                    var fd, outData, fnBefore, fnSuccess, fnError, fnComplete, slice = file.slice ? 'slice' :
+                        (file.mozSlice ? 'mozSlice' : (file.webkitSlice ? 'webkitSlice' : 'slice')),
+                        blob = file[slice](chunkSize * index, chunkSize * (index + 1));
+                    fd = new FormData();
+                    f = fm.stack[id];
+                    self._setUploadData(fd, {
+                        chunkCount: rm.chunkCount,
+                        chunkIndex: index,
+                        chunkSize: chunkSize,
+                        chunkSizeStart: chunkSize * index,
+                        fileBlob: [blob, rm.fileName],
+                        fileId: id,
+                        fileName: rm.fileName,
+                        fileRelativePath: f.relativePath,
+                        fileSize: file.size,
+                        retryCount: retry
+                    });
+                    if (rm.$progress && rm.$progress.length) {
+                        rm.$progress.show();
+                    }
+                    fnBefore = function (jqXHR) {
+                        outData = self._getOutData(fd, jqXHR);
+                        if (self.showPreview) {
+                            if (!$thumb.hasClass('file-preview-success')) {
+                                self._setThumbStatus($thumb, 'Loading');
+                                $h.addCss($thumb, 'file-uploading');
+                            }
+                            $btnDelete.attr('disabled', true);
+                        }
+                        self._raise('filechunkbeforesend', [id, index, retry, fm, rm, outData]);
+                    };
+                    fnSuccess = function (data, textStatus, jqXHR) {
+                        outData = self._getOutData(fd, jqXHR, data);
+                        var paramNames = self.uploadParamNames, chunkIndex = paramNames.chunkIndex || 'chunkIndex',
+                            opts = self.resumableUploadOptions, params = [id, index, retry, fm, rm, outData];
+                        rm.currThreads--;
+                        if (data.error) {
+                            if (opts.showErrorLog) {
+                                self._log(logs.retryStatus, {
+                                    retry: retry + 1,
+                                    filename: rm.fileName,
+                                    chunk: index
+                                });
+                            }
+                            rm.pushAjax(index, retry + 1);
+                            rm.error = data.error;
+                            self._raise('filechunkerror', params);
+                        } else {
+                            rm.logs[data[chunkIndex]] = true;
+                            if (!rm.processed[id]) {
+                                rm.processed[id] = {};
+                            }
+                            rm.processed[id][data[chunkIndex]] = true;
+                            rm.processed[id].data = data;
+                            self._raise('filechunksuccess', params);
+                            rm.check();
+                        }
+                    };
+                    fnError = function (jqXHR, textStatus, errorThrown) {
+                        outData = self._getOutData(fd, jqXHR);
+                        rm.currThreads--;
+                        rm.error = errorThrown;
+                        rm.logAjaxError(jqXHR, textStatus, errorThrown);
+                        self._raise('filechunkajaxerror', [id, index, retry, fm, rm, outData]);
+                        rm.pushAjax(index, retry + 1);
+                    };
+                    fnComplete = function () {
+                        self._raise('filechunkcomplete', [id, index, retry, fm, rm, self._getOutData(fd)]);
+                    };
+                    self._ajaxSubmit(fnBefore, fnSuccess, fnComplete, fnError, fd, id, rm.fileIndex);
+                },
+                loopAjax: function () {
+                    var rm = self.resumableManager;
+                    if (rm.currThreads < self.resumableUploadOptions.maxThreads && !rm.testing) {
+                        var arr = rm.stack.shift(), index;
+                        if (typeof arr !== 'undefined') {
+                            index = arr[0];
+                            if (!rm.processed[rm.id] || !rm.processed[rm.id][index]) {
+                                rm.sendAjax(index, arr[1]);
+                            } else {
+                                if (rm.processedResumables() >= rm.getTotalChunks()) {
+                                    rm.setProcessed('success');
+                                    clearInterval(rm.chunkIntervalId);
+                                }
+                            }
+                        }
+                    }
+                }
+            };
+            self.resumableManager.reset();
+        },
+        _initTemplateDefaults: function () {
+            var self = this, tMain1, tMain2, tPreview, tFileIcon, tClose, tCaption, tBtnDefault, tBtnLink, tBtnBrowse,
+                tModalMain, tModal, tProgress, tSize, tFooter, tActions, tActionDelete, tActionUpload, tActionDownload,
+                tActionZoom, tActionDrag, tIndicator, tTagBef, tTagBef1, tTagBef2, tTagAft, tGeneric, tHtml, tImage,
+                tText, tOffice, tGdocs, tVideo, tAudio, tFlash, tObject, tPdf, tOther, tStyle, tZoomCache, vDefaultDim,
+                tStats;
+            tMain1 = '{preview}\n' +
+                '<div class="kv-upload-progress kv-hidden"></div><div class="clearfix"></div>\n' +
+                '<div class="input-group {class}">\n' +
+                '  {caption}\n' +
+                '<div class="input-group-btn input-group-append">\n' +
+                '      {remove}\n' +
+                '      {cancel}\n' +
+                '      {pause}\n' +
+                '      {upload}\n' +
+                '      {browse}\n' +
+                '    </div>\n' +
+                '</div>';
+            tMain2 = '{preview}\n<div class="kv-upload-progress kv-hidden"></div>\n<div class="clearfix"></div>\n' +
+                '{remove}\n{cancel}\n{upload}\n{browse}\n';
+            tPreview = '<div class="file-preview {class}">\n' +
+                '    {close}' +
+                '    <div class="{dropClass}">\n' +
+                '    <div class="file-preview-thumbnails">\n' +
+                '    </div>\n' +
+                '    <div class="clearfix"></div>' +
+                '    <div class="file-preview-status text-center text-success"></div>\n' +
+                '    <div class="kv-fileinput-error"></div>\n' +
+                '    </div>\n' +
+                '</div>';
+            tClose = $h.closeButton('fileinput-remove');
+            tFileIcon = '<i class="glyphicon glyphicon-file"></i>';
+            // noinspection HtmlUnknownAttribute
+            tCaption = '<div class="file-caption form-control {class}" tabindex="500">\n' +
+                '  <span class="file-caption-icon"></span>\n' +
+                '  <input class="file-caption-name" onkeydown="return false;" onpaste="return false;">\n' +
+                '</div>';
+            //noinspection HtmlUnknownAttribute
+            tBtnDefault = '<button type="{type}" tabindex="500" title="{title}" class="{css}" ' +
+                '{status}>{icon} {label}</button>';
+            //noinspection HtmlUnknownAttribute
+            tBtnLink = '<a href="{href}" tabindex="500" title="{title}" class="{css}" {status}>{icon} {label}</a>';
+            //noinspection HtmlUnknownAttribute
+            tBtnBrowse = '<div tabindex="500" class="{css}" {status}>{icon} {label}</div>';
+            tModalMain = '<div id="' + $h.MODAL_ID + '" class="file-zoom-dialog modal fade" ' +
+                'tabindex="-1" aria-labelledby="' + $h.MODAL_ID + 'Label"></div>';
+            tModal = '<div class="modal-dialog modal-lg{rtl}" role="document">\n' +
+                '  <div class="modal-content">\n' +
+                '    <div class="modal-header">\n' +
+                '      <h5 class="modal-title">{heading}</h5>\n' +
+                '      <span class="kv-zoom-title"></span>\n' +
+                '      <div class="kv-zoom-actions">{toggleheader}{fullscreen}{borderless}{close}</div>\n' +
+                '    </div>\n' +
+                '    <div class="modal-body">\n' +
+                '      <div class="floating-buttons"></div>\n' +
+                '      <div class="kv-zoom-body file-zoom-content {zoomFrameClass}"></div>\n' + '{prev} {next}\n' +
+                '    </div>\n' +
+                '  </div>\n' +
+                '</div>\n';
+            tProgress = '<div class="progress">\n' +
+                '    <div class="{class}" role="progressbar"' +
+                ' aria-valuenow="{percent}" aria-valuemin="0" aria-valuemax="100" style="width:{percent}%;">\n' +
+                '        {status}\n' +
+                '     </div>\n' +
+                '</div>{stats}';
+            tStats = '<div class="text-info file-upload-stats">' +
+                '<span class="pending-time">{pendingTime}</span> ' +
+                '<span class="upload-speed">{uploadSpeed}</span>' +
+                '</div>';
+            tSize = ' <samp>({sizeText})</samp>';
+            tFooter = '<div class="file-thumbnail-footer">\n' +
+                '    <div class="file-footer-caption" title="{caption}">\n' +
+                '        <div class="file-caption-info">{caption}</div>\n' +
+                '        <div class="file-size-info">{size}</div>\n' +
+                '    </div>\n' +
+                '    {progress}\n{indicator}\n{actions}\n' +
+                '</div>';
+            tActions = '<div class="file-actions">\n' +
+                '    <div class="file-footer-buttons">\n' +
+                '        {download} {upload} {delete} {zoom} {other}' +
+                '    </div>\n' +
+                '</div>\n' +
+                '{drag}\n' +
+                '<div class="clearfix"></div>';
+            //noinspection HtmlUnknownAttribute
+            tActionDelete = '<button type="button" class="kv-file-remove {removeClass}" ' +
+                'title="{removeTitle}" {dataUrl}{dataKey}>{removeIcon}</button>\n';
+            tActionUpload = '<button type="button" class="kv-file-upload {uploadClass}" title="{uploadTitle}">' +
+                '{uploadIcon}</button>';
+            tActionDownload = '<a class="kv-file-download {downloadClass}" title="{downloadTitle}" ' +
+                'href="{downloadUrl}" download="{caption}" target="_blank">{downloadIcon}</a>';
+            tActionZoom = '<button type="button" class="kv-file-zoom {zoomClass}" ' +
+                'title="{zoomTitle}">{zoomIcon}</button>';
+            tActionDrag = '<span class="file-drag-handle {dragClass}" title="{dragTitle}">{dragIcon}</span>';
+            tIndicator = '<div class="file-upload-indicator" title="{indicatorTitle}">{indicator}</div>';
+            tTagBef = '<div class="file-preview-frame {frameClass}" id="{previewId}" data-fileindex="{fileindex}"' +
+                ' data-fileid="{fileid}" data-template="{template}"';
+            tTagBef1 = tTagBef + '><div class="kv-file-content">\n';
+            tTagBef2 = tTagBef + ' title="{caption}"><div class="kv-file-content">\n';
+            tTagAft = '</div>{footer}\n</div>\n';
+            tGeneric = '{content}\n';
+            tStyle = ' {style}';
+            tHtml = '<div class="kv-preview-data file-preview-html" title="{caption}"' + tStyle + '>{data}</div>\n';
+            tImage = '<img src="{data}" class="file-preview-image kv-preview-data" title="{title}" ' +
+                'alt="{alt}"' + tStyle + '>\n';
+            tText = '<textarea class="kv-preview-data file-preview-text" title="{caption}" readonly' + tStyle + '>' +
+                '{data}</textarea>\n';
+            tOffice = '<iframe class="kv-preview-data file-preview-office" ' +
+                'src="https://view.officeapps.live.com/op/embed.aspx?src={data}"' + tStyle + '></iframe>';
+            tGdocs = '<iframe class="kv-preview-data file-preview-gdocs" ' +
+                'src="https://docs.google.com/gview?url={data}&embedded=true"' + tStyle + '></iframe>';
+            tVideo = '<video class="kv-preview-data file-preview-video" controls' + tStyle + '>\n' +
+                '<source src="{data}" type="{type}">\n' + $h.DEFAULT_PREVIEW + '\n</video>\n';
+            tAudio = '<!--suppress ALL --><audio class="kv-preview-data file-preview-audio" controls' + tStyle + '>\n<source src="{data}" ' +
+                'type="{type}">\n' + $h.DEFAULT_PREVIEW + '\n</audio>\n';
+            tFlash = '<embed class="kv-preview-data file-preview-flash" src="{data}" type="application/x-shockwave-flash"' + tStyle + '>\n';
+            tPdf = '<embed class="kv-preview-data file-preview-pdf" src="{data}" type="application/pdf"' + tStyle + '>\n';
+            tObject = '<object class="kv-preview-data file-preview-object file-object {typeCss}" ' +
+                'data="{data}" type="{type}"' + tStyle + '>\n' + '<param name="movie" value="{caption}" />\n' +
+                $h.OBJECT_PARAMS + ' ' + $h.DEFAULT_PREVIEW + '\n</object>\n';
+            tOther = '<div class="kv-preview-data file-preview-other-frame"' + tStyle + '>\n' + $h.DEFAULT_PREVIEW + '\n</div>\n';
+            tZoomCache = '<div class="kv-zoom-cache" style="display:none">{zoomContent}</div>';
+            vDefaultDim = {width: '100%', height: '100%', 'min-height': '480px'};
+            if (self._isPdfRendered()) {
+                tPdf = self.pdfRendererTemplate.replace('{renderer}', self._encodeURI(self.pdfRendererUrl));
+            }
+            self.defaults = {
+                layoutTemplates: {
+                    main1: tMain1,
+                    main2: tMain2,
+                    preview: tPreview,
+                    close: tClose,
+                    fileIcon: tFileIcon,
+                    caption: tCaption,
+                    modalMain: tModalMain,
+                    modal: tModal,
+                    progress: tProgress,
+                    stats: tStats,
+                    size: tSize,
+                    footer: tFooter,
+                    indicator: tIndicator,
+                    actions: tActions,
+                    actionDelete: tActionDelete,
+                    actionUpload: tActionUpload,
+                    actionDownload: tActionDownload,
+                    actionZoom: tActionZoom,
+                    actionDrag: tActionDrag,
+                    btnDefault: tBtnDefault,
+                    btnLink: tBtnLink,
+                    btnBrowse: tBtnBrowse,
+                    zoomCache: tZoomCache
+                },
+                previewMarkupTags: {
+                    tagBefore1: tTagBef1,
+                    tagBefore2: tTagBef2,
+                    tagAfter: tTagAft
+                },
+                previewContentTemplates: {
+                    generic: tGeneric,
+                    html: tHtml,
+                    image: tImage,
+                    text: tText,
+                    office: tOffice,
+                    gdocs: tGdocs,
+                    video: tVideo,
+                    audio: tAudio,
+                    flash: tFlash,
+                    object: tObject,
+                    pdf: tPdf,
+                    other: tOther
+                },
+                allowedPreviewTypes: ['image', 'html', 'text', 'video', 'audio', 'flash', 'pdf', 'object'],
+                previewTemplates: {},
+                previewSettings: {
+                    image: {width: 'auto', height: 'auto', 'max-width': '100%', 'max-height': '100%'},
+                    html: {width: '213px', height: '160px'},
+                    text: {width: '213px', height: '160px'},
+                    office: {width: '213px', height: '160px'},
+                    gdocs: {width: '213px', height: '160px'},
+                    video: {width: '213px', height: '160px'},
+                    audio: {width: '100%', height: '30px'},
+                    flash: {width: '213px', height: '160px'},
+                    object: {width: '213px', height: '160px'},
+                    pdf: {width: '100%', height: '160px'},
+                    other: {width: '213px', height: '160px'}
+                },
+                previewSettingsSmall: {
+                    image: {width: 'auto', height: 'auto', 'max-width': '100%', 'max-height': '100%'},
+                    html: {width: '100%', height: '160px'},
+                    text: {width: '100%', height: '160px'},
+                    office: {width: '100%', height: '160px'},
+                    gdocs: {width: '100%', height: '160px'},
+                    video: {width: '100%', height: 'auto'},
+                    audio: {width: '100%', height: '30px'},
+                    flash: {width: '100%', height: 'auto'},
+                    object: {width: '100%', height: 'auto'},
+                    pdf: {width: '100%', height: '160px'},
+                    other: {width: '100%', height: '160px'}
+                },
+                previewZoomSettings: {
+                    image: {width: 'auto', height: 'auto', 'max-width': '100%', 'max-height': '100%'},
+                    html: vDefaultDim,
+                    text: vDefaultDim,
+                    office: {width: '100%', height: '100%', 'max-width': '100%', 'min-height': '480px'},
+                    gdocs: {width: '100%', height: '100%', 'max-width': '100%', 'min-height': '480px'},
+                    video: {width: 'auto', height: '100%', 'max-width': '100%'},
+                    audio: {width: '100%', height: '30px'},
+                    flash: {width: 'auto', height: '480px'},
+                    object: {width: 'auto', height: '100%', 'max-width': '100%', 'min-height': '480px'},
+                    pdf: vDefaultDim,
+                    other: {width: 'auto', height: '100%', 'min-height': '480px'}
+                },
+                mimeTypeAliases: {
+                    'video/quicktime': 'video/mp4'
+                },
+                fileTypeSettings: {
+                    image: function (vType, vName) {
+                        return ($h.compare(vType, 'image.*') && !$h.compare(vType, /(tiff?|wmf)$/i) ||
+                            $h.compare(vName, /\.(gif|png|jpe?g)$/i));
+                    },
+                    html: function (vType, vName) {
+                        return $h.compare(vType, 'text/html') || $h.compare(vName, /\.(htm|html)$/i);
+                    },
+                    office: function (vType, vName) {
+                        return $h.compare(vType, /(word|excel|powerpoint|office)$/i) ||
+                            $h.compare(vName, /\.(docx?|xlsx?|pptx?|pps|potx?)$/i);
+                    },
+                    gdocs: function (vType, vName) {
+                        return $h.compare(vType, /(word|excel|powerpoint|office|iwork-pages|tiff?)$/i) ||
+                            $h.compare(vName,
+                                /\.(docx?|xlsx?|pptx?|pps|potx?|rtf|ods|odt|pages|ai|dxf|ttf|tiff?|wmf|e?ps)$/i);
+                    },
+                    text: function (vType, vName) {
+                        return $h.compare(vType, 'text.*') || $h.compare(vName, /\.(xml|javascript)$/i) ||
+                            $h.compare(vName, /\.(txt|md|csv|nfo|ini|json|php|js|css)$/i);
+                    },
+                    video: function (vType, vName) {
+                        return $h.compare(vType, 'video.*') && ($h.compare(vType, /(ogg|mp4|mp?g|mov|webm|3gp)$/i) ||
+                            $h.compare(vName, /\.(og?|mp4|webm|mp?g|mov|3gp)$/i));
+                    },
+                    audio: function (vType, vName) {
+                        return $h.compare(vType, 'audio.*') && ($h.compare(vName, /(ogg|mp3|mp?g|wav)$/i) ||
+                            $h.compare(vName, /\.(og?|mp3|mp?g|wav)$/i));
+                    },
+                    flash: function (vType, vName) {
+                        return $h.compare(vType, 'application/x-shockwave-flash', true) || $h.compare(vName,
+                            /\.(swf)$/i);
+                    },
+                    pdf: function (vType, vName) {
+                        return $h.compare(vType, 'application/pdf', true) || $h.compare(vName, /\.(pdf)$/i);
+                    },
+                    object: function () {
+                        return true;
+                    },
+                    other: function () {
+                        return true;
+                    }
+                },
+                fileActionSettings: {
+                    showRemove: true,
+                    showUpload: true,
+                    showDownload: true,
+                    showZoom: true,
+                    showDrag: true,
+                    removeIcon: '<i class="glyphicon glyphicon-trash"></i>',
+                    removeClass: 'btn btn-sm btn-kv btn-default btn-outline-secondary',
+                    removeErrorClass: 'btn btn-sm btn-kv btn-danger',
+                    removeTitle: 'Remove file',
+                    uploadIcon: '<i class="glyphicon glyphicon-upload"></i>',
+                    uploadClass: 'btn btn-sm btn-kv btn-default btn-outline-secondary',
+                    uploadTitle: 'Upload file',
+                    uploadRetryIcon: '<i class="glyphicon glyphicon-repeat"></i>',
+                    uploadRetryTitle: 'Retry upload',
+                    downloadIcon: '<i class="glyphicon glyphicon-download"></i>',
+                    downloadClass: 'btn btn-sm btn-kv btn-default btn-outline-secondary',
+                    downloadTitle: 'Download file',
+                    zoomIcon: '<i class="glyphicon glyphicon-zoom-in"></i>',
+                    zoomClass: 'btn btn-sm btn-kv btn-default btn-outline-secondary',
+                    zoomTitle: 'View Details',
+                    dragIcon: '<i class="glyphicon glyphicon-move"></i>',
+                    dragClass: 'text-info',
+                    dragTitle: 'Move / Rearrange',
+                    dragSettings: {},
+                    indicatorNew: '<i class="glyphicon glyphicon-plus-sign text-warning"></i>',
+                    indicatorSuccess: '<i class="glyphicon glyphicon-ok-sign text-success"></i>',
+                    indicatorError: '<i class="glyphicon glyphicon-exclamation-sign text-danger"></i>',
+                    indicatorLoading: '<i class="glyphicon glyphicon-hourglass text-muted"></i>',
+                    indicatorPaused: '<i class="glyphicon glyphicon-pause text-primary"></i>',
+                    indicatorNewTitle: 'Not uploaded yet',
+                    indicatorSuccessTitle: 'Uploaded',
+                    indicatorErrorTitle: 'Upload Error',
+                    indicatorLoadingTitle: 'Uploading ...',
+                    indicatorPausedTitle: 'Upload Paused'
+                }
+            };
+            $.each(self.defaults, function (key, setting) {
+                if (key === 'allowedPreviewTypes') {
+                    if (self.allowedPreviewTypes === undefined) {
+                        self.allowedPreviewTypes = setting;
+                    }
+                    return;
+                }
+                self[key] = $.extend(true, {}, setting, self[key]);
+            });
+            self._initPreviewTemplates();
+        },
+        _initPreviewTemplates: function () {
+            var self = this, tags = self.previewMarkupTags, tagBef, tagAft = tags.tagAfter;
+            $.each(self.previewContentTemplates, function (key, value) {
+                if ($h.isEmpty(self.previewTemplates[key])) {
+                    tagBef = tags.tagBefore2;
+                    if (key === 'generic' || key === 'image' || key === 'html' || key === 'text') {
+                        tagBef = tags.tagBefore1;
+                    }
+                    if (self._isPdfRendered() && key === 'pdf') {
+                        tagBef = tagBef.replace('kv-file-content', 'kv-file-content kv-pdf-rendered');
+                    }
+                    self.previewTemplates[key] = tagBef + value + tagAft;
+                }
+            });
+        },
+        _initPreviewCache: function () {
+            var self = this;
+            self.previewCache = {
+                data: {},
+                init: function () {
+                    var content = self.initialPreview;
+                    if (content.length > 0 && !$h.isArray(content)) {
+                        content = content.split(self.initialPreviewDelimiter);
+                    }
+                    self.previewCache.data = {
+                        content: content,
+                        config: self.initialPreviewConfig,
+                        tags: self.initialPreviewThumbTags
+                    };
+                },
+                count: function (skipNull) {
+                    if (!self.previewCache.data || !self.previewCache.data.content) {
+                        return 0;
+                    }
+                    if (skipNull) {
+                        var chk = self.previewCache.data.content.filter(function (n) {
+                            return n !== null;
+                        });
+                        return chk.length;
+                    }
+                    return self.previewCache.data.content.length;
+                },
+                get: function (i, isDisabled) {
+                    var ind = 'init_' + i, data = self.previewCache.data, config = data.config[i], fileId,
+                        content = data.content[i], previewId = self.previewInitId + '-' + ind, out, $tmp, cat, ftr,
+                        fname, ftype, frameClass, asData = $h.ifSet('previewAsData', config, self.initialPreviewAsData),
+                        a = config ? {title: config.title || null, alt: config.alt || null} : {title: null, alt: null},
+                        parseTemplate = function (cat, dat, fn, ft, id, ftr, ind, fc, t) {
+                            fc = ' file-preview-initial ' + $h.SORT_CSS + (fc ? ' ' + fc : '');
+                            /** @namespace config.zoomData */
+                            fileId = config && config.fileId || 'file_' + id;
+                            return self._generatePreviewTemplate(cat, dat, fn, ft, id, fileId, false, null, fc,
+                                ftr, ind, t, a, config && config.zoomData || dat);
+                        };
+                    if (!content || !content.length) {
+                        return '';
+                    }
+                    isDisabled = isDisabled === undefined ? true : isDisabled;
+                    cat = $h.ifSet('type', config, self.initialPreviewFileType || 'generic');
+                    fname = $h.ifSet('filename', config, $h.ifSet('caption', config));
+                    ftype = $h.ifSet('filetype', config, cat);
+                    ftr = self.previewCache.footer(i, isDisabled, (config && config.size || null));
+                    frameClass = $h.ifSet('frameClass', config);
+                    if (asData) {
+                        out = parseTemplate(cat, content, fname, ftype, previewId, ftr, ind, frameClass);
+                    } else {
+                        out = parseTemplate('generic', content, fname, ftype, previewId, ftr, ind, frameClass, cat)
+                            .setTokens({'content': data.content[i]});
+                    }
+                    if (data.tags.length && data.tags[i]) {
+                        out = $h.replaceTags(out, data.tags[i]);
+                    }
+                    /** @namespace config.frameAttr */
+                    if (!$h.isEmpty(config) && !$h.isEmpty(config.frameAttr)) {
+                        $tmp = $(document.createElement('div')).html(out);
+                        $tmp.find('.file-preview-initial').attr(config.frameAttr);
+                        out = $tmp.html();
+                        $tmp.remove();
+                    }
+                    return out;
+                },
+                clean: function (data) {
+                    data.content = $h.cleanArray(data.content);
+                    data.config = $h.cleanArray(data.config);
+                    data.tags = $h.cleanArray(data.tags);
+                    self.previewCache.data = data;
+                },
+                add: function (content, config, tags, append) {
+                    var data = self.previewCache.data, index = content.length - 1;
+                    if (!content || !content.length) {
+                        return index;
+                    }
+                    if (!$h.isArray(content)) {
+                        content = content.split(self.initialPreviewDelimiter);
+                    }
+                    if (append) {
+                        index = data.content.push(content[0]) - 1;
+                        data.config[index] = config;
+                        data.tags[index] = tags;
+                    } else {
+                        data.content = content;
+                        data.config = config;
+                        data.tags = tags;
+                    }
+                    self.previewCache.clean(data);
+                    return index;
+                },
+                set: function (content, config, tags, append) {
+                    var data = self.previewCache.data, i, chk;
+                    if (!content || !content.length) {
+                        return;
+                    }
+                    if (!$h.isArray(content)) {
+                        content = content.split(self.initialPreviewDelimiter);
+                    }
+                    chk = content.filter(function (n) {
+                        return n !== null;
+                    });
+                    if (!chk.length) {
+                        return;
+                    }
+                    if (data.content === undefined) {
+                        data.content = [];
+                    }
+                    if (data.config === undefined) {
+                        data.config = [];
+                    }
+                    if (data.tags === undefined) {
+                        data.tags = [];
+                    }
+                    if (append) {
+                        for (i = 0; i < content.length; i++) {
+                            if (content[i]) {
+                                data.content.push(content[i]);
+                            }
+                        }
+                        for (i = 0; i < config.length; i++) {
+                            if (config[i]) {
+                                data.config.push(config[i]);
+                            }
+                        }
+                        for (i = 0; i < tags.length; i++) {
+                            if (tags[i]) {
+                                data.tags.push(tags[i]);
+                            }
+                        }
+                    } else {
+                        data.content = content;
+                        data.config = config;
+                        data.tags = tags;
+                    }
+                    self.previewCache.clean(data);
+                },
+                unset: function (index) {
+                    var chk = self.previewCache.count(), rev = self.reversePreviewOrder;
+                    if (!chk) {
+                        return;
+                    }
+                    if (chk === 1) {
+                        self.previewCache.data.content = [];
+                        self.previewCache.data.config = [];
+                        self.previewCache.data.tags = [];
+                        self.initialPreview = [];
+                        self.initialPreviewConfig = [];
+                        self.initialPreviewThumbTags = [];
+                        return;
+                    }
+                    self.previewCache.data.content = $h.spliceArray(self.previewCache.data.content, index, rev);
+                    self.previewCache.data.config = $h.spliceArray(self.previewCache.data.config, index, rev);
+                    self.previewCache.data.tags = $h.spliceArray(self.previewCache.data.tags, index, rev);
+                    var data = $.extend(true, {}, self.previewCache.data);
+                    self.previewCache.clean(data);
+                },
+                out: function () {
+                    var html = '', caption, len = self.previewCache.count(), i, content;
+                    if (len === 0) {
+                        return {content: '', caption: ''};
+                    }
+                    for (i = 0; i < len; i++) {
+                        content = self.previewCache.get(i);
+                        html = self.reversePreviewOrder ? (content + html) : (html + content);
+                    }
+                    caption = self._getMsgSelected(len);
+                    return {content: html, caption: caption};
+                },
+                footer: function (i, isDisabled, size) {
+                    var data = self.previewCache.data || {};
+                    if ($h.isEmpty(data.content)) {
+                        return '';
+                    }
+                    if ($h.isEmpty(data.config) || $h.isEmpty(data.config[i])) {
+                        data.config[i] = {};
+                    }
+                    isDisabled = isDisabled === undefined ? true : isDisabled;
+                    var config = data.config[i], caption = $h.ifSet('caption', config), a,
+                        width = $h.ifSet('width', config, 'auto'), url = $h.ifSet('url', config, false),
+                        key = $h.ifSet('key', config, null), fileId = $h.ifSet('fileId', config, null),
+                        fs = self.fileActionSettings, initPreviewShowDel = self.initialPreviewShowDelete || false,
+                        downloadInitialUrl = !self.initialPreviewDownloadUrl ? '' :
+                            self.initialPreviewDownloadUrl + '?key=' + key + (fileId ? '&fileId=' + fileId : ''),
+                        dUrl = config.downloadUrl || downloadInitialUrl,
+                        dFil = config.filename || config.caption || '',
+                        initPreviewShowDwl = !!(dUrl),
+                        sDel = $h.ifSet('showRemove', config, $h.ifSet('showRemove', fs, initPreviewShowDel)),
+                        sDwl = $h.ifSet('showDownload', config, $h.ifSet('showDownload', fs, initPreviewShowDwl)),
+                        sZm = $h.ifSet('showZoom', config, $h.ifSet('showZoom', fs, true)),
+                        sDrg = $h.ifSet('showDrag', config, $h.ifSet('showDrag', fs, true)),
+                        dis = (url === false) && isDisabled;
+                    sDwl = sDwl && config.downloadUrl !== false && !!dUrl;
+                    a = self._renderFileActions(config, false, sDwl, sDel, sZm, sDrg, dis, url, key, true, dUrl, dFil);
+                    return self._getLayoutTemplate('footer').setTokens({
+                        'progress': self._renderThumbProgress(),
+                        'actions': a,
+                        'caption': caption,
+                        'size': self._getSize(size),
+                        'width': width,
+                        'indicator': ''
+                    });
+                }
+            };
+            self.previewCache.init();
+        },
+        _isPdfRendered: function () {
+            var self = this, useLib = self.usePdfRenderer,
+                flag = typeof useLib === 'function' ? useLib() : !!useLib;
+            return flag && self.pdfRendererUrl;
+        },
+        _handler: function ($el, event, callback) {
+            var self = this, ns = self.namespace, ev = event.split(' ').join(ns + ' ') + ns;
+            if (!$el || !$el.length) {
+                return;
+            }
+            $el.off(ev).on(ev, callback);
+        },
+        _encodeURI: function (vUrl) {
+            var self = this;
+            return self.encodeUrl ? encodeURI(vUrl) : vUrl;
+        },
+        _log: function (msg, tokens) {
+            var self = this, id = self.$element.attr('id');
+            if (id) {
+                msg = '"' + id + '": ' + msg;
+            }
+            msg = 'bootstrap-fileinput: ' + msg;
+            if (typeof tokens === 'object') {
+                msg.setTokens(tokens);
+            }
+            if (typeof window.console.log !== 'undefined') {
+                window.console.log(msg);
+            } else {
+                window.alert(msg);
+            }
+        },
+        _validate: function () {
+            var self = this, status = self.$element.attr('type') === 'file';
+            if (!status) {
+                self._log($h.logMessages.badInputType);
+            }
+            return status;
+        },
+        _errorsExist: function () {
+            var self = this, $err, $errList = self.$errorContainer.find('li');
+            if ($errList.length) {
+                return true;
+            }
+            $err = $(document.createElement('div')).html(self.$errorContainer.html());
+            $err.find('.kv-error-close').remove();
+            $err.find('ul').remove();
+            return !!$.trim($err.text()).length;
+        },
+        _errorHandler: function (evt, caption) {
+            var self = this, err = evt.target.error, showError = function (msg) {
+                self._showError(msg.replace('{name}', caption));
+            };
+            /** @namespace err.NOT_FOUND_ERR */
+            /** @namespace err.SECURITY_ERR */
+            /** @namespace err.NOT_READABLE_ERR */
+            if (err.code === err.NOT_FOUND_ERR) {
+                showError(self.msgFileNotFound);
+            } else {
+                if (err.code === err.SECURITY_ERR) {
+                    showError(self.msgFileSecured);
+                } else {
+                    if (err.code === err.NOT_READABLE_ERR) {
+                        showError(self.msgFileNotReadable);
+                    } else {
+                        if (err.code === err.ABORT_ERR) {
+                            showError(self.msgFilePreviewAborted);
+                        } else {
+                            showError(self.msgFilePreviewError);
+                        }
+                    }
+                }
+            }
+        },
+        _addError: function (msg) {
+            var self = this, $error = self.$errorContainer;
+            if (msg && $error.length) {
+                $error.html(self.errorCloseButton + msg);
+                self._handler($error.find('.kv-error-close'), 'click', function () {
+                    setTimeout(function () {
+                        if (self.showPreview && !self.getFrames().length) {
+                            self.clear();
+                        }
+                        $error.fadeOut('slow');
+                    }, self.processDelay);
+                });
+            }
+        },
+        _setValidationError: function (css) {
+            var self = this;
+            css = (css ? css + ' ' : '') + 'has-error';
+            self.$container.removeClass(css).addClass('has-error');
+            $h.addCss(self.$captionContainer, 'is-invalid');
+        },
+        _resetErrors: function (fade) {
+            var self = this, $error = self.$errorContainer;
+            self.isError = false;
+            self.$container.removeClass('has-error');
+            self.$captionContainer.removeClass('is-invalid');
+            $error.html('');
+            if (fade) {
+                $error.fadeOut('slow');
+            } else {
+                $error.hide();
+            }
+        },
+        _showFolderError: function (folders) {
+            var self = this, $error = self.$errorContainer, msg;
+            if (!folders) {
+                return;
+            }
+            if (!self.isAjaxUpload) {
+                self._clearFileInput();
+            }
+            msg = self.msgFoldersNotAllowed.replace('{n}', folders);
+            self._addError(msg);
+            self._setValidationError();
+            $error.fadeIn(800);
+            self._raise('filefoldererror', [folders, msg]);
+        },
+        _showFileError: function (msg, params, event) {
+            var self = this, $error = self.$errorContainer, ev = event || 'fileuploaderror',
+                fId = params && params.fileId || '', e = params && params.id ?
+                '<li data-thumb-id="' + params.id + '" data-file-id="' + fId + '">' + msg + '</li>' : '<li>' + msg + '</li>';
+            if ($error.find('ul').length === 0) {
+                self._addError('<ul>' + e + '</ul>');
+            } else {
+                $error.find('ul').append(e);
+            }
+            $error.fadeIn(800);
+            self._raise(ev, [params, msg]);
+            self._setValidationError('file-input-new');
+            return true;
+        },
+        _showError: function (msg, params, event) {
+            var self = this, $error = self.$errorContainer, ev = event || 'fileerror';
+            params = params || {};
+            params.reader = self.reader;
+            self._addError(msg);
+            $error.fadeIn(800);
+            self._raise(ev, [params, msg]);
+            if (!self.isAjaxUpload) {
+                self._clearFileInput();
+            }
+            self._setValidationError('file-input-new');
+            self.$btnUpload.attr('disabled', true);
+            return true;
+        },
+        _noFilesError: function (params) {
+            var self = this, label = self.minFileCount > 1 ? self.filePlural : self.fileSingle,
+                msg = self.msgFilesTooLess.replace('{n}', self.minFileCount).replace('{files}', label),
+                $error = self.$errorContainer;
+            self._addError(msg);
+            self.isError = true;
+            self._updateFileDetails(0);
+            $error.fadeIn(800);
+            self._raise('fileerror', [params, msg]);
+            self._clearFileInput();
+            self._setValidationError();
+        },
+        _parseError: function (operation, jqXHR, errorThrown, fileName) {
+            /** @namespace jqXHR.responseJSON */
+            var self = this, errMsg = $.trim(errorThrown + ''), textPre,
+                text = jqXHR.responseJSON !== undefined && jqXHR.responseJSON.error !== undefined ?
+                    jqXHR.responseJSON.error : jqXHR.responseText;
+            if (self.cancelling && self.msgUploadAborted) {
+                errMsg = self.msgUploadAborted;
+            }
+            if (self.showAjaxErrorDetails && text) {
+                text = $.trim(text.replace(/\n\s*\n/g, '\n'));
+                textPre = text.length ? '<pre>' + text + '</pre>' : '';
+                errMsg += errMsg ? textPre : text;
+            }
+            if (!errMsg) {
+                errMsg = self.msgAjaxError.replace('{operation}', operation);
+            }
+            self.cancelling = false;
+            return fileName ? '<b>' + fileName + ': </b>' + errMsg : errMsg;
+        },
+        _parseFileType: function (type, name) {
+            var self = this, isValid, vType, cat, i, types = self.allowedPreviewTypes || [];
+            if (type === 'application/text-plain') {
+                return 'text';
+            }
+            for (i = 0; i < types.length; i++) {
+                cat = types[i];
+                isValid = self.fileTypeSettings[cat];
+                vType = isValid(type, name) ? cat : '';
+                if (!$h.isEmpty(vType)) {
+                    return vType;
+                }
+            }
+            return 'other';
+        },
+        _getPreviewIcon: function (fname) {
+            var self = this, ext, out = null;
+            if (fname && fname.indexOf('.') > -1) {
+                ext = fname.split('.').pop();
+                if (self.previewFileIconSettings) {
+                    out = self.previewFileIconSettings[ext] || self.previewFileIconSettings[ext.toLowerCase()] || null;
+                }
+                if (self.previewFileExtSettings) {
+                    $.each(self.previewFileExtSettings, function (key, func) {
+                        if (self.previewFileIconSettings[key] && func(ext)) {
+                            out = self.previewFileIconSettings[key];
+                            //noinspection UnnecessaryReturnStatementJS
+                            return;
+                        }
+                    });
+                }
+            }
+            return out;
+        },
+        _parseFilePreviewIcon: function (content, fname) {
+            var self = this, icn = self._getPreviewIcon(fname) || self.previewFileIcon, out = content;
+            if (out.indexOf('{previewFileIcon}') > -1) {
+                out = out.setTokens({'previewFileIconClass': self.previewFileIconClass, 'previewFileIcon': icn});
+            }
+            return out;
+        },
+        _raise: function (event, params) {
+            var self = this, e = $.Event(event);
+            if (params !== undefined) {
+                self.$element.trigger(e, params);
+            } else {
+                self.$element.trigger(e);
+            }
+            if (e.isDefaultPrevented() || e.result === false) {
+                return false;
+            }
+            switch (event) {
+                // ignore these events
+                case 'filebatchuploadcomplete':
+                case 'filebatchuploadsuccess':
+                case 'fileuploaded':
+                case 'fileclear':
+                case 'filecleared':
+                case 'filereset':
+                case 'fileerror':
+                case 'filefoldererror':
+                case 'fileuploaderror':
+                case 'filebatchuploaderror':
+                case 'filedeleteerror':
+                case 'filecustomerror':
+                case 'filesuccessremove':
+                    break;
+                // receive data response via `filecustomerror` event`
+                default:
+                    if (!self.ajaxAborted) {
+                        self.ajaxAborted = e.result;
+                    }
+                    break;
+            }
+            return true;
+        },
+        _listenFullScreen: function (isFullScreen) {
+            var self = this, $modal = self.$modal, $btnFull, $btnBord;
+            if (!$modal || !$modal.length) {
+                return;
+            }
+            $btnFull = $modal && $modal.find('.btn-fullscreen');
+            $btnBord = $modal && $modal.find('.btn-borderless');
+            if (!$btnFull.length || !$btnBord.length) {
+                return;
+            }
+            $btnFull.removeClass('active').attr('aria-pressed', 'false');
+            $btnBord.removeClass('active').attr('aria-pressed', 'false');
+            if (isFullScreen) {
+                $btnFull.addClass('active').attr('aria-pressed', 'true');
+            } else {
+                $btnBord.addClass('active').attr('aria-pressed', 'true');
+            }
+            if ($modal.hasClass('file-zoom-fullscreen')) {
+                self._maximizeZoomDialog();
+            } else {
+                if (isFullScreen) {
+                    self._maximizeZoomDialog();
+                } else {
+                    $btnBord.removeClass('active').attr('aria-pressed', 'false');
+                }
+            }
+        },
+        _listen: function () {
+            var self = this, $el = self.$element, $form = self.$form, $cont = self.$container, fullScreenEvents;
+            self._handler($el, 'click', function (e) {
+                if ($el.hasClass('file-no-browse')) {
+                    if ($el.data('zoneClicked')) {
+                        $el.data('zoneClicked', false);
+                    } else {
+                        e.preventDefault();
+                    }
+                }
+            });
+            self._handler($el, 'change', $.proxy(self._change, self));
+            if (self.showBrowse) {
+                self._handler(self.$btnFile, 'click', $.proxy(self._browse, self));
+            }
+            self._handler($cont.find('.fileinput-remove:not([disabled])'), 'click', $.proxy(self.clear, self));
+            self._handler($cont.find('.fileinput-cancel'), 'click', $.proxy(self.cancel, self));
+            self._handler($cont.find('.fileinput-pause'), 'click', $.proxy(self.pause, self));
+            self._initDragDrop();
+            self._handler($form, 'reset', $.proxy(self.clear, self));
+            if (!self.isAjaxUpload) {
+                self._handler($form, 'submit', $.proxy(self._submitForm, self));
+            }
+            self._handler(self.$container.find('.fileinput-upload'), 'click', $.proxy(self._uploadClick, self));
+            self._handler($(window), 'resize', function () {
+                self._listenFullScreen(screen.width === window.innerWidth && screen.height === window.innerHeight);
+            });
+            fullScreenEvents = 'webkitfullscreenchange mozfullscreenchange fullscreenchange MSFullscreenChange';
+            self._handler($(document), fullScreenEvents, function () {
+                self._listenFullScreen($h.checkFullScreen());
+            });
+            self._autoFitContent();
+            self._initClickable();
+            self._refreshPreview();
+        },
+        _autoFitContent: function () {
+            var width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
+                self = this, config = width < 400 ? (self.previewSettingsSmall || self.defaults.previewSettingsSmall) :
+                (self.previewSettings || self.defaults.previewSettings), sel;
+            $.each(config, function (cat, settings) {
+                sel = '.file-preview-frame .file-preview-' + cat;
+                self.$preview.find(sel + '.kv-preview-data,' + sel + ' .kv-preview-data').css(settings);
+            });
+        },
+        _scanDroppedItems: function (item, files, path) {
+            path = path || '';
+            var self = this, i, dirReader, readDir, errorHandler = function (e) {
+                self._log($h.logMessages.badDroppedFiles);
+                self._log(e);
+            };
+            if (item.isFile) {
+                item.file(function (file) {
+                    files.push(file);
+                }, errorHandler);
+            } else {
+                if (item.isDirectory) {
+                    dirReader = item.createReader();
+                    readDir = function () {
+                        dirReader.readEntries(function (entries) {
+                            if (entries && entries.length > 0) {
+                                for (i = 0; i < entries.length; i++) {
+                                    self._scanDroppedItems(entries[i], files, path + item.name + '/');
+                                }
+                                // recursively call readDir() again, since browser can only handle first 100 entries.
+                                readDir();
+                            }
+                            return null;
+                        }, errorHandler);
+                    };
+                    readDir();
+                }
+            }
+
+        },
+        _initDragDrop: function () {
+            var self = this, $zone = self.$dropZone;
+            if (self.dropZoneEnabled && self.showPreview) {
+                self._handler($zone, 'dragenter dragover', $.proxy(self._zoneDragEnter, self));
+                self._handler($zone, 'dragleave', $.proxy(self._zoneDragLeave, self));
+                self._handler($zone, 'drop', $.proxy(self._zoneDrop, self));
+                self._handler($(document), 'dragenter dragover drop', self._zoneDragDropInit);
+            }
+        },
+        _zoneDragDropInit: function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+        },
+        _zoneDragEnter: function (e) {
+            var self = this, dataTransfer = e.originalEvent.dataTransfer,
+                hasFiles = $.inArray('Files', dataTransfer.types) > -1;
+            self._zoneDragDropInit(e);
+            if (self.isDisabled || !hasFiles) {
+                e.originalEvent.dataTransfer.effectAllowed = 'none';
+                e.originalEvent.dataTransfer.dropEffect = 'none';
+                return;
+            }
+            if (self._raise('fileDragEnter', {'sourceEvent': e, 'files': dataTransfer.types.Files})) {
+                $h.addCss(self.$dropZone, 'file-highlighted');
+            }
+        },
+        _zoneDragLeave: function (e) {
+            var self = this;
+            self._zoneDragDropInit(e);
+            if (self.isDisabled) {
+                return;
+            }
+            if (self._raise('fileDragLeave', {'sourceEvent': e})) {
+                self.$dropZone.removeClass('file-highlighted');
+            }
+
+        },
+        _zoneDrop: function (e) {
+            /** @namespace e.originalEvent.dataTransfer */
+            var self = this, i, $el = self.$element, dataTransfer = e.originalEvent.dataTransfer,
+                files = dataTransfer.files, items = dataTransfer.items, folders = $h.getDragDropFolders(items),
+                processFiles = function () {
+                    if (!self.isAjaxUpload) {
+                        self.changeTriggered = true;
+                        $el.get(0).files = files;
+                        setTimeout(function () {
+                            self.changeTriggered = false;
+                            $el.trigger('change' + self.namespace);
+                        }, self.processDelay);
+                    } else {
+                        self._change(e, files);
+                    }
+                    self.$dropZone.removeClass('file-highlighted');
+                };
+            e.preventDefault();
+            if (self.isDisabled || $h.isEmpty(files)) {
+                return;
+            }
+            if (!self._raise('fileDragDrop', {'sourceEvent': e, 'files': files})) {
+                return;
+            }
+            if (folders > 0) {
+                if (!self.isAjaxUpload) {
+                    self._showFolderError(folders);
+                    return;
+                }
+                files = [];
+                for (i = 0; i < items.length; i++) {
+                    var item = items[i].webkitGetAsEntry();
+                    if (item) {
+                        self._scanDroppedItems(item, files);
+                    }
+                }
+                setTimeout(function () {
+                    processFiles();
+                }, 500);
+            } else {
+                processFiles();
+            }
+        },
+        _uploadClick: function (e) {
+            var self = this, $btn = self.$container.find('.fileinput-upload'), $form,
+                isEnabled = !$btn.hasClass('disabled') && $h.isEmpty($btn.attr('disabled'));
+            if (e && e.isDefaultPrevented()) {
+                return;
+            }
+            if (!self.isAjaxUpload) {
+                if (isEnabled && $btn.attr('type') !== 'submit') {
+                    $form = $btn.closest('form');
+                    // downgrade to normal form submit if possible
+                    if ($form.length) {
+                        $form.trigger('submit');
+                    }
+                    e.preventDefault();
+                }
+                return;
+            }
+            e.preventDefault();
+            if (isEnabled) {
+                self.upload();
+            }
+        },
+        _submitForm: function () {
+            var self = this;
+            return self._isFileSelectionValid() && !self._abort({});
+        },
+        _clearPreview: function () {
+            var self = this, $p = self.$preview,
+                $thumbs = self.showUploadedThumbs ? self.getFrames(':not(.file-preview-success)') : self.getFrames();
+            $thumbs.each(function () {
+                var $thumb = $(this);
+                $thumb.remove();
+                $h.cleanZoomCache($p.find('#zoom-' + $thumb.attr('id')));
+            });
+            if (!self.getFrames().length || !self.showPreview) {
+                self._resetUpload();
+            }
+            self._validateDefaultPreview();
+        },
+        _initSortable: function () {
+            var self = this, $el = self.$preview, settings, selector = '.' + $h.SORT_CSS,
+                rev = self.reversePreviewOrder;
+            if (!window.KvSortable || $el.find(selector).length === 0) {
+                return;
+            }
+            //noinspection JSUnusedGlobalSymbols
+            settings = {
+                handle: '.drag-handle-init',
+                dataIdAttr: 'data-preview-id',
+                scroll: false,
+                draggable: selector,
+                onSort: function (e) {
+                    var oldIndex = e.oldIndex, newIndex = e.newIndex, i = 0;
+                    self.initialPreview = $h.moveArray(self.initialPreview, oldIndex, newIndex, rev);
+                    self.initialPreviewConfig = $h.moveArray(self.initialPreviewConfig, oldIndex, newIndex, rev);
+                    self.previewCache.init();
+                    self.getFrames('.file-preview-initial').each(function () {
+                        $(this).attr('data-fileindex', 'init_' + i);
+                        i++;
+                    });
+                    self._raise('filesorted', {
+                        previewId: $(e.item).attr('id'),
+                        'oldIndex': oldIndex,
+                        'newIndex': newIndex,
+                        stack: self.initialPreviewConfig
+                    });
+                }
+            };
+            if ($el.data('kvsortable')) {
+                $el.kvsortable('destroy');
+            }
+            $.extend(true, settings, self.fileActionSettings.dragSettings);
+            $el.kvsortable(settings);
+        },
+        _setPreviewContent: function (content) {
+            var self = this;
+            self.$preview.html(content);
+            self._autoFitContent();
+        },
+        _initPreviewImageOrientations: function () {
+            var self = this, i = 0;
+            if (!self.autoOrientImageInitial) {
+                return;
+            }
+            self.getFrames('.file-preview-initial').each(function () {
+                var $thumb = $(this), $img, $zoomImg, id, config = self.initialPreviewConfig[i];
+                /** @namespace config.exif */
+                if (config && config.exif && config.exif.Orientation) {
+                    id = $thumb.attr('id');
+                    $img = $thumb.find('>.kv-file-content img');
+                    $zoomImg = self.$preview.find('#zoom-' + id + ' >.kv-file-content img');
+                    self.setImageOrientation($img, $zoomImg, config.exif.Orientation, $thumb);
+                }
+                i++;
+            });
+        },
+        _initPreview: function (isInit) {
+            var self = this, cap = self.initialCaption || '', out;
+            if (!self.previewCache.count(true)) {
+                self._clearPreview();
+                if (isInit) {
+                    self._setCaption(cap);
+                } else {
+                    self._initCaption();
+                }
+                return;
+            }
+            out = self.previewCache.out();
+            cap = isInit && self.initialCaption ? self.initialCaption : out.caption;
+            self._setPreviewContent(out.content);
+            self._setInitThumbAttr();
+            self._setCaption(cap);
+            self._initSortable();
+            if (!$h.isEmpty(out.content)) {
+                self.$container.removeClass('file-input-new');
+            }
+            self._initPreviewImageOrientations();
+        },
+        _getZoomButton: function (type) {
+            var self = this, label = self.previewZoomButtonIcons[type], css = self.previewZoomButtonClasses[type],
+                title = ' title="' + (self.previewZoomButtonTitles[type] || '') + '" ',
+                params = title + (type === 'close' ? ' data-dismiss="modal" aria-hidden="true"' : '');
+            if (type === 'fullscreen' || type === 'borderless' || type === 'toggleheader') {
+                params += ' data-toggle="button" aria-pressed="false" autocomplete="off"';
+            }
+            return '<button type="button" class="' + css + ' btn-' + type + '"' + params + '>' + label + '</button>';
+        },
+        _getModalContent: function () {
+            var self = this;
+            return self._getLayoutTemplate('modal').setTokens({
+                'rtl': self.rtl ? ' kv-rtl' : '',
+                'zoomFrameClass': self.frameClass,
+                'heading': self.msgZoomModalHeading,
+                'prev': self._getZoomButton('prev'),
+                'next': self._getZoomButton('next'),
+                'toggleheader': self._getZoomButton('toggleheader'),
+                'fullscreen': self._getZoomButton('fullscreen'),
+                'borderless': self._getZoomButton('borderless'),
+                'close': self._getZoomButton('close')
+            });
+        },
+        _listenModalEvent: function (event) {
+            var self = this, $modal = self.$modal, getParams = function (e) {
+                return {
+                    sourceEvent: e,
+                    previewId: $modal.data('previewId'),
+                    modal: $modal
+                };
+            };
+            $modal.on(event + '.bs.modal', function (e) {
+                var $btnFull = $modal.find('.btn-fullscreen'), $btnBord = $modal.find('.btn-borderless');
+                self._raise('filezoom' + event, getParams(e));
+                if (event === 'shown') {
+                    $btnBord.removeClass('active').attr('aria-pressed', 'false');
+                    $btnFull.removeClass('active').attr('aria-pressed', 'false');
+                    if ($modal.hasClass('file-zoom-fullscreen')) {
+                        self._maximizeZoomDialog();
+                        if ($h.checkFullScreen()) {
+                            $btnFull.addClass('active').attr('aria-pressed', 'true');
+                        } else {
+                            $btnBord.addClass('active').attr('aria-pressed', 'true');
+                        }
+                    }
+                }
+            });
+        },
+        _initZoom: function () {
+            var self = this, $dialog, modalMain = self._getLayoutTemplate('modalMain'), modalId = '#' + $h.MODAL_ID;
+            if (!self.showPreview) {
+                return;
+            }
+            self.$modal = $(modalId);
+            if (!self.$modal || !self.$modal.length) {
+                $dialog = $(document.createElement('div')).html(modalMain).insertAfter(self.$container);
+                self.$modal = $(modalId).insertBefore($dialog);
+                $dialog.remove();
+            }
+            $h.initModal(self.$modal);
+            self.$modal.html(self._getModalContent());
+            $.each($h.MODAL_EVENTS, function (key, event) {
+                self._listenModalEvent(event);
+            });
+        },
+        _initZoomButtons: function () {
+            var self = this, previewId = self.$modal.data('previewId') || '', $first, $last,
+                thumbs = self.getFrames().toArray(), len = thumbs.length, $prev = self.$modal.find('.btn-prev'),
+                $next = self.$modal.find('.btn-next');
+            if (thumbs.length < 2) {
+                $prev.hide();
+                $next.hide();
+                return;
+            } else {
+                $prev.show();
+                $next.show();
+            }
+            if (!len) {
+                return;
+            }
+            $first = $(thumbs[0]);
+            $last = $(thumbs[len - 1]);
+            $prev.removeAttr('disabled');
+            $next.removeAttr('disabled');
+            if ($first.length && $first.attr('id') === previewId) {
+                $prev.attr('disabled', true);
+            }
+            if ($last.length && $last.attr('id') === previewId) {
+                $next.attr('disabled', true);
+            }
+        },
+        _maximizeZoomDialog: function () {
+            var self = this, $modal = self.$modal, $head = $modal.find('.modal-header:visible'),
+                $foot = $modal.find('.modal-footer:visible'), $body = $modal.find('.modal-body'),
+                h = $(window).height(), diff = 0;
+            $modal.addClass('file-zoom-fullscreen');
+            if ($head && $head.length) {
+                h -= $head.outerHeight(true);
+            }
+            if ($foot && $foot.length) {
+                h -= $foot.outerHeight(true);
+            }
+            if ($body && $body.length) {
+                diff = $body.outerHeight(true) - $body.height();
+                h -= diff;
+            }
+            $modal.find('.kv-zoom-body').height(h);
+        },
+        _resizeZoomDialog: function (fullScreen) {
+            var self = this, $modal = self.$modal, $btnFull = $modal.find('.btn-fullscreen'),
+                $btnBord = $modal.find('.btn-borderless');
+            if ($modal.hasClass('file-zoom-fullscreen')) {
+                $h.toggleFullScreen(false);
+                if (!fullScreen) {
+                    if (!$btnFull.hasClass('active')) {
+                        $modal.removeClass('file-zoom-fullscreen');
+                        self.$modal.find('.kv-zoom-body').css('height', self.zoomModalHeight);
+                    } else {
+                        $btnFull.removeClass('active').attr('aria-pressed', 'false');
+                    }
+                } else {
+                    if (!$btnFull.hasClass('active')) {
+                        $modal.removeClass('file-zoom-fullscreen');
+                        self._resizeZoomDialog(true);
+                        if ($btnBord.hasClass('active')) {
+                            $btnBord.removeClass('active').attr('aria-pressed', 'false');
+                        }
+                    }
+                }
+            } else {
+                if (!fullScreen) {
+                    self._maximizeZoomDialog();
+                    return;
+                }
+                $h.toggleFullScreen(true);
+            }
+            $modal.focus();
+        },
+        _setZoomContent: function ($frame, animate) {
+            var self = this, $content, tmplt, body, title, $body, $dataEl, config, previewId = $frame.attr('id'),
+                $zoomPreview = self.$preview.find('#zoom-' + previewId), $modal = self.$modal, $tmp,
+                $btnFull = $modal.find('.btn-fullscreen'), $btnBord = $modal.find('.btn-borderless'), cap, size,
+                $btnTogh = $modal.find('.btn-toggleheader');
+            tmplt = $zoomPreview.attr('data-template') || 'generic';
+            $content = $zoomPreview.find('.kv-file-content');
+            body = $content.length ? $content.html() : '';
+            cap = $frame.data('caption') || '';
+            size = $frame.data('size') || '';
+            title = cap + ' ' + size;
+            $modal.find('.kv-zoom-title').attr('title', $('<div/>').html(title).text()).html(title);
+            $body = $modal.find('.kv-zoom-body');
+            $modal.removeClass('kv-single-content');
+            if (animate) {
+                $tmp = $body.addClass('file-thumb-loading').clone().insertAfter($body);
+                $body.html(body).hide();
+                $tmp.fadeOut('fast', function () {
+                    $body.fadeIn('fast', function () {
+                        $body.removeClass('file-thumb-loading');
+                    });
+                    $tmp.remove();
+                });
+            } else {
+                $body.html(body);
+            }
+            config = self.previewZoomSettings[tmplt];
+            if (config) {
+                $dataEl = $body.find('.kv-preview-data');
+                $h.addCss($dataEl, 'file-zoom-detail');
+                $.each(config, function (key, value) {
+                    $dataEl.css(key, value);
+                    if (($dataEl.attr('width') && key === 'width') || ($dataEl.attr('height') && key === 'height')) {
+                        $dataEl.removeAttr(key);
+                    }
+                });
+            }
+            $modal.data('previewId', previewId);
+            self._handler($modal.find('.btn-prev'), 'click', function () {
+                self._zoomSlideShow('prev', previewId);
+            });
+            self._handler($modal.find('.btn-next'), 'click', function () {
+                self._zoomSlideShow('next', previewId);
+            });
+            self._handler($btnFull, 'click', function () {
+                self._resizeZoomDialog(true);
+            });
+            self._handler($btnBord, 'click', function () {
+                self._resizeZoomDialog(false);
+            });
+            self._handler($btnTogh, 'click', function () {
+                var $header = $modal.find('.modal-header'), $floatBar = $modal.find('.modal-body .floating-buttons'),
+                    ht, $actions = $header.find('.kv-zoom-actions'), resize = function (height) {
+                        var $body = self.$modal.find('.kv-zoom-body'), h = self.zoomModalHeight;
+                        if ($modal.hasClass('file-zoom-fullscreen')) {
+                            h = $body.outerHeight(true);
+                            if (!height) {
+                                h = h - $header.outerHeight(true);
+                            }
+                        }
+                        $body.css('height', height ? h + height : h);
+                    };
+                if ($header.is(':visible')) {
+                    ht = $header.outerHeight(true);
+                    $header.slideUp('slow', function () {
+                        $actions.find('.btn').appendTo($floatBar);
+                        resize(ht);
+                    });
+                } else {
+                    $floatBar.find('.btn').appendTo($actions);
+                    $header.slideDown('slow', function () {
+                        resize();
+                    });
+                }
+                $modal.focus();
+            });
+            self._handler($modal, 'keydown', function (e) {
+                var key = e.which || e.keyCode, $prev = $(this).find('.btn-prev'), $next = $(this).find('.btn-next'),
+                    vId = $(this).data('previewId'), vPrevKey = self.rtl ? 39 : 37, vNextKey = self.rtl ? 37 : 39;
+                if (key === vPrevKey && $prev.length && !$prev.attr('disabled')) {
+                    self._zoomSlideShow('prev', vId);
+                }
+                if (key === vNextKey && $next.length && !$next.attr('disabled')) {
+                    self._zoomSlideShow('next', vId);
+                }
+            });
+        },
+        _zoomPreview: function ($btn) {
+            var self = this, $frame, $modal = self.$modal;
+            if (!$btn.length) {
+                throw 'Cannot zoom to detailed preview!';
+            }
+            $h.initModal($modal);
+            $modal.html(self._getModalContent());
+            $frame = $btn.closest($h.FRAMES);
+            self._setZoomContent($frame);
+            $modal.modal('show');
+            self._initZoomButtons();
+        },
+        _zoomSlideShow: function (dir, previewId) {
+            var self = this, $btn = self.$modal.find('.kv-zoom-actions .btn-' + dir), $targFrame, i,
+                thumbs = self.getFrames().toArray(), len = thumbs.length, out;
+            if ($btn.attr('disabled')) {
+                return;
+            }
+            for (i = 0; i < len; i++) {
+                if ($(thumbs[i]).attr('id') === previewId) {
+                    out = dir === 'prev' ? i - 1 : i + 1;
+                    break;
+                }
+            }
+            if (out < 0 || out >= len || !thumbs[out]) {
+                return;
+            }
+            $targFrame = $(thumbs[out]);
+            if ($targFrame.length) {
+                self._setZoomContent($targFrame, true);
+            }
+            self._initZoomButtons();
+            self._raise('filezoom' + dir, {'previewId': previewId, modal: self.$modal});
+        },
+        _initZoomButton: function () {
+            var self = this;
+            self.$preview.find('.kv-file-zoom').each(function () {
+                var $el = $(this);
+                self._handler($el, 'click', function () {
+                    self._zoomPreview($el);
+                });
+            });
+        },
+        _inputFileCount: function () {
+            return this.$element.get(0).files.length;
+        },
+        _refreshPreview: function () {
+            var self = this, files;
+            if ((!self._inputFileCount() && !self.isAjaxUpload) || !self.showPreview || !self.isPreviewable) {
+                return;
+            }
+            if (self.isAjaxUpload) {
+                if (self.fileManager.count() > 0) {
+                    files = $.extend(true, {}, self.fileManager.stack);
+                    self.fileManager.clear();
+                    self._clearFileInput();
+                } else {
+                    files = self.$element.get(0).files;
+                }
+            } else {
+                files = self.$element.get(0).files;
+            }
+            if (files && files.length) {
+                self.readFiles(files);
+                self._setFileDropZoneTitle();
+            }
+        },
+        _clearObjects: function ($el) {
+            $el.find('video audio').each(function () {
+                this.pause();
+                $(this).remove();
+            });
+            $el.find('img object div').each(function () {
+                $(this).remove();
+            });
+        },
+        _clearFileInput: function () {
+            var self = this, $el = self.$element, $srcFrm, $tmpFrm, $tmpEl;
+            if (!self._inputFileCount()) {
+                return;
+            }
+            $srcFrm = $el.closest('form');
+            $tmpFrm = $(document.createElement('form'));
+            $tmpEl = $(document.createElement('div'));
+            $el.before($tmpEl);
+            if ($srcFrm.length) {
+                $srcFrm.after($tmpFrm);
+            } else {
+                $tmpEl.after($tmpFrm);
+            }
+            $tmpFrm.append($el).trigger('reset');
+            $tmpEl.before($el).remove();
+            $tmpFrm.remove();
+        },
+        _resetUpload: function () {
+            var self = this;
+            self.uploadCache = {content: [], config: [], tags: [], append: true};
+            self.$btnUpload.removeAttr('disabled');
+            self._setProgress(0);
+            self.$progress.hide();
+            self._resetErrors(false);
+            self._initAjax();
+            self.fileManager.clearImages();
+            self._resetCanvas();
+            self.cacheInitialPreview = {};
+            if (self.overwriteInitial) {
+                self.initialPreview = [];
+                self.initialPreviewConfig = [];
+                self.initialPreviewThumbTags = [];
+                self.previewCache.data = {
+                    content: [],
+                    config: [],
+                    tags: []
+                };
+            }
+        },
+        _resetCanvas: function () {
+            var self = this;
+            if (self.canvas && self.imageCanvasContext) {
+                self.imageCanvasContext.clearRect(0, 0, self.canvas.width, self.canvas.height);
+            }
+        },
+        _hasInitialPreview: function () {
+            var self = this;
+            return !self.overwriteInitial && self.previewCache.count(true);
+        },
+        _resetPreview: function () {
+            var self = this, out, cap;
+            if (self.previewCache.count(true)) {
+                out = self.previewCache.out();
+                self._setPreviewContent(out.content);
+                self._setInitThumbAttr();
+                cap = self.initialCaption ? self.initialCaption : out.caption;
+                self._setCaption(cap);
+            } else {
+                self._clearPreview();
+                self._initCaption();
+            }
+            if (self.showPreview) {
+                self._initZoom();
+                self._initSortable();
+            }
+        },
+        _clearDefaultPreview: function () {
+            var self = this;
+            self.$preview.find('.file-default-preview').remove();
+        },
+        _validateDefaultPreview: function () {
+            var self = this;
+            if (!self.showPreview || $h.isEmpty(self.defaultPreviewContent)) {
+                return;
+            }
+            self._setPreviewContent('<div class="file-default-preview">' + self.defaultPreviewContent + '</div>');
+            self.$container.removeClass('file-input-new');
+            self._initClickable();
+        },
+        _resetPreviewThumbs: function (isAjax) {
+            var self = this, out;
+            if (isAjax) {
+                self._clearPreview();
+                self.clearFileStack();
+                return;
+            }
+            if (self._hasInitialPreview()) {
+                out = self.previewCache.out();
+                self._setPreviewContent(out.content);
+                self._setInitThumbAttr();
+                self._setCaption(out.caption);
+                self._initPreviewActions();
+            } else {
+                self._clearPreview();
+            }
+        },
+        _getLayoutTemplate: function (t) {
+            var self = this, template = self.layoutTemplates[t];
+            if ($h.isEmpty(self.customLayoutTags)) {
+                return template;
+            }
+            return $h.replaceTags(template, self.customLayoutTags);
+        },
+        _getPreviewTemplate: function (t) {
+            var self = this, template = self.previewTemplates[t];
+            if ($h.isEmpty(self.customPreviewTags)) {
+                return template;
+            }
+            return $h.replaceTags(template, self.customPreviewTags);
+        },
+        _getOutData: function (formdata, jqXHR, responseData, filesData) {
+            var self = this;
+            jqXHR = jqXHR || {};
+            responseData = responseData || {};
+            filesData = filesData || self.fileManager.list();
+            return {
+                formdata: formdata,
+                files: filesData,
+                filenames: self.filenames,
+                filescount: self.getFilesCount(),
+                extra: self._getExtraData(),
+                response: responseData,
+                reader: self.reader,
+                jqXHR: jqXHR
+            };
+        },
+        _getMsgSelected: function (n) {
+            var self = this, strFiles = n === 1 ? self.fileSingle : self.filePlural;
+            return n > 0 ? self.msgSelected.replace('{n}', n).replace('{files}', strFiles) : self.msgNoFilesSelected;
+        },
+        _getFrame: function (id) {
+            var self = this, $frame = $('#' + id);
+            if (!$frame.length) {
+                self._log($h.logMessages.invalidThumb, {id: id});
+                return null;
+            }
+            return $frame;
+        },
+        _getThumbs: function (css) {
+            css = css || '';
+            return this.getFrames(':not(.file-preview-initial)' + css);
+        },
+        _getExtraData: function (fileId, index) {
+            var self = this, data = self.uploadExtraData;
+            if (typeof self.uploadExtraData === 'function') {
+                data = self.uploadExtraData(fileId, index);
+            }
+            return data;
+        },
+        _initXhr: function (xhrobj, fileId, fileCount) {
+            var self = this, fm = self.fileManager, func = function (event) {
+                var pct = 0, total = event.total, loaded = event.loaded || event.position,
+                    stats = fm.getUploadStats(fileId, loaded, total);
+                /** @namespace event.lengthComputable */
+                if (event.lengthComputable && !self.enableResumableUpload) {
+                    pct = $h.round(loaded / total * 100);
+                }
+                if (fileId) {
+                    self._setFileUploadStats(fileId, pct, fileCount, stats);
+                } else {
+                    self._setProgress(pct, null, null, self._getStats(stats));
+                }
+                self._raise('fileajaxprogress', [stats]);
+            };
+            if (xhrobj.upload) {
+                if (self.progressDelay) {
+                    func = $h.debounce(func, self.progressDelay);
+                }
+                xhrobj.upload.addEventListener('progress', func, false);
+            }
+            return xhrobj;
+        },
+        _initAjaxSettings: function () {
+            var self = this;
+            self._ajaxSettings = $.extend(true, {}, self.ajaxSettings);
+            self._ajaxDeleteSettings = $.extend(true, {}, self.ajaxDeleteSettings);
+        },
+        _mergeAjaxCallback: function (funcName, srcFunc, type) {
+            var self = this, settings = self._ajaxSettings, flag = self.mergeAjaxCallbacks, targFunc;
+            if (type === 'delete') {
+                settings = self._ajaxDeleteSettings;
+                flag = self.mergeAjaxDeleteCallbacks;
+            }
+            targFunc = settings[funcName];
+            if (flag && typeof targFunc === 'function') {
+                if (flag === 'before') {
+                    settings[funcName] = function () {
+                        targFunc.apply(this, arguments);
+                        srcFunc.apply(this, arguments);
+                    };
+                } else {
+                    settings[funcName] = function () {
+                        srcFunc.apply(this, arguments);
+                        targFunc.apply(this, arguments);
+                    };
+                }
+            } else {
+                settings[funcName] = srcFunc;
+            }
+        },
+        _ajaxSubmit: function (fnBefore, fnSuccess, fnComplete, fnError, formdata, fileId, index, vUrl) {
+            var self = this, settings, defaults, data, processQueue;
+            if (!self._raise('filepreajax', [formdata, fileId, index])) {
+                return;
+            }
+            formdata.append('initialPreview', JSON.stringify(self.initialPreview));
+            formdata.append('initialPreviewConfig', JSON.stringify(self.initialPreviewConfig));
+            formdata.append('initialPreviewThumbTags', JSON.stringify(self.initialPreviewThumbTags));
+            self._initAjaxSettings();
+            self._mergeAjaxCallback('beforeSend', fnBefore);
+            self._mergeAjaxCallback('success', fnSuccess);
+            self._mergeAjaxCallback('complete', fnComplete);
+            self._mergeAjaxCallback('error', fnError);
+            vUrl = vUrl || self.uploadUrlThumb || self.uploadUrl;
+            if (typeof vUrl === 'function') {
+                vUrl = vUrl();
+            }
+            data = self._getExtraData(fileId, index) || {};
+            if (typeof data === 'object') {
+                $.each(data, function (key, value) {
+                    formdata.append(key, value);
+                });
+            }
+            defaults = {
+                xhr: function () {
+                    var xhrobj = $.ajaxSettings.xhr();
+                    return self._initXhr(xhrobj, fileId, self.fileManager.count());
+                },
+                url: self._encodeURI(vUrl),
+                type: 'POST',
+                dataType: 'json',
+                data: formdata,
+                cache: false,
+                processData: false,
+                contentType: false
+            };
+            settings = $.extend(true, {}, defaults, self._ajaxSettings);
+            self.ajaxQueue.push(settings);
+            processQueue = function () {
+                var config, xhr;
+                if (self.ajaxCurrentThreads < self.maxAjaxThreads) {
+                    config = self.ajaxQueue.shift();
+                    if (typeof config !== 'undefined') {
+                        self.ajaxCurrentThreads++;
+                        xhr = $.ajax(config).done(function () {
+                            clearInterval(self.ajaxQueueIntervalId);
+                            self.ajaxCurrentThreads--;
+                        });
+                        self.ajaxRequests.push(xhr);
+                    }
+                }
+            };
+            self.ajaxQueueIntervalId = setInterval(processQueue, self.queueDelay);
+
+        },
+        _mergeArray: function (prop, content) {
+            var self = this, arr1 = $h.cleanArray(self[prop]), arr2 = $h.cleanArray(content);
+            self[prop] = arr1.concat(arr2);
+        },
+        _initUploadSuccess: function (out, $thumb, allFiles) {
+            var self = this, append, data, index, $div, $newCache, content, config, tags, i;
+            if (!self.showPreview || typeof out !== 'object' || $.isEmptyObject(out)) {
+                return;
+            }
+            if (out.initialPreview !== undefined && out.initialPreview.length > 0) {
+                self.hasInitData = true;
+                content = out.initialPreview || [];
+                config = out.initialPreviewConfig || [];
+                tags = out.initialPreviewThumbTags || [];
+                append = out.append === undefined || out.append;
+                if (content.length > 0 && !$h.isArray(content)) {
+                    content = content.split(self.initialPreviewDelimiter);
+                }
+                if (content.length) {
+                    self._mergeArray('initialPreview', content);
+                    self._mergeArray('initialPreviewConfig', config);
+                    self._mergeArray('initialPreviewThumbTags', tags);
+                }
+                if ($thumb !== undefined) {
+                    if (!allFiles) {
+                        index = self.previewCache.add(content[0], config[0], tags[0], append);
+                        data = self.previewCache.get(index, false);
+                        $div = $(document.createElement('div')).html(data).hide().insertAfter($thumb);
+                        $newCache = $div.find('.kv-zoom-cache');
+                        if ($newCache && $newCache.length) {
+                            $newCache.insertAfter($thumb);
+                        }
+                        $thumb.fadeOut('slow', function () {
+                            var $newThumb = $div.find('.file-preview-frame');
+                            if ($newThumb && $newThumb.length) {
+                                $newThumb.insertBefore($thumb).fadeIn('slow').css('display:inline-block');
+                            }
+                            self._initPreviewActions();
+                            self._clearFileInput();
+                            $h.cleanZoomCache(self.$preview.find('#zoom-' + $thumb.attr('id')));
+                            $thumb.remove();
+                            $div.remove();
+                            self._initSortable();
+                        });
+                    } else {
+                        i = $thumb.attr('data-fileindex');
+                        self.uploadCache.content[i] = content[0];
+                        self.uploadCache.config[i] = config[0] || [];
+                        self.uploadCache.tags[i] = tags[0] || [];
+                        self.uploadCache.append = append;
+                    }
+                } else {
+                    self.previewCache.set(content, config, tags, append);
+                    self._initPreview();
+                    self._initPreviewActions();
+                }
+            }
+        },
+        _initSuccessThumbs: function () {
+            var self = this;
+            if (!self.showPreview) {
+                return;
+            }
+            self._getThumbs($h.FRAMES + '.file-preview-success').each(function () {
+                var $thumb = $(this), $preview = self.$preview, $remove = $thumb.find('.kv-file-remove');
+                $remove.removeAttr('disabled');
+                self._handler($remove, 'click', function () {
+                    var id = $thumb.attr('id'),
+                        out = self._raise('filesuccessremove', [id, $thumb.attr('data-fileindex')]);
+                    $h.cleanMemory($thumb);
+                    if (out === false) {
+                        return;
+                    }
+                    $thumb.fadeOut('slow', function () {
+                        $h.cleanZoomCache($preview.find('#zoom-' + id));
+                        $thumb.remove();
+                        if (!self.getFrames().length) {
+                            self.reset();
+                        }
+                    });
+                });
+            });
+        },
+        _updateInitialPreview: function () {
+            var self = this, u = self.uploadCache, i, j, len = 0, data = self.cacheInitialPreview;
+            if (data && data.content) {
+                len = data.content.length;
+            }
+            if (self.showPreview) {
+                self.previewCache.set(u.content, u.config, u.tags, u.append);
+                if (len) {
+                    for (i = 0; i < u.content.length; i++) {
+                        j = i + len;
+                        data.content[j] = u.content[i];
+                        //noinspection JSUnresolvedVariable
+                        if (data.config.length) {
+                            data.config[j] = u.config[i];
+                        }
+                        if (data.tags.length) {
+                            data.tags[j] = u.tags[i];
+                        }
+                    }
+                    self.initialPreview = $h.cleanArray(data.content);
+                    self.initialPreviewConfig = $h.cleanArray(data.config);
+                    self.initialPreviewThumbTags = $h.cleanArray(data.tags);
+                } else {
+                    self.initialPreview = u.content;
+                    self.initialPreviewConfig = u.config;
+                    self.initialPreviewThumbTags = u.tags;
+                }
+                self.cacheInitialPreview = {};
+                if (self.hasInitData) {
+                    self._initPreview();
+                    self._initPreviewActions();
+                }
+            }
+        },
+        _uploadSingle: function (i, id, isBatch) {
+            var self = this, fm = self.fileManager, count = fm.count(), formdata = new FormData(), outData,
+                previewId = self.previewInitId + '-' + i, $thumb, chkComplete, $btnUpload, $btnDelete,
+                hasPostData = count > 0 || !$.isEmptyObject(self.uploadExtraData), uploadFailed, $prog, fnBefore,
+                errMsg, fnSuccess, fnComplete, fnError, updateUploadLog, op = self.ajaxOperations.uploadThumb,
+                fileObj = fm.getFile(id), params = {id: previewId, index: i, fileId: id},
+                fileName = self.fileManager.getFileName(id, true);
+            if (self.enableResumableUpload) { // not enabled for resumable uploads
+                return;
+            }
+            if (self.showPreview) {
+                $thumb = self.fileManager.getThumb(id);
+                $prog = $thumb.find('.file-thumb-progress');
+                $btnUpload = $thumb.find('.kv-file-upload');
+                $btnDelete = $thumb.find('.kv-file-remove');
+                $prog.show();
+            }
+            if (count === 0 || !hasPostData || (self.showPreview && $btnUpload && $btnUpload.hasClass('disabled')) ||
+                self._abort(params)) {
+                return;
+            }
+            updateUploadLog = function () {
+                if (!uploadFailed) {
+                    fm.removeFile(id);
+                } else {
+                    fm.errors.push(id);
+                }
+                fm.setProcessed(id);
+                if (fm.isProcessed()) {
+                    self.fileBatchCompleted = true;
+                }
+            };
+            chkComplete = function () {
+                var $initThumbs;
+                if (!self.fileBatchCompleted) {
+                    return;
+                }
+                setTimeout(function () {
+                    var triggerReset = fm.count() === 0, errCount = fm.errors.length;
+                    self._updateInitialPreview();
+                    self.unlock(triggerReset);
+                    if (triggerReset) {
+                        self._clearFileInput();
+                    }
+                    $initThumbs = self.$preview.find('.file-preview-initial');
+                    if (self.uploadAsync && $initThumbs.length) {
+                        $h.addCss($initThumbs, $h.SORT_CSS);
+                        self._initSortable();
+                    }
+                    self._raise('filebatchuploadcomplete', [fm.stack, self._getExtraData()]);
+                    if (!self.retryErrorUploads || errCount === 0) {
+                        fm.clear();
+                    }
+                    self._setProgress(101);
+                    self.ajaxAborted = false;
+                }, self.processDelay);
+            };
+            fnBefore = function (jqXHR) {
+                outData = self._getOutData(formdata, jqXHR);
+                fm.initStats(id);
+                self.fileBatchCompleted = false;
+                if (!isBatch) {
+                    self.ajaxAborted = false;
+                }
+                if (self.showPreview) {
+                    if (!$thumb.hasClass('file-preview-success')) {
+                        self._setThumbStatus($thumb, 'Loading');
+                        $h.addCss($thumb, 'file-uploading');
+                    }
+                    $btnUpload.attr('disabled', true);
+                    $btnDelete.attr('disabled', true);
+                }
+                if (!isBatch) {
+                    self.lock();
+                }
+                if (fm.errors.indexOf(id) !== -1) {
+                    delete fm.errors[id];
+                }
+                self._raise('filepreupload', [outData, previewId, i]);
+                $.extend(true, params, outData);
+                if (self._abort(params)) {
+                    jqXHR.abort();
+                    if (!isBatch) {
+                        self._setThumbStatus($thumb, 'New');
+                        $thumb.removeClass('file-uploading');
+                        $btnUpload.removeAttr('disabled');
+                        $btnDelete.removeAttr('disabled');
+                        self.unlock();
+                    }
+                    self._setProgressCancelled();
+                }
+            };
+            fnSuccess = function (data, textStatus, jqXHR) {
+                var pid = self.showPreview && $thumb.attr('id') ? $thumb.attr('id') : previewId;
+                outData = self._getOutData(formdata, jqXHR, data);
+                $.extend(true, params, outData);
+                setTimeout(function () {
+                    if ($h.isEmpty(data) || $h.isEmpty(data.error)) {
+                        if (self.showPreview) {
+                            self._setThumbStatus($thumb, 'Success');
+                            $btnUpload.hide();
+                            self._initUploadSuccess(data, $thumb, isBatch);
+                            self._setProgress(101, $prog);
+                        }
+                        self._raise('fileuploaded', [outData, pid, i]);
+                        if (!isBatch) {
+                            self.fileManager.remove($thumb);
+                        } else {
+                            updateUploadLog();
+                        }
+                    } else {
+                        uploadFailed = true;
+                        errMsg = self._parseError(op, jqXHR, self.msgUploadError, self.fileManager.getFileName(id));
+                        self._showFileError(errMsg, params);
+                        self._setPreviewError($thumb, true);
+                        if (!self.retryErrorUploads) {
+                            $btnUpload.hide();
+                        }
+                        if (isBatch) {
+                            updateUploadLog();
+                        }
+                        self._setProgress(101, $('#' + pid).find('.file-thumb-progress'), self.msgUploadError);
+                    }
+                }, self.processDelay);
+            };
+            fnComplete = function () {
+                setTimeout(function () {
+                    if (self.showPreview) {
+                        $btnUpload.removeAttr('disabled');
+                        $btnDelete.removeAttr('disabled');
+                        $thumb.removeClass('file-uploading');
+                    }
+                    if (!isBatch) {
+                        self.unlock(false);
+                        self._clearFileInput();
+                    } else {
+                        chkComplete();
+                    }
+                    self._initSuccessThumbs();
+                }, self.processDelay);
+            };
+            fnError = function (jqXHR, textStatus, errorThrown) {
+                errMsg = self._parseError(op, jqXHR, errorThrown, self.fileManager.getFileName(id));
+                uploadFailed = true;
+                setTimeout(function () {
+                    if (isBatch) {
+                        updateUploadLog();
+                    }
+                    self.fileManager.setProgress(id, 100);
+                    self._setPreviewError($thumb, true);
+                    if (!self.retryErrorUploads) {
+                        $btnUpload.hide();
+                    }
+                    $.extend(true, params, self._getOutData(formdata, jqXHR));
+                    self._setProgress(101, $prog, self.msgAjaxProgressError.replace('{operation}', op));
+                    self._setProgress(101, $thumb.find('.file-thumb-progress'), self.msgUploadError);
+                    self._showFileError(errMsg, params);
+                }, self.processDelay);
+            };
+            formdata.append(self.uploadFileAttr, fileObj.file, fileName);
+            self._setUploadData(formdata, {fileId: id});
+            self._ajaxSubmit(fnBefore, fnSuccess, fnComplete, fnError, formdata, id, i);
+        },
+        _uploadBatch: function () {
+            var self = this, fm = self.fileManager, total = fm.total(), params = {}, fnBefore, fnSuccess, fnError,
+                fnComplete, hasPostData = total > 0 || !$.isEmptyObject(self.uploadExtraData), errMsg,
+                setAllUploaded, formdata = new FormData(), op = self.ajaxOperations.uploadBatch;
+            if (total === 0 || !hasPostData || self._abort(params)) {
+                return;
+            }
+            setAllUploaded = function () {
+                self.fileManager.clear();
+                self._clearFileInput();
+            };
+            fnBefore = function (jqXHR) {
+                self.lock();
+                fm.initStats();
+                var outData = self._getOutData(formdata, jqXHR);
+                self.ajaxAborted = false;
+                if (self.showPreview) {
+                    self._getThumbs().each(function () {
+                        var $thumb = $(this), $btnUpload = $thumb.find('.kv-file-upload'),
+                            $btnDelete = $thumb.find('.kv-file-remove');
+                        if (!$thumb.hasClass('file-preview-success')) {
+                            self._setThumbStatus($thumb, 'Loading');
+                            $h.addCss($thumb, 'file-uploading');
+                        }
+                        $btnUpload.attr('disabled', true);
+                        $btnDelete.attr('disabled', true);
+                    });
+                }
+                self._raise('filebatchpreupload', [outData]);
+                if (self._abort(outData)) {
+                    jqXHR.abort();
+                    self._getThumbs().each(function () {
+                        var $thumb = $(this), $btnUpload = $thumb.find('.kv-file-upload'),
+                            $btnDelete = $thumb.find('.kv-file-remove');
+                        if ($thumb.hasClass('file-preview-loading')) {
+                            self._setThumbStatus($thumb, 'New');
+                            $thumb.removeClass('file-uploading');
+                        }
+                        $btnUpload.removeAttr('disabled');
+                        $btnDelete.removeAttr('disabled');
+                    });
+                    self._setProgressCancelled();
+                }
+            };
+            fnSuccess = function (data, textStatus, jqXHR) {
+                /** @namespace data.errorkeys */
+                var outData = self._getOutData(formdata, jqXHR, data), key = 0,
+                    $thumbs = self._getThumbs(':not(.file-preview-success)'),
+                    keys = $h.isEmpty(data) || $h.isEmpty(data.errorkeys) ? [] : data.errorkeys;
+
+                if ($h.isEmpty(data) || $h.isEmpty(data.error)) {
+                    self._raise('filebatchuploadsuccess', [outData]);
+                    setAllUploaded();
+                    if (self.showPreview) {
+                        $thumbs.each(function () {
+                            var $thumb = $(this);
+                            self._setThumbStatus($thumb, 'Success');
+                            $thumb.removeClass('file-uploading');
+                            $thumb.find('.kv-file-upload').hide().removeAttr('disabled');
+                        });
+                        self._initUploadSuccess(data);
+                    } else {
+                        self.reset();
+                    }
+                    self._setProgress(101);
+                } else {
+                    if (self.showPreview) {
+                        $thumbs.each(function () {
+                            var $thumb = $(this);
+                            $thumb.removeClass('file-uploading');
+                            $thumb.find('.kv-file-upload').removeAttr('disabled');
+                            $thumb.find('.kv-file-remove').removeAttr('disabled');
+                            if (keys.length === 0 || $.inArray(key, keys) !== -1) {
+                                self._setPreviewError($thumb, true);
+                                if (!self.retryErrorUploads) {
+                                    $thumb.find('.kv-file-upload').hide();
+                                    self.fileManager.remove($thumb);
+                                }
+                            } else {
+                                $thumb.find('.kv-file-upload').hide();
+                                self._setThumbStatus($thumb, 'Success');
+                                self.fileManager.remove($thumb);
+                            }
+                            if (!$thumb.hasClass('file-preview-error') || self.retryErrorUploads) {
+                                key++;
+                            }
+                        });
+                        self._initUploadSuccess(data);
+                    }
+                    errMsg = self._parseError(op, jqXHR, self.msgUploadError);
+                    self._showFileError(errMsg, outData, 'filebatchuploaderror');
+                    self._setProgress(101, self.$progress, self.msgUploadError);
+                }
+            };
+            fnComplete = function () {
+                self.unlock();
+                self._initSuccessThumbs();
+                self._clearFileInput();
+                self._raise('filebatchuploadcomplete', [self.fileManager.stack, self._getExtraData()]);
+            };
+            fnError = function (jqXHR, textStatus, errorThrown) {
+                var outData = self._getOutData(formdata, jqXHR);
+                errMsg = self._parseError(op, jqXHR, errorThrown);
+                self._showFileError(errMsg, outData, 'filebatchuploaderror');
+                self.uploadFileCount = total - 1;
+                if (!self.showPreview) {
+                    return;
+                }
+                self._getThumbs().each(function () {
+                    var $thumb = $(this);
+                    $thumb.removeClass('file-uploading');
+                    if (self.fileManager.getFile($thumb.attr('data-fileid'))) {
+                        self._setPreviewError($thumb);
+                    }
+                });
+                self._getThumbs().removeClass('file-uploading');
+                self._getThumbs(' .kv-file-upload').removeAttr('disabled');
+                self._getThumbs(' .kv-file-delete').removeAttr('disabled');
+                self._setProgress(101, self.$progress, self.msgAjaxProgressError.replace('{operation}', op));
+            };
+            var ctr = 0;
+            $.each(self.fileManager.stack, function (key, data) {
+                if (!$h.isEmpty(data.file)) {
+                    formdata.append(self.uploadFileAttr, data.file, (data.nameFmt || ('untitled_' + ctr)));
+                }
+                ctr++;
+            });
+            self._ajaxSubmit(fnBefore, fnSuccess, fnComplete, fnError, formdata);
+        },
+        _uploadExtraOnly: function () {
+            var self = this, params = {}, fnBefore, fnSuccess, fnComplete, fnError, formdata = new FormData(), errMsg,
+                op = self.ajaxOperations.uploadExtra;
+            if (self._abort(params)) {
+                return;
+            }
+            fnBefore = function (jqXHR) {
+                self.lock();
+                var outData = self._getOutData(formdata, jqXHR);
+                self._raise('filebatchpreupload', [outData]);
+                self._setProgress(50);
+                params.data = outData;
+                params.xhr = jqXHR;
+                if (self._abort(params)) {
+                    jqXHR.abort();
+                    self._setProgressCancelled();
+                }
+            };
+            fnSuccess = function (data, textStatus, jqXHR) {
+                var outData = self._getOutData(formdata, jqXHR, data);
+                if ($h.isEmpty(data) || $h.isEmpty(data.error)) {
+                    self._raise('filebatchuploadsuccess', [outData]);
+                    self._clearFileInput();
+                    self._initUploadSuccess(data);
+                    self._setProgress(101);
+                } else {
+                    errMsg = self._parseError(op, jqXHR, self.msgUploadError);
+                    self._showFileError(errMsg, outData, 'filebatchuploaderror');
+                }
+            };
+            fnComplete = function () {
+                self.unlock();
+                self._clearFileInput();
+                self._raise('filebatchuploadcomplete', [self.fileManager.stack, self._getExtraData()]);
+            };
+            fnError = function (jqXHR, textStatus, errorThrown) {
+                var outData = self._getOutData(formdata, jqXHR);
+                errMsg = self._parseError(op, jqXHR, errorThrown);
+                params.data = outData;
+                self._showFileError(errMsg, outData, 'filebatchuploaderror');
+                self._setProgress(101, self.$progress, self.msgAjaxProgressError.replace('{operation}', op));
+            };
+            self._ajaxSubmit(fnBefore, fnSuccess, fnComplete, fnError, formdata);
+        },
+        _deleteFileIndex: function ($frame) {
+            var self = this, ind = $frame.attr('data-fileindex'), rev = self.reversePreviewOrder;
+            if (ind.substring(0, 5) === 'init_') {
+                ind = parseInt(ind.replace('init_', ''));
+                self.initialPreview = $h.spliceArray(self.initialPreview, ind, rev);
+                self.initialPreviewConfig = $h.spliceArray(self.initialPreviewConfig, ind, rev);
+                self.initialPreviewThumbTags = $h.spliceArray(self.initialPreviewThumbTags, ind, rev);
+                self.getFrames().each(function () {
+                    var $nFrame = $(this), nInd = $nFrame.attr('data-fileindex');
+                    if (nInd.substring(0, 5) === 'init_') {
+                        nInd = parseInt(nInd.replace('init_', ''));
+                        if (nInd > ind) {
+                            nInd--;
+                            $nFrame.attr('data-fileindex', 'init_' + nInd);
+                        }
+                    }
+                });
+                if (self.uploadAsync || self.enableResumableUpload) {
+                    self.cacheInitialPreview = self.getPreview();
+                }
+            }
+        },
+        _initFileActions: function () {
+            var self = this, $preview = self.$preview;
+            if (!self.showPreview) {
+                return;
+            }
+            self._initZoomButton();
+            self.getFrames(' .kv-file-remove').each(function () {
+                var $el = $(this), $frame = $el.closest($h.FRAMES), hasError, id = $frame.attr('id'),
+                    ind = $frame.attr('data-fileindex'), n, cap, status;
+                self._handler($el, 'click', function () {
+                    status = self._raise('filepreremove', [id, ind]);
+                    if (status === false || !self._validateMinCount()) {
+                        return false;
+                    }
+                    hasError = $frame.hasClass('file-preview-error');
+                    $h.cleanMemory($frame);
+                    $frame.fadeOut('slow', function () {
+                        $h.cleanZoomCache($preview.find('#zoom-' + id));
+                        self.fileManager.remove($frame);
+                        self._clearObjects($frame);
+                        $frame.remove();
+                        if (id && hasError) {
+                            self.$errorContainer.find('li[data-thumb-id="' + id + '"]').fadeOut('fast', function () {
+                                $(this).remove();
+                                if (!self._errorsExist()) {
+                                    self._resetErrors();
+                                }
+                            });
+                        }
+                        self._clearFileInput();
+                        var chk = self.previewCache.count(true), len = self.fileManager.count(),
+                            file, hasThumb = self.showPreview && self.getFrames().length;
+                        if (len === 0 && chk === 0 && !hasThumb) {
+                            self.reset();
+                        } else {
+                            n = chk + len;
+                            if (n > 1) {
+                                cap = self._getMsgSelected(n);
+                            } else {
+                                file = self.fileManager.getFirstFile();
+                                cap = file ? file.nameFmt : '_';
+                            }
+                            self._setCaption(cap);
+                        }
+                        self._raise('fileremoved', [id, ind]);
+                    });
+                });
+            });
+            self.getFrames(' .kv-file-upload').each(function () {
+                var $el = $(this);
+                self._handler($el, 'click', function () {
+                    var $frame = $el.closest($h.FRAMES), id = $frame.attr('data-fileid');
+                    self.$progress.hide();
+                    if ($frame.hasClass('file-preview-error') && !self.retryErrorUploads) {
+                        return;
+                    }
+                    self._uploadSingle(self.fileManager.getIndex(id), id, false);
+                });
+            });
+        },
+        _initPreviewActions: function () {
+            var self = this, $preview = self.$preview, deleteExtraData = self.deleteExtraData || {},
+                btnRemove = $h.FRAMES + ' .kv-file-remove', settings = self.fileActionSettings,
+                origClass = settings.removeClass, errClass = settings.removeErrorClass,
+                resetProgress = function () {
+                    var hasFiles = self.isAjaxUpload ? self.previewCache.count(true) : self._inputFileCount();
+                    if (!self.getFrames().length && !hasFiles) {
+                        self._setCaption('');
+                        self.reset();
+                        self.initialCaption = '';
+                    }
+                };
+            self._initZoomButton();
+            $preview.find(btnRemove).each(function () {
+                var $el = $(this), vUrl = $el.data('url') || self.deleteUrl, vKey = $el.data('key'), errMsg, fnBefore,
+                    fnSuccess, fnError, op = self.ajaxOperations.deleteThumb;
+                if ($h.isEmpty(vUrl) || vKey === undefined) {
+                    return;
+                }
+                if (typeof vUrl === 'function') {
+                    vUrl = vUrl();
+                }
+                var $frame = $el.closest($h.FRAMES), cache = self.previewCache.data, settings, params, config,
+                    fileName, extraData, index = $frame.attr('data-fileindex');
+                index = parseInt(index.replace('init_', ''));
+                config = $h.isEmpty(cache.config) && $h.isEmpty(cache.config[index]) ? null : cache.config[index];
+                extraData = $h.isEmpty(config) || $h.isEmpty(config.extra) ? deleteExtraData : config.extra;
+                fileName = config.filename || config.caption || '';
+                if (typeof extraData === 'function') {
+                    extraData = extraData();
+                }
+                params = {id: $el.attr('id'), key: vKey, extra: extraData};
+                fnBefore = function (jqXHR) {
+                    self.ajaxAborted = false;
+                    self._raise('filepredelete', [vKey, jqXHR, extraData]);
+                    if (self._abort()) {
+                        jqXHR.abort();
+                    } else {
+                        $el.removeClass(errClass);
+                        $h.addCss($frame, 'file-uploading');
+                        $h.addCss($el, 'disabled ' + origClass);
+                    }
+                };
+                fnSuccess = function (data, textStatus, jqXHR) {
+                    var n, cap;
+                    if (!$h.isEmpty(data) && !$h.isEmpty(data.error)) {
+                        params.jqXHR = jqXHR;
+                        params.response = data;
+                        errMsg = self._parseError(op, jqXHR, self.msgDeleteError, fileName);
+                        self._showFileError(errMsg, params, 'filedeleteerror');
+                        $frame.removeClass('file-uploading');
+                        $el.removeClass('disabled ' + origClass).addClass(errClass);
+                        resetProgress();
+                        return;
+                    }
+                    $frame.removeClass('file-uploading').addClass('file-deleted');
+                    $frame.fadeOut('slow', function () {
+                        index = parseInt(($frame.attr('data-fileindex')).replace('init_', ''));
+                        self.previewCache.unset(index);
+                        self._deleteFileIndex($frame);
+                        n = self.previewCache.count(true);
+                        cap = n > 0 ? self._getMsgSelected(n) : '';
+                        self._setCaption(cap);
+                        self._raise('filedeleted', [vKey, jqXHR, extraData]);
+                        $h.cleanZoomCache($preview.find('#zoom-' + $frame.attr('id')));
+                        self._clearObjects($frame);
+                        $frame.remove();
+                        resetProgress();
+                    });
+                };
+                fnError = function (jqXHR, textStatus, errorThrown) {
+                    var errMsg = self._parseError(op, jqXHR, errorThrown, fileName);
+                    params.jqXHR = jqXHR;
+                    params.response = {};
+                    self._showFileError(errMsg, params, 'filedeleteerror');
+                    $frame.removeClass('file-uploading');
+                    $el.removeClass('disabled ' + origClass).addClass(errClass);
+                    resetProgress();
+                };
+                self._initAjaxSettings();
+                self._mergeAjaxCallback('beforeSend', fnBefore, 'delete');
+                self._mergeAjaxCallback('success', fnSuccess, 'delete');
+                self._mergeAjaxCallback('error', fnError, 'delete');
+                settings = $.extend(true, {}, {
+                    url: self._encodeURI(vUrl),
+                    type: 'POST',
+                    dataType: 'json',
+                    data: $.extend(true, {}, {key: vKey}, extraData)
+                }, self._ajaxDeleteSettings);
+                self._handler($el, 'click', function () {
+                    if (!self._validateMinCount()) {
+                        return false;
+                    }
+                    self.ajaxAborted = false;
+                    self._raise('filebeforedelete', [vKey, extraData]);
+                    //noinspection JSUnresolvedVariable,JSHint
+                    if (self.ajaxAborted instanceof Promise) {
+                        self.ajaxAborted.then(function (result) {
+                            if (!result) {
+                                $.ajax(settings);
+                            }
+                        });
+                    } else {
+                        if (!self.ajaxAborted) {
+                            $.ajax(settings);
+                        }
+                    }
+                });
+            });
+        },
+        _hideFileIcon: function () {
+            var self = this;
+            if (self.overwriteInitial) {
+                self.$captionContainer.removeClass('icon-visible');
+            }
+        },
+        _showFileIcon: function () {
+            var self = this;
+            $h.addCss(self.$captionContainer, 'icon-visible');
+        },
+        _getSize: function (bytes, sizes) {
+            var self = this, size = parseFloat(bytes), i, func = self.fileSizeGetter, out;
+            if (!$.isNumeric(bytes) || !$.isNumeric(size)) {
+                return '';
+            }
+            if (typeof func === 'function') {
+                out = func(size);
+            } else {
+                if (size === 0) {
+                    out = '0.00 B';
+                } else {
+                    i = Math.floor(Math.log(size) / Math.log(1024));
+                    if (!sizes) {
+                        sizes = ['B', 'KB', 'MB', 'GB', 'TB', 'PB', 'EB', 'ZB', 'YB'];
+                    }
+                    out = (size / Math.pow(1024, i)).toFixed(2) * 1 + ' ' + sizes[i];
+                }
+            }
+            return self._getLayoutTemplate('size').replace('{sizeText}', out);
+        },
+        _getFileType: function (ftype) {
+            var self = this;
+            return self.mimeTypeAliases[ftype] || ftype;
+        },
+        _generatePreviewTemplate: function (
+            cat,
+            data,
+            fname,
+            ftype,
+            previewId,
+            fileId,
+            isError,
+            size,
+            frameClass,
+            foot,
+            ind,
+            templ,
+            attrs,
+            zoomData
+        ) {
+            var self = this, caption = self.slug(fname), prevContent, zoomContent = '', styleAttribs = '',
+                screenW = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth,
+                config, newCat = self.preferIconicPreview ? 'other' : cat, title = caption, alt = caption,
+                footer = foot || self._renderFileFooter(cat, caption, size, 'auto', isError),
+                hasIconSetting = self._getPreviewIcon(fname), typeCss = 'type-default',
+                forcePrevIcon = hasIconSetting && self.preferIconicPreview,
+                forceZoomIcon = hasIconSetting && self.preferIconicZoomPreview, getContent;
+            config = screenW < 400 ? (self.previewSettingsSmall[newCat] || self.defaults.previewSettingsSmall[newCat]) :
+                (self.previewSettings[newCat] || self.defaults.previewSettings[newCat]);
+            if (config) {
+                $.each(config, function (key, val) {
+                    styleAttribs += key + ':' + val + ';';
+                });
+            }
+            getContent = function (c, d, zoom, frameCss) {
+                var id = zoom ? 'zoom-' + previewId : previewId, tmplt = self._getPreviewTemplate(c),
+                    css = (frameClass || '') + ' ' + frameCss;
+                if (self.frameClass) {
+                    css = self.frameClass + ' ' + css;
+                }
+                if (zoom) {
+                    css = css.replace(' ' + $h.SORT_CSS, '');
+                }
+                tmplt = self._parseFilePreviewIcon(tmplt, fname);
+                if (c === 'text') {
+                    d = $h.htmlEncode(d);
+                }
+                if (cat === 'object' && !ftype) {
+                    $.each(self.defaults.fileTypeSettings, function (key, func) {
+                        if (key === 'object' || key === 'other') {
+                            return;
+                        }
+                        if (func(fname, ftype)) {
+                            typeCss = 'type-' + key;
+                        }
+                    });
+                }
+                if (!$h.isEmpty(attrs)) {
+                    if (attrs.title !== undefined && attrs.title !== null) {
+                        title = attrs.title;
+                    }
+                    if (attrs.alt !== undefined && attrs.alt !== null) {
+                        title = attrs.alt;
+                    }
+                }
+                return tmplt.setTokens({
+                    'previewId': id,
+                    'caption': caption,
+                    'title': title,
+                    'alt': alt,
+                    'frameClass': css,
+                    'type': self._getFileType(ftype),
+                    'fileindex': ind,
+                    'fileid': fileId || '',
+                    'typeCss': typeCss,
+                    'footer': footer,
+                    'data': d,
+                    'template': templ || cat,
+                    'style': styleAttribs ? 'style="' + styleAttribs + '"' : ''
+                });
+            };
+            ind = ind || previewId.slice(previewId.lastIndexOf('-') + 1);
+            if (self.fileActionSettings.showZoom) {
+                zoomContent = getContent((forceZoomIcon ? 'other' : cat), zoomData ? zoomData : data, true,
+                    'kv-zoom-thumb');
+            }
+            zoomContent = '\n' + self._getLayoutTemplate('zoomCache').replace('{zoomContent}', zoomContent);
+            if (typeof self.sanitizeZoomCache === 'function') {
+                zoomContent = self.sanitizeZoomCache(zoomContent);
+            }
+            prevContent = getContent((forcePrevIcon ? 'other' : cat), data, false, 'kv-preview-thumb');
+            return prevContent + zoomContent;
+        },
+        _addToPreview: function ($preview, content) {
+            var self = this;
+            return self.reversePreviewOrder ? $preview.prepend(content) : $preview.append(content);
+        },
+        _previewDefault: function (file, previewId, isDisabled) {
+            var self = this, $preview = self.$preview;
+            if (!self.showPreview) {
+                return;
+            }
+            var fname = $h.getFileName(file), ftype = file ? file.type : '', content, size = file.size || 0,
+                caption = self._getFileName(file, ''), isError = isDisabled === true && !self.isAjaxUpload,
+                data = $h.createObjectURL(file), fileId = self.fileManager.getId(file);
+            self._clearDefaultPreview();
+            content = self._generatePreviewTemplate('other', data, fname, ftype, previewId, fileId, isError, size);
+            self._addToPreview($preview, content);
+            self._setThumbAttr(previewId, caption, size);
+            if (isDisabled === true && self.isAjaxUpload) {
+                self._setThumbStatus($('#' + previewId), 'Error');
+            }
+        },
+        canPreview: function (file) {
+            var self = this;
+            if (!file || !self.showPreview || !self.$preview || !self.$preview.length) {
+                return false;
+            }
+            var name = file.name || '', type = file.type || '', size = (file.size || 0) / 1000,
+                cat = self._parseFileType(type, name), allowedTypes, allowedMimes, allowedExts, skipPreview,
+                types = self.allowedPreviewTypes, mimes = self.allowedPreviewMimeTypes,
+                exts = self.allowedPreviewExtensions || [], dTypes = self.disabledPreviewTypes,
+                dMimes = self.disabledPreviewMimeTypes, dExts = self.disabledPreviewExtensions || [],
+                maxSize = self.maxFilePreviewSize && parseFloat(self.maxFilePreviewSize) || 0,
+                expAllExt = new RegExp('\\.(' + exts.join('|') + ')$', 'i'),
+                expDisExt = new RegExp('\\.(' + dExts.join('|') + ')$', 'i');
+            allowedTypes = !types || types.indexOf(cat) !== -1;
+            allowedMimes = !mimes || mimes.indexOf(type) !== -1;
+            allowedExts = !exts.length || $h.compare(name, expAllExt);
+            skipPreview = (dTypes && dTypes.indexOf(cat) !== -1) || (dMimes && dMimes.indexOf(type) !== -1) ||
+                (dExts.length && $h.compare(name, expDisExt)) || (maxSize && !isNaN(maxSize) && size > maxSize);
+            return !skipPreview && (allowedTypes || allowedMimes || allowedExts);
+        },
+        _previewFile: function (i, file, theFile, previewId, data, fileInfo) {
+            if (!this.showPreview) {
+                return;
+            }
+            var self = this, fname = $h.getFileName(file), ftype = fileInfo.type, caption = fileInfo.name,
+                cat = self._parseFileType(ftype, fname), content, $preview = self.$preview, fsize = file.size || 0,
+                iData = (cat === 'text' || cat === 'html' || cat === 'image') ? theFile.target.result : data,
+                fileId = self.fileManager.getId(file);
+            /** @namespace window.DOMPurify */
+            if (cat === 'html' && self.purifyHtml && window.DOMPurify) {
+                iData = window.DOMPurify.sanitize(iData);
+            }
+            content = self._generatePreviewTemplate(cat, iData, fname, ftype, previewId, fileId, false, fsize);
+            self._clearDefaultPreview();
+            self._addToPreview($preview, content);
+            var $thumb = $preview.find('#' + previewId), $img = $thumb.find('img'), id = $thumb.attr('data-fileid');
+            self._validateImageOrientation($img, file, previewId, id, caption, ftype, fsize, iData);
+            self._setThumbAttr(previewId, caption, fsize);
+            self._initSortable();
+        },
+        _setThumbAttr: function (id, caption, size) {
+            var self = this, $frame = $('#' + id);
+            if ($frame.length) {
+                size = size && size > 0 ? self._getSize(size) : '';
+                $frame.data({'caption': caption, 'size': size});
+            }
+        },
+        _setInitThumbAttr: function () {
+            var self = this, data = self.previewCache.data, len = self.previewCache.count(true), config,
+                caption, size, previewId;
+            if (len === 0) {
+                return;
+            }
+            for (var i = 0; i < len; i++) {
+                config = data.config[i];
+                previewId = self.previewInitId + '-' + 'init_' + i;
+                caption = $h.ifSet('caption', config, $h.ifSet('filename', config));
+                size = $h.ifSet('size', config);
+                self._setThumbAttr(previewId, caption, size);
+            }
+        },
+        _slugDefault: function (text) {
+            // noinspection RegExpRedundantEscape
+            return $h.isEmpty(text) ? '' : String(text).replace(/[\[\]\/\{}:;#%=\(\)\*\+\?\\\^\$\|<>&"']/g, '_');
+        },
+        _updateFileDetails: function (numFiles) {
+            var self = this, $el = self.$element, label, n, log, nFiles, file,
+                name = ($h.isIE(9) && $h.findFileName($el.val())) || ($el[0].files[0] && $el[0].files[0].name);
+            if (!name && self.fileManager.count() > 0) {
+                file = self.fileManager.getFirstFile();
+                label = file.nameFmt;
+            } else {
+                label = name ? self.slug(name) : '_';
+            }
+            n = self.isAjaxUpload ? self.fileManager.count() : numFiles;
+            nFiles = self.previewCache.count(true) + n;
+            log = n === 1 ? label : self._getMsgSelected(nFiles);
+            if (self.isError) {
+                self.$previewContainer.removeClass('file-thumb-loading');
+                self.$previewStatus.html('');
+                self.$captionContainer.removeClass('icon-visible');
+            } else {
+                self._showFileIcon();
+            }
+            self._setCaption(log, self.isError);
+            self.$container.removeClass('file-input-new file-input-ajax-new');
+            if (arguments.length === 1) {
+                self._raise('fileselect', [numFiles, label]);
+            }
+            if (self.previewCache.count(true)) {
+                self._initPreviewActions();
+            }
+        },
+        _setThumbStatus: function ($thumb, status) {
+            var self = this;
+            if (!self.showPreview) {
+                return;
+            }
+            var icon = 'indicator' + status, msg = icon + 'Title',
+                css = 'file-preview-' + status.toLowerCase(),
+                $indicator = $thumb.find('.file-upload-indicator'),
+                config = self.fileActionSettings;
+            $thumb.removeClass('file-preview-success file-preview-error file-preview-paused file-preview-loading');
+            if (status === 'Success') {
+                $thumb.find('.file-drag-handle').remove();
+            }
+            $indicator.html(config[icon]);
+            $indicator.attr('title', config[msg]);
+            $thumb.addClass(css);
+            if (status === 'Error' && !self.retryErrorUploads) {
+                $thumb.find('.kv-file-upload').attr('disabled', true);
+            }
+        },
+        _setProgressCancelled: function () {
+            var self = this;
+            self._setProgress(101, self.$progress, self.msgCancelled);
+        },
+        _setProgress: function (p, $el, error, stats) {
+            var self = this;
+            $el = $el || self.$progress;
+            if (!$el.length) {
+                return;
+            }
+            var pct = Math.min(p, 100), out, pctLimit = self.progressUploadThreshold,
+                t = p <= 100 ? self.progressTemplate : self.progressCompleteTemplate,
+                template = pct < 100 ? self.progressTemplate :
+                    (error ? (self.paused ? self.progressPauseTemplate : self.progressErrorTemplate) : t);
+            if (p >= 100) {
+                stats = '';
+            }
+            if (!$h.isEmpty(template)) {
+                if (pctLimit && pct > pctLimit && p <= 100) {
+                    out = template.setTokens({'percent': pctLimit, 'status': self.msgUploadThreshold});
+                } else {
+                    out = template.setTokens({'percent': pct, 'status': (p > 100 ? self.msgUploadEnd : pct + '%')});
+                }
+                stats = stats || '';
+                out = out.setTokens({stats: stats});
+                $el.html(out);
+                if (error) {
+                    $el.find('[role="progressbar"]').html(error);
+                }
+            }
+        },
+        _setFileDropZoneTitle: function () {
+            var self = this, $zone = self.$container.find('.file-drop-zone'), title = self.dropZoneTitle, strFiles;
+            if (self.isClickable) {
+                strFiles = $h.isEmpty(self.$element.attr('multiple')) ? self.fileSingle : self.filePlural;
+                title += self.dropZoneClickTitle.replace('{files}', strFiles);
+            }
+            $zone.find('.' + self.dropZoneTitleClass).remove();
+            if (!self.showPreview || $zone.length === 0 || self.fileManager.count() > 0 || !self.dropZoneEnabled ||
+                (!self.isAjaxUpload && self.$element.files)) {
+                return;
+            }
+            if ($zone.find($h.FRAMES).length === 0 && $h.isEmpty(self.defaultPreviewContent)) {
+                $zone.prepend('<div class="' + self.dropZoneTitleClass + '">' + title + '</div>');
+            }
+            self.$container.removeClass('file-input-new');
+            $h.addCss(self.$container, 'file-input-ajax-new');
+        },
+        _getStats: function (stats) {
+            var self = this, pendingTime, t;
+            if (!self.showUploadStats || !stats || !stats.bitrate) {
+                return '';
+            }
+            t = self._getLayoutTemplate('stats');
+            pendingTime = (!stats.elapsed || !stats.bps) ? self.msgCalculatingTime :
+                self.msgPendingTime.setTokens({time: $h.getElapsed(Math.ceil(stats.pendingBytes / stats.bps))});
+
+            return t.setTokens({
+                uploadSpeed: stats.bitrate,
+                pendingTime: pendingTime
+            });
+        },
+        _setResumableProgress: function (pct, stats, $thumb) {
+            var self = this, rm = self.resumableManager, obj = $thumb ? rm : self,
+                $prog = $thumb ? $thumb.find('.file-thumb-progress') : null;
+            if (obj.lastProgress === 0) {
+                obj.lastProgress = pct;
+            }
+            if (pct < obj.lastProgress) {
+                pct = obj.lastProgress;
+            }
+            self._setProgress(pct, $prog, null, self._getStats(stats));
+            obj.lastProgress = pct;
+        },
+        _setFileUploadStats: function (id, pct, total, stats) {
+            var self = this, $prog = self.$progress;
+            if (!self.showPreview && (!$prog || !$prog.length)) {
+                return;
+            }
+            var fm = self.fileManager, $thumb = fm.getThumb(id), pctTot, rm = self.resumableManager,
+                totUpSize = 0, totSize = fm.getTotalSize(), totStats = $.extend(true, {}, stats);
+            if (self.enableResumableUpload) {
+                var loaded = stats.loaded, currUplSize = rm.getUploadedSize(), currTotSize = rm.file.size, totLoaded;
+                loaded += currUplSize;
+                totLoaded = fm.uploadedSize + loaded;
+                pct = $h.round(100 * loaded / currTotSize);
+                stats.pendingBytes = currTotSize - currUplSize;
+                self._setResumableProgress(pct, stats, $thumb);
+                pctTot = Math.floor(100 * totLoaded / totSize);
+                totStats.pendingBytes = totSize - totLoaded;
+                self._setResumableProgress(pctTot, totStats);
+            } else {
+                fm.setProgress(id, pct);
+                $prog = $thumb && $thumb.length ? $thumb.find('.file-thumb-progress') : null;
+                self._setProgress(pct, $prog, null, self._getStats(stats));
+                $.each(fm.stats, function (id, cfg) {
+                    totUpSize += cfg.loaded;
+                });
+                totStats.pendingBytes = totSize - totUpSize;
+                pctTot = $h.round(totUpSize / totSize * 100);
+                self._setProgress(pctTot, null, null, self._getStats(totStats));
+            }
+        },
+        _validateMinCount: function () {
+            var self = this, len = self.isAjaxUpload ? self.fileManager.count() : self._inputFileCount();
+            if (self.validateInitialCount && self.minFileCount > 0 && self._getFileCount(len - 1) < self.minFileCount) {
+                self._noFilesError({});
+                return false;
+            }
+            return true;
+        },
+        _getFileCount: function (fileCount) {
+            var self = this, addCount = 0;
+            if (self.validateInitialCount && !self.overwriteInitial) {
+                addCount = self.previewCache.count(true);
+                fileCount += addCount;
+            }
+            return fileCount;
+        },
+        _getFileId: function (file) {
+            return $h.getFileId(file, this.generateFileId);
+        },
+        _getFileName: function (file, defaultValue) {
+            var self = this, fileName = $h.getFileName(file);
+            return fileName ? self.slug(fileName) : defaultValue;
+        },
+        _getFileNames: function (skipNull) {
+            var self = this;
+            return self.filenames.filter(function (n) {
+                return (skipNull ? n !== undefined : n !== undefined && n !== null);
+            });
+        },
+        _setPreviewError: function ($thumb, keepFile) {
+            var self = this, removeFrame = self.removeFromPreviewOnError && !self.retryErrorUploads;
+            if (!keepFile || removeFrame) {
+                self.fileManager.remove($thumb);
+            }
+            if (!self.showPreview) {
+                return;
+            }
+            if (removeFrame) {
+                $thumb.remove();
+                return;
+            } else {
+                self._setThumbStatus($thumb, 'Error');
+            }
+            self._refreshUploadButton($thumb);
+        },
+        _refreshUploadButton: function ($thumb) {
+            var self = this, $btn = $thumb.find('.kv-file-upload'), cfg = self.fileActionSettings,
+                icon = cfg.uploadIcon, title = cfg.uploadTitle;
+            if (!$btn.length) {
+                return;
+            }
+            if (self.retryErrorUploads) {
+                icon = cfg.uploadRetryIcon;
+                title = cfg.uploadRetryTitle;
+            }
+            $btn.attr('title', title).html(icon);
+        },
+        _checkDimensions: function (i, chk, $img, $thumb, fname, type, params) {
+            var self = this, msg, dim, tag = chk === 'Small' ? 'min' : 'max', limit = self[tag + 'Image' + type],
+                $imgEl, isValid;
+            if ($h.isEmpty(limit) || !$img.length) {
+                return;
+            }
+            $imgEl = $img[0];
+            dim = (type === 'Width') ? $imgEl.naturalWidth || $imgEl.width : $imgEl.naturalHeight || $imgEl.height;
+            isValid = chk === 'Small' ? dim >= limit : dim <= limit;
+            if (isValid) {
+                return;
+            }
+            msg = self['msgImage' + type + chk].setTokens({'name': fname, 'size': limit});
+            self._showFileError(msg, params);
+            self._setPreviewError($thumb);
+        },
+        _getExifObj: function (data) {
+            var self = this, exifObj = null, error = $h.logMessages.exifWarning;
+            if (data.slice(0, 23) !== 'data:image/jpeg;base64,' && data.slice(0, 22) !== 'data:image/jpg;base64,') {
+                exifObj = null;
+                return;
+            }
+            try {
+                exifObj = window.piexif ? window.piexif.load(data) : null;
+            } catch (err) {
+                exifObj = null;
+                error = err && err.message || '';
+            }
+            if (!exifObj) {
+                self._log($h.logMessages.badExifParser, {details: error});
+            }
+            return exifObj;
+        },
+        setImageOrientation: function ($img, $zoomImg, value, $thumb) {
+            var self = this, invalidImg = !$img || !$img.length, invalidZoomImg = !$zoomImg || !$zoomImg.length, $mark,
+                isHidden = false, $div, zoomOnly = invalidImg && $thumb && $thumb.attr('data-template') === 'image', ev;
+            if (invalidImg && invalidZoomImg) {
+                return;
+            }
+            ev = 'load.fileinputimageorient';
+            if (zoomOnly) {
+                $img = $zoomImg;
+                $zoomImg = null;
+                $img.css(self.previewSettings.image);
+                $div = $(document.createElement('div')).appendTo($thumb.find('.kv-file-content'));
+                $mark = $(document.createElement('span')).insertBefore($img);
+                $img.css('visibility', 'hidden').removeClass('file-zoom-detail').appendTo($div);
+            } else {
+                isHidden = !$img.is(':visible');
+            }
+            $img.off(ev).on(ev, function () {
+                if (isHidden) {
+                    self.$preview.removeClass('hide-content');
+                    $thumb.find('.kv-file-content').css('visibility', 'hidden');
+                }
+                var img = $img.get(0), zoomImg = $zoomImg && $zoomImg.length ? $zoomImg.get(0) : null,
+                    h = img.offsetHeight, w = img.offsetWidth, r = $h.getRotation(value);
+                if (isHidden) {
+                    $thumb.find('.kv-file-content').css('visibility', 'visible');
+                    self.$preview.addClass('hide-content');
+                }
+                $img.data('orientation', value);
+                if (zoomImg) {
+                    $zoomImg.data('orientation', value);
+                }
+                if (value < 5) {
+                    $h.setTransform(img, r);
+                    $h.setTransform(zoomImg, r);
+                    return;
+                }
+                var offsetAngle = Math.atan(w / h), origFactor = Math.sqrt(Math.pow(h, 2) + Math.pow(w, 2)),
+                    scale = !origFactor ? 1 : (h / Math.cos(Math.PI / 2 + offsetAngle)) / origFactor,
+                    s = ' scale(' + Math.abs(scale) + ')';
+                $h.setTransform(img, r + s);
+                $h.setTransform(zoomImg, r + s);
+                if (zoomOnly) {
+                    $img.css('visibility', 'visible').insertAfter($mark).addClass('file-zoom-detail');
+                    $mark.remove();
+                    $div.remove();
+                }
+            });
+        },
+        _validateImageOrientation: function ($img, file, previewId, fileId, caption, ftype, fsize, iData) {
+            var self = this, exifObj, value, autoOrientImage = self.autoOrientImage;
+            exifObj = autoOrientImage ? self._getExifObj(iData) : null;
+            value = exifObj ? exifObj['0th'][piexif.ImageIFD.Orientation] : null; // jshint ignore:line
+            if (!value) {
+                self._validateImage(previewId, fileId, caption, ftype, fsize, iData, exifObj);
+                return;
+            }
+            self.setImageOrientation($img, $('#zoom-' + previewId + ' img'), value, $('#' + previewId));
+            self._raise('fileimageoriented', {'$img': $img, 'file': file});
+            self._validateImage(previewId, fileId, caption, ftype, fsize, iData, exifObj);
+        },
+        _validateImage: function (previewId, fileId, fname, ftype, fsize, iData, exifObj) {
+            var self = this, $preview = self.$preview, params, w1, w2, $thumb = $preview.find('#' + previewId),
+                i = $thumb.attr('data-fileindex'), $img = $thumb.find('img');
+            fname = fname || 'Untitled';
+            $img.one('load', function () {
+                w1 = $thumb.width();
+                w2 = $preview.width();
+                if (w1 > w2) {
+                    $img.css('width', '100%');
+                }
+                params = {ind: i, id: previewId, fileId: fileId};
+                self._checkDimensions(i, 'Small', $img, $thumb, fname, 'Width', params);
+                self._checkDimensions(i, 'Small', $img, $thumb, fname, 'Height', params);
+                if (!self.resizeImage) {
+                    self._checkDimensions(i, 'Large', $img, $thumb, fname, 'Width', params);
+                    self._checkDimensions(i, 'Large', $img, $thumb, fname, 'Height', params);
+                }
+                self._raise('fileimageloaded', [previewId]);
+                self.fileManager.addImage(fileId, {
+                    ind: i,
+                    img: $img,
+                    thumb: $thumb,
+                    pid: previewId,
+                    typ: ftype,
+                    siz: fsize,
+                    validated: false,
+                    imgData: iData,
+                    exifObj: exifObj
+                });
+                $thumb.data('exif', exifObj);
+                self._validateAllImages();
+            }).one('error', function () {
+                self._raise('fileimageloaderror', [previewId]);
+            }).each(function () {
+                if (this.complete) {
+                    $(this).trigger('load');
+                } else {
+                    if (this.error) {
+                        $(this).trigger('error');
+                    }
+                }
+            });
+        },
+        _validateAllImages: function () {
+            var self = this, counter = {val: 0}, numImgs = self.fileManager.getImageCount(), fsize,
+                minSize = self.resizeIfSizeMoreThan;
+            if (numImgs !== self.fileManager.totalImages) {
+                return;
+            }
+            self._raise('fileimagesloaded');
+            if (!self.resizeImage) {
+                return;
+            }
+            $.each(self.fileManager.loadedImages, function (id, config) {
+                if (!config.validated) {
+                    fsize = config.siz;
+                    if (fsize && fsize > minSize * 1000) {
+                        self._getResizedImage(id, config, counter, numImgs);
+                    }
+                    config.validated = true;
+                }
+            });
+        },
+        _getResizedImage: function (id, config, counter, numImgs) {
+            var self = this, img = $(config.img)[0], width = img.naturalWidth, height = img.naturalHeight, blob,
+                ratio = 1, maxWidth = self.maxImageWidth || width, maxHeight = self.maxImageHeight || height,
+                isValidImage = !!(width && height), chkWidth, chkHeight, canvas = self.imageCanvas, dataURI,
+                context = self.imageCanvasContext, type = config.typ, pid = config.pid, ind = config.ind,
+                $thumb = config.thumb, throwError, msg, exifObj = config.exifObj, exifStr, file, params, evParams;
+            throwError = function (msg, params, ev) {
+                if (self.isAjaxUpload) {
+                    self._showFileError(msg, params, ev);
+                } else {
+                    self._showError(msg, params, ev);
+                }
+                self._setPreviewError($thumb);
+            };
+            file = self.fileManager.getFile(id);
+            params = {id: pid, 'index': ind, fileId: id};
+            evParams = [id, pid, ind];
+            if (!file || !isValidImage || (width <= maxWidth && height <= maxHeight)) {
+                if (isValidImage && file) {
+                    self._raise('fileimageresized', evParams);
+                }
+                counter.val++;
+                if (counter.val === numImgs) {
+                    self._raise('fileimagesresized');
+                }
+                if (!isValidImage) {
+                    throwError(self.msgImageResizeError, params, 'fileimageresizeerror');
+                    return;
+                }
+            }
+            type = type || self.resizeDefaultImageType;
+            chkWidth = width > maxWidth;
+            chkHeight = height > maxHeight;
+            if (self.resizePreference === 'width') {
+                ratio = chkWidth ? maxWidth / width : (chkHeight ? maxHeight / height : 1);
+            } else {
+                ratio = chkHeight ? maxHeight / height : (chkWidth ? maxWidth / width : 1);
+            }
+            self._resetCanvas();
+            width *= ratio;
+            height *= ratio;
+            canvas.width = width;
+            canvas.height = height;
+            try {
+                context.drawImage(img, 0, 0, width, height);
+                dataURI = canvas.toDataURL(type, self.resizeQuality);
+                if (exifObj) {
+                    exifStr = window.piexif.dump(exifObj);
+                    dataURI = window.piexif.insert(exifStr, dataURI);
+                }
+                blob = $h.dataURI2Blob(dataURI);
+                self.fileManager.setFile(id, blob);
+                self._raise('fileimageresized', evParams);
+                counter.val++;
+                if (counter.val === numImgs) {
+                    self._raise('fileimagesresized', [undefined, undefined]);
+                }
+                if (!(blob instanceof Blob)) {
+                    throwError(self.msgImageResizeError, params, 'fileimageresizeerror');
+                }
+            }
+            catch (err) {
+                counter.val++;
+                if (counter.val === numImgs) {
+                    self._raise('fileimagesresized', [undefined, undefined]);
+                }
+                msg = self.msgImageResizeException.replace('{errors}', err.message);
+                throwError(msg, params, 'fileimageresizeexception');
+            }
+        },
+        _initBrowse: function ($container) {
+            var self = this, $el = self.$element;
+            if (self.showBrowse) {
+                self.$btnFile = $container.find('.btn-file').append($el);
+            } else {
+                $el.appendTo($container).attr('tabindex', -1);
+                $h.addCss($el, 'file-no-browse');
+            }
+        },
+        _initClickable: function () {
+            var self = this, $zone, $tmpZone;
+            if (!self.isClickable) {
+                return;
+            }
+            $zone = self.$dropZone;
+            if (!self.isAjaxUpload) {
+                $tmpZone = self.$preview.find('.file-default-preview');
+                if ($tmpZone.length) {
+                    $zone = $tmpZone;
+                }
+            }
+
+            $h.addCss($zone, 'clickable');
+            $zone.attr('tabindex', -1);
+            self._handler($zone, 'click', function (e) {
+                var $tar = $(e.target);
+                if (!$(self.elErrorContainer + ':visible').length &&
+                    (!$tar.parents('.file-preview-thumbnails').length || $tar.parents(
+                        '.file-default-preview').length)) {
+                    self.$element.data('zoneClicked', true).trigger('click');
+                    $zone.blur();
+                }
+            });
+        },
+        _initCaption: function () {
+            var self = this, cap = self.initialCaption || '';
+            if (self.overwriteInitial || $h.isEmpty(cap)) {
+                self.$caption.val('');
+                return false;
+            }
+            self._setCaption(cap);
+            return true;
+        },
+        _setCaption: function (content, isError) {
+            var self = this, title, out, icon, n, cap, file;
+            if (!self.$caption.length) {
+                return;
+            }
+            self.$captionContainer.removeClass('icon-visible');
+            if (isError) {
+                title = $('<div>' + self.msgValidationError + '</div>').text();
+                n = self.fileManager.count();
+                if (n) {
+                    file = self.fileManager.getFirstFile();
+                    cap = n === 1 && file ? file.nameFmt : self._getMsgSelected(n);
+                } else {
+                    cap = self._getMsgSelected(self.msgNo);
+                }
+                out = $h.isEmpty(content) ? cap : content;
+                icon = '<span class="' + self.msgValidationErrorClass + '">' + self.msgValidationErrorIcon + '</span>';
+            } else {
+                if ($h.isEmpty(content)) {
+                    return;
+                }
+                title = $('<div>' + content + '</div>').text();
+                out = title;
+                icon = self._getLayoutTemplate('fileIcon');
+            }
+            self.$captionContainer.addClass('icon-visible');
+            self.$caption.attr('title', title).val(out);
+            self.$captionIcon.html(icon);
+        },
+        _createContainer: function () {
+            var self = this, attribs = {'class': 'file-input file-input-new' + (self.rtl ? ' kv-rtl' : '')},
+                $container = $(document.createElement('div')).attr(attribs).html(self._renderMain());
+            $container.insertBefore(self.$element);
+            self._initBrowse($container);
+            if (self.theme) {
+                $container.addClass('theme-' + self.theme);
+            }
+            return $container;
+        },
+        _refreshContainer: function () {
+            var self = this, $container = self.$container, $el = self.$element;
+            $el.insertAfter($container);
+            $container.html(self._renderMain());
+            self._initBrowse($container);
+            self._validateDisabled();
+        },
+        _validateDisabled: function () {
+            var self = this;
+            self.$caption.attr({readonly: self.isDisabled});
+        },
+        _renderMain: function () {
+            var self = this,
+                dropCss = self.dropZoneEnabled ? ' file-drop-zone' : 'file-drop-disabled',
+                close = !self.showClose ? '' : self._getLayoutTemplate('close'),
+                preview = !self.showPreview ? '' : self._getLayoutTemplate('preview')
+                    .setTokens({'class': self.previewClass, 'dropClass': dropCss}),
+                css = self.isDisabled ? self.captionClass + ' file-caption-disabled' : self.captionClass,
+                caption = self.captionTemplate.setTokens({'class': css + ' kv-fileinput-caption'});
+            return self.mainTemplate.setTokens({
+                'class': self.mainClass + (!self.showBrowse && self.showCaption ? ' no-browse' : ''),
+                'preview': preview,
+                'close': close,
+                'caption': caption,
+                'upload': self._renderButton('upload'),
+                'remove': self._renderButton('remove'),
+                'cancel': self._renderButton('cancel'),
+                'pause': self._renderButton('pause'),
+                'browse': self._renderButton('browse')
+            });
+
+        },
+        _renderButton: function (type) {
+            var self = this, tmplt = self._getLayoutTemplate('btnDefault'), css = self[type + 'Class'],
+                title = self[type + 'Title'], icon = self[type + 'Icon'], label = self[type + 'Label'],
+                status = self.isDisabled ? ' disabled' : '', btnType = 'button';
+            switch (type) {
+                case 'remove':
+                    if (!self.showRemove) {
+                        return '';
+                    }
+                    break;
+                case 'cancel':
+                    if (!self.showCancel) {
+                        return '';
+                    }
+                    css += ' kv-hidden';
+                    break;
+                case 'pause':
+                    if (!self.showPause) {
+                        return '';
+                    }
+                    css += ' kv-hidden';
+                    break;
+                case 'upload':
+                    if (!self.showUpload) {
+                        return '';
+                    }
+                    if (self.isAjaxUpload && !self.isDisabled) {
+                        tmplt = self._getLayoutTemplate('btnLink').replace('{href}', self.uploadUrl);
+                    } else {
+                        btnType = 'submit';
+                    }
+                    break;
+                case 'browse':
+                    if (!self.showBrowse) {
+                        return '';
+                    }
+                    tmplt = self._getLayoutTemplate('btnBrowse');
+                    break;
+                default:
+                    return '';
+            }
+
+            css += type === 'browse' ? ' btn-file' : ' fileinput-' + type + ' fileinput-' + type + '-button';
+            if (!$h.isEmpty(label)) {
+                label = ' <span class="' + self.buttonLabelClass + '">' + label + '</span>';
+            }
+            return tmplt.setTokens({
+                'type': btnType, 'css': css, 'title': title, 'status': status, 'icon': icon, 'label': label
+            });
+        },
+        _renderThumbProgress: function () {
+            var self = this;
+            return '<div class="file-thumb-progress kv-hidden">' +
+                self.progressInfoTemplate.setTokens({percent: 101, status: self.msgUploadBegin, stats: ''}) +
+                '</div>';
+        },
+        _renderFileFooter: function (cat, caption, size, width, isError) {
+            var self = this, config = self.fileActionSettings, rem = config.showRemove, drg = config.showDrag,
+                upl = config.showUpload, zoom = config.showZoom, out, params,
+                template = self._getLayoutTemplate('footer'), tInd = self._getLayoutTemplate('indicator'),
+                ind = isError ? config.indicatorError : config.indicatorNew,
+                title = isError ? config.indicatorErrorTitle : config.indicatorNewTitle,
+                indicator = tInd.setTokens({'indicator': ind, 'indicatorTitle': title});
+            size = self._getSize(size);
+            params = {type: cat, caption: caption, size: size, width: width, progress: '', indicator: indicator};
+            if (self.isAjaxUpload) {
+                params.progress = self._renderThumbProgress();
+                params.actions = self._renderFileActions(params, upl, false, rem, zoom, drg, false, false, false);
+            } else {
+                params.actions = self._renderFileActions(params, false, false, false, zoom, drg, false, false, false);
+            }
+            out = template.setTokens(params);
+            out = $h.replaceTags(out, self.previewThumbTags);
+            return out;
+        },
+        _renderFileActions: function (
+            cfg,
+            showUpl,
+            showDwn,
+            showDel,
+            showZoom,
+            showDrag,
+            disabled,
+            url,
+            key,
+            isInit,
+            dUrl,
+            dFile
+        ) {
+            var self = this;
+            if (!cfg.type && isInit) {
+                cfg.type = 'image';
+            }
+            if (self.enableResumableUpload) {
+                showUpl = false;
+            } else {
+                if (typeof showUpl === 'function') {
+                    showUpl = showUpl(cfg);
+                }
+            }
+            if (typeof showDwn === 'function') {
+                showDwn = showDwn(cfg);
+            }
+            if (typeof showDel === 'function') {
+                showDel = showDel(cfg);
+            }
+            if (typeof showZoom === 'function') {
+                showZoom = showZoom(cfg);
+            }
+            if (typeof showDrag === 'function') {
+                showDrag = showDrag(cfg);
+            }
+            if (!showUpl && !showDwn && !showDel && !showZoom && !showDrag) {
+                return '';
+            }
+            var vUrl = url === false ? '' : ' data-url="' + url + '"', btnZoom = '', btnDrag = '', css,
+                vKey = key === false ? '' : ' data-key="' + key + '"', btnDelete = '', btnUpload = '', btnDownload = '',
+                template = self._getLayoutTemplate('actions'), config = self.fileActionSettings,
+                otherButtons = self.otherActionButtons.setTokens({'dataKey': vKey, 'key': key}),
+                removeClass = disabled ? config.removeClass + ' disabled' : config.removeClass;
+            if (showDel) {
+                btnDelete = self._getLayoutTemplate('actionDelete').setTokens({
+                    'removeClass': removeClass,
+                    'removeIcon': config.removeIcon,
+                    'removeTitle': config.removeTitle,
+                    'dataUrl': vUrl,
+                    'dataKey': vKey,
+                    'key': key
+                });
+            }
+            if (showUpl) {
+                btnUpload = self._getLayoutTemplate('actionUpload').setTokens({
+                    'uploadClass': config.uploadClass,
+                    'uploadIcon': config.uploadIcon,
+                    'uploadTitle': config.uploadTitle
+                });
+            }
+            if (showDwn) {
+                btnDownload = self._getLayoutTemplate('actionDownload').setTokens({
+                    'downloadClass': config.downloadClass,
+                    'downloadIcon': config.downloadIcon,
+                    'downloadTitle': config.downloadTitle,
+                    'downloadUrl': dUrl || self.initialPreviewDownloadUrl
+                });
+                btnDownload = btnDownload.setTokens({'filename': dFile, 'key': key});
+            }
+            if (showZoom) {
+                btnZoom = self._getLayoutTemplate('actionZoom').setTokens({
+                    'zoomClass': config.zoomClass,
+                    'zoomIcon': config.zoomIcon,
+                    'zoomTitle': config.zoomTitle
+                });
+            }
+            if (showDrag && isInit) {
+                css = 'drag-handle-init ' + config.dragClass;
+                btnDrag = self._getLayoutTemplate('actionDrag').setTokens({
+                    'dragClass': css,
+                    'dragTitle': config.dragTitle,
+                    'dragIcon': config.dragIcon
+                });
+            }
+            return template.setTokens({
+                'delete': btnDelete,
+                'upload': btnUpload,
+                'download': btnDownload,
+                'zoom': btnZoom,
+                'drag': btnDrag,
+                'other': otherButtons
+            });
+        },
+        _browse: function (e) {
+            var self = this;
+            if (e && e.isDefaultPrevented() || !self._raise('filebrowse')) {
+                return;
+            }
+            if (self.isError && !self.isAjaxUpload) {
+                self.clear();
+            }
+            self.$captionContainer.focus();
+        },
+        _change: function (e) {
+            var self = this;
+            if (self.changeTriggered) {
+                return;
+            }
+            var $el = self.$element, isDragDrop = arguments.length > 1, isAjaxUpload = self.isAjaxUpload,
+                tfiles, files = isDragDrop ? arguments[1] : $el.get(0).files, total,
+                maxCount = !isAjaxUpload && $h.isEmpty($el.attr('multiple')) ? 1 : self.maxFileCount,
+                len, ctr = self.fileManager.count(), isSingleUpload = $h.isEmpty($el.attr('multiple')),
+                flagSingle = (isSingleUpload && ctr > 0),
+                throwError = function (mesg, file, previewId, index) {
+                    var p1 = $.extend(true, {}, self._getOutData(null, {}, {}, files), {id: previewId, index: index}),
+                        p2 = {id: previewId, index: index, file: file, files: files};
+                    return isAjaxUpload ? self._showFileError(mesg, p1) : self._showError(mesg, p2);
+                },
+                maxCountCheck = function (n, m) {
+                    var msg = self.msgFilesTooMany.replace('{m}', m).replace('{n}', n);
+                    self.isError = throwError(msg, null, null, null);
+                    self.$captionContainer.removeClass('icon-visible');
+                    self._setCaption('', true);
+                    self.$container.removeClass('file-input-new file-input-ajax-new');
+                };
+            self.reader = null;
+            self._resetUpload();
+            self._hideFileIcon();
+            if (self.dropZoneEnabled) {
+                self.$container.find('.file-drop-zone .' + self.dropZoneTitleClass).remove();
+            }
+            if (!isAjaxUpload) {
+                if (e.target && e.target.files === undefined) {
+                    files = e.target.value ? [{name: e.target.value.replace(/^.+\\/, '')}] : [];
+                } else {
+                    files = e.target.files || {};
+                }
+            }
+            tfiles = files;
+            if ($h.isEmpty(tfiles) || tfiles.length === 0) {
+                if (!isAjaxUpload) {
+                    self.clear();
+                }
+                self._raise('fileselectnone');
+                return;
+            }
+            self._resetErrors();
+            len = tfiles.length;
+            total = self._getFileCount(isAjaxUpload ? (self.fileManager.count() + len) : len);
+            if (maxCount > 0 && total > maxCount) {
+                if (!self.autoReplace || len > maxCount) {
+                    maxCountCheck((self.autoReplace && len > maxCount ? len : total), maxCount);
+                    return;
+                }
+                if (total > maxCount) {
+                    self._resetPreviewThumbs(isAjaxUpload);
+                }
+            } else {
+                if (!isAjaxUpload || flagSingle) {
+                    self._resetPreviewThumbs(false);
+                    if (flagSingle) {
+                        self.clearFileStack();
+                    }
+                } else {
+                    if (isAjaxUpload && ctr === 0 && (!self.previewCache.count(true) || self.overwriteInitial)) {
+                        self._resetPreviewThumbs(true);
+                    }
+                }
+            }
+            self.readFiles(tfiles);
+        },
+        _abort: function (params) {
+            var self = this, data;
+            if (self.ajaxAborted && typeof self.ajaxAborted === 'object' && self.ajaxAborted.message !== undefined) {
+                data = $.extend(true, {}, self._getOutData(null), params);
+                data.abortData = self.ajaxAborted.data || {};
+                data.abortMessage = self.ajaxAborted.message;
+                self._setProgress(101, self.$progress, self.msgCancelled);
+                self._showFileError(self.ajaxAborted.message, data, 'filecustomerror');
+                self.cancel();
+                return true;
+            }
+            return !!self.ajaxAborted;
+        },
+        _resetFileStack: function () {
+            var self = this, i = 0;
+            self._getThumbs().each(function () {
+                var $thumb = $(this), ind = $thumb.attr('data-fileindex'), pid = $thumb.attr('id');
+                if (ind === '-1' || ind === -1) {
+                    return;
+                }
+                if (!self.fileManager.getFile($thumb.attr('data-fileid'))) {
+                    $thumb.attr({'id': self.previewInitId + '-' + i, 'data-fileindex': i});
+                    i++;
+                } else {
+                    $thumb.attr({'id': 'uploaded-' + $h.uniqId(), 'data-fileindex': '-1'});
+                }
+                self.$preview.find('#zoom-' + pid).attr({
+                    'id': 'zoom-' + $thumb.attr('id'),
+                    'data-fileindex': $thumb.attr('data-fileindex')
+                });
+            });
+        },
+        _isFileSelectionValid: function (cnt) {
+            var self = this;
+            cnt = cnt || 0;
+            if (self.required && !self.getFilesCount()) {
+                self.$errorContainer.html('');
+                self._showFileError(self.msgFileRequired);
+                return false;
+            }
+            if (self.minFileCount > 0 && self._getFileCount(cnt) < self.minFileCount) {
+                self._noFilesError({});
+                return false;
+            }
+            return true;
+        },
+        clearFileStack: function () {
+            var self = this;
+            self.fileManager.clear();
+            self._initResumableUpload();
+            if (self.enableResumableUpload) {
+                if (self.showPause === null) {
+                    self.showPause = true;
+                }
+                if (self.showCancel === null) {
+                    self.showCancel = false;
+                }
+            } else {
+                self.showPause = false;
+                if (self.showCancel === null) {
+                    self.showCancel = true;
+                }
+            }
+            return self.$element;
+        },
+        getFileStack: function () {
+            return this.files.stack;
+        },
+        getFileList: function () {
+            return this.files.list();
+        },
+        getFilesCount: function () {
+            var self = this, len = self.isAjaxUpload ? self.fileManager.count() : self._inputFileCount();
+            return self._getFileCount(len);
+        },
+        readFiles: function (files) {
+            this.reader = new FileReader();
+            var self = this, $el = self.$element, reader = self.reader,
+                $container = self.$previewContainer, $status = self.$previewStatus, msgLoading = self.msgLoading,
+                msgProgress = self.msgProgress, previewInitId = self.previewInitId, numFiles = files.length,
+                settings = self.fileTypeSettings, ctr = self.fileManager.count(), readFile,
+                fileTypes = self.allowedFileTypes, typLen = fileTypes ? fileTypes.length : 0,
+                fileExt = self.allowedFileExtensions, strExt = $h.isEmpty(fileExt) ? '' : fileExt.join(', '),
+                throwError = function (msg, file, previewId, index, fileId) {
+                    var p1 = $.extend(true, {}, self._getOutData(null, {}, {}, files),
+                        {id: previewId, index: index, fileId: fileId}), $thumb = $('#' + previewId),
+                        p2 = {id: previewId, index: index, fileId: fileId, file: file, files: files};
+                    self._previewDefault(file, previewId, true);
+                    if (self.isAjaxUpload) {
+                        setTimeout(function () {
+                            readFile(index + 1);
+                        }, self.processDelay);
+                    } else {
+                        numFiles = 0;
+                    }
+                    self._initFileActions();
+                    $thumb.remove();
+                    self.isError = self.isAjaxUpload ? self._showFileError(msg, p1) : self._showError(msg, p2);
+                    self._updateFileDetails(numFiles);
+                };
+            self.fileManager.clearImages();
+            $.each(files, function (key, file) {
+                var func = self.fileTypeSettings.image;
+                if (func && func(file.type)) {
+                    self.fileManager.totalImages++;
+                }
+            });
+            readFile = function (i) {
+                if ($h.isEmpty($el.attr('multiple'))) {
+                    numFiles = 1;
+                }
+                if (i >= numFiles) {
+                    if (self.isAjaxUpload && self.fileManager.count() > 0) {
+                        self._raise('filebatchselected', [self.fileManager.stack]);
+                    } else {
+                        self._raise('filebatchselected', [files]);
+                    }
+                    $container.removeClass('file-thumb-loading');
+                    $status.html('');
+                    return;
+                }
+                var node = ctr + i, previewId = previewInitId + '-' + node, file = files[i], fSizeKB, j, msg, $thumb,
+                    fnText = settings.text, fnImage = settings.image, fnHtml = settings.html, typ, chk, typ1, typ2,
+                    caption = self._getFileName(file, ''), fileSize = (file && file.size || 0) / 1000,
+                    fileExtExpr = '', previewData = $h.createObjectURL(file), fileCount = 0,
+                    strTypes = '', fileId,
+                    func, knownTypes = 0, isText, isHtml, isImage, txtFlag, processFileLoaded = function () {
+                        var msg = msgProgress.setTokens({
+                            'index': i + 1,
+                            'files': numFiles,
+                            'percent': 50,
+                            'name': caption
+                        });
+                        setTimeout(function () {
+                            $status.html(msg);
+                            self._updateFileDetails(numFiles);
+                            readFile(i + 1);
+                        }, self.processDelay);
+                        self._raise('fileloaded', [file, previewId, i, reader]);
+                    };
+                if (!file) {
+                    return;
+                }
+                fileId = self.fileManager.getId(file);
+                if (typLen > 0) {
+                    for (j = 0; j < typLen; j++) {
+                        typ1 = fileTypes[j];
+                        typ2 = self.msgFileTypes[typ1] || typ1;
+                        strTypes += j === 0 ? typ2 : ', ' + typ2;
+                    }
+                }
+                if (caption === false) {
+                    readFile(i + 1);
+                    return;
+                }
+                if (caption.length === 0) {
+                    msg = self.msgInvalidFileName.replace('{name}', $h.htmlEncode($h.getFileName(file), '[unknown]'));
+                    throwError(msg, file, previewId, i, fileId);
+                    return;
+                }
+                if (!$h.isEmpty(fileExt)) {
+                    fileExtExpr = new RegExp('\\.(' + fileExt.join('|') + ')$', 'i');
+                }
+                fSizeKB = fileSize.toFixed(2);
+                if (self.maxFileSize > 0 && fileSize > self.maxFileSize) {
+                    msg = self.msgSizeTooLarge.setTokens({
+                        'name': caption,
+                        'size': fSizeKB,
+                        'maxSize': self.maxFileSize
+                    });
+                    throwError(msg, file, previewId, i, fileId);
+                    return;
+                }
+                if (self.minFileSize !== null && fileSize <= $h.getNum(self.minFileSize)) {
+                    msg = self.msgSizeTooSmall.setTokens({
+                        'name': caption,
+                        'size': fSizeKB,
+                        'minSize': self.minFileSize
+                    });
+                    throwError(msg, file, previewId, i, fileId);
+                    return;
+                }
+                if (!$h.isEmpty(fileTypes) && $h.isArray(fileTypes)) {
+                    for (j = 0; j < fileTypes.length; j += 1) {
+                        typ = fileTypes[j];
+                        func = settings[typ];
+                        fileCount += !func || (typeof func !== 'function') ? 0 : (func(file.type,
+                            $h.getFileName(file)) ? 1 : 0);
+                    }
+                    if (fileCount === 0) {
+                        msg = self.msgInvalidFileType.setTokens({name: caption, types: strTypes});
+                        throwError(msg, file, previewId, i, fileId);
+                        return;
+                    }
+                }
+                if (fileCount === 0 && !$h.isEmpty(fileExt) && $h.isArray(fileExt) && !$h.isEmpty(fileExtExpr)) {
+                    chk = $h.compare(caption, fileExtExpr);
+                    fileCount += $h.isEmpty(chk) ? 0 : chk.length;
+                    if (fileCount === 0) {
+                        msg = self.msgInvalidFileExtension.setTokens({name: caption, extensions: strExt});
+                        throwError(msg, file, previewId, i, fileId);
+                        return;
+                    }
+                }
+                if (self.isAjaxUpload && self.fileManager.exists(fileId)) {
+                    msg = self.msgDuplicateFile.setTokens({name: caption, size: fSizeKB});
+                    throwError(msg, file, previewId, i, fileId);
+                    $thumb = $('#' + previewId);
+                    if ($thumb && $thumb.length) {
+                        $thumb.remove();
+                    }
+                    return;
+                }
+                if (!self.canPreview(file)) {
+                    if (self.isAjaxUpload) {
+                        self.fileManager.add(file);
+                    }
+                    if (self.showPreview) {
+                        $container.addClass('file-thumb-loading');
+                        self._previewDefault(file, previewId);
+                        self._initFileActions();
+                    }
+                    setTimeout(function () {
+                        self._updateFileDetails(numFiles);
+                        readFile(i + 1);
+                        self._raise('fileloaded', [file, previewId, i]);
+                    }, 10);
+                    return;
+                }
+                isText = fnText(file.type, caption);
+                isHtml = fnHtml(file.type, caption);
+                isImage = fnImage(file.type, caption);
+                $status.html(msgLoading.replace('{index}', i + 1).replace('{files}', numFiles));
+                $container.addClass('file-thumb-loading');
+                reader.onerror = function (evt) {
+                    self._errorHandler(evt, caption);
+                };
+                reader.onload = function (theFile) {
+                    var hex, fileInfo, uint, byte, bytes = [], contents, mime, readTextImage = function (textFlag) {
+                        var newReader = new FileReader();
+                        newReader.onerror = function (theFileNew) {
+                            self._errorHandler(theFileNew, caption);
+                        };
+                        newReader.onload = function (theFileNew) {
+                            self._previewFile(i, file, theFileNew, previewId, previewData, fileInfo);
+                            self._initFileActions();
+                            processFileLoaded();
+                        };
+                        if (textFlag) {
+                            newReader.readAsText(file, self.textEncoding);
+                        } else {
+                            newReader.readAsDataURL(file);
+                        }
+                    };
+                    fileInfo = {'name': caption, 'type': file.type};
+                    $.each(settings, function (k, f) {
+                        if (k !== 'object' && k !== 'other' && typeof f === 'function' && f(file.type, caption)) {
+                            knownTypes++;
+                        }
+                    });
+                    if (knownTypes === 0) {// auto detect mime types from content if no known file types detected
+                        uint = new Uint8Array(theFile.target.result);
+                        for (j = 0; j < uint.length; j++) {
+                            byte = uint[j].toString(16);
+                            bytes.push(byte);
+                        }
+                        hex = bytes.join('').toLowerCase().substring(0, 8);
+                        mime = $h.getMimeType(hex, '', '');
+                        if ($h.isEmpty(mime)) { // look for ascii text content
+                            contents = $h.arrayBuffer2String(reader.result);
+                            mime = $h.isSvg(contents) ? 'image/svg+xml' : $h.getMimeType(hex, contents, file.type);
+                        }
+                        fileInfo = {'name': caption, 'type': mime};
+                        isText = fnText(mime, '');
+                        isHtml = fnHtml(mime, '');
+                        isImage = fnImage(mime, '');
+                        txtFlag = isText || isHtml;
+                        if (txtFlag || isImage) {
+                            readTextImage(txtFlag);
+                            return;
+                        }
+                    }
+                    self._previewFile(i, file, theFile, previewId, previewData, fileInfo);
+                    self._initFileActions();
+                    processFileLoaded();
+                };
+                reader.onprogress = function (data) {
+                    if (data.lengthComputable) {
+                        var fact = (data.loaded / data.total) * 100, progress = Math.ceil(fact);
+                        msg = msgProgress.setTokens({
+                            'index': i + 1,
+                            'files': numFiles,
+                            'percent': progress,
+                            'name': caption
+                        });
+                        setTimeout(function () {
+                            $status.html(msg);
+                        }, self.processDelay);
+                    }
+                };
+
+                if (isText || isHtml) {
+                    reader.readAsText(file, self.textEncoding);
+                } else {
+                    if (isImage) {
+                        reader.readAsDataURL(file);
+                    } else {
+                        reader.readAsArrayBuffer(file);
+                    }
+                }
+                self.fileManager.add(file);
+            };
+
+            readFile(0);
+            self._updateFileDetails(numFiles, false);
+        },
+        lock: function () {
+            var self = this, $container = self.$container;
+            self._resetErrors();
+            self.disable();
+            $container.addClass('is-locked');
+            if (self.showCancel) {
+                $container.find('.fileinput-cancel').show();
+            }
+            if (self.showPause) {
+                $container.find('.fileinput-pause').show();
+            }
+            self._raise('filelock', [self.fileManager.stack, self._getExtraData()]);
+            return self.$element;
+        },
+        unlock: function (reset) {
+            var self = this, $container = self.$container;
+            if (reset === undefined) {
+                reset = true;
+            }
+            self.enable();
+            $container.removeClass('is-locked');
+            if (self.showCancel) {
+                $container.find('.fileinput-cancel').hide();
+            }
+            if (self.showPause) {
+                $container.find('.fileinput-pause').hide();
+            }
+            if (reset) {
+                self._resetFileStack();
+            }
+            self._raise('fileunlock', [self.fileManager.stack, self._getExtraData()]);
+            return self.$element;
+        },
+        resume: function () {
+            var self = this, flag = false, $pr = self.$progress, rm = self.resumableManager;
+            if (!self.enableResumableUpload) {
+                return self.$element;
+            }
+            if (self.paused) {
+                $pr.html(self.progressPauseTemplate.setTokens({
+                    percent: 101,
+                    status: self.msgUploadResume,
+                    stats: ''
+                }));
+            } else {
+                flag = true;
+            }
+            self.paused = false;
+            if (flag) {
+                $pr.html(self.progressInfoTemplate.setTokens({
+                    percent: 101,
+                    status: self.msgUploadBegin,
+                    stats: ''
+                }));
+            }
+            setTimeout(function () {
+                rm.upload();
+            }, self.processDelay);
+            return self.$element;
+        },
+        pause: function () {
+            var self = this, rm = self.resumableManager, xhr = self.ajaxRequests, len = xhr.length, i,
+                pct = rm.getProgress(), actions = self.fileActionSettings;
+            if (!self.enableResumableUpload) {
+                return self.$element;
+            }
+            if (rm.chunkIntervalId) {
+                clearInterval(rm.chunkIntervalId);
+            }
+            if (self.ajaxQueueIntervalId) {
+                clearInterval(self.ajaxQueueIntervalId);
+            }
+            self._raise('fileuploadpaused', [self.fileManager, rm]);
+            if (len > 0) {
+                for (i = 0; i < len; i += 1) {
+                    self.paused = true;
+                    xhr[i].abort();
+                }
+            }
+            if (self.showPreview) {
+                self._getThumbs().each(function () {
+                    var $thumb = $(this), fileId = $thumb.attr('data-fileid'), t = self._getLayoutTemplate('stats'),
+                        stats, $indicator = $thumb.find('.file-upload-indicator');
+                    $thumb.removeClass('file-uploading');
+                    if ($indicator.attr('title') === actions.indicatorLoadingTitle) {
+                        self._setThumbStatus($thumb, 'Paused');
+                        stats = t.setTokens({pendingTime: self.msgPaused, uploadSpeed: ''});
+                        self.paused = true;
+                        self._setProgress(pct, $thumb.find('.file-thumb-progress'), pct + '%', stats);
+                    }
+                    if (!self.fileManager.getFile(fileId)) {
+                        $thumb.find('.kv-file-remove').removeClass('disabled').removeAttr('disabled');
+                    }
+                });
+            }
+            self._setProgress(101, self.$progress, self.msgPaused);
+            return self.$element;
+        },
+        cancel: function () {
+            var self = this, xhr = self.ajaxRequests, rm = self.resumableManager, len = xhr.length, i;
+            if (self.enableResumableUpload && rm.chunkIntervalId) {
+                clearInterval(rm.chunkIntervalId);
+                rm.reset();
+                self._raise('fileuploadcancelled', [self.fileManager, rm]);
+            } else {
+                self._raise('fileuploadcancelled', [self.fileManager]);
+            }
+            if (self.ajaxQueueIntervalId) {
+                clearInterval(self.ajaxQueueIntervalId);
+            }
+            self._initAjax();
+            if (len > 0) {
+                for (i = 0; i < len; i += 1) {
+                    self.cancelling = true;
+                    xhr[i].abort();
+                }
+            }
+            self._getThumbs().each(function () {
+                var $thumb = $(this), fileId = $thumb.attr('data-fileid'), $prog = $thumb.find('.file-thumb-progress');
+                $thumb.removeClass('file-uploading');
+                self._setProgress(0, $prog);
+                $prog.hide();
+                if (!self.fileManager.getFile(fileId)) {
+                    $thumb.find('.kv-file-upload').removeClass('disabled').removeAttr('disabled');
+                    $thumb.find('.kv-file-remove').removeClass('disabled').removeAttr('disabled');
+                }
+                self.unlock();
+            });
+            setTimeout(function () {
+                self._setProgressCancelled();
+            }, self.processDelay);
+            return self.$element;
+        },
+        clear: function () {
+            var self = this, cap;
+            if (!self._raise('fileclear')) {
+                return;
+            }
+            self.$btnUpload.removeAttr('disabled');
+            self._getThumbs().find('video,audio,img').each(function () {
+                $h.cleanMemory($(this));
+            });
+            self._clearFileInput();
+            self._resetUpload();
+            self.clearFileStack();
+            self._resetErrors(true);
+            if (self._hasInitialPreview()) {
+                self._showFileIcon();
+                self._resetPreview();
+                self._initPreviewActions();
+                self.$container.removeClass('file-input-new');
+            } else {
+                self._getThumbs().each(function () {
+                    self._clearObjects($(this));
+                });
+                if (self.isAjaxUpload) {
+                    self.previewCache.data = {};
+                }
+                self.$preview.html('');
+                cap = (!self.overwriteInitial && self.initialCaption.length > 0) ? self.initialCaption : '';
+                self.$caption.attr('title', '').val(cap);
+                $h.addCss(self.$container, 'file-input-new');
+                self._validateDefaultPreview();
+            }
+            if (self.$container.find($h.FRAMES).length === 0) {
+                if (!self._initCaption()) {
+                    self.$captionContainer.removeClass('icon-visible');
+                }
+            }
+            self._hideFileIcon();
+            self.$captionContainer.focus();
+            self._setFileDropZoneTitle();
+            self._raise('filecleared');
+            return self.$element;
+        },
+        reset: function () {
+            var self = this;
+            if (!self._raise('filereset')) {
+                return;
+            }
+            self.lastProgress = 0;
+            self._resetPreview();
+            self.$container.find('.fileinput-filename').text('');
+            $h.addCss(self.$container, 'file-input-new');
+            if (self.getFrames().length || self.dropZoneEnabled) {
+                self.$container.removeClass('file-input-new');
+            }
+            self.clearFileStack();
+            self._setFileDropZoneTitle();
+            return self.$element;
+        },
+        disable: function () {
+            var self = this;
+            self.isDisabled = true;
+            self._raise('filedisabled');
+            self.$element.attr('disabled', 'disabled');
+            self.$container.find('.kv-fileinput-caption').addClass('file-caption-disabled');
+            self.$container.find('.fileinput-remove, .fileinput-upload, .file-preview-frame button')
+                .attr('disabled', true);
+            $h.addCss(self.$container.find('.btn-file'), 'disabled');
+            self._initDragDrop();
+            return self.$element;
+        },
+        enable: function () {
+            var self = this;
+            self.isDisabled = false;
+            self._raise('fileenabled');
+            self.$element.removeAttr('disabled');
+            self.$container.find('.kv-fileinput-caption').removeClass('file-caption-disabled');
+            self.$container.find('.fileinput-remove, .fileinput-upload, .file-preview-frame button')
+                .removeAttr('disabled');
+            self.$container.find('.btn-file').removeClass('disabled');
+            self._initDragDrop();
+            return self.$element;
+        },
+        upload: function () {
+            var self = this, fm = self.fileManager, totLen = fm.count(), i, outData, len,
+                hasExtraData = !$.isEmptyObject(self._getExtraData());
+            if (!self.isAjaxUpload || self.isDisabled || !self._isFileSelectionValid(totLen)) {
+                return;
+            }
+            self.lastProgress = 0;
+            self._resetUpload();
+            if (totLen === 0 && !hasExtraData) {
+                self._showFileError(self.msgUploadEmpty);
+                return;
+            }
+            self.cancelling = false;
+            self.$progress.show();
+            self.lock();
+            len = fm.count();
+            if (totLen === 0 && hasExtraData) {
+                self._setProgress(2);
+                self._uploadExtraOnly();
+                return;
+            }
+            if (self.enableResumableUpload) {
+                return self.resume();
+            }
+            if (self.uploadAsync || self.enableResumableUpload) {
+                outData = self._getOutData(null);
+                self._raise('filebatchpreupload', [outData]);
+                self.fileBatchCompleted = false;
+                self.uploadCache = {content: [], config: [], tags: [], append: true};
+                for (i = 0; i < len; i++) {
+                    self.uploadCache.content[i] = null;
+                    self.uploadCache.config[i] = null;
+                    self.uploadCache.tags[i] = null;
+                }
+                self.$preview.find('.file-preview-initial').removeClass($h.SORT_CSS);
+                self._initSortable();
+                self.cacheInitialPreview = self.getPreview();
+            }
+            self._setProgress(2);
+            self.hasInitData = false;
+            if (self.uploadAsync) {
+                i = 0;
+                $.each(fm.stack, function (id) {
+                    self._uploadSingle(i, id, true);
+                    i++;
+                });
+                return;
+            }
+            self._uploadBatch();
+            return self.$element;
+        },
+        destroy: function () {
+            var self = this, $form = self.$form, $cont = self.$container, $el = self.$element, ns = self.namespace;
+            $(document).off(ns);
+            $(window).off(ns);
+            if ($form && $form.length) {
+                $form.off(ns);
+            }
+            if (self.isAjaxUpload) {
+                self._clearFileInput();
+            }
+            self._cleanup();
+            self._initPreviewCache();
+            $el.insertBefore($cont).off(ns).removeData();
+            $cont.off().remove();
+            return $el;
+        },
+        refresh: function (options) {
+            var self = this, $el = self.$element;
+            if (typeof options !== 'object' || $h.isEmpty(options)) {
+                options = self.options;
+            } else {
+                options = $.extend(true, {}, self.options, options);
+            }
+            self._init(options, true);
+            self._listen();
+            return $el;
+        },
+        zoom: function (frameId) {
+            var self = this, $frame = self._getFrame(frameId), $modal = self.$modal;
+            if (!$frame) {
+                return;
+            }
+            $h.initModal($modal);
+            $modal.html(self._getModalContent());
+            self._setZoomContent($frame);
+            $modal.modal('show');
+            self._initZoomButtons();
+        },
+        getExif: function (frameId) {
+            var self = this, $frame = self._getFrame(frameId);
+            return $frame && $frame.data('exif') || null;
+        },
+        getFrames: function (cssFilter) {
+            var self = this, $frames;
+            cssFilter = cssFilter || '';
+            $frames = self.$preview.find($h.FRAMES + cssFilter);
+            if (self.reversePreviewOrder) {
+                $frames = $($frames.get().reverse());
+            }
+            return $frames;
+        },
+        getPreview: function () {
+            var self = this;
+            return {
+                content: self.initialPreview,
+                config: self.initialPreviewConfig,
+                tags: self.initialPreviewThumbTags
+            };
+        }
+    };
+
+    $.fn.fileinput = function (option) {
+        if (!$h.hasFileAPISupport() && !$h.isIE(9)) {
+            return;
+        }
+        var args = Array.apply(null, arguments), retvals = [];
+        args.shift();
+        this.each(function () {
+            var self = $(this), data = self.data('fileinput'), options = typeof option === 'object' && option,
+                theme = options.theme || self.data('theme'), l = {}, t = {},
+                lang = options.language || self.data('language') || $.fn.fileinput.defaults.language || 'en', opt;
+            if (!data) {
+                if (theme) {
+                    t = $.fn.fileinputThemes[theme] || {};
+                }
+                if (lang !== 'en' && !$h.isEmpty($.fn.fileinputLocales[lang])) {
+                    l = $.fn.fileinputLocales[lang] || {};
+                }
+                opt = $.extend(true, {}, $.fn.fileinput.defaults, t, $.fn.fileinputLocales.en, l, options, self.data());
+                data = new FileInput(this, opt);
+                self.data('fileinput', data);
+            }
+
+            if (typeof option === 'string') {
+                retvals.push(data[option].apply(data, args));
+            }
+        });
+        switch (retvals.length) {
+            case 0:
+                return this;
+            case 1:
+                return retvals[0];
+            default:
+                return retvals;
+        }
+    };
+
+    //noinspection HtmlUnknownAttribute
+    $.fn.fileinput.defaults = {
+        language: 'en',
+        showCaption: true,
+        showBrowse: true,
+        showPreview: true,
+        showRemove: true,
+        showUpload: true,
+        showUploadStats: true,
+        showCancel: null,
+        showPause: null,
+        showClose: true,
+        showUploadedThumbs: true,
+        browseOnZoneClick: false,
+        autoReplace: false,
+        autoOrientImage: function () { // applicable for JPEG images only and non ios safari
+            var ua = window.navigator.userAgent, webkit = !!ua.match(/WebKit/i),
+                iOS = !!ua.match(/iP(od|ad|hone)/i), iOSSafari = iOS && webkit && !ua.match(/CriOS/i);
+            return !iOSSafari;
+        },
+        autoOrientImageInitial: true,
+        required: false,
+        rtl: false,
+        hideThumbnailContent: false,
+        encodeUrl: true,
+        generateFileId: null,
+        previewClass: '',
+        captionClass: '',
+        frameClass: 'krajee-default',
+        mainClass: 'file-caption-main',
+        mainTemplate: null,
+        purifyHtml: true,
+        fileSizeGetter: null,
+        initialCaption: '',
+        initialPreview: [],
+        initialPreviewDelimiter: '*$$*',
+        initialPreviewAsData: false,
+        initialPreviewFileType: 'image',
+        initialPreviewConfig: [],
+        initialPreviewThumbTags: [],
+        previewThumbTags: {},
+        initialPreviewShowDelete: true,
+        initialPreviewDownloadUrl: '',
+        removeFromPreviewOnError: false,
+        deleteUrl: '',
+        deleteExtraData: {},
+        overwriteInitial: true,
+        sanitizeZoomCache: function (content) {
+            var $container = $(document.createElement('div')).append(content);
+            $container.find('input,select,.file-thumbnail-footer').remove();
+            return $container.html();
+        },
+        previewZoomButtonIcons: {
+            prev: '<i class="glyphicon glyphicon-triangle-left"></i>',
+            next: '<i class="glyphicon glyphicon-triangle-right"></i>',
+            toggleheader: '<i class="glyphicon glyphicon-resize-vertical"></i>',
+            fullscreen: '<i class="glyphicon glyphicon-fullscreen"></i>',
+            borderless: '<i class="glyphicon glyphicon-resize-full"></i>',
+            close: '<i class="glyphicon glyphicon-remove"></i>'
+        },
+        previewZoomButtonClasses: {
+            prev: 'btn btn-navigate',
+            next: 'btn btn-navigate',
+            toggleheader: 'btn btn-sm btn-kv btn-default btn-outline-secondary',
+            fullscreen: 'btn btn-sm btn-kv btn-default btn-outline-secondary',
+            borderless: 'btn btn-sm btn-kv btn-default btn-outline-secondary',
+            close: 'btn btn-sm btn-kv btn-default btn-outline-secondary'
+        },
+        previewTemplates: {},
+        previewContentTemplates: {},
+        preferIconicPreview: false,
+        preferIconicZoomPreview: false,
+        allowedFileTypes: null,
+        allowedFileExtensions: null,
+        allowedPreviewTypes: undefined,
+        allowedPreviewMimeTypes: null,
+        allowedPreviewExtensions: null,
+        disabledPreviewTypes: undefined,
+        disabledPreviewExtensions: ['msi', 'exe', 'com', 'zip', 'rar', 'app', 'vb', 'scr'],
+        disabledPreviewMimeTypes: null,
+        defaultPreviewContent: null,
+        customLayoutTags: {},
+        customPreviewTags: {},
+        previewFileIcon: '<i class="glyphicon glyphicon-file"></i>',
+        previewFileIconClass: 'file-other-icon',
+        previewFileIconSettings: {},
+        previewFileExtSettings: {},
+        buttonLabelClass: 'hidden-xs',
+        browseIcon: '<i class="glyphicon glyphicon-folder-open"></i>&nbsp;',
+        browseClass: 'btn btn-primary',
+        removeIcon: '<i class="glyphicon glyphicon-trash"></i>',
+        removeClass: 'btn btn-default btn-secondary',
+        cancelIcon: '<i class="glyphicon glyphicon-ban-circle"></i>',
+        cancelClass: 'btn btn-default btn-secondary',
+        pauseIcon: '<i class="glyphicon glyphicon-pause"></i>',
+        pauseClass: 'btn btn-default btn-secondary',
+        uploadIcon: '<i class="glyphicon glyphicon-upload"></i>',
+        uploadClass: 'btn btn-default btn-secondary',
+        uploadUrl: null,
+        uploadUrlThumb: null,
+        uploadAsync: true,
+        uploadParamNames: {
+            chunkCount: 'chunkCount',
+            chunkIndex: 'chunkIndex',
+            chunkSize: 'chunkSize',
+            chunkSizeStart: 'chunkSizeStart',
+            chunksUploaded: 'chunksUploaded',
+            fileBlob: 'fileBlob',
+            fileId: 'fileId',
+            fileName: 'fileName',
+            fileRelativePath: 'fileRelativePath',
+            fileSize: 'fileSize',
+            retryCount: 'retryCount'
+        },
+        maxAjaxThreads: 5,
+        processDelay: 100,
+        queueDelay: 10, // must be lesser than process delay
+        progressDelay: 0, // must be lesser than process delay
+        enableResumableUpload: false,
+        resumableUploadOptions: {
+            fallback: null,
+            testUrl: null, // used for checking status of chunks/ files previously / partially uploaded
+            chunkSize: 2 * 1024, // in KB
+            maxThreads: 4,
+            maxRetries: 3,
+            showErrorLog: true
+        },
+        uploadExtraData: {},
+        zoomModalHeight: 480,
+        minImageWidth: null,
+        minImageHeight: null,
+        maxImageWidth: null,
+        maxImageHeight: null,
+        resizeImage: false,
+        resizePreference: 'width',
+        resizeQuality: 0.92,
+        resizeDefaultImageType: 'image/jpeg',
+        resizeIfSizeMoreThan: 0, // in KB
+        minFileSize: 0,
+        maxFileSize: 0,
+        maxFilePreviewSize: 25600, // 25 MB
+        minFileCount: 0,
+        maxFileCount: 0,
+        validateInitialCount: false,
+        msgValidationErrorClass: 'text-danger',
+        msgValidationErrorIcon: '<i class="glyphicon glyphicon-exclamation-sign"></i> ',
+        msgErrorClass: 'file-error-message',
+        progressThumbClass: 'progress-bar progress-bar-striped active',
+        progressClass: 'progress-bar bg-success progress-bar-success progress-bar-striped active',
+        progressInfoClass: 'progress-bar bg-info progress-bar-info progress-bar-striped active',
+        progressCompleteClass: 'progress-bar bg-success progress-bar-success',
+        progressPauseClass: 'progress-bar bg-primary progress-bar-primary progress-bar-striped active',
+        progressErrorClass: 'progress-bar bg-danger progress-bar-danger',
+        progressUploadThreshold: 99,
+        previewFileType: 'image',
+        elCaptionContainer: null,
+        elCaptionText: null,
+        elPreviewContainer: null,
+        elPreviewImage: null,
+        elPreviewStatus: null,
+        elErrorContainer: null,
+        errorCloseButton: $h.closeButton('kv-error-close'),
+        slugCallback: null,
+        dropZoneEnabled: true,
+        dropZoneTitleClass: 'file-drop-zone-title',
+        fileActionSettings: {},
+        otherActionButtons: '',
+        textEncoding: 'UTF-8',
+        ajaxSettings: {},
+        ajaxDeleteSettings: {},
+        showAjaxErrorDetails: true,
+        mergeAjaxCallbacks: false,
+        mergeAjaxDeleteCallbacks: false,
+        retryErrorUploads: true,
+        reversePreviewOrder: false,
+        usePdfRenderer: function () {
+            //noinspection JSUnresolvedVariable
+            var isIE11 = !!window.MSInputMethodContext && !!document.documentMode;
+            return !!navigator.userAgent.match(/(iPod|iPhone|iPad|Android)/i) || isIE11;
+        },
+        pdfRendererUrl: '',
+        pdfRendererTemplate: '<iframe class="kv-preview-data file-preview-pdf" src="{renderer}?file={data}" {style}></iframe>'
+    };
+
+    // noinspection HtmlUnknownAttribute
+    $.fn.fileinputLocales.en = {
+        fileSingle: 'file',
+        filePlural: 'files',
+        browseLabel: 'Browse &hellip;',
+        removeLabel: 'Remove',
+        removeTitle: 'Clear all unprocessed files',
+        cancelLabel: 'Cancel',
+        cancelTitle: 'Abort ongoing upload',
+        pauseLabel: 'Pause',
+        pauseTitle: 'Pause ongoing upload',
+        uploadLabel: 'Upload',
+        uploadTitle: 'Upload selected files',
+        msgNo: 'No',
+        msgNoFilesSelected: 'No files selected',
+        msgCancelled: 'Cancelled',
+        msgPaused: 'Paused',
+        msgPlaceholder: 'Select {files}...',
+        msgZoomModalHeading: 'Detailed Preview',
+        msgFileRequired: 'You must select a file to upload.',
+        msgSizeTooSmall: 'File "{name}" (<b>{size} KB</b>) is too small and must be larger than <b>{minSize} KB</b>.',
+        msgSizeTooLarge: 'File "{name}" (<b>{size} KB</b>) exceeds maximum allowed upload size of <b>{maxSize} KB</b>.',
+        msgFilesTooLess: 'You must select at least <b>{n}</b> {files} to upload.',
+        msgFilesTooMany: 'Number of files selected for upload <b>({n})</b> exceeds maximum allowed limit of <b>{m}</b>.',
+        msgFileNotFound: 'File "{name}" not found!',
+        msgFileSecured: 'Security restrictions prevent reading the file "{name}".',
+        msgFileNotReadable: 'File "{name}" is not readable.',
+        msgFilePreviewAborted: 'File preview aborted for "{name}".',
+        msgFilePreviewError: 'An error occurred while reading the file "{name}".',
+        msgInvalidFileName: 'Invalid or unsupported characters in file name "{name}".',
+        msgInvalidFileType: 'Invalid type for file "{name}". Only "{types}" files are supported.',
+        msgInvalidFileExtension: 'Invalid extension for file "{name}". Only "{extensions}" files are supported.',
+        msgFileTypes: {
+            'image': 'image',
+            'html': 'HTML',
+            'text': 'text',
+            'video': 'video',
+            'audio': 'audio',
+            'flash': 'flash',
+            'pdf': 'PDF',
+            'object': 'object'
+        },
+        msgUploadAborted: 'The file upload was aborted',
+        msgUploadThreshold: 'Processing...',
+        msgUploadBegin: 'Initializing...',
+        msgUploadEnd: 'Done',
+        msgUploadResume: 'Resuming upload...',
+        msgUploadEmpty: 'No valid data available for upload.',
+        msgUploadError: 'Upload Error',
+        msgDeleteError: 'Delete Error',
+        msgProgressError: 'Error',
+        msgValidationError: 'Validation Error',
+        msgLoading: 'Loading file {index} of {files} &hellip;',
+        msgProgress: 'Loading file {index} of {files} - {name} - {percent}% completed.',
+        msgSelected: '{n} {files} selected',
+        msgFoldersNotAllowed: 'Drag & drop files only! {n} folder(s) dropped were skipped.',
+        msgImageWidthSmall: 'Width of image file "{name}" must be at least {size} px.',
+        msgImageHeightSmall: 'Height of image file "{name}" must be at least {size} px.',
+        msgImageWidthLarge: 'Width of image file "{name}" cannot exceed {size} px.',
+        msgImageHeightLarge: 'Height of image file "{name}" cannot exceed {size} px.',
+        msgImageResizeError: 'Could not get the image dimensions to resize.',
+        msgImageResizeException: 'Error while resizing the image.<pre>{errors}</pre>',
+        msgAjaxError: 'Something went wrong with the {operation} operation. Please try again later!',
+        msgAjaxProgressError: '{operation} failed',
+        msgDuplicateFile: 'File "{name}" of same size "{size} KB" has already been selected earlier. Skipping duplicate selection.',
+        msgResumableUploadRetriesExceeded: 'Upload aborted beyond <b>{max}</b> retries for file <b>{file}</b>! Error Details: <pre>{error}</pre>',
+        msgPendingTime: '{time} remaining',
+        msgCalculatingTime: 'calculating time remaining',
+        ajaxOperations: {
+            deleteThumb: 'file delete',
+            uploadThumb: 'file upload',
+            uploadBatch: 'batch file upload',
+            uploadExtra: 'form data upload'
+        },
+        dropZoneTitle: 'Drag & drop files here &hellip;',
+        dropZoneClickTitle: '<br>(or click to select {files})',
+        previewZoomButtonTitles: {
+            prev: 'View previous file',
+            next: 'View next file',
+            toggleheader: 'Toggle header',
+            fullscreen: 'Toggle full screen',
+            borderless: 'Toggle borderless mode',
+            close: 'Close detailed preview'
+        }
+    };
+
+    $.fn.fileinput.Constructor = FileInput;
+
+    /**
+     * Convert automatically file inputs with class 'file' into a bootstrap fileinput control.
+     */
+    $(document).ready(function () {
+        var $input = $('input.file[type=file]');
+        if ($input.length) {
+            $input.fileinput();
+        }
+    });
+}));
+
+/***/ }),
+/* 244 */
+/***/ (function(module, exports, __webpack_require__) {
+
+// style-loader: Adds some css to the DOM by adding a <style> tag
+
+// load the styles
+var content = __webpack_require__(245);
+if(typeof content === 'string') content = [[module.i, content, '']];
+// Prepare cssTransformation
+var transform;
+
+var options = {}
+options.transform = transform
+// add the styles to the DOM
+var update = __webpack_require__(249)(content, options);
+if(content.locals) module.exports = content.locals;
+// Hot Module Replacement
+if(false) {
+	// When the styles change, update the <style> tags
+	if(!content.locals) {
+		module.hot.accept("!!../../css-loader/index.js!./fileinput.css", function() {
+			var newContent = require("!!../../css-loader/index.js!./fileinput.css");
+			if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+			update(newContent);
+		});
+	}
+	// When the module is disposed, remove the <style> tags
+	module.hot.dispose(function() { update(); });
+}
+
+/***/ }),
+/* 245 */
+/***/ (function(module, exports, __webpack_require__) {
+
+var escape = __webpack_require__(246);
+exports = module.exports = __webpack_require__(247)(false);
+// imports
+
+
+// module
+exports.push([module.i, "/*!\r\n * bootstrap-fileinput v5.0.3\r\n * http://plugins.krajee.com/file-input\r\n *\r\n * Krajee default styling for bootstrap-fileinput.\r\n *\r\n * Author: Kartik Visweswaran\r\n * Copyright: 2014 - 2019, Kartik Visweswaran, Krajee.com\r\n *\r\n * Licensed under the BSD-3-Clause\r\n * https://github.com/kartik-v/bootstrap-fileinput/blob/master/LICENSE.md\r\n */\r\n.file-loading input[type=file], input[type=file].file-loading {\r\n    width: 0;\r\n    height: 0;\r\n}\r\n\r\n.file-no-browse {\r\n    position: absolute;\r\n    left: 50%;\r\n    bottom: 20%;\r\n    width: 1px;\r\n    height: 1px;\r\n    font-size: 0;\r\n    opacity: 0;\r\n    border: none;\r\n    background: none;\r\n    outline: none;\r\n    box-shadow: none;\r\n}\r\n\r\n.kv-hidden, .file-caption-icon, .file-zoom-dialog .modal-header:before, .file-zoom-dialog .modal-header:after, .file-input-new .file-preview, .file-input-new .close, .file-input-new .glyphicon-file, .file-input-new .fileinput-remove-button, .file-input-new .fileinput-upload-button, .file-input-new .no-browse .input-group-btn, .file-input-ajax-new .fileinput-remove-button, .file-input-ajax-new .fileinput-upload-button, .file-input-ajax-new .no-browse .input-group-btn, .hide-content .kv-file-content, .is-locked .fileinput-upload-button, .is-locked .fileinput-remove-button {\r\n    display: none;\r\n}\r\n\r\n.btn-file input[type=file], .file-caption-icon, .file-preview .fileinput-remove, .krajee-default .file-thumb-progress, .file-zoom-dialog .btn-navigate, .file-zoom-dialog .floating-buttons {\r\n    position: absolute;\r\n}\r\n\r\n.file-caption-icon .kv-caption-icon {\r\n    line-height: inherit;\r\n}\r\n\r\n.file-input, .file-loading:before, .btn-file, .file-caption, .file-preview, .krajee-default.file-preview-frame, .krajee-default .file-thumbnail-footer, .file-zoom-dialog .modal-dialog {\r\n    position: relative;\r\n}\r\n\r\n.file-error-message pre, .file-error-message ul, .krajee-default .file-actions, .krajee-default .file-other-error {\r\n    text-align: left;\r\n}\r\n\r\n.file-error-message pre, .file-error-message ul {\r\n    margin: 0;\r\n}\r\n\r\n.krajee-default .file-drag-handle, .krajee-default .file-upload-indicator {\r\n    float: left;\r\n    margin-top: 10px;\r\n    width: 16px;\r\n    height: 16px;\r\n}\r\n\r\n.krajee-default .file-thumb-progress .progress, .krajee-default .file-thumb-progress .progress-bar {\r\n    height: 11px;\r\n    font-family: Verdana, Helvetica, sans-serif;\r\n    font-size: 9px;\r\n}\r\n\r\n.krajee-default .file-thumb-progress .progress, .kv-upload-progress .progress {\r\n    background-color: #ccc;\r\n}\r\n\r\n.krajee-default .file-caption-info, .krajee-default .file-size-info {\r\n    display: block;\r\n    white-space: nowrap;\r\n    overflow: hidden;\r\n    text-overflow: ellipsis;\r\n    width: 160px;\r\n    height: 15px;\r\n    margin: auto;\r\n}\r\n\r\n.file-zoom-content > .file-object.type-video, .file-zoom-content > .file-object.type-flash, .file-zoom-content > .file-object.type-image {\r\n    max-width: 100%;\r\n    max-height: 100%;\r\n    width: auto;\r\n}\r\n\r\n.file-zoom-content > .file-object.type-video, .file-zoom-content > .file-object.type-flash {\r\n    height: 100%;\r\n}\r\n\r\n.file-zoom-content > .file-object.type-pdf, .file-zoom-content > .file-object.type-html, .file-zoom-content > .file-object.type-text, .file-zoom-content > .file-object.type-default {\r\n    width: 100%;\r\n}\r\n\r\n.file-loading:before {\r\n    content: \" Loading...\";\r\n    display: inline-block;\r\n    padding-left: 20px;\r\n    line-height: 16px;\r\n    font-size: 13px;\r\n    font-variant: small-caps;\r\n    color: #999;\r\n    background: transparent url(" + escape(__webpack_require__(13)) + ") top left no-repeat;\r\n}\r\n\r\n.file-object {\r\n    margin: 0 0 -5px 0;\r\n    padding: 0;\r\n}\r\n\r\n.btn-file {\r\n    overflow: hidden;\r\n}\r\n\r\n.btn-file input[type=file] {\r\n    top: 0;\r\n    left: 0;\r\n    min-width: 100%;\r\n    min-height: 100%;\r\n    text-align: right;\r\n    opacity: 0;\r\n    background: none repeat scroll 0 0 transparent;\r\n    cursor: inherit;\r\n    display: block;\r\n}\r\n\r\n.btn-file ::-ms-browse {\r\n    font-size: 10000px;\r\n    width: 100%;\r\n    height: 100%;\r\n}\r\n\r\n.file-caption .file-caption-name {\r\n    width: 100%;\r\n    margin: 0;\r\n    padding: 0;\r\n    box-shadow: none;\r\n    border: none;\r\n    background: none;\r\n    outline: none;\r\n}\r\n\r\n.file-caption.icon-visible .file-caption-icon {\r\n    display: inline-block;\r\n}\r\n\r\n.file-caption.icon-visible .file-caption-name {\r\n    padding-left: 15px;\r\n}\r\n\r\n.file-caption-icon {\r\n    left: 8px;\r\n}\r\n\r\n.file-error-message {\r\n    color: #a94442;\r\n    background-color: #f2dede;\r\n    margin: 5px;\r\n    border: 1px solid #ebccd1;\r\n    border-radius: 4px;\r\n    padding: 15px;\r\n}\r\n\r\n.file-error-message pre {\r\n    margin: 5px 0;\r\n}\r\n\r\n.file-caption-disabled {\r\n    background-color: #eee;\r\n    cursor: not-allowed;\r\n    opacity: 1;\r\n}\r\n\r\n.file-preview {\r\n    border-radius: 5px;\r\n    border: 1px solid #ddd;\r\n    padding: 8px;\r\n    width: 100%;\r\n    margin-bottom: 5px;\r\n}\r\n\r\n.file-preview .btn-xs {\r\n    padding: 1px 5px;\r\n    font-size: 12px;\r\n    line-height: 1.5;\r\n    border-radius: 3px;\r\n}\r\n\r\n.file-preview .fileinput-remove {\r\n    top: 1px;\r\n    right: 1px;\r\n    line-height: 10px;\r\n}\r\n\r\n.file-preview .clickable {\r\n    cursor: pointer;\r\n}\r\n\r\n.file-preview-image {\r\n    font: 40px Impact, Charcoal, sans-serif;\r\n    color: #008000;\r\n}\r\n\r\n.krajee-default.file-preview-frame {\r\n    margin: 8px;\r\n    border: 1px solid rgba(0,0,0,0.2);\r\n    box-shadow: 0 0 10px 0 rgba(0,0,0,0.2);\r\n    padding: 6px;\r\n    float: left;\r\n    text-align: center;\r\n}\r\n\r\n.krajee-default.file-preview-frame .kv-file-content {\r\n    width: 213px;\r\n    height: 160px;\r\n}\r\n\r\n.krajee-default .file-preview-other-frame {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: center;\r\n}\r\n\r\n.krajee-default.file-preview-frame .kv-file-content.kv-pdf-rendered {\r\n    width: 400px;\r\n}\r\n\r\n.krajee-default.file-preview-frame[data-template=\"audio\"] .kv-file-content {\r\n    width: 240px;\r\n    height: 55px;\r\n}\r\n\r\n.krajee-default.file-preview-frame .file-thumbnail-footer {\r\n    height: 70px;\r\n}\r\n\r\n.krajee-default.file-preview-frame:not(.file-preview-error):hover {\r\n    border: 1px solid rgba(0,0,0,0.3);\r\n    box-shadow: 0 0 10px 0 rgba(0,0,0,0.4);\r\n}\r\n\r\n.krajee-default .file-preview-text {\r\n    display: block;\r\n    color: #428bca;\r\n    border: 1px solid #ddd;\r\n    font-family: Menlo, Monaco, Consolas, \"Courier New\", monospace;\r\n    outline: none;\r\n    padding: 8px;\r\n    resize: none;\r\n}\r\n\r\n.krajee-default .file-preview-html {\r\n    border: 1px solid #ddd;\r\n    padding: 8px;\r\n    overflow: auto;\r\n}\r\n\r\n.krajee-default .file-other-icon {\r\n    font-size: 6em;\r\n    line-height: 1;\r\n}\r\n\r\n.krajee-default .file-footer-buttons {\r\n    float: right;\r\n}\r\n\r\n.krajee-default .file-footer-caption {\r\n    display: block;\r\n    text-align: center;\r\n    padding-top: 4px;\r\n    font-size: 11px;\r\n    color: #777;\r\n    margin-bottom: 30px;\r\n}\r\n\r\n.file-upload-stats {\r\n    font-size: 10px;\r\n    text-align: center;\r\n    width: 100%;\r\n}\r\n\r\n.kv-upload-progress .file-upload-stats {\r\n    font-size: 12px;\r\n    margin: -10px 0 5px;\r\n}\r\n\r\n.krajee-default .file-preview-error {\r\n    opacity: 0.65;\r\n    box-shadow: none;\r\n}\r\n\r\n.krajee-default .file-thumb-progress {\r\n    height: 11px;\r\n    top: 37px;\r\n    left: 0;\r\n    right: 0;\r\n}\r\n\r\n.krajee-default.kvsortable-ghost {\r\n    background: #e1edf7;\r\n    border: 2px solid #a1abff;\r\n}\r\n\r\n.krajee-default .file-preview-other:hover {\r\n    opacity: 0.8;\r\n}\r\n\r\n.krajee-default .file-preview-frame:not(.file-preview-error) .file-footer-caption:hover {\r\n    color: #000;\r\n}\r\n\r\n.kv-upload-progress .progress {\r\n    height: 20px;\r\n    margin: 10px 0;\r\n    overflow: hidden;\r\n}\r\n\r\n.kv-upload-progress .progress-bar {\r\n    height: 20px;\r\n    font-family: Verdana, Helvetica, sans-serif;\r\n}\r\n\r\n/*noinspection CssOverwrittenProperties*/\r\n.file-zoom-dialog .file-other-icon {\r\n    font-size: 22em;\r\n    font-size: 50vmin;\r\n}\r\n\r\n.file-zoom-dialog .modal-dialog {\r\n    width: auto;\r\n}\r\n\r\n.file-zoom-dialog .modal-header {\r\n    display: flex;\r\n    align-items: center;\r\n    justify-content: space-between;\r\n}\r\n\r\n.file-zoom-dialog .btn-navigate {\r\n    padding: 0;\r\n    margin: 0;\r\n    background: transparent;\r\n    text-decoration: none;\r\n    outline: none;\r\n    opacity: 0.7;\r\n    top: 45%;\r\n    font-size: 4em;\r\n    color: #1c94c4;\r\n}\r\n\r\n.file-zoom-dialog .btn-navigate:not([disabled]):hover {\r\n    outline: none;\r\n    box-shadow: none;\r\n    opacity: 0.6;\r\n}\r\n\r\n.file-zoom-dialog .floating-buttons {\r\n    top: 5px;\r\n    right: 10px;\r\n}\r\n\r\n.file-zoom-dialog .btn-navigate[disabled] {\r\n    opacity: 0.3;\r\n}\r\n\r\n.file-zoom-dialog .btn-prev {\r\n    left: 1px;\r\n}\r\n\r\n.file-zoom-dialog .btn-next {\r\n    right: 1px;\r\n}\r\n\r\n.file-zoom-dialog .kv-zoom-title {\r\n    font-weight: 300;\r\n    color: #999;\r\n    max-width: 50%;\r\n    overflow: hidden;\r\n    white-space: nowrap;\r\n    text-overflow: ellipsis;\r\n}\r\n\r\n.file-input-new .no-browse .form-control {\r\n    border-top-right-radius: 4px;\r\n    border-bottom-right-radius: 4px;\r\n}\r\n\r\n.file-input-ajax-new .no-browse .form-control {\r\n    border-top-right-radius: 4px;\r\n    border-bottom-right-radius: 4px;\r\n}\r\n\r\n.file-caption-main {\r\n    width: 100%;\r\n}\r\n\r\n.file-thumb-loading {\r\n    background: transparent url(" + escape(__webpack_require__(13)) + ") no-repeat scroll center center content-box !important;\r\n}\r\n\r\n.file-drop-zone {\r\n    border: 1px dashed #aaa;\r\n    border-radius: 4px;\r\n    text-align: center;\r\n    vertical-align: middle;\r\n    margin: 12px 15px 12px 12px;\r\n    padding: 5px;\r\n}\r\n\r\n.file-drop-zone.clickable:hover {\r\n    border: 2px dashed #999;\r\n}\r\n\r\n.file-drop-zone.clickable:focus {\r\n    border: 2px solid #5acde2;\r\n}\r\n\r\n.file-drop-zone .file-preview-thumbnails {\r\n    cursor: default;\r\n}\r\n\r\n.file-drop-zone-title {\r\n    color: #aaa;\r\n    font-size: 1.6em;\r\n    padding: 85px 10px;\r\n    cursor: default;\r\n}\r\n\r\n.file-highlighted {\r\n    border: 2px dashed #999 !important;\r\n    background-color: #eee;\r\n}\r\n\r\n.file-uploading {\r\n    background: url(" + escape(__webpack_require__(248)) + ") no-repeat center bottom 10px;\r\n    opacity: 0.65;\r\n}\r\n\r\n.file-zoom-fullscreen .modal-dialog {\r\n    min-width: 100%;\r\n    margin: 0;\r\n}\r\n\r\n.file-zoom-fullscreen .modal-content {\r\n    border-radius: 0;\r\n    box-shadow: none;\r\n    min-height: 100vh;\r\n}\r\n\r\n.file-zoom-fullscreen .modal-body {\r\n    overflow-y: auto;\r\n}\r\n\r\n.floating-buttons {\r\n    z-index: 3000;\r\n}\r\n\r\n.floating-buttons .btn-kv {\r\n    margin-left: 3px;\r\n    z-index: 3000;\r\n}\r\n\r\n.kv-zoom-actions .btn-kv {\r\n    margin-left: 3px;\r\n}\r\n\r\n.file-zoom-content {\r\n    height: 480px;\r\n    text-align: center;\r\n}\r\n\r\n.file-zoom-content .file-preview-image {\r\n    max-height: 100%;\r\n}\r\n\r\n.file-zoom-content .file-preview-video {\r\n    max-height: 100%;\r\n}\r\n\r\n.file-zoom-content > .file-object.type-image {\r\n    height: auto;\r\n    min-height: inherit;\r\n}\r\n\r\n.file-zoom-content > .file-object.type-audio {\r\n    width: auto;\r\n    height: 30px;\r\n}\r\n\r\n@media (min-width: 576px) {\r\n    .file-zoom-dialog .modal-dialog {\r\n        max-width: 500px;\r\n    }\r\n}\r\n\r\n@media (min-width: 992px) {\r\n    .file-zoom-dialog .modal-lg {\r\n        max-width: 800px;\r\n    }\r\n}\r\n\r\n@media (max-width: 767px) {\r\n    .file-preview-thumbnails {\r\n        display: flex;\r\n        justify-content: center;\r\n        align-items: center;\r\n        flex-direction: column;\r\n    }\r\n\r\n    .file-zoom-dialog .modal-header {\r\n        flex-direction: column;\r\n    }\r\n}\r\n\r\n@media (max-width: 350px) {\r\n    .krajee-default.file-preview-frame:not([data-template=\"audio\"]) .kv-file-content {\r\n        width: 160px;\r\n    }\r\n}\r\n\r\n@media (max-width: 420px) {\r\n    .krajee-default.file-preview-frame .kv-file-content.kv-pdf-rendered {\r\n        width: 100%;\r\n    }\r\n}\r\n\r\n.file-loading[dir=rtl]:before {\r\n    background: transparent url(" + escape(__webpack_require__(13)) + ") top right no-repeat;\r\n    padding-left: 0;\r\n    padding-right: 20px;\r\n}\r\n\r\n.file-sortable .file-drag-handle {\r\n    cursor: move;\r\n    opacity: 1;\r\n}\r\n\r\n.file-sortable .file-drag-handle:hover {\r\n    opacity: 0.7;\r\n}\r\n\r\n.clickable .file-drop-zone-title {\r\n    cursor: pointer;\r\n}\r\n\r\n.file-preview-initial.sortable-chosen {\r\n    background-color: #d9edf7;\r\n}", ""]);
+
+// exports
+
+
+/***/ }),
+/* 246 */
+/***/ (function(module, exports) {
+
+module.exports = function escape(url) {
+    if (typeof url !== 'string') {
+        return url
+    }
+    // If url is already wrapped in quotes, remove them
+    if (/^['"].*['"]$/.test(url)) {
+        url = url.slice(1, -1);
+    }
+    // Should url be wrapped?
+    // See https://drafts.csswg.org/css-values-3/#urls
+    if (/["'() \t\n]/.test(url)) {
+        return '"' + url.replace(/"/g, '\\"').replace(/\n/g, '\\n') + '"'
+    }
+
+    return url
+}
+
+
+/***/ }),
+/* 247 */
+/***/ (function(module, exports) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+// css base code, injected by the css-loader
+module.exports = function(useSourceMap) {
+	var list = [];
+
+	// return the list of modules as css string
+	list.toString = function toString() {
+		return this.map(function (item) {
+			var content = cssWithMappingToString(item, useSourceMap);
+			if(item[2]) {
+				return "@media " + item[2] + "{" + content + "}";
+			} else {
+				return content;
+			}
+		}).join("");
+	};
+
+	// import a list of modules into the list
+	list.i = function(modules, mediaQuery) {
+		if(typeof modules === "string")
+			modules = [[null, modules, ""]];
+		var alreadyImportedModules = {};
+		for(var i = 0; i < this.length; i++) {
+			var id = this[i][0];
+			if(typeof id === "number")
+				alreadyImportedModules[id] = true;
+		}
+		for(i = 0; i < modules.length; i++) {
+			var item = modules[i];
+			// skip already imported module
+			// this implementation is not 100% perfect for weird media query combinations
+			//  when a module is imported multiple times with different media queries.
+			//  I hope this will never occur (Hey this way we have smaller bundles)
+			if(typeof item[0] !== "number" || !alreadyImportedModules[item[0]]) {
+				if(mediaQuery && !item[2]) {
+					item[2] = mediaQuery;
+				} else if(mediaQuery) {
+					item[2] = "(" + item[2] + ") and (" + mediaQuery + ")";
+				}
+				list.push(item);
+			}
+		}
+	};
+	return list;
+};
+
+function cssWithMappingToString(item, useSourceMap) {
+	var content = item[1] || '';
+	var cssMapping = item[3];
+	if (!cssMapping) {
+		return content;
+	}
+
+	if (useSourceMap && typeof btoa === 'function') {
+		var sourceMapping = toComment(cssMapping);
+		var sourceURLs = cssMapping.sources.map(function (source) {
+			return '/*# sourceURL=' + cssMapping.sourceRoot + source + ' */'
+		});
+
+		return [content].concat(sourceURLs).concat([sourceMapping]).join('\n');
+	}
+
+	return [content].join('\n');
+}
+
+// Adapted from convert-source-map (MIT)
+function toComment(sourceMap) {
+	// eslint-disable-next-line no-undef
+	var base64 = btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap))));
+	var data = 'sourceMappingURL=data:application/json;charset=utf-8;base64,' + base64;
+
+	return '/*# ' + data + ' */';
+}
+
+
+/***/ }),
+/* 248 */
+/***/ (function(module, exports) {
+
+module.exports = "/images/vendor/bootstrap-fileinput/loading-sm.gif?e5ad074b7969cc386b387f08dba4fcec";
+
+/***/ }),
+/* 249 */
+/***/ (function(module, exports, __webpack_require__) {
+
+/*
+	MIT License http://www.opensource.org/licenses/mit-license.php
+	Author Tobias Koppers @sokra
+*/
+
+var stylesInDom = {};
+
+var	memoize = function (fn) {
+	var memo;
+
+	return function () {
+		if (typeof memo === "undefined") memo = fn.apply(this, arguments);
+		return memo;
+	};
+};
+
+var isOldIE = memoize(function () {
+	// Test for IE <= 9 as proposed by Browserhacks
+	// @see http://browserhacks.com/#hack-e71d8692f65334173fee715c222cb805
+	// Tests for existence of standard globals is to allow style-loader
+	// to operate correctly into non-standard environments
+	// @see https://github.com/webpack-contrib/style-loader/issues/177
+	return window && document && document.all && !window.atob;
+});
+
+var getElement = (function (fn) {
+	var memo = {};
+
+	return function(selector) {
+		if (typeof memo[selector] === "undefined") {
+			memo[selector] = fn.call(this, selector);
+		}
+
+		return memo[selector]
+	};
+})(function (target) {
+	return document.querySelector(target)
+});
+
+var singleton = null;
+var	singletonCounter = 0;
+var	stylesInsertedAtTop = [];
+
+var	fixUrls = __webpack_require__(250);
+
+module.exports = function(list, options) {
+	if (typeof DEBUG !== "undefined" && DEBUG) {
+		if (typeof document !== "object") throw new Error("The style-loader cannot be used in a non-browser environment");
+	}
+
+	options = options || {};
+
+	options.attrs = typeof options.attrs === "object" ? options.attrs : {};
+
+	// Force single-tag solution on IE6-9, which has a hard limit on the # of <style>
+	// tags it will allow on a page
+	if (!options.singleton) options.singleton = isOldIE();
+
+	// By default, add <style> tags to the <head> element
+	if (!options.insertInto) options.insertInto = "head";
+
+	// By default, add <style> tags to the bottom of the target
+	if (!options.insertAt) options.insertAt = "bottom";
+
+	var styles = listToStyles(list, options);
+
+	addStylesToDom(styles, options);
+
+	return function update (newList) {
+		var mayRemove = [];
+
+		for (var i = 0; i < styles.length; i++) {
+			var item = styles[i];
+			var domStyle = stylesInDom[item.id];
+
+			domStyle.refs--;
+			mayRemove.push(domStyle);
+		}
+
+		if(newList) {
+			var newStyles = listToStyles(newList, options);
+			addStylesToDom(newStyles, options);
+		}
+
+		for (var i = 0; i < mayRemove.length; i++) {
+			var domStyle = mayRemove[i];
+
+			if(domStyle.refs === 0) {
+				for (var j = 0; j < domStyle.parts.length; j++) domStyle.parts[j]();
+
+				delete stylesInDom[domStyle.id];
+			}
+		}
+	};
+};
+
+function addStylesToDom (styles, options) {
+	for (var i = 0; i < styles.length; i++) {
+		var item = styles[i];
+		var domStyle = stylesInDom[item.id];
+
+		if(domStyle) {
+			domStyle.refs++;
+
+			for(var j = 0; j < domStyle.parts.length; j++) {
+				domStyle.parts[j](item.parts[j]);
+			}
+
+			for(; j < item.parts.length; j++) {
+				domStyle.parts.push(addStyle(item.parts[j], options));
+			}
+		} else {
+			var parts = [];
+
+			for(var j = 0; j < item.parts.length; j++) {
+				parts.push(addStyle(item.parts[j], options));
+			}
+
+			stylesInDom[item.id] = {id: item.id, refs: 1, parts: parts};
+		}
+	}
+}
+
+function listToStyles (list, options) {
+	var styles = [];
+	var newStyles = {};
+
+	for (var i = 0; i < list.length; i++) {
+		var item = list[i];
+		var id = options.base ? item[0] + options.base : item[0];
+		var css = item[1];
+		var media = item[2];
+		var sourceMap = item[3];
+		var part = {css: css, media: media, sourceMap: sourceMap};
+
+		if(!newStyles[id]) styles.push(newStyles[id] = {id: id, parts: [part]});
+		else newStyles[id].parts.push(part);
+	}
+
+	return styles;
+}
+
+function insertStyleElement (options, style) {
+	var target = getElement(options.insertInto)
+
+	if (!target) {
+		throw new Error("Couldn't find a style target. This probably means that the value for the 'insertInto' parameter is invalid.");
+	}
+
+	var lastStyleElementInsertedAtTop = stylesInsertedAtTop[stylesInsertedAtTop.length - 1];
+
+	if (options.insertAt === "top") {
+		if (!lastStyleElementInsertedAtTop) {
+			target.insertBefore(style, target.firstChild);
+		} else if (lastStyleElementInsertedAtTop.nextSibling) {
+			target.insertBefore(style, lastStyleElementInsertedAtTop.nextSibling);
+		} else {
+			target.appendChild(style);
+		}
+		stylesInsertedAtTop.push(style);
+	} else if (options.insertAt === "bottom") {
+		target.appendChild(style);
+	} else {
+		throw new Error("Invalid value for parameter 'insertAt'. Must be 'top' or 'bottom'.");
+	}
+}
+
+function removeStyleElement (style) {
+	if (style.parentNode === null) return false;
+	style.parentNode.removeChild(style);
+
+	var idx = stylesInsertedAtTop.indexOf(style);
+	if(idx >= 0) {
+		stylesInsertedAtTop.splice(idx, 1);
+	}
+}
+
+function createStyleElement (options) {
+	var style = document.createElement("style");
+
+	options.attrs.type = "text/css";
+
+	addAttrs(style, options.attrs);
+	insertStyleElement(options, style);
+
+	return style;
+}
+
+function createLinkElement (options) {
+	var link = document.createElement("link");
+
+	options.attrs.type = "text/css";
+	options.attrs.rel = "stylesheet";
+
+	addAttrs(link, options.attrs);
+	insertStyleElement(options, link);
+
+	return link;
+}
+
+function addAttrs (el, attrs) {
+	Object.keys(attrs).forEach(function (key) {
+		el.setAttribute(key, attrs[key]);
+	});
+}
+
+function addStyle (obj, options) {
+	var style, update, remove, result;
+
+	// If a transform function was defined, run it on the css
+	if (options.transform && obj.css) {
+	    result = options.transform(obj.css);
+
+	    if (result) {
+	    	// If transform returns a value, use that instead of the original css.
+	    	// This allows running runtime transformations on the css.
+	    	obj.css = result;
+	    } else {
+	    	// If the transform function returns a falsy value, don't add this css.
+	    	// This allows conditional loading of css
+	    	return function() {
+	    		// noop
+	    	};
+	    }
+	}
+
+	if (options.singleton) {
+		var styleIndex = singletonCounter++;
+
+		style = singleton || (singleton = createStyleElement(options));
+
+		update = applyToSingletonTag.bind(null, style, styleIndex, false);
+		remove = applyToSingletonTag.bind(null, style, styleIndex, true);
+
+	} else if (
+		obj.sourceMap &&
+		typeof URL === "function" &&
+		typeof URL.createObjectURL === "function" &&
+		typeof URL.revokeObjectURL === "function" &&
+		typeof Blob === "function" &&
+		typeof btoa === "function"
+	) {
+		style = createLinkElement(options);
+		update = updateLink.bind(null, style, options);
+		remove = function () {
+			removeStyleElement(style);
+
+			if(style.href) URL.revokeObjectURL(style.href);
+		};
+	} else {
+		style = createStyleElement(options);
+		update = applyToTag.bind(null, style);
+		remove = function () {
+			removeStyleElement(style);
+		};
+	}
+
+	update(obj);
+
+	return function updateStyle (newObj) {
+		if (newObj) {
+			if (
+				newObj.css === obj.css &&
+				newObj.media === obj.media &&
+				newObj.sourceMap === obj.sourceMap
+			) {
+				return;
+			}
+
+			update(obj = newObj);
+		} else {
+			remove();
+		}
+	};
+}
+
+var replaceText = (function () {
+	var textStore = [];
+
+	return function (index, replacement) {
+		textStore[index] = replacement;
+
+		return textStore.filter(Boolean).join('\n');
+	};
+})();
+
+function applyToSingletonTag (style, index, remove, obj) {
+	var css = remove ? "" : obj.css;
+
+	if (style.styleSheet) {
+		style.styleSheet.cssText = replaceText(index, css);
+	} else {
+		var cssNode = document.createTextNode(css);
+		var childNodes = style.childNodes;
+
+		if (childNodes[index]) style.removeChild(childNodes[index]);
+
+		if (childNodes.length) {
+			style.insertBefore(cssNode, childNodes[index]);
+		} else {
+			style.appendChild(cssNode);
+		}
+	}
+}
+
+function applyToTag (style, obj) {
+	var css = obj.css;
+	var media = obj.media;
+
+	if(media) {
+		style.setAttribute("media", media)
+	}
+
+	if(style.styleSheet) {
+		style.styleSheet.cssText = css;
+	} else {
+		while(style.firstChild) {
+			style.removeChild(style.firstChild);
+		}
+
+		style.appendChild(document.createTextNode(css));
+	}
+}
+
+function updateLink (link, options, obj) {
+	var css = obj.css;
+	var sourceMap = obj.sourceMap;
+
+	/*
+		If convertToAbsoluteUrls isn't defined, but sourcemaps are enabled
+		and there is no publicPath defined then lets turn convertToAbsoluteUrls
+		on by default.  Otherwise default to the convertToAbsoluteUrls option
+		directly
+	*/
+	var autoFixUrls = options.convertToAbsoluteUrls === undefined && sourceMap;
+
+	if (options.convertToAbsoluteUrls || autoFixUrls) {
+		css = fixUrls(css);
+	}
+
+	if (sourceMap) {
+		// http://stackoverflow.com/a/26603875
+		css += "\n/*# sourceMappingURL=data:application/json;base64," + btoa(unescape(encodeURIComponent(JSON.stringify(sourceMap)))) + " */";
+	}
+
+	var blob = new Blob([css], { type: "text/css" });
+
+	var oldSrc = link.href;
+
+	link.href = URL.createObjectURL(blob);
+
+	if(oldSrc) URL.revokeObjectURL(oldSrc);
+}
+
+
+/***/ }),
+/* 250 */
+/***/ (function(module, exports) {
+
+
+/**
+ * When source maps are enabled, `style-loader` uses a link element with a data-uri to
+ * embed the css on the page. This breaks all relative urls because now they are relative to a
+ * bundle instead of the current page.
+ *
+ * One solution is to only use full urls, but that may be impossible.
+ *
+ * Instead, this function "fixes" the relative urls to be absolute according to the current page location.
+ *
+ * A rudimentary test suite is located at `test/fixUrls.js` and can be run via the `npm test` command.
+ *
+ */
+
+module.exports = function (css) {
+  // get current location
+  var location = typeof window !== "undefined" && window.location;
+
+  if (!location) {
+    throw new Error("fixUrls requires window.location");
+  }
+
+	// blank or null?
+	if (!css || typeof css !== "string") {
+	  return css;
+  }
+
+  var baseUrl = location.protocol + "//" + location.host;
+  var currentDir = baseUrl + location.pathname.replace(/\/[^\/]*$/, "/");
+
+	// convert each url(...)
+	/*
+	This regular expression is just a way to recursively match brackets within
+	a string.
+
+	 /url\s*\(  = Match on the word "url" with any whitespace after it and then a parens
+	   (  = Start a capturing group
+	     (?:  = Start a non-capturing group
+	         [^)(]  = Match anything that isn't a parentheses
+	         |  = OR
+	         \(  = Match a start parentheses
+	             (?:  = Start another non-capturing groups
+	                 [^)(]+  = Match anything that isn't a parentheses
+	                 |  = OR
+	                 \(  = Match a start parentheses
+	                     [^)(]*  = Match anything that isn't a parentheses
+	                 \)  = Match a end parentheses
+	             )  = End Group
+              *\) = Match anything and then a close parens
+          )  = Close non-capturing group
+          *  = Match anything
+       )  = Close capturing group
+	 \)  = Match a close parens
+
+	 /gi  = Get all matches, not the first.  Be case insensitive.
+	 */
+	var fixedCss = css.replace(/url\s*\(((?:[^)(]|\((?:[^)(]+|\([^)(]*\))*\))*)\)/gi, function(fullMatch, origUrl) {
+		// strip quotes (if they exist)
+		var unquotedOrigUrl = origUrl
+			.trim()
+			.replace(/^"(.*)"$/, function(o, $1){ return $1; })
+			.replace(/^'(.*)'$/, function(o, $1){ return $1; });
+
+		// already a full url? no change
+		if (/^(#|data:|http:\/\/|https:\/\/|file:\/\/\/)/i.test(unquotedOrigUrl)) {
+		  return fullMatch;
+		}
+
+		// convert the url to a full url
+		var newUrl;
+
+		if (unquotedOrigUrl.indexOf("//") === 0) {
+		  	//TODO: should we add protocol?
+			newUrl = unquotedOrigUrl;
+		} else if (unquotedOrigUrl.indexOf("/") === 0) {
+			// path should be relative to the base url
+			newUrl = baseUrl + unquotedOrigUrl; // already starts with '/'
+		} else {
+			// path should be relative to current directory
+			newUrl = currentDir + unquotedOrigUrl.replace(/^\.\//, ""); // Strip leading './'
+		}
+
+		// send back the fixed url(...)
+		return "url(" + JSON.stringify(newUrl) + ")";
+	});
+
+	// send back the fixed css
+	return fixedCss;
+};
+
+
+/***/ }),
+/* 251 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -59761,12 +65998,37 @@ var render = function() {
           columns: _vm.columns,
           options: _vm.options
         }
-      })
+      }),
+      _vm._v(" "),
+      _c("label", { attrs: { for: "file-0b" } }, [
+        _vm._v("Test invalid input type")
+      ]),
+      _vm._v(" "),
+      _vm._m(0)
     ],
     1
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "file-loading" }, [
+      _c("input", {
+        staticClass: "file",
+        attrs: {
+          id: "input-id",
+          name: "file-0b",
+          type: "file",
+          multiple: "",
+          "data-min-file-count": "1",
+          "data-theme": "fas"
+        }
+      })
+    ])
+  }
+]
 render._withStripped = true
 module.exports = { render: render, staticRenderFns: staticRenderFns }
 if (false) {
@@ -59777,15 +66039,15 @@ if (false) {
 }
 
 /***/ }),
-/* 243 */
+/* 252 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var disposed = false
-var normalizeComponent = __webpack_require__(41)
+var normalizeComponent = __webpack_require__(42)
 /* script */
-var __vue_script__ = __webpack_require__(244)
+var __vue_script__ = __webpack_require__(253)
 /* template */
-var __vue_template__ = __webpack_require__(245)
+var __vue_template__ = __webpack_require__(254)
 /* template functional */
 var __vue_template_functional__ = false
 /* styles */
@@ -59824,7 +66086,7 @@ module.exports = Component.exports
 
 
 /***/ }),
-/* 244 */
+/* 253 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -59901,7 +66163,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 });
 
 /***/ }),
-/* 245 */
+/* 254 */
 /***/ (function(module, exports, __webpack_require__) {
 
 var render = function() {
@@ -59938,7 +66200,7 @@ if (false) {
 }
 
 /***/ }),
-/* 246 */
+/* 255 */
 /***/ (function(module, exports) {
 
 // removed by extract-text-webpack-plugin

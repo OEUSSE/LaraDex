@@ -7,20 +7,22 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
-class Welcome extends Mailable
+class Bienvenida extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $welcomeMessage;
+    public $username = "Javier";
+    public $useremail = "javier@mail.com";  
+    public $userplan = "TRIAL";
 
     /**
      * Create a new message instance.
      *
      * @return void
      */
-    public function __construct($welcomeMessage)
+    public function __construct()
     {
-        $this->welcomeMessage = $welcomeMessage;
+        //
     }
 
     /**
@@ -30,7 +32,7 @@ class Welcome extends Mailable
      */
     public function build()
     {
-        return $this->from('scr.eusse@gmail.com')
-                    ->view('emails.welcome');
+        return $this->view('maileclipse::templates.bienvenidaUsuario')
+                    ->from('scr.eusse@gmail.com');
     }
 }
