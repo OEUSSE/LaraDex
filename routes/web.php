@@ -51,6 +51,12 @@ Route::get('/sendMail', function () {
 
 Auth::routes();
 
+// passport
+Route::get('cliente', 'ClienteController@Index')->middleware('auth');
+/* Route::get('cliente', function () {
+    return view('client');
+})->middleware('auth'); */
+
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::prefix('test')->group(function () {
