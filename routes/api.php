@@ -20,6 +20,7 @@ Route::group(['middleware' => ['auth:api']], function () {
 
     // Posts
     Route::get('posts', function () {
-        return LaraDex\Post::all();
+        $posts = LaraDex\Post::all();
+        return response()->json(['posts' => $posts]);
     });
 });
