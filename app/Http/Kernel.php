@@ -3,6 +3,8 @@
 namespace LaraDex\Http;
 
 use Illuminate\Foundation\Http\Kernel as HttpKernel;
+// Client Credential Grant Tokens
+use Laravel\Passport\Http\Middleware\CheckClientCredentials;
 
 class Kernel extends HttpKernel
 {
@@ -64,5 +66,6 @@ class Kernel extends HttpKernel
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'checkage' => \LaraDex\Http\Middleware\CheckAge::class,
+        'client' => CheckClientCredentials::class, // Client Credential Grant Tokens
     ];
 }

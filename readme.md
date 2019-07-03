@@ -73,3 +73,63 @@ if (token) {
         console.log('error ' + error);
     });
 ```
+### Client Credentials Grant Tokens
+Con este tipo de grant no hay necesidad de tener un usuario en la DB para poder obtener un token.
+Se debe especificar que tipo de grant vamos a utilizar, en este caso sería el grant `client_credentials`
+
+```js
+const clientID = 6;
+const clientSecret = 'NhkM5j7oCd58VscmYILNlEN08HnaS4r4O7eZyTHz';
+const grantType = 'client_credentials';
+
+let token = document.getElementById('token');
+let clientCredentials = localStorage.getItem('client_credentials');
+
+if (clientCredentials) {
+    // Si ya existe el token en el localStorage se muestra el mensaje de autenticado
+    document.getElementById('wrapper').innerHTML = '¡Autenticado!';
+
+    fetch('http://127.0.0.1:8000/api/clients/posts', {
+        method: 'POST',
+        body: JSON.stringify({
+            title: 'Prueba',
+            body: 'Esto es una prueba usando Client Credentials'
+        }),
+        headers: { 'Authorization': 'Bearer '+clientCredentials, 'Content-Type': 'application/json' }
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log(data);
+    })
+    .catch(error => console.error(error))
+    return;
+}
+
+// Si el token no existe en el localStorage, al dar click al botón generará un nuevo token
+token.addEventListener('click', e => {
+    e.preventDefault();
+
+    fetch('http://127.0.0.1:8000/oauth/token', {
+        method: 'POST',
+        body: JSON.stringify({
+            client_id: clientID,
+            client_secret: clientSecret,
+            grant_type: grantType
+        }),
+        headers: { 'Content-Type': 'application/json' }
+    })
+    .then(response => response.json())
+    .then(data => {
+        localStorage.setItem('client_credentials', data.access_token);
+        location.reload();
+    })
+    .catch(error => console.error(error))
+})
+```
+
+Este token al momento de crearse no se asigna a ningun usuario.
+El fin de este gran no que el usuario tenga que ingresar a la plataforma para poder obtener un token para acceder a los recursos,
+si no que solo con tener un cliente creado en la plataforma se obtener un token.
+
+Llevandolo al mundo real, este tipo de grant podría ser útil en situaciones donde tengamos que una tarea programa, que siempre esté consultando recursos.
+Como por ejemplo en un blog, donde cada cierto tiempo se esté creando un nuevo post haciendo uso de la API.

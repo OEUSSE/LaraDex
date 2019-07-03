@@ -24,3 +24,20 @@ Route::group(['middleware' => ['auth:api']], function () {
         return response()->json(['posts' => $posts]);
     });
 });
+
+// Client Credential Grant Tokens
+Route::group(['middleware' => ['client']], function () {
+    Route::get('clients/posts', function () {
+        $posts = LaraDex\Post::all();
+        return response()->json(['posts' => $posts]);
+    });
+
+    Route::post('clients/posts', function (Request $request) {
+        \LaraDex\Post::create([
+            'title' => $request->input('title'),
+            'body' => $request->input('body')
+        ]);
+
+        return ['status' => 200];
+    });
+});

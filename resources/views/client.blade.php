@@ -20,6 +20,7 @@
             <h2>Clientes</h2>
             <table border="1">
                 <thead>
+                    <th>Id</th>
                     <th>Nombre</th>
                     <th>Secret</th>
                     <th>Redirect</th>
@@ -27,6 +28,7 @@
                 <tbody>
                    @foreach ($clients as $client)
                     <tr>
+                        <td>{{ $client->id }}</td>
                         <td>{{ $client->name }}</td>
                         <td>{{ $client->secret }}</td>
                         <td>{{ $client->redirect }}</td>
