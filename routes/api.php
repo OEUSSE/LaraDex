@@ -19,9 +19,24 @@ Route::group(['middleware' => ['auth:api']], function () {
     });
 
     // Posts
-    Route::get('posts', function () {
+    /* Route::get('posts', function () {
         $posts = LaraDex\Post::all();
         return response()->json(['posts' => $posts]);
+    }); */
+
+    // Tokens Scope
+    Route::group(['middleware' => ['scope:get-posts']], function () {
+        Route::get('posts', function () {
+            $posts = LaraDex\Post::all();
+            return response()->json(['posts' => $posts]);
+        });
+    });
+
+    Route::group(['middleware' => ['scope:get-two-posts']], function () {
+        Route::get('posts', function () {
+            $posts = LaraDex\Post::limit(2)->get();
+            return response()->json(['posts' => $posts]);
+        });
     });
 });
 

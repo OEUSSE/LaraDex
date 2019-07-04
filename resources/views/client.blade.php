@@ -18,7 +18,7 @@
         <hr />
         <main class="list-clients">
             <h2>Clientes</h2>
-            <table border="1">
+            <table class="table table-borderless m-b-none">
                 <thead>
                     <th>Id</th>
                     <th>Nombre</th>
