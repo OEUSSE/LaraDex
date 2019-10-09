@@ -2,6 +2,7 @@
 
 namespace LaraDex\Http\Controllers;
 
+use DB;
 use Illuminate\Http\Request;
 use Illuminte\Support\Facades\Cache;
 use LaraDex\Pokemon;
