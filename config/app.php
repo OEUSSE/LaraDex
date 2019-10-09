@@ -169,7 +169,7 @@ return [
          */
         LaraDex\Providers\AppServiceProvider::class,
         LaraDex\Providers\AuthServiceProvider::class,
-        // LaraDex\Providers\BroadcastServiceProvider::class,
+        LaraDex\Providers\BroadcastServiceProvider::class,
         LaraDex\Providers\EventServiceProvider::class,
         LaraDex\Providers\RouteServiceProvider::class,
 

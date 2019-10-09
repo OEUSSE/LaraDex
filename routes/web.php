@@ -22,7 +22,7 @@ use LaraDex\Mail\Bienvenida;
 
 Route::view('/', 'welcome');
 
-Route::get('/prueba/{name}', 'PruebaController@prueba');
+Route::get('prueba', 'PruebaController@prueba');
 
 # Route for TrainerController Controller make with artisan
 Route::resource('trainers', 'TrainerController');

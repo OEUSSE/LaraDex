@@ -25,6 +25,7 @@ Vue.use(VueTables.ClientTable)
 //  Vue.component('example-component', require('./components/ExampleComponent.vue'));
 Vue.component('data-viewer-trainers', require('./components/DataViewerTrainer.vue'))
 Vue.component('data-viewer-pokemons', require('./components/DataViewerPokemon.vue'))
+Vue.component('example-component', require('./components/ExampleComponent.vue'))
 
 const app = new Vue({
     el: '#app'

@@ -14,3 +14,8 @@
 Broadcast::channel('App.User.{id}', function ($user, $id) {
     return (int) $user->id === (int) $id;
 });
+
+// Pusher channel
+Broadcast::channel('chat', function ($user) {
+    return [$user];
+});
