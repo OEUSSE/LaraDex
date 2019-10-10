@@ -34,7 +34,7 @@ class MessageTest implements ShouldBroadcastNow
      */
     public function broadcastOn()
     {
-        return new Channel('chat');
+        return new PresenceChannel('chat');
     }
 
     public function broadcastAs() {

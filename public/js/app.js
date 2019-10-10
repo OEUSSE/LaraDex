@@ -74036,7 +74036,7 @@ Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
             console.log(user.name + ' se uni\xF3 al canal de chat');
         }).leaving(function (user) {
             console.log(user.name + ' dej\xF3 el canal de chat');
-        }).listen('messageIncoming', function (notify) {
+        }).listen('.messageIncoming', function (notify) {
             console.log(notify);
         });
     }

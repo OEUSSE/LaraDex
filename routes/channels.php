@@ -17,5 +17,5 @@ Broadcast::channel('App.User.{id}', function ($user, $id) {
 
 // Pusher channel
 Broadcast::channel('chat', function ($user) {
-    return [$user];
+    return $user;
 });
