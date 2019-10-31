@@ -8,6 +8,6 @@ use Illuminate\Http\Request;
 
 class PruebaController extends Controller {
   public function prueba(Request $request) {
-    //event(new \LaraDex\Events\MessageTest($request->input('texto')));
+    event(new \LaraDex\Events\MessageTest($request->input('texto')));
   }
 }
